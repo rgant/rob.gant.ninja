@@ -12,7 +12,7 @@
 
 html {
     color: #fff;
-    font-size: 1em;
+    font-family: 'Roboto', "Helvetica Neue", sans-serif;
     line-height: 1.4;
 }
 
@@ -95,12 +95,19 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+h1 {
+    font-family: 'Ubuntu', Helvetica, sans-serif;
+    font-weight: 500;
+}
+
 .main-header {
     position: fixed;
+    display: none;
 }
 
 .paralax-pg {
     min-height: 100vh;
+    padding: 5px;
 }
 #about {
     background-color: #9d61a2;
