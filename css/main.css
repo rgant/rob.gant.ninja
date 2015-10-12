@@ -245,10 +245,10 @@ nav li {
     /* Style adjustments for viewports that meet the condition */
 
     .main-header {
-        position: fixed;
-        top: 0;
-        right: 0;
         left: 0;
+        position: fixed;
+        right: 0;
+        top: 0;
     }
     .main-header .heading {
         float: left;
@@ -258,23 +258,78 @@ nav li {
         margin-top: 0;
     }
     .main-header nav {
-        margin-top: 1rem;
-        margin-right: 1rem;
         float: right;
+        margin-right: 1rem;
+        margin-top: 1rem;
     }
     .main-header nav ul {
         list-style-type: none;
     }
     .main-header nav li {
-        padding-left: 5px;
-        padding-right: 5px;
         display: inline;
         margin-top: 0;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    .main-header nav a {
+        background-image: url(/img/navigation.png);
+        background-repeat: no-repeat;
+        display: inline-block;
+        height: 37px;
+        overflow: hidden;
+        text-indent: -900px;
+        width: 42px;
+    }
+    .main-header nav a[href='#about'] {
+        background-position: 0 0;
+        transition: background-position .3s ease-in;
+    }
+    .main-header nav a[href='#cv'] {
+        background-position: -52px 0;
+        transition: background-position .3s ease-in;
+    }
+    .main-header nav a[href='#programming'] {
+        background-position: -105px 0;
+        transition: background-position .3s ease-in;
+    }
+    .main-header nav a[href='#tipsntricks'] {
+        background-position: -158px 0;
+        transition: background-position .3s ease-in;
+    }
+    .main-header nav a[href='#foodie'] {
+        background-position: -209px 0;
+        transition: background-position .3s ease-in;
+    }
+    .main-header nav a[href='#about']:hover,
+    .main-header.about nav a[href='#about'] {
+        background-position: 0 100%;
+        transition: background-position .3s ease-in;
+    }
+    .main-header nav a[href='#cv']:hover,
+    .main-header.cv nav a[href='#cv'] {
+        background-position: -52px 100%;
+        transition: background-position .3s ease-in;
+    }
+    .main-header nav a[href='#programming']:hover,
+    .main-header.programming nav a[href='#programming'] {
+        background-position: -105px 100%;
+        transition: background-position .3s ease-in;
+    }
+    .main-header nav a[href='#tipsntricks']:hover,
+    .main-header.tipsntricks nav a[href='#tipsntricks'] {
+        background-position: -158px 100%;
+        transition: background-position .3s ease-in;
+    }
+    .main-header nav a[href='#foodie']:hover,
+    .main-header.foodie nav a[href='#foodie'] {
+        background-position: -209px 100%;
+        transition: background-position .3s ease-in;
     }
 
-    .paralax-pg {
+/*    .paralax-pg {
         padding-top: 6em;
-    }
+        margin-bottom: -6em;
+    }*/
 
 }
 
@@ -288,9 +343,27 @@ nav li {
         margin-right: 0;
     }
     #about, #cv, #programming, #tipsntricks, #foodie {
+        background-position: left bottom;
+        background-repeat: no-repeat;
         padding-left: 50%;
         padding-right: 10%;
     }
+    #about {
+        background-image: url(/img/about.png);
+    }
+    #cv {
+        background-image: url(/img/resume.png);
+    }
+    #programming {
+        background-image: url(/img/programming.png);
+    }
+    #tipsntricks {
+        background-image: url(/img/tipsntricks.png);
+    }
+    #foodie {
+        background-image: url(/img/foodie.png);
+    }
+
 
 }
 
