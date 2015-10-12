@@ -11,7 +11,7 @@
    ========================================================================== */
 
 html {
-    color: #fff;
+    color: #222;
     font-family: 'Roboto', "Helvetica Neue", sans-serif;
     line-height: 1.4;
 }
@@ -94,15 +94,37 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
-
-h1 {
+a:link {
+    color: #ececec;
+}
+a:hover, a:active {
+    color: #0fe;
+}
+a:visited {
+    color: #551a8b;
+}
+h1, h2 {
+    color: #fff;
     font-family: 'Ubuntu', Helvetica, sans-serif;
     font-weight: 500;
 }
+h1 span {
+    color: #bbb;
+}
+nav li {
+    margin-top: 5px;
+}
 
 .main-header {
-    position: fixed;
-    display: none;
+    background-color: #3e454c;
+    color: #848f9a;
+    padding: 5px;
+}
+.main-header h1 {
+    margin-bottom: 0;
+}
+.main-header h2 {
+    margin-top: 0;
 }
 
 .paralax-pg {
@@ -111,18 +133,23 @@ h1 {
 }
 #about {
     background-color: #9d61a2;
+    color: #472c4a;
 }
 #cv {
     background-color: #8fbf4d;
+    color: #4a6722;
 }
 #programming {
     background-color: #f2d13e;
+    color: #7f6d1f;
 }
 #tipsntricks {
     background-color: #ff7f66;
+    color: #a54c3b;
 }
 #foodie {
     background-color: #7ecefd;
+    color: #3c7b9f;
 }
 
 
@@ -214,8 +241,57 @@ h1 {
    Modify as content requires.
    ========================================================================== */
 
-@media only screen and (min-width: 35em) {
+@media only screen and (min-width: 41em) {
     /* Style adjustments for viewports that meet the condition */
+
+    .main-header {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+    }
+    .main-header .heading {
+        float: left;
+        margin-left: 1rem;
+    }
+    .main-header h1 {
+        margin-top: 0;
+    }
+    .main-header nav {
+        margin-top: 1rem;
+        margin-right: 1rem;
+        float: right;
+    }
+    .main-header nav ul {
+        list-style-type: none;
+    }
+    .main-header nav li {
+        padding-left: 5px;
+        padding-right: 5px;
+        display: inline;
+        margin-top: 0;
+    }
+
+    .paralax-pg {
+        padding-top: 6em;
+    }
+
+}
+
+@media only screen and (min-width: 55em) {
+    .main-header {
+        background-color: transparent;
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+    .main-header nav {
+        margin-right: 0;
+    }
+    #about, #cv, #programming, #tipsntricks, #foodie {
+        padding-left: 50%;
+        padding-right: 10%;
+    }
+
 }
 
 @media print,
