@@ -141,6 +141,7 @@ article {
     padding: 5px;
     position: relative;
 }
+/* three dots divider https://www.diviguide.com/section-dividers/ */
 article::after {
     background: #ececec;
     border-radius: 50%;
