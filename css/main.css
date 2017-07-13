@@ -271,7 +271,18 @@ article {
         padding-left: 5px;
         padding-right: 5px;
     }
+    .main-header nav li::after {
+      border-bottom: solid 3px #ececec;
+      content: '';
+      display: block;
+      transform: scaleX(0);
+      transition: transform 200ms ease-in-out;
+    }
+    .main-header nav li:hover::after {
+        transform: scaleX(1);
+    }
     .main-header nav a {
+        background-position: center bottom;
         background-repeat: no-repeat;
         background-size: contain;
         border-bottom: 0;
