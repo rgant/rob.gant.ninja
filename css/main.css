@@ -271,14 +271,17 @@ article {
         padding-left: 5px;
         padding-right: 5px;
     }
-    .main-header nav li::after {
+    .main-header nav li::after, /* default state of underline */
+    .main-header nav:hover .selected::after { /* Reset the selected option when hovering over nav. */
       border-bottom: solid 3px #ececec;
       content: '';
       display: block;
       transform: scaleX(0);
       transition: transform 200ms ease-in-out;
     }
-    .main-header nav li:hover::after {
+    .main-header nav li:hover::after, /* On hover underline. */
+    .main-header nav .selected::after, /* Underline selected option. */
+    .main-header nav:hover .selected:hover::after { /* Re-underline if hovering over selected. */
         transform: scaleX(1);
     }
     .main-header nav a {
