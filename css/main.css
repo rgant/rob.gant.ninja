@@ -356,15 +356,44 @@ article:last-child::after {
 @media only screen and (min-width: 55em) {
     .main-header {
         background-color: transparent;
-        padding-left: 10%;
-        padding-right: 10%;
+        padding: 0;
+        position: static;
+    }
+    .main-header .heading {
+        left: 10%;
+        position: fixed;
+        z-index: 1;
     }
     .main-header h1 { /* csslint allow: qualified-headings, unique-headings */
         font-size: 4rem;
     }
     .main-header nav {
         margin-right: 0;
+        position: fixed;
+        right: 4px;
+        z-index: 1;
     }
+    /* Vertical menu */
+    .main-header nav li {
+        display: block;
+        position: relative;
+    }
+    .main-header nav li::after, /* default state of underline */
+    .main-header nav:hover .selected::after { /* Reset the selected option when hovering over nav. */
+        border-bottom: none;
+        border-left: solid 3px #ececec;
+        bottom: 0;
+        left: 0;
+        position: absolute;
+        top: 0;
+        transform: scaleY(0);
+    }
+    .main-header nav li:hover::after, /* On hover underline. */
+    .main-header nav .selected::after, /* Underline selected option. */
+    .main-header nav:hover .selected:hover::after { /* Re-underline if hovering over selected. */
+        transform: scaleY(1);
+    }
+
     article {
         background-attachment: fixed;
         background-position: left bottom;
