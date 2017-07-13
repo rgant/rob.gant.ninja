@@ -139,6 +139,23 @@ nav li {
 article {
     min-height: 100vh;
     padding: 5px;
+    position: relative;
+}
+article::after {
+    background: #ececec;
+    border-radius: 50%;
+    bottom: 20px;
+    box-shadow: 30px 0 #ececec, -30px 0 #ececec;
+    content: '';
+    display: block;
+    height: 14px;
+    left: 50%;
+    position: absolute;
+    transform: translateX(-50%);
+    width: 14px;
+}
+article:last-child::after {
+    content: none;
 }
 #about { /* csslint allow: ids */
     background-color: #9d61a2;
@@ -249,6 +266,7 @@ article {
         position: fixed;
         right: 0;
         top: 0;
+        z-index: 1;
     }
     .main-header .heading {
         float: left;
