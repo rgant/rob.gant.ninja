@@ -418,12 +418,19 @@ article:last-child::after {
         background-image: url(/img/orgs.svg);
     }
 
+    /* iPad Pro size */
     @media (min-width: 65em) and (max-height: 55em) {
         article {
             background-size: auto 75%;
         }
     }
 
+    /* 1920 x 900 size */
+    @media (min-width: 100em) {
+        article {
+            background-size: 40%;
+        }
+    }
 }
 
 @media print,
