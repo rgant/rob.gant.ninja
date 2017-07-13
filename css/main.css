@@ -39,10 +39,10 @@ html {
  */
 
 hr {
+    border: 0;
+    border-top: 1px solid #ccc; /* csslint allow: box-model */
     display: block;
     height: 1px;
-    border: 0;
-    border-top: 1px solid #ccc;
     margin: 1em 0;
     padding: 0;
 }
@@ -85,9 +85,9 @@ textarea {
    ========================================================================== */
 
 .browserupgrade {
-    margin: 0.2em 0;
     background: #ccc;
     color: #000;
+    margin: 0.2em 0;
     padding: 0.2em 0;
 }
 
@@ -123,7 +123,7 @@ nav li {
     color: #848f9a;
     padding: 5px;
 }
-.main-header h1 {
+.main-header h1 { /* csslint allow: qualified-headings, unique-headings */
     margin-bottom: 0;
 }
 .main-header .heading {
@@ -140,23 +140,23 @@ article {
     min-height: 100vh;
     padding: 5px;
 }
-#about {
+#about { /* csslint allow: ids */
     background-color: #9d61a2;
     color: #472c4a;
 }
-#cv {
+#cv { /* csslint allow: ids */
     background-color: #8fbf4d;
     color: #4a6722;
 }
-#programming {
+#programming { /* csslint allow: ids */
     background-color: #f2d13e;
     color: #7f6d1f;
 }
-#tipsntricks {
+#tipsntricks { /* csslint allow: ids */
     background-color: #ff7f66;
     color: #a54c3b;
 }
-#orgs {
+#orgs { /* csslint allow: ids */
     background-color: #7ecefd;
     color: #3c7b9f;
 }
@@ -170,7 +170,7 @@ article {
  */
 
 .hidden {
-    display: none !important;
+    display: none !important; /* csslint allow: important */
 }
 
 /*
@@ -195,8 +195,8 @@ article {
  * https://www.drupal.org/node/897638
  */
 
-.visuallyhidden.focusable:active,
-.visuallyhidden.focusable:focus {
+.visuallyhidden.focusable:active, /* csslint allow: adjoining-classes */
+.visuallyhidden.focusable:focus { /* csslint allow: adjoining-classes */
     clip: auto;
     height: auto;
     margin: 0;
@@ -254,7 +254,7 @@ article {
         float: left;
         margin-left: 1rem;
     }
-    .main-header h1 {
+    .main-header h1 { /* csslint allow: qualified-headings, unique-headings */
         margin-top: 0;
     }
     .main-header nav {
@@ -266,7 +266,7 @@ article {
         list-style-type: none;
     }
     .main-header nav li {
-        display: inline;
+        display: inline-block;
         margin-top: 0;
         padding-left: 5px;
         padding-right: 5px;
@@ -274,8 +274,9 @@ article {
     .main-header nav a {
         background-repeat: no-repeat;
         background-size: contain;
-        border-color: #ececec;
         border-bottom: 0;
+        border-color: #ececec;
+        direction: ltr;
         display: inline-block;
         height: 37px;
         overflow: hidden;
@@ -297,7 +298,7 @@ article {
     .main-header nav a[href='#orgs'] {
         background-image: url(/img/orgs.svg);
     }
-    .main-header nav a[href='#about']:hover,
+/*    .main-header nav a[href='#about']:hover,
     .main-header.about nav a[href='#about'] {
     }
     .main-header nav a[href='#cv']:hover,
@@ -312,9 +313,9 @@ article {
     .main-header nav a[href='#orgs']:hover,
     .main-header.orgs nav a[href='#orgs'] {
     }
-
+*/
    article {
-        box-sizing: border-box;
+        box-sizing: border-box; /* csslint allow: box-sizing */
         padding-top: 6em;
     }
 
@@ -326,7 +327,7 @@ article {
         padding-left: 10%;
         padding-right: 10%;
     }
-    .main-header h1 {
+    .main-header h1 { /* csslint allow: qualified-headings, unique-headings */
         font-size: 4rem;
     }
     .main-header nav {
@@ -340,23 +341,23 @@ article {
         padding-left: 50%;
         padding-right: 10%;
     }
-    #about {
+    #about { /* csslint allow: ids */
         background-image: url(/img/about.svg);
     }
-    #cv {
+    #cv { /* csslint allow: ids */
         background-image: url(/img/cv.svg);
     }
-    #programming {
+    #programming { /* csslint allow: ids */
         background-image: url(/img/programming.svg);
     }
-    #tipsntricks {
+    #tipsntricks { /* csslint allow: ids */
         background-image: url(/img/tipsntricks.svg);
     }
-    #orgs {
+    #orgs { /* csslint allow: ids */
         background-image: url(/img/orgs.svg);
     }
 
-    @media (max-height: 55em) {
+    @media (min-width: 65em) and (max-height: 55em) {
         article {
             background-size: auto 75%;
         }
@@ -369,6 +370,9 @@ article {
        (min-resolution: 1.25dppx),
        (min-resolution: 120dpi) {
     /* Style adjustments for high resolution devices */
+    article p {
+        font-size: 1.25rem;
+    }
 }
 
 /* ==========================================================================
@@ -378,16 +382,16 @@ article {
    ========================================================================== */
 
 @media print {
-    *,
-    *:before,
-    *:after,
-    *:first-letter,
-    *:first-line {
-        background: transparent !important;
-        color: #000 !important; /* Black prints faster:
-                                   http://www.sanbeiji.com/archives/953 */
-        box-shadow: none !important;
-        text-shadow: none !important;
+    *, /* csslint allow: universal-selector */
+    *:before, /* csslint allow: universal-selector */
+    *:after, /* csslint allow: universal-selector */
+    *:first-letter, /* csslint allow: universal-selector */
+    *:first-line { /* csslint allow: universal-selector */
+        background: transparent !important; /* csslint allow: important */
+        box-shadow: none !important; /* csslint allow: important */
+        /* Black prints faster: http://www.sanbeiji.com/archives/953 */
+        color: #000 !important;  /* csslint allow: important */
+        text-shadow: none !important; /* csslint allow: important */
     }
 
     a,
@@ -408,8 +412,8 @@ article {
      * or use the `javascript:` pseudo protocol
      */
 
-    a[href^="#"]:after,
-    a[href^="javascript:"]:after {
+    a[href^="#"]:after, /* csslint allow: regex-selectors */
+    a[href^="javascript:"]:after { /* csslint allow: regex-selectors */
         content: "";
     }
 
@@ -434,18 +438,18 @@ article {
     }
 
     img {
-        max-width: 100% !important;
+        max-width: 100% !important; /* csslint allow: important */
     }
 
     p,
-    h2,
+    h2, /* csslint allow: unique-headings */
     h3 {
         orphans: 3;
         widows: 3;
     }
 
-    h2,
-    h3 {
+    h2, /* csslint allow: unique-headings */
+    h3 { /* csslint allow: unique-headings */
         page-break-after: avoid;
     }
 }
