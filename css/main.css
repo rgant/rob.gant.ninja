@@ -103,13 +103,12 @@ a:hover, a:active {
 a:visited {
     color: #A282C0;
 }
-h1 {
-    text-transform: uppercase;
-}
 h1, h2 {
     color: #fff;
     font-family: 'Ubuntu', Helvetica, sans-serif;
+    font-size: 2rem;
     font-weight: 500;
+    text-transform: uppercase;
 }
 h1 span {
     opacity: 0.5;
@@ -127,11 +126,17 @@ nav li {
 .main-header h1 {
     margin-bottom: 0;
 }
-.main-header h2 {
+.main-header .heading {
+    color: #fff;
+    font-family: 'Ubuntu', Helvetica, sans-serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+.main-header .heading p {
     margin-top: 0;
 }
 
-.paralax-pg {
+article {
     min-height: 100vh;
     padding: 5px;
 }
@@ -151,19 +156,10 @@ nav li {
     background-color: #ff7f66;
     color: #a54c3b;
 }
-#foodie {
+#orgs {
     background-color: #7ecefd;
     color: #3c7b9f;
 }
-
-
-
-
-
-
-
-
-
 
 /* ==========================================================================
    Helper classes
@@ -276,8 +272,10 @@ nav li {
         padding-right: 5px;
     }
     .main-header nav a {
-        background-image: url(/img/navigation.png);
         background-repeat: no-repeat;
+        background-size: contain;
+        border-color: #ececec;
+        border-bottom: 0;
         display: inline-block;
         height: 37px;
         overflow: hidden;
@@ -285,52 +283,37 @@ nav li {
         width: 42px;
     }
     .main-header nav a[href='#about'] {
-        background-position: 0 0;
-        transition: background-position .3s ease-in;
+        background-image: url(/img/about.svg);
     }
     .main-header nav a[href='#cv'] {
-        background-position: -52px 0;
-        transition: background-position .3s ease-in;
+        background-image: url(/img/cv.svg);
     }
     .main-header nav a[href='#programming'] {
-        background-position: -105px 0;
-        transition: background-position .3s ease-in;
+        background-image: url(/img/programming.svg);
     }
     .main-header nav a[href='#tipsntricks'] {
-        background-position: -158px 0;
-        transition: background-position .3s ease-in;
+        background-image: url(/img/tipsntricks.svg);
     }
-    .main-header nav a[href='#foodie'] {
-        background-position: -209px 0;
-        transition: background-position .3s ease-in;
+    .main-header nav a[href='#orgs'] {
+        background-image: url(/img/orgs.svg);
     }
     .main-header nav a[href='#about']:hover,
     .main-header.about nav a[href='#about'] {
-        background-position: 0 100%;
-        transition: background-position .3s ease-in;
     }
     .main-header nav a[href='#cv']:hover,
     .main-header.cv nav a[href='#cv'] {
-        background-position: -52px 100%;
-        transition: background-position .3s ease-in;
     }
     .main-header nav a[href='#programming']:hover,
     .main-header.programming nav a[href='#programming'] {
-        background-position: -105px 100%;
-        transition: background-position .3s ease-in;
     }
     .main-header nav a[href='#tipsntricks']:hover,
     .main-header.tipsntricks nav a[href='#tipsntricks'] {
-        background-position: -158px 100%;
-        transition: background-position .3s ease-in;
     }
-    .main-header nav a[href='#foodie']:hover,
-    .main-header.foodie nav a[href='#foodie'] {
-        background-position: -209px 100%;
-        transition: background-position .3s ease-in;
+    .main-header nav a[href='#orgs']:hover,
+    .main-header.orgs nav a[href='#orgs'] {
     }
 
-   .paralax-pg {
+   article {
         box-sizing: border-box;
         padding-top: 6em;
     }
@@ -349,7 +332,8 @@ nav li {
     .main-header nav {
         margin-right: 0;
     }
-    .paralax-pg {
+    article {
+        background-attachment: fixed;
         background-position: left bottom;
         background-repeat: no-repeat;
         background-size: 45%;
@@ -357,21 +341,26 @@ nav li {
         padding-right: 10%;
     }
     #about {
-        background-image: url(/img/about.png);
+        background-image: url(/img/about.svg);
     }
     #cv {
-        background-image: url(/img/resume.png);
+        background-image: url(/img/cv.svg);
     }
     #programming {
-        background-image: url(/img/programming.png);
+        background-image: url(/img/programming.svg);
     }
     #tipsntricks {
-        background-image: url(/img/tipsntricks.png);
+        background-image: url(/img/tipsntricks.svg);
     }
-    #foodie {
-        background-image: url(/img/foodie.png);
+    #orgs {
+        background-image: url(/img/orgs.svg);
     }
 
+    @media (max-height: 55em) {
+        article {
+            background-size: auto 75%;
+        }
+    }
 
 }
 
