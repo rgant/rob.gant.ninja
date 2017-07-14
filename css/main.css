@@ -44,7 +44,7 @@ hr {
     border-top: 1px solid #ccc; /* csslint allow: box-model */
     display: block;
     height: 1px;
-    margin: 1em 0;
+    margin: 1rem 0;
     padding: 0;
 }
 
@@ -88,8 +88,8 @@ textarea {
 .browserupgrade {
     background: #ccc;
     color: #000;
-    margin: 0.2em 0;
-    padding: 0.2em 0;
+    margin: 0.2rem 0;
+    padding: 0.2rem 0;
 }
 
 /* ==========================================================================
@@ -144,7 +144,7 @@ nav li {
 
 article {
     min-height: 100vh;
-    padding: 5px;
+    padding: 5px 5px 34px;  /* Space for three dots divider */
     position: relative;
 }
 /* three dots divider https://www.diviguide.com/section-dividers/ */
@@ -171,6 +171,10 @@ article:last-child::after {
 #cv { /* csslint allow: ids */
     background-color: #8fbf4d;
     color: #4a6722;
+}
+#cv ol {
+    /* List experience in order, but don't display numbers. */
+    list-style-type: disc;
 }
 #programming { /* csslint allow: ids */
     background-color: #f2d13e;
@@ -355,7 +359,7 @@ article:last-child::after {
 */
    article {
         box-sizing: border-box; /* csslint allow: box-sizing */
-        padding-top: 6em;
+        padding-top: 3.5rem;
     }
 
 }
