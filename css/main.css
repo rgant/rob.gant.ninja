@@ -191,8 +191,17 @@ article:last-child::after {
     background-color: #7ecefd;
     color: #3c7b9f;
 }
+#orgs img { /* csslint allow: ids */
+    max-width: 76%;
+    width: 410px;
+}
 .proj-list dd { /* csslint allow: ids */
     margin-bottom: 1rem;
+}
+footer {
+    background-color: #3e454c;
+    color: #848f9a;
+    margin-left: 10%;
 }
 
 /* ==========================================================================
@@ -278,13 +287,6 @@ article:last-child::after {
 @media only screen and (min-width: 41em) {
     /* Style adjustments for viewports that meet the condition */
 
-    .main-header {
-        left: 0;
-        position: fixed;
-        right: 0;
-        top: 0;
-        z-index: 1;
-    }
     .main-header .heading {
         float: left;
         margin-left: 1rem;
@@ -347,27 +349,37 @@ article:last-child::after {
     .main-header nav a[href='#orgs'] {
         background-image: url(/img/orgs.svg);
     }
-/*    .main-header nav a[href='#about']:hover,
-    .main-header.about nav a[href='#about'] {
+
+    footer p {
+        float: left;
+        margin: 1rem 0;
     }
-    .main-header nav a[href='#cv']:hover,
-    .main-header.cv nav a[href='#cv'] {
+    footer ul {
+        float: left;
+        list-style-type: none;
+        margin: 1rem 0;
+        padding: 0;
     }
-    .main-header nav a[href='#programming']:hover,
-    .main-header.programming nav a[href='#programming'] {
+    footer li {
+        display: inline;
+        padding-left: 5px;
+        padding-right: 5px;
     }
-    .main-header nav a[href='#tipsntricks']:hover,
-    .main-header.tipsntricks nav a[href='#tipsntricks'] {
-    }
-    .main-header nav a[href='#orgs']:hover,
-    .main-header.orgs nav a[href='#orgs'] {
-    }
-*/
-   article {
+
+    article {
         box-sizing: border-box; /* csslint allow: box-sizing */
         padding-top: 3.5rem;
     }
 
+    @media (min-height: 64em) {
+        .main-header {
+            left: 0;
+            position: fixed;
+            right: 0;
+            top: 0;
+            z-index: 1;
+        }
+    }
 }
 
 @media only screen and (min-width: 57em) {
