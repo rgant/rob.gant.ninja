@@ -172,13 +172,19 @@ article:last-child::after {
     background-color: #8fbf4d;
     color: #4a6722;
 }
-#cv ol {
+#cv ol { /* csslint allow: ids */
     /* List experience in order, but don't display numbers. */
     list-style-type: disc;
 }
 #programming { /* csslint allow: ids */
     background-color: #f2d13e;
     color: #7f6d1f;
+}
+#programming dd { /* csslint allow: ids */
+    margin-bottom: 1rem;
+}
+#programming a:link { /* csslint allow: ids */
+    color: #f8f8f8;
 }
 #tipsntricks { /* csslint allow: ids */
     background-color: #ff7f66;
