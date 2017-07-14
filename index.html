@@ -118,7 +118,7 @@
             <section>
                 <h3>Project Repositories</h3>
 
-                <dl>
+                <dl class="proj-list">
                     <dt><a href="https://github.com/rgant/rob.gant.ninja">rob.gant.ninja</a></dt>
                     <dd>Code for this website.</dd>
 
@@ -154,12 +154,69 @@
         <article id="tipsntricks">
             <h2>Tips and Tricks</h2>
 
-            <p>Lorem ipsum dolor sit amet, <a href="#">consectetur adipisicing elit</a>, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p>
+                Life is quickly becoming a software problem; which is great because I like fixing
+                software problems. Here are some of the tweaks I've made to make things a bit better
+                for me.
+            </p>
+
+            <section>
+                <h3>User.js Scripts</h3>
+
+                <p>GreaseMonkey Scripts I use to make the website I visit a bit better for me.</p>
+
+                <dl class="proj-list">
+                    <dt><a href="https://github.com/rgant/homedir/blob/master/Library/Application-Support/Firefox/Profiles/robgant.default/gm_scripts/Block_In_Page_JavaScript/Block_In_Page_JavaScript.user.js">Block In Page JavaScript</a></dt>
+                    <dd>Prevents all scripts from executing on certain websites, because they abuse
+                    the privilege.</dd>
+
+                    <dt><a href="https://github.com/rgant/homedir/blob/master/Library/Application-Support/Firefox/Profiles/robgant.default/gm_scripts/Enable_Auto_Completion/enable_auto_completion.user.js">Fix Most Pages</a></dt>
+                    <dd>Common fixes for many websites to enable autocomplete, sanitize password
+                    inputs, disable _gaq links, enable video &amp; audio controls, and show info on
+                    YouTube embeds.</dd>
+
+                    <dt><a href="https://github.com/rgant/homedir/blob/master/Library/Application-Support/Firefox/Profiles/robgant.default/gm_scripts/Fark_Auto_Article_Link/fark_auto_article_link.user.js">Fix Fark</a></dt>
+                    <dd>Automatically navigate to article when opening link in new tab. Enable
+                    keyboard navigation for comments.</dd>
+
+                    <dt><a href="https://github.com/rgant/homedir/blob/master/Library/Application-Support/Firefox/Profiles/robgant.default/gm_scripts/Fix_Reddit/Fix_Reddit.user.js">Fix Reddit</a></dt>
+                    <dd>Open posts in a new tab. Enable keyboard navigation for posts.</dd>
+
+                    <dt><a href="https://github.com/rgant/homedir/blob/master/Library/Application-Support/Firefox/Profiles/robgant.default/gm_scripts/Fix_Slack/Fix_Slack.user.js">Fix Slack</a></dt>
+                    <dd>Make Slack keyboard shortcuts respect when the ⌘ key is pressed.</dd>
+
+                    <dt><a href="https://github.com/rgant/homedir/blob/master/Library/Application-Support/Firefox/Profiles/robgant.default/gm_scripts/Fix_Youtube/Fix_Youtube.user.js">Fix Youtube</a></dt>
+                    <dd>Hook into the single page app custom spf events to detect a <em>page
+                    transition</em> and turn off the autoplay video setting in lists.</dd>
+
+                    <dt><a href="https://github.com/rgant/homedir/blob/master/Library/Application-Support/Firefox/Profiles/robgant.default/gm_scripts/Remove_UTM/remove_utm.user.js">Remove UTM</a></dt>
+                    <dd>Remove the tracking codes from URLs so I can share clean links.</dd>
+
+                    <dt><a href="https://github.com/rgant/homedir/blob/master/Library/Application-Support/Firefox/Profiles/robgant.default/gm_scripts/TTRSS_Open_Background_Tab/TTRSS_Open_Background_Tab.user.js">TTRSS Open Background Tab</a></dt>
+                    <dd>Add keyboard shortcut to open articles in a background tab from Tiny Tiny
+                    RSS. When expanding an article with YouTube embeds show info so I can add to my
+                    watch later list.</dd>
+                </dl>
+            </section>
+
+            <section>
+                <h3>Other Customizations</h3>
+
+                <dl class="proj-list">
+                    <dt><a href="https://github.com/rgant/homedir/blob/1d36fafa46927b27290fcd78cc0734576dd79103/Library/Application-Support/Firefox/Profiles/robgant.default/chrome/userChrome.css#L12">Always Show Reader Mode Icon</a></dt>
+                    <dd>Reader mode in Firefox is great, but it's a bit too conservative when
+                    deciding preemptively that it cannot handle a page. This CSS always shows the
+                    button which will work most of the time.</dd>
+
+                    <dt>Symlink Configuration Folders</dt>
+                    <dd>Firefox and Sublime Text both store important customizations in folders
+                    buried deep in the disk. But on UNIX-y environments you can symlink the folders
+                    to other locations. For example a git repository tracking your settings:</dd>
+                    <dd><code>ln -s $PATH_TO_REPO/user.js $PATH_TO_FF_PROFILE/user.js</code></dd>
+                    <dd><code>ln -s $PATH_TO_REPO/chrome $PATH_TO_FF_PROFILE/chrome</code></dd>
+                    <dd><code>ln -s $PATH_TO_REPO/User $PATH_TO_SUBLIME_PACKAGES/User</code></dd>
+                </dl>
+            </section>
         </article>
 
         <article id="orgs">

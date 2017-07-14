@@ -180,9 +180,6 @@ article:last-child::after {
     background-color: #f2d13e;
     color: #7f6d1f;
 }
-#programming dd { /* csslint allow: ids */
-    margin-bottom: 1rem;
-}
 #programming a:link { /* csslint allow: ids */
     color: #f8f8f8;
 }
@@ -193,6 +190,9 @@ article:last-child::after {
 #orgs { /* csslint allow: ids */
     background-color: #7ecefd;
     color: #3c7b9f;
+}
+.proj-list dd { /* csslint allow: ids */
+    margin-bottom: 1rem;
 }
 
 /* ==========================================================================
@@ -370,7 +370,7 @@ article:last-child::after {
 
 }
 
-@media only screen and (min-width: 55em) {
+@media only screen and (min-width: 57em) {
     .main-header {
         background-color: transparent;
         padding: 0;
