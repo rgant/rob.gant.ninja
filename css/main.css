@@ -164,6 +164,19 @@ article::after {
 article:last-child::after {
     content: none;
 }
+.top_link {
+    float: right;
+}
+.top_link::before {
+    border-bottom: 5px solid #ececec;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    content: " ";
+    height: 0;
+    margin-right: 2px;
+    vertical-align: 50%;
+    width: 0;
+}
 #about { /* csslint allow: ids */
     background-color: #9d61a2;
     color: #472c4a;
@@ -379,6 +392,9 @@ footer {
             top: 0;
             z-index: 1;
         }
+        .top_link {
+            display: none;
+        }
     }
 }
 
@@ -430,6 +446,9 @@ footer {
         background-size: 45%;
         padding-left: 50%;
         padding-right: 10%;
+    }
+    .top_link {
+        display: none;
     }
     #about { /* csslint allow: ids */
         background-image: url(/img/about.svg);
