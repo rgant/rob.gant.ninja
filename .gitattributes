@@ -1,0 +1,3 @@
+# As of git 2.10 this functions as expected
+# Automatically detect text files and convert to unix line endings
+* text=auto eol=lf
