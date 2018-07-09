@@ -1,4 +1,4 @@
-/*! HTML5 Boilerplate v5.3.0 | MIT License | https://html5boilerplate.com/ */
+/*! HTML5 Boilerplate v6.1.0 | MIT License | https://html5boilerplate.com/ */
 
 /*
  * What follows is the result of much research on cross-browser styling.
@@ -14,6 +14,7 @@ html {
     background-color: #3e454c;
     color: #222;
     font-family: 'Roboto', "Helvetica Neue", sans-serif;
+    font-size: 1em;
     line-height: 1.4;
 }
 
@@ -21,7 +22,9 @@ html {
  * Remove text-shadow in selection highlight:
  * https://twitter.com/miketaylr/status/12228805301
  *
- * These selection rule sets have to be separate.
+ * Vendor-prefixed and regular ::selection selectors cannot be combined:
+ * https://stackoverflow.com/a/16982510/7133471
+ *
  * Customize the background color to match your design.
  */
 
@@ -231,7 +234,11 @@ footer {
 
 /*
  * Hide only visually, but have it available for screen readers:
- * http://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+ * https://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+ *
+ * 1. For long content, line feeds are not interpreted as spaces and small width
+ *    causes content to wrap 1 word per line:
+ *    https://medium.com/@jessebeach/beware-smushed-off-screen-accessible-text-5952a4c2cbfe
  */
 
 .visuallyhidden {
@@ -243,6 +250,7 @@ footer {
     padding: 0;
     position: absolute;
     width: 1px;
+    white-space: nowrap; /* 1 */
 }
 
 /*
@@ -258,6 +266,7 @@ footer {
     margin: 0;
     overflow: visible;
     position: static;
+    white-space: inherit;
     width: auto;
 }
 
@@ -494,20 +503,18 @@ footer {
 /* ==========================================================================
    Print styles.
    Inlined to avoid the additional HTTP request:
-   http://www.phpied.com/delay-loading-your-print-css/
+   https://www.phpied.com/delay-loading-your-print-css/
    ========================================================================== */
 
 @media print {
     *, /* csslint allow: universal-selector */
     *:before, /* csslint allow: universal-selector */
-    *:after, /* csslint allow: universal-selector */
-    *:first-letter, /* csslint allow: universal-selector */
-    *:first-line { /* csslint allow: universal-selector */
-        background: transparent !important; /* csslint allow: important */
-        box-shadow: none !important; /* csslint allow: important */
-        /* Black prints faster: http://www.sanbeiji.com/archives/953 */
-        color: #000 !important;  /* csslint allow: important */
-        text-shadow: none !important; /* csslint allow: important */
+    *:after { /* csslint allow: universal-selector */
+        background: transparent !important;
+        color: #000 !important; /* Black prints faster */
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
     }
 
     a,
@@ -533,6 +540,9 @@ footer {
         content: "";
     }
 
+    pre {
+        white-space: pre-wrap !important; /* csslint allow: important */
+    }
     pre,
     blockquote {
         border: 1px solid #999;
@@ -553,13 +563,9 @@ footer {
         page-break-inside: avoid;
     }
 
-    img {
-        max-width: 100% !important; /* csslint allow: important */
-    }
-
     p,
     h2, /* csslint allow: unique-headings */
-    h3 {
+    h3 { /* csslint allow: unique-headings */
         orphans: 3;
         widows: 3;
     }
