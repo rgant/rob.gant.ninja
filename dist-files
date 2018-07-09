@@ -1,0 +1,9 @@
+# All the files currently part of the website
+^assets/[^.]
+^css/[^.]
+^img/[^.]
+^js/[^.]
+^favicon.ico
+^[^/]+\.html
+^resume.pdf
+^robots.txt
