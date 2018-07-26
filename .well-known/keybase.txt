@@ -1,0 +1,73 @@
+==================================================================
+https://keybase.io/rgant
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://rob.gant.ninja
+  * I am rgant (https://keybase.io/rgant) on keybase.
+  * I have a public key with fingerprint BEBC 7A15 6823 4305 789D  23C1 72A9 2177 D88C 3014
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0101e8a644a2bdcafdba4ef8e90693e7ad835ee7b69c438bb82c3a4b9413050e94ab0a",
+      "fingerprint": "bebc7a1568234305789d23c172a92177d88c3014",
+      "host": "keybase.io",
+      "key_id": "72a92177d88c3014",
+      "kid": "0101e8a644a2bdcafdba4ef8e90693e7ad835ee7b69c438bb82c3a4b9413050e94ab0a",
+      "uid": "de7af4dc9ad1f7360035d9ed004a3a19",
+      "username": "rgant"
+    },
+    "service": {
+      "hostname": "rob.gant.ninja",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "ctime": 1532626609,
+  "expire_in": 157680000,
+  "prev": "b9d1e5387e2b712fada56f2891da991f8830db12a253c9ba884e9c543d498ba7",
+  "seqno": 3,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+
+owGtkm1QVFUYxxeDQKjEcQFHxY1LCWOE9/1lZyxcpgKi0Bgi42U9996zywXdXe8u
+IBBLbqTh6Aq6joxBOkGrmNmExJA5BGRbRhBFgEo5YOgAQ0A2KiNq3cvEtz52vpw5
+z/P7/5+XOdWPP6IJ8pObooov70e1ft0TvCbrzUdbyxDeKpYg+jKkAC5ccLsI7Q5j
+gSQiegTFUAyygCZJgPOiAEwiD0hoYiGH0hwBGSCyBAUhw9OcQBIsz7O4QACS50iM
+QCkUciTgUYDEISbJYoayTZYsDsWWh7zAAIyiWZwgFZBhOREnBIzBAYdjDCOyrECg
+GKkI86x2VaE0xwM7jJesSkx5GBfa+w/+f+67cMFOVBQmUhQ4IGImhqBRlKBEDooo
+SgICYJwK2qFsATugQstmoExZHocooSJJgOpW1TEW01Y+XiXiLZIlX61hk60Oq2Dd
+ruTyHA6bXa9qHSU2FS6GvPFfGyMvWURljYqiCMp2yWpB9JhCCg5J9cUoAqdxmka5
+OATuskkyNEoqQTE0iypHrQOL1OVzIgYpgs1kIM4zGG4CIqBoE85ymAg4DjOxLIGK
+PIYDnCIEjgcsS0JOoEhCJDmWBwyiTrbTYkX0hNInMCuedslsAY5CGSLlwVVLCH+N
+X5AmMjzKv/1CaVhedGLArvrozsWvF7BE/Xea4KWhi5G/uVDNbls/NzqfhJd433nC
+MKcp72q+uv8F+xqjZRjtbT36S1PNtpwVGmAIPfSzNq36uKe41dlx4J79B3vux/dl
+n6+2/o/eMU3Z67WBul7nK85eDD7nbcO9WwfCm0Yfc11Lsnyt77ZN7sz8LPo938Se
+r/46fKe4vXtswnlkzZaH4uxTn3OOkEZ/T8X6vsCU1ae0teMxh06eXNZQdOv0taW7
+++ddfi+2DG9s+aausvVDw5+dpWW/+1Lbp98PPI/MrKvKawgpuLVi2H9VV7vvhA7Z
+6D8zEknkHMzBa7SD6ZUu75Bu8O3g430JLyNldcsOp1eYH8R25P4YuunpWm52ny72
++pX+GffVO+dGtBvoSspdT92djAjoEuK/HMxuzqzqOme4KNURF47dJD4Nmb3fkZU+
+8CvaZEtiaq/cDbrunU2YuJGf+NbeI8abOtcn37mPvlu4MjREl+Ie+qhxzOXZNpP/
+ReL3Z5M/GHKeBo3fNleMpXkC9XUjWxhzihaEGzt6kuafvHep4aUz08u9YSe43Ffd
+nnCDay55NTXe1ulXsyPjzJ7E17pOIQnHLj7bEvbGaExkavZ4duUm5+aMobTu0b4H
+WXJETtsM6Qm/HHM+tnq59+CqOfdUy4FnHg6sjejp4cfbfD9t3Zeceil5quH2JFOZ
+HnhjZdo64vnp0g2G38gpOXXz2aj1I7lIxu21/wA=
+=Ti8M
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/rgant
+
+==================================================================
+

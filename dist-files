@@ -1,4 +1,5 @@
 # All the files currently part of the website
+^\.well-known/[^.]
 ^assets/[^.]
 ^css/[^.]
 ^img/[^.]
