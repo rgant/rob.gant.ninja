@@ -15,6 +15,11 @@ s3cmd sync --no-preserve --cf-invalidate --cf-invalidate-default-index --delete-
 When we build the website we should be able to cachebust the asset/css/img/js file
 names using a hash and we won't need `--cf-invalidate`.
 
+By default `s3cmd sync` preserves file attributes as metadata on the s3 key and that
+data is then converted into an HTTP header in the response. Using `--no-preserve`
+won't impact the ability of [sync to check](https://github.com/s3tools/s3cmd/blob/ae6a635312abba7e5353f257e60e845034ad9ecf/S3/Config.py#L163)
+for changed files.
+
 Should also setup [Cache-Control Headers](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Expiration.html)
 once we have cachebusting setup.
 
