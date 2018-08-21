@@ -9,7 +9,7 @@ Install s3cmd on MacOS using Homebrew: `brew install s3cmd`.
 Configure s3cmd: `s3cmd --configure`
 
 ```bash
-s3cmd sync --cf-invalidate --cf-invalidate-default-index --delete-removed --exclude=* --rinclude-from=dist-files ./ s3://rob-gant-ninja/
+s3cmd sync --no-preserve --cf-invalidate --cf-invalidate-default-index --delete-removed --exclude=* --rinclude-from=dist-files ./ s3://rob-gant-ninja/
 ```
 
 When we build the website we should be able to cachebust the asset/css/img/js file
