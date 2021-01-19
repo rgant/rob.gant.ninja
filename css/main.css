@@ -107,6 +107,11 @@ a:hover, a:active {
 a:visited {
     color: #A282C0;
 }
+body {
+    scroll-snap-points-y: repeat(100%);
+    scroll-snap-type: proximity;
+    scroll-snap-type: y mandatory;
+}
 h1, h2, h3 {
     color: #fff;
     font-family: 'Ubuntu', Helvetica, sans-serif;
@@ -149,6 +154,7 @@ article {
     min-height: 100vh;
     padding: 5px 5px 34px;  /* Space for three dots divider */
     position: relative;
+    scroll-snap-align: start;
 }
 /* three dots divider https://www.diviguide.com/section-dividers/ */
 article::after {
