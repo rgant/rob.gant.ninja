@@ -2,6 +2,15 @@
 	"folders":
 	[
 		{
+			"file_exclude_patterns":
+			[
+				"*.tfstate",
+				"*.tfstate.*"
+			],
+			"folder_exclude_patterns":
+			[
+				".terraform"
+			],
 			"path": "."
 		}
 	]
