@@ -2,10 +2,7 @@ resource "aws_s3_bucket" "website" {
   bucket = "rob-gant-ninja"
   acl    = "private"
 
-  website {
-    index_document = "index.html"
-    error_document = "404.html"
-  }
+  # Because CloudFront directly accesses this bucket using origin access identity it does not need to be a website
 }
 
 resource "aws_s3_bucket_public_access_block" "website" {
@@ -17,8 +14,8 @@ resource "aws_s3_bucket_public_access_block" "website" {
   restrict_public_buckets = true
 }
 
-# Using aws_s3_bucket_object to upload the site means we need to figure out
-# the MIME types, so just stick with s3cmd
+# Using aws_s3_bucket_object to upload the site means we need to figure out the MIME types, so just
+# stick with s3cmd
 resource "null_resource" "sync_to_website" {
   provisioner "local-exec" {
     command = <<EOF
@@ -34,18 +31,63 @@ EOF
   }
 }
 
+resource "aws_acm_certificate" "gant_ninja_cert" {
+  domain_name               = "gant.ninja"
+  validation_method         = "DNS"
+  subject_alternative_names = ["*.gant.ninja"]
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+
+resource "aws_route53_record" "gant_ninja_acm_validation" {
+  for_each = {
+    for dvo in aws_acm_certificate.gant_ninja_cert.domain_validation_options : dvo.domain_name => {
+      name   = dvo.resource_record_name
+      record = dvo.resource_record_value
+      type   = dvo.resource_record_type
+    }
+  }
+
+  allow_overwrite = true
+  name            = each.value.name
+  records         = [each.value.record]
+  ttl             = 86400
+  type            = each.value.type
+  zone_id         = aws_route53_zone.main.zone_id
+}
+
 resource "aws_cloudfront_origin_access_identity" "oai" {
   comment = "access-identity.s3.amazonaws.com"
 }
 
+data "aws_iam_policy_document" "cloudfront" {
+  statement {
+    sid       = "2"
+    actions   = ["s3:GetObject"]
+    resources = ["${aws_s3_bucket.website.arn}/*"]
+
+    principals {
+      type        = "AWS"
+      identifiers = [aws_cloudfront_origin_access_identity.oai.iam_arn]
+    }
+  }
+}
+
+resource "aws_s3_bucket_policy" "website" {
+  bucket = aws_s3_bucket.website.id
+  policy = data.aws_iam_policy_document.cloudfront.json
+}
+
 locals {
-  s3_origin_id = "S3-${aws_s3_bucket.website.bucket}"
+  website_origin_id = "S3-${aws_s3_bucket.website.bucket}"
 }
 
 resource "aws_cloudfront_distribution" "website" {
   origin {
     domain_name = aws_s3_bucket.website.bucket_regional_domain_name
-    origin_id   = local.s3_origin_id
+    origin_id   = local.website_origin_id
 
     s3_origin_config {
       origin_access_identity = aws_cloudfront_origin_access_identity.oai.cloudfront_access_identity_path
@@ -55,13 +97,13 @@ resource "aws_cloudfront_distribution" "website" {
   enabled             = true
   is_ipv6_enabled     = true
   comment             = "Personal Website using S3 and Route 53"
-  default_root_object = "index.html"
+  default_root_object = "index.html" # Should not start with a slash!
   aliases             = ["rob.gant.ninja"]
 
   default_cache_behavior {
     allowed_methods  = ["GET", "HEAD"]
     cached_methods   = ["GET", "HEAD"]
-    target_origin_id = local.s3_origin_id
+    target_origin_id = local.website_origin_id
 
     forwarded_values {
       query_string = false
@@ -69,6 +111,11 @@ resource "aws_cloudfront_distribution" "website" {
       cookies {
         forward = "none"
       }
+    }
+
+    function_association {
+      event_type   = "viewer-response"
+      function_arn = aws_cloudfront_function.security_headers.arn
     }
 
     min_ttl                = 0
@@ -93,35 +140,14 @@ resource "aws_cloudfront_distribution" "website" {
   }
 
   custom_error_response {
-    error_code            = 404
+    # S3 responds with a 403 for mising files.
+    error_code            = 403
     response_code         = 404
     error_caching_min_ttl = 300
     response_page_path    = "/404.html"
   }
 
   wait_for_deployment = false
-}
-
-resource "aws_acm_certificate" "gant_ninja_cert" {
-  domain_name       = "*.gant.ninja"
-  validation_method = "DNS"
-}
-
-resource "aws_route53_record" "acm_validation" {
-  for_each = {
-    for dvo in aws_acm_certificate.gant_ninja_cert.domain_validation_options : dvo.domain_name => {
-      name   = dvo.resource_record_name
-      record = dvo.resource_record_value
-      type   = dvo.resource_record_type
-    }
-  }
-
-  allow_overwrite = true
-  name            = each.value.name
-  records         = [each.value.record]
-  ttl             = 86400
-  type            = each.value.type
-  zone_id         = aws_route53_zone.main.zone_id
 }
 
 resource "aws_route53_record" "rob_gant_ninja_a" {
@@ -146,22 +172,4 @@ resource "aws_route53_record" "rob_gant_ninja_aaaa" {
     zone_id                = aws_cloudfront_distribution.website.hosted_zone_id
     evaluate_target_health = false
   }
-}
-
-data "aws_iam_policy_document" "cloudfront" {
-  statement {
-    sid       = "2"
-    actions   = ["s3:GetObject"]
-    resources = ["${aws_s3_bucket.website.arn}/*"]
-
-    principals {
-      type        = "AWS"
-      identifiers = [aws_cloudfront_origin_access_identity.oai.iam_arn]
-    }
-  }
-}
-
-resource "aws_s3_bucket_policy" "website" {
-  bucket = aws_s3_bucket.website.id
-  policy = data.aws_iam_policy_document.cloudfront.json
 }

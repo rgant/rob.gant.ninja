@@ -26,7 +26,7 @@ resource "aws_route53_record" "amazonses_mx" {
   records = ["10 inbound-smtp.${var.region}.amazonaws.com"]
 }
 
-# Don't really need these as ses is only for recieving email, but doesn't hurt.
+# Don't really need these as ses is only for receiving email, but doesn't hurt.
 resource "aws_route53_record" "amazonses_dkim_records" {
   count   = length(aws_ses_domain_dkim.main.dkim_tokens)
   zone_id = aws_route53_zone.main.zone_id
@@ -36,7 +36,7 @@ resource "aws_route53_record" "amazonses_dkim_records" {
   records = ["${element(aws_ses_domain_dkim.main.dkim_tokens, count.index)}.dkim.amazonses.com"]
 }
 
-# Don't really need this as ses is only for recieving email, but doesn't hurt.
+# Don't really need this as ses is only for receiving email, but doesn't hurt.
 resource "aws_route53_record" "amazonses_txt" {
   zone_id = aws_route53_zone.main.id
   name    = aws_route53_zone.main.name
@@ -45,7 +45,7 @@ resource "aws_route53_record" "amazonses_txt" {
   records = ["v=spf1 include:amazonses.com -all"]
 }
 
-# Don't really need this as ses is only for recieving email, and this could hurt
+# Don't really need this as ses is only for receiving email, and this could hurt
 resource "aws_route53_record" "amazonses_dmarc" {
   zone_id = aws_route53_zone.main.id
   name    = "_dmarc.${aws_route53_zone.main.name}"
