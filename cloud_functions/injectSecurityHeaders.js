@@ -1,6 +1,5 @@
 /**
  * Cloudfront Function
- * Terraform does not currently support: https://github.com/hashicorp/terraform-provider-aws/issues/19225
  * This replaces the Lambda@EDGE function of the same name.
  * Based on: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/example-function-add-security-headers.html
  */

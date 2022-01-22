@@ -13,7 +13,7 @@
 html {
     background-color: #3e454c;
     color: #222;
-    font-family: 'Roboto', "Helvetica Neue", sans-serif;
+    font-family: 'Roboto', 'Helvetica Neue', sans-serif;
     font-size: 1em;
     line-height: 1.4;
 }
@@ -44,7 +44,7 @@ html {
 
 hr {
     border: 0;
-    border-top: 1px solid #ccc; /* csslint allow: box-model */
+    border-top: 1px solid #ccc;
     display: block;
     height: 1px;
     margin: 1rem 0;
@@ -81,7 +81,7 @@ fieldset {
  */
 
 textarea {
-    resize: vertical;
+    resize: vertical; /* stylelint-disable-line plugin/no-unsupported-browser-features */
 }
 
 /* ==========================================================================
@@ -91,8 +91,8 @@ textarea {
 .browserupgrade {
     background: #ccc;
     color: #000;
-    margin: 0.2rem 0;
-    padding: 0.2rem 0;
+    margin: .2rem 0;
+    padding: .2rem 0;
 }
 
 /* ==========================================================================
@@ -101,35 +101,46 @@ textarea {
 a:link {
     color: #ececec;
 }
-a:hover, a:active {
+
+a:hover,
+a:active {
     color: #0fe;
 }
+
 a:visited {
-    color: #A282C0;
+    color: #a282c0;
 }
+
 body {
     scroll-snap-points-y: repeat(100%);
-    scroll-snap-type: proximity;
+    scroll-snap-type: y proximity;
     scroll-snap-type: y mandatory;
 }
-h1, h2, h3 {
+
+h1,
+h2,
+h3 {
     color: #fff;
-    font-family: 'Ubuntu', Helvetica, sans-serif;
+    font-family: 'Ubuntu', 'Helvetica', sans-serif;
     font-weight: 500;
     text-transform: uppercase;
 }
-h1 span {
-    opacity: 0.5;
+
+h1 .diminish {
+    opacity: .5;
 }
+
 h2 {
     font-size: 2rem;
 }
+
 h3 {
     font-size: 1.5rem;
 }
+
 nav li {
     margin-top: 5px;
-    opacity: 0.5;
+    opacity: .5;
 }
 
 .main-header {
@@ -137,15 +148,18 @@ nav li {
     color: #848f9a;
     padding: 5px;
 }
-.main-header h1 { /* csslint allow: qualified-headings, unique-headings */
+
+.main-header h1 {
     margin-bottom: 0;
 }
+
 .main-header .heading {
     color: #fff;
-    font-family: 'Ubuntu', Helvetica, sans-serif;
+    font-family: 'Ubuntu', 'Helvetica', sans-serif;
     font-size: 1.5rem;
     font-weight: 500;
 }
+
 .main-header .heading p {
     margin-top: 0;
 }
@@ -156,6 +170,7 @@ article {
     position: relative;
     scroll-snap-align: start;
 }
+
 /* three dots divider https://www.diviguide.com/section-dividers/ */
 article::after {
     background: #ececec;
@@ -170,56 +185,69 @@ article::after {
     transform: translateX(-50%);
     width: 14px;
 }
+
 article:last-child::after {
     content: none;
 }
+
 .top_link {
     float: right;
 }
+
 .top_link::before {
     border-bottom: 5px solid #ececec;
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
-    content: " ";
+    content: ' ';
     height: 0;
     margin-right: 2px;
     vertical-align: 50%;
     width: 0;
 }
-#about { /* csslint allow: ids */
+
+#about {
     background-color: #9d61a2;
-    color: #472c4a;
+    color: #2f1d31;
 }
-#cv { /* csslint allow: ids */
+
+#cv {
     background-color: #8fbf4d;
-    color: #4a6722;
+    color: #344b12;
 }
-#cv ol { /* csslint allow: ids */
+
+#cv ol {
     /* List experience in order, but don't display numbers. */
     list-style-type: disc;
 }
-#programming { /* csslint allow: ids */
+
+#programming {
     background-color: #f2d13e;
-    color: #7f6d1f;
+    color: #71580c;
 }
-#programming a:link { /* csslint allow: ids */
-    color: #f8f8f8;
+
+#programming a:link {
+    color: #1000cd;
 }
-#tipsntricks { /* csslint allow: ids */
+
+#tipsntricks {
     background-color: #ff7f66;
-    color: #a54c3b;
+    color: #733429;
 }
-#orgs { /* csslint allow: ids */
+
+#orgs {
     background-color: #7ecefd;
-    color: #3c7b9f;
+    color: #28536d;
 }
-#orgs img { /* csslint allow: ids */
+
+#orgs img {
     max-width: 76%;
     width: 410px;
 }
-.proj-list dd { /* csslint allow: ids */
+
+.proj-list dd {
     margin-bottom: 1rem;
 }
+
 footer {
     background-color: #3e454c;
     color: #848f9a;
@@ -234,8 +262,9 @@ footer {
  * Hide visually and from screen readers
  */
 
-.hidden {
-    display: none !important; /* csslint allow: important */
+.hidden,
+[hidden] {
+    display: none !important; /* stylelint-disable-line declaration-no-important */
 }
 
 /*
@@ -247,26 +276,28 @@ footer {
  *    https://medium.com/@jessebeach/beware-smushed-off-screen-accessible-text-5952a4c2cbfe
  */
 
-.visuallyhidden {
+.sr-only {
     border: 0;
-    clip: rect(0 0 0 0);
+    clip: rect(0, 0, 0, 0);
     height: 1px;
     margin: -1px;
     overflow: hidden;
     padding: 0;
     position: absolute;
+    white-space: nowrap;
     width: 1px;
-    white-space: nowrap; /* 1 */
+
+    /* 1 */
 }
 
 /*
- * Extends the .visuallyhidden class to allow the element
+ * Extends the .sr-only class to allow the element
  * to be focusable when navigated to via the keyboard:
  * https://www.drupal.org/node/897638
  */
 
-.visuallyhidden.focusable:active, /* csslint allow: adjoining-classes */
-.visuallyhidden.focusable:focus { /* csslint allow: adjoining-classes */
+.sr-only.focusable:active,
+.sr-only.focusable:focus {
     clip: auto;
     height: auto;
     margin: 0;
@@ -296,13 +327,13 @@ footer {
  *    `:before` to contain the top-margins of child elements.
  */
 
-.clearfix:before,
-.clearfix:after {
-    content: " "; /* 1 */
-    display: table; /* 2 */
+.clearfix::before,
+.clearfix::after {
+    content: ' ';
+    display: table;
 }
 
-.clearfix:after {
+.clearfix::after {
     clear: both;
 }
 
@@ -313,42 +344,85 @@ footer {
    ========================================================================== */
 
 @media only screen and (min-width: 41em) {
+    @media (min-height: 64em) {
+        .main-header {
+            left: 0;
+            position: fixed;
+            right: 0;
+            top: 0;
+            z-index: 1;
+        }
+
+        .top_link {
+            display: none;
+        }
+    }
+
     /* Style adjustments for viewports that meet the condition */
+    footer p {
+        float: left;
+        margin: 1rem 0;
+    }
+
+    footer ul {
+        float: left;
+        list-style-type: none;
+        margin: 1rem 0;
+        padding: 0;
+    }
+
+    footer li {
+        display: inline;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    article {
+        box-sizing: border-box; /* csslint allow: box-sizing */
+        padding-top: 3.5rem;
+    }
 
     .main-header .heading {
         float: left;
         margin-left: 1rem;
     }
+
     .main-header h1 { /* csslint allow: qualified-headings, unique-headings */
         margin-top: 0;
     }
+
     .main-header nav {
         float: right;
         margin-right: 1rem;
         margin-top: 1rem;
     }
+
     .main-header nav ul {
         list-style-type: none;
     }
+
     .main-header nav li {
         display: inline-block;
         margin-top: 0;
         padding-left: 5px;
         padding-right: 5px;
     }
+
     .main-header nav li::after, /* default state of underline */
     .main-header nav:hover .selected::after { /* Reset the selected option when hovering over nav. */
-      border-bottom: solid 3px #ececec;
-      content: '';
-      display: block;
-      transform: scaleX(0);
-      transition: transform 200ms ease-in-out;
+        border-bottom: solid 3px #ececec;
+        content: '';
+        display: block;
+        transform: scaleX(0);
+        transition: transform 200ms ease-in-out;
     }
+
     .main-header nav li:hover::after, /* On hover underline. */
     .main-header nav .selected::after, /* Underline selected option. */
     .main-header nav:hover .selected:hover::after { /* Re-underline if hovering over selected. */
         transform: scaleX(1);
     }
+
     .main-header nav a {
         background-position: center bottom;
         background-repeat: no-repeat;
@@ -362,82 +436,72 @@ footer {
         text-indent: -900px;
         width: 42px;
     }
+
     .main-header nav a[href='#about'] {
         background-image: url(/img/about.svg);
     }
+
     .main-header nav a[href='#cv'] {
         background-image: url(/img/cv.svg);
     }
+
     .main-header nav a[href='#programming'] {
         background-image: url(/img/programming.svg);
     }
+
     .main-header nav a[href='#tipsntricks'] {
         background-image: url(/img/tipsntricks.svg);
     }
+
     .main-header nav a[href='#orgs'] {
         background-image: url(/img/orgs.svg);
-    }
-
-    footer p {
-        float: left;
-        margin: 1rem 0;
-    }
-    footer ul {
-        float: left;
-        list-style-type: none;
-        margin: 1rem 0;
-        padding: 0;
-    }
-    footer li {
-        display: inline;
-        padding-left: 5px;
-        padding-right: 5px;
-    }
-
-    article {
-        box-sizing: border-box; /* csslint allow: box-sizing */
-        padding-top: 3.5rem;
-    }
-
-    @media (min-height: 64em) {
-        .main-header {
-            left: 0;
-            position: fixed;
-            right: 0;
-            top: 0;
-            z-index: 1;
-        }
-        .top_link {
-            display: none;
-        }
     }
 }
 
 @media only screen and (min-width: 57em) {
+    /* iPad Pro size */
+    @media (min-width: 65em) and (max-height: 55em) {
+        article {
+            background-size: auto 75%;
+        }
+    }
+
+    /* 1920 x 900 size */
+    @media (min-width: 100em) {
+        article {
+            background-size: 40%;
+        }
+    }
+
     .main-header {
         background-color: transparent;
         padding: 0;
         position: static;
     }
+
     .main-header .heading {
         left: 10%;
         position: fixed;
         z-index: 1;
     }
+
     .main-header h1 { /* csslint allow: qualified-headings, unique-headings */
         font-size: 4rem;
     }
+
     .main-header nav {
         margin-right: 0;
         position: fixed;
         right: 4px;
         z-index: 1;
     }
+
     /* Vertical menu */
     .main-header nav li {
         display: block;
         position: relative;
     }
+
     .main-header nav li::after, /* default state of underline */
     .main-header nav:hover .selected::after { /* Reset the selected option when hovering over nav. */
         border-bottom: none;
@@ -448,6 +512,7 @@ footer {
         top: 0;
         transform: scaleY(0);
     }
+
     .main-header nav li:hover::after, /* On hover underline. */
     .main-header nav .selected::after, /* Underline selected option. */
     .main-header nav:hover .selected:hover::after { /* Re-underline if hovering over selected. */
@@ -462,45 +527,39 @@ footer {
         padding-left: 50%;
         padding-right: 10%;
     }
+
     .top_link {
         display: none;
     }
+
     #about { /* csslint allow: ids */
         background-image: url(/img/about.svg);
     }
+
     #cv { /* csslint allow: ids */
         background-image: url(/img/cv.svg);
     }
+
     #programming { /* csslint allow: ids */
         background-image: url(/img/programming.svg);
     }
+
     #tipsntricks { /* csslint allow: ids */
         background-image: url(/img/tipsntricks.svg);
     }
+
     #orgs { /* csslint allow: ids */
         background-image: url(/img/orgs.svg);
     }
-
-    /* iPad Pro size */
-    @media (min-width: 65em) and (max-height: 55em) {
-        article {
-            background-size: auto 75%;
-        }
-    }
-
-    /* 1920 x 900 size */
-    @media (min-width: 100em) {
-        article {
-            background-size: 40%;
-        }
-    }
 }
 
+/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
 @media print,
-       (-webkit-min-device-pixel-ratio: 1.25),
-       (min-resolution: 1.25dppx),
-       (min-resolution: 120dpi) {
+    (-webkit-min-device-pixel-ratio: 1.25),
+    (min-resolution: 1.25dppx),
+    (min-resolution: 120dpi) {
     /* Style adjustments for high resolution devices */
+
     article p {
         font-size: 1.25rem;
     }
@@ -513,13 +572,15 @@ footer {
    ========================================================================== */
 
 @media print {
-    *, /* csslint allow: universal-selector */
-    *:before, /* csslint allow: universal-selector */
-    *:after { /* csslint allow: universal-selector */
-        background: transparent !important;
-        color: #000 !important; /* Black prints faster */
-        -webkit-box-shadow: none !important;
+    /* stylelint-disable declaration-no-important, selector-max-universal */
+    *,
+    *::before,
+    *::after {
+        background: #fff !important;
+
+        /* Black prints faster */
         box-shadow: none !important;
+        color: #000 !important;
         text-shadow: none !important;
     }
 
@@ -528,56 +589,55 @@ footer {
         text-decoration: underline;
     }
 
-    a[href]:after {
-        content: " (" attr(href) ")";
+    a[href]::after {
+        content: ' (' attr(href) ')';
     }
 
-    abbr[title]:after {
-        content: " (" attr(title) ")";
+    abbr[title]::after {
+        content: ' (' attr(title) ')';
     }
 
     /*
      * Don't show links that are fragment identifiers,
      * or use the `javascript:` pseudo protocol
      */
-
-    a[href^="#"]:after, /* csslint allow: regex-selectors */
-    a[href^="javascript:"]:after { /* csslint allow: regex-selectors */
-        content: "";
+    a[href^='#']::after,
+    a[href^='javascript:']::after {
+        content: '';
     }
 
     pre {
-        white-space: pre-wrap !important; /* csslint allow: important */
+        white-space: pre-wrap !important;
     }
+
     pre,
     blockquote {
         border: 1px solid #999;
-        page-break-inside: avoid;
+        page-break-inside: avoid; /* stylelint-disable-line plugin/no-unsupported-browser-features */
     }
 
     /*
      * Printing Tables:
-     * http://css-discuss.incutio.com/wiki/Printing_Tables
+     * https://web.archive.org/web/20180815150934/http://css-discuss.incutio.com/wiki/Printing_Tables
      */
-
     thead {
         display: table-header-group;
     }
 
     tr,
     img {
-        page-break-inside: avoid;
+        page-break-inside: avoid; /* stylelint-disable-line plugin/no-unsupported-browser-features */
     }
 
     p,
-    h2, /* csslint allow: unique-headings */
-    h3 { /* csslint allow: unique-headings */
+    h2,
+    h3 {
         orphans: 3;
         widows: 3;
     }
 
-    h2, /* csslint allow: unique-headings */
-    h3 { /* csslint allow: unique-headings */
-        page-break-after: avoid;
+    h2,
+    h3 {
+        page-break-after: avoid; /* stylelint-disable-line plugin/no-unsupported-browser-features */
     }
 }

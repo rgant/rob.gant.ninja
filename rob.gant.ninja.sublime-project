@@ -9,7 +9,9 @@
 			],
 			"folder_exclude_patterns":
 			[
-				".terraform"
+				".cache",
+				".terraform",
+				"node_modules"
 			],
 			"path": "."
 		}

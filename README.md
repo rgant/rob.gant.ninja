@@ -11,8 +11,8 @@ brew tap hashicorp/tap
 brew install awscli hashicorp/tap/terraform s3cmd
 ```
 
-Configure AWS: `aws configure`. Use profiles, don't setup default credentials. If
-you want to stop tying `--profile` then use `export AWS_PROFILE=personal`.
+Configure AWS: `aws configure --profile personal`. Use profiles, don't setup default
+credentials. If you want to stop typing `--profile` then use `export AWS_PROFILE=personal`.
 
 Configure s3cmd: `s3cmd --configure`
 
@@ -32,7 +32,7 @@ for changed files.
 
 ### Future
 
-When we build the website we should be able to cachebust the asset/css/img/js file
+When we build the website we should be able to cache bust the asset/css/img/js file
 names using a hash and we won't need `--cf-invalidate`.
 
 Should also setup [Cache-Control Headers](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Expiration.html)
