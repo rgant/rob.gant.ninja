@@ -190,11 +190,11 @@ article:last-child::after {
     content: none;
 }
 
-.top_link {
+.top-link {
     float: right;
 }
 
-.top_link::before {
+.top-link::before {
     border-bottom: 5px solid #ececec;
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
@@ -353,7 +353,7 @@ footer {
             z-index: 1;
         }
 
-        .top_link {
+        .top-link {
             display: none;
         }
     }
@@ -528,7 +528,7 @@ footer {
         padding-right: 10%;
     }
 
-    .top_link {
+    .top-link {
         display: none;
     }
 
@@ -590,11 +590,11 @@ footer {
     }
 
     a[href]::after {
-        content: ' (' attr(href) ')';
+        content: ' (' attr(href) ')'; /* stylelint-disable-line csstree/validator */
     }
 
     abbr[title]::after {
-        content: ' (' attr(title) ')';
+        content: ' (' attr(title) ')';/* stylelint-disable-line csstree/validator */
     }
 
     /*
