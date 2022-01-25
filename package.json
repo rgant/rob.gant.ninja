@@ -1,27 +1,31 @@
 {
   "name": "rob.gant.ninja",
   "version": "1.2.0",
-  "description": "Personal Website",
   "private": true,
-  "scripts": {
-    "lint:styles": "stylelint './src/css/'",
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "description": "Personal Website",
+  "homepage": "https://rob.gant.ninja",
+  "bugs": {
+    "url": "https://github.com/rgant/rob.gant.ninja/issues"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rgant/rob.gant.ninja.git"
   },
-  "author": "J Rob Gant <rgant@alum.wpi.edu>",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/rgant/rob.gant.ninja/issues"
+  "author": "J Rob Gant <rgant@alum.wpi.edu>",
+  "source": "src/index.html",
+  "scripts": {
+    "lint:styles": "stylelint './src/css/'",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel",
+    "build": "parcel build './src/*.html'"
   },
-  "homepage": "https://rob.gant.ninja",
   "devDependencies": {
     "eslint": "^7.32.0",
     "eslint-plugin-prefer-arrow": "^1.2.3",
     "eslint-plugin-promise": "^5.2.0",
     "eslint-plugin-unicorn": "^32.0.1",
+    "parcel": "^2.2.1",
     "stylelint": "^14.2.0",
     "stylelint-config-standard": "^24.0.0",
     "stylelint-csstree-validator": "^2.0.0",
