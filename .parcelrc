@@ -1,0 +1,6 @@
+{
+  "extends": "@parcel/config-default",
+  "namers": ["parcel-namer-preserve-path"],
+  "reporters": ["...", "parcel-reporter-copy-well-known"],
+  "resolvers": ["parcel-resolver-absolute-paths", "..."]
+}

@@ -424,23 +424,23 @@ footer {
     }
 
     .main-header nav a[href='#about'] {
-        background-image: url(/src/img/about.svg);
+        background-image: url(/img/about.svg);
     }
 
     .main-header nav a[href='#cv'] {
-        background-image: url(/src/img/cv.svg);
+        background-image: url(/img/cv.svg);
     }
 
     .main-header nav a[href='#programming'] {
-        background-image: url(/src/img/programming.svg);
+        background-image: url(/img/programming.svg);
     }
 
     .main-header nav a[href='#tipsntricks'] {
-        background-image: url(/src/img/tipsntricks.svg);
+        background-image: url(/img/tipsntricks.svg);
     }
 
     .main-header nav a[href='#orgs'] {
-        background-image: url(/src/img/orgs.svg);
+        background-image: url(/img/orgs.svg);
     }
 }
 
@@ -519,23 +519,23 @@ footer {
     }
 
     #about { /* csslint allow: ids */
-        background-image: url(/src/img/about.svg);
+        background-image: url(/img/about.svg);
     }
 
     #cv { /* csslint allow: ids */
-        background-image: url(/src/img/cv.svg);
+        background-image: url(/img/cv.svg);
     }
 
     #programming { /* csslint allow: ids */
-        background-image: url(/src/img/programming.svg);
+        background-image: url(/img/programming.svg);
     }
 
     #tipsntricks { /* csslint allow: ids */
-        background-image: url(/src/img/tipsntricks.svg);
+        background-image: url(/img/tipsntricks.svg);
     }
 
     #orgs { /* csslint allow: ids */
-        background-image: url(/src/img/orgs.svg);
+        background-image: url(/img/orgs.svg);
     }
 }
 

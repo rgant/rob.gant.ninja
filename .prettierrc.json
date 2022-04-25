@@ -1,13 +1,16 @@
 {
+  "arrayBracketSpacing": true,
   "arrowParens": "always",
-  "bracketSpacing": true,
   "endOfLine": "lf",
+  "htmlVoidTags": true,
+  "htmlWhitespaceSensitivity": "ignore",
+  "offsetTernaryExpressions": true,
   "printWidth": 140,
   "quoteProps": "as-needed",
   "semi": true,
   "singleQuote": true,
   "tabWidth": 4,
+  "templateCurlySpacing": true,
   "trailingComma": "all",
   "useTabs": false
 }
-
