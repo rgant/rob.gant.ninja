@@ -21,10 +21,13 @@ resource "null_resource" "sync_to_website" {
     command = <<EOF
 s3cmd sync \
   --no-preserve \
-  --cf-invalidate \
-  --cf-invalidate-default-index \
   --delete-removed \
-  ./dist/ s3://${aws_s3_bucket.website.id}
+  --add-header="Cache-Control:max-age=31536000" \
+  ./dist/ s3://${aws_s3_bucket.website.id}/;
+s3cmd modify \
+  --cf-invalidate-default-index \
+  --add-header="Cache-Control:max-age=86400" \
+  s3://${aws_s3_bucket.website.id}/index.html
 EOF
   }
 }
