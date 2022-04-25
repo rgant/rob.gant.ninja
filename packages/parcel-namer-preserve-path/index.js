@@ -22,10 +22,10 @@ module.exports = new Namer({
     const fileName = path.basename(mainEntry.filePath);
     let defaultName = fileName === 'favicon.ico' ? fileName : configDefaultNamer.name(params);
 
-    // Not bundling JS, so the defaultNamer mangling the name to index is not desired.
-    if (params.bundle.type === 'js') {
+    // Not bundling CSS & JS, so the defaultNamer mangling the name to index is not desired.
+    if (params.bundle.type === 'js' || params.bundle.type === 'css') {
       const firstDot = defaultName.indexOf('.');
-      defaultName = `${path.basename(mainEntry.filePath, '.js')}${defaultName.slice(firstDot)}`;
+      defaultName = `${path.basename(mainEntry.filePath, params.bundle.type)}${defaultName.slice(firstDot + 1)}`;
     }
 
     if (dirName !== '.') {

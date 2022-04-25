@@ -22,7 +22,7 @@ Terraform might update the website bucket if you mark that resource as tainted,
 but it is probably easier to just do the command yourself.
 
 ```bash
-s3cmd sync --no-preserve --cf-invalidate --cf-invalidate-default-index --delete-removed --exclude=* --rinclude-from=dist-files ./ s3://rob-gant-ninja/
+s3cmd sync --no-preserve --cf-invalidate --cf-invalidate-default-index --delete-removed ./dist/ s3://rob-gant-ninja/
 ```
 
 By default `s3cmd sync` preserves file attributes as metadata on the s3 key and that

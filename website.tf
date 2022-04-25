@@ -24,9 +24,7 @@ s3cmd sync \
   --cf-invalidate \
   --cf-invalidate-default-index \
   --delete-removed \
-  --exclude=* \
-  --rinclude-from=dist-files \
-  ./ s3://${aws_s3_bucket.website.id}
+  ./dist/ s3://${aws_s3_bucket.website.id}
 EOF
   }
 }
