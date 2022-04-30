@@ -28,21 +28,6 @@ const getFirstHtmlBundle = (bundleGraph) => {
   throw new Error('No HTML Bundles found');
 };
 
-// const getRobotsAsset = (rootPath) => {
-//   let ret;
-//   // robots.txt
-//   const robotsPath = path.join(rootPath, 'robots.txt');
-//   if (fs.accessSync(robotsPath, fs.constants.R_OK)) {
-//     const robotsCode = fs.readFileSync(robotsPath, 'utf8');
-//     ret = {
-//       code: robotsCode,
-//       filePath: robotsPath,
-//       isEntry: true,
-//     };
-//   }
-//   return ret;
-// };
-
 module.exports = new Reporter({
   report({ event }) {
     if (event.type === 'buildSuccess') {
@@ -51,7 +36,12 @@ module.exports = new Reporter({
       const [bundleGroup] = event.bundleGraph.getBundleGroupsContainingBundle(bundle);
       const srcPath = event.bundleGraph.getEntryRoot(bundleGroup.target);
 
-      const wellKnowns = [ '.well-known', 'humans.txt', 'robots.txt' ];
+      const wellKnowns = [
+        '.well-known',
+        'favicon.ico',
+        'humans.txt',
+        'robots.txt',
+      ];
       for (const knownPath of wellKnowns) {
         copyWellKnown(path.join(srcPath, knownPath), distPath);
       }

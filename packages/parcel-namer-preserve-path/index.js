@@ -19,8 +19,9 @@ module.exports = new Namer({
     // dirName -> assets
     const dirName = path.dirname(relativePath);
 
-    const fileName = path.basename(mainEntry.filePath);
-    let defaultName = fileName === 'favicon.ico' ? fileName : configDefaultNamer.name(params);
+    // const fileName = path.basename(mainEntry.filePath);
+    // let defaultName = fileName === 'favicon.ico' ? fileName : configDefaultNamer.name(params);
+    let defaultName = configDefaultNamer.name(params);
 
     // Not bundling CSS & JS, so the defaultNamer mangling the name to index is not desired.
     if (params.bundle.type === 'js' || params.bundle.type === 'css') {
@@ -28,7 +29,7 @@ module.exports = new Namer({
       defaultName = `${path.basename(mainEntry.filePath, params.bundle.type)}${defaultName.slice(firstDot + 1)}`;
     }
 
-    if (dirName !== '.') {
+    if (!params.bundle.needsStableName && dirName !== '.') {
       return path.join(dirName, defaultName);
     }
 
