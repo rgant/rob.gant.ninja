@@ -25,30 +25,36 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
-    "@parcel/packager-raw-url": "^2.5.0",
-    "@parcel/transformer-webmanifest": "^2.5.0",
-    "eslint": "^8.14.0",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-n": "^15.2.0",
+    "@parcel/packager-raw-url": "^2.9.2",
+    "@parcel/transformer-webmanifest": "^2.9.2",
+    "eslint": "^8.42.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-n": "^16.0.0",
     "eslint-plugin-prefer-arrow": "^1.2.3",
-    "eslint-plugin-promise": "^6.0.0",
-    "eslint-plugin-unicorn": "^42.0.0",
-    "parcel": "^2.5.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-unicorn": "^47.0.0",
+    "parcel": "^2.9.2",
     "parcel-namer-preserve-path": "file:packages/parcel-namer-preserve-path",
     "parcel-reporter-copy-well-known": "file:packages/parcel-reporter-copy-well-known",
     "parcel-resolver-absolute-paths": "file:packages/parcel-resolver-absolute-paths",
-    "stylelint": "^14.7.1",
-    "stylelint-config-standard": "^25.0.0",
-    "stylelint-csstree-validator": "^2.0.0",
-    "stylelint-declaration-block-no-ignored-properties": "^2.5.0",
-    "stylelint-high-performance-animation": "^1.6.0",
-    "stylelint-no-unsupported-browser-features": "^5.0.3",
-    "stylelint-order": "^5.0.0",
-    "stylelint-selector-tag-no-without-class": "^2.0.5"
+    "stylelint": "^15.7.0",
+    "stylelint-config-standard": "^33.0.0",
+    "stylelint-csstree-validator": "^3.0.0",
+    "stylelint-declaration-block-no-ignored-properties": "^2.7.0",
+    "stylelint-high-performance-animation": "^1.8.0",
+    "stylelint-no-unsupported-browser-features": "^6.1.0",
+    "stylelint-order": "^6.0.3",
+    "stylelint-selector-tag-no-without-class": "^2.0.5",
+    "stylelint-stylistic": "^0.4.2"
   },
   "engines": {
     "node": ">= 16.0.0",
     "npm": ">= 8.0.0",
     "parcel": "^2.5.0"
+  },
+  "overrides": {
+    "stylelint-selector-tag-no-without-class@^2.0.5": {
+      "stylelint@>= 9.x < 15": "*"
+    }
   }
 }

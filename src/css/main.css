@@ -329,8 +329,8 @@ footer {
    Modify as content requires.
    ========================================================================== */
 
-@media only screen and (min-width: 41em) {
-    @media (min-height: 64em) {
+@media only screen and (width >= 41em) {
+    @media (height >= 64em) {
         .main-header {
             left: 0;
             position: fixed;
@@ -444,16 +444,16 @@ footer {
     }
 }
 
-@media only screen and (min-width: 57em) {
+@media only screen and (width >= 57em) {
     /* iPad Pro size */
-    @media (min-width: 65em) and (max-height: 55em) {
+    @media (width >= 65em) and (height <= 55em) {
         article {
             background-size: auto 75%;
         }
     }
 
     /* 1920 x 900 size */
-    @media (min-width: 100em) {
+    @media (width >= 100em) {
         article {
             background-size: 40%;
         }
@@ -542,8 +542,8 @@ footer {
 /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
 @media print,
     (-webkit-min-device-pixel-ratio: 1.25),
-    (min-resolution: 1.25dppx),
-    (min-resolution: 120dpi) {
+    (resolution >= 1.25dppx),
+    (resolution >= 120dpi) {
     /* Style adjustments for high resolution devices */
 
     article p {
