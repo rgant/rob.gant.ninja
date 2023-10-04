@@ -52,6 +52,7 @@ rules:
   max-nesting-depth: 5
   media-feature-name-no-unknown: true
   media-feature-name-no-vendor-prefix: null
+  media-feature-range-notation: null
   stylistic/media-query-list-comma-newline-before: never-multi-line
   no-descending-specificity:
     - true
