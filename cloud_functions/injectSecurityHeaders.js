@@ -13,7 +13,7 @@ function handler(event) {
     // Error Message: The CloudFront function returned an invalid value: response.headers must have header names in lower case.
     headers['strict-transport-security'] = { value: 'max-age=63072000; includeSubdomains; preload' };
     headers['content-security-policy'] = {
-        value: "default-src 'none'; font-src https://fonts.gstatic.com; img-src 'self'; manifest-src 'self'; script-src 'self' https://code.jquery.com/jquery-3.6.0.slim.min.js; style-src 'self' https://fonts.googleapis.com/",
+        value: "default-src 'none'; font-src https://fonts.gstatic.com; img-src 'self'; manifest-src 'self'; script-src 'self' https://code.jquery.com/jquery-3.7.1.slim.min.js; style-src 'self' https://fonts.googleapis.com/",
     };
     headers['x-content-type-options'] = { value: 'nosniff' };
     headers['x-frame-options'] = { value: 'DENY' };
