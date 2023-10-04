@@ -2,11 +2,22 @@
 # S3 Bucket
 resource "aws_s3_bucket" "redirect" {
   bucket = "robgant-redirect"
-  # Because this bucket redirects all requests it does not need any public acl or policy for access.
-  acl = "private"
+}
 
-  website {
-    redirect_all_requests_to = "https://rob.gant.ninja"
+resource "aws_s3_bucket_website_configuration" "redirect" {
+  bucket = aws_s3_bucket.redirect.id
+
+  redirect_all_requests_to {
+    host_name = "rob.gant.ninja"
+    protocol = "https"
+  }
+}
+
+resource "aws_s3_bucket_ownership_controls" "redirect" {
+  bucket = aws_s3_bucket.redirect.id
+
+  rule {
+    object_ownership = "BucketOwnerPreferred"
   }
 }
 
@@ -17,6 +28,17 @@ resource "aws_s3_bucket_public_access_block" "redirect" {
   block_public_policy     = true
   ignore_public_acls      = true
   restrict_public_buckets = true
+}
+
+resource "aws_s3_bucket_acl" "redirect" {
+  depends_on = [
+    aws_s3_bucket_ownership_controls.redirect,
+    aws_s3_bucket_public_access_block.redirect,
+  ]
+
+  bucket = aws_s3_bucket.redirect.id
+  # Because this bucket redirects all requests it does not need any public acl or policy for access.
+  acl    = "private"
 }
 
 resource "aws_acm_certificate" "alt_cert" {
@@ -43,12 +65,12 @@ resource "aws_route53_record" "alt_acm_validation" {
 }
 
 locals {
-  redirect_origin_id = "S3-Website-${aws_s3_bucket.redirect.website_endpoint}"
+  redirect_origin_id = "S3-Website-${aws_s3_bucket_website_configuration.redirect.website_endpoint}"
 }
 
 resource "aws_cloudfront_distribution" "redirect" {
   origin {
-    domain_name = aws_s3_bucket.redirect.website_endpoint
+    domain_name = aws_s3_bucket_website_configuration.redirect.website_endpoint
     origin_id   = local.redirect_origin_id
 
     custom_origin_config {

@@ -33,21 +33,21 @@ resource "aws_route53_zone" "alt_com" {
 
 # Don't update these if not running on the home network!
 resource "aws_route53_record" "home_robgant_com_a" {
-  count   = data.http.my_ip4.body != "" ? 1 : 0
+  count   = data.http.my_ip4.response_body != "" ? 1 : 0
   zone_id = aws_route53_zone.alt_com.zone_id
   name    = "home.robgant.com"
   type    = "A"
   ttl     = "300"
-  records = [data.http.my_ip4.body]
+  records = [data.http.my_ip4.response_body]
 }
 
 resource "aws_route53_record" "home_robgant_com_aaaa" {
-  count   = length(regexall("^(?:[A-F0-9]{1,4}:){7}[A-F0-9]{1,4}$", data.http.my_ip6.body)) > 0 ? 1 : 0
+  count   = length(regexall("^(?:[A-F0-9]{1,4}:){7}[A-F0-9]{1,4}$", data.http.my_ip6.response_body)) > 0 ? 1 : 0
   zone_id = aws_route53_zone.alt_com.zone_id
   name    = "home.robgant.com"
   type    = "AAAA"
   ttl     = "300"
-  records = [data.http.my_ip6.body]
+  records = [data.http.my_ip6.response_body]
 }
 
 ### robgant.name
@@ -68,20 +68,20 @@ resource "aws_route53_record" "robgant_name_txt" {
 
 # Don't update these if not running on the home network!
 resource "aws_route53_record" "home_robgant_name_a" {
-  count   = data.http.my_ip4.body != "" ? 1 : 0
+  count   = data.http.my_ip4.response_body != "" ? 1 : 0
   zone_id = aws_route53_zone.alt_name.zone_id
   name    = "home.robgant.name"
   type    = "A"
   ttl     = "300"
-  records = [data.http.my_ip4.body]
+  records = [data.http.my_ip4.response_body]
 }
 
 resource "aws_route53_record" "home_robgant_name_aaaa" {
-  count   = length(regexall("^(?:[A-F0-9]{1,4}:){7}[A-F0-9]{1,4}$", data.http.my_ip6.body)) > 0 ? 1 : 0
+  count   = length(regexall("^(?:[A-F0-9]{1,4}:){7}[A-F0-9]{1,4}$", data.http.my_ip6.response_body)) > 0 ? 1 : 0
   zone_id = aws_route53_zone.alt_name.zone_id
   name    = "home.robgant.name"
   type    = "AAAA"
   ttl     = "300"
-  records = [data.http.my_ip6.body]
+  records = [data.http.my_ip6.response_body]
 }
 

@@ -1,7 +1,5 @@
 resource "aws_s3_bucket" "website" {
   bucket = "rob-gant-ninja"
-  acl    = "private"
-
   # Because CloudFront directly accesses this bucket using origin access identity it does not need to be a website
 }
 
@@ -14,9 +12,35 @@ resource "aws_s3_bucket_public_access_block" "website" {
   restrict_public_buckets = true
 }
 
+resource "aws_s3_bucket_ownership_controls" "website" {
+  bucket = aws_s3_bucket.website.id
+
+  rule {
+    object_ownership = "BucketOwnerPreferred"
+  }
+}
+
+resource "aws_s3_bucket_acl" "website" {
+  depends_on = [
+    aws_s3_bucket_ownership_controls.website,
+    aws_s3_bucket_public_access_block.website,
+  ]
+
+  bucket = aws_s3_bucket.website.id
+  # Because this bucket redirects all requests it does not need any public acl or policy for access.
+  acl    = "private"
+}
+
 # Using aws_s3_bucket_object to upload the site means we need to figure out the MIME types, so just
 # stick with s3cmd
 resource "null_resource" "sync_to_website" {
+  triggers = {
+    file_hashes = jsonencode({
+      for fn in fileset("${path.module}/dist", "**") :
+      fn => filesha256("${path.module}/dist/${fn}")
+    })
+  }
+
   provisioner "local-exec" {
     command = <<EOF
 s3cmd sync \

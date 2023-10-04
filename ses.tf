@@ -56,7 +56,6 @@ resource "aws_route53_record" "amazonses_dmarc" {
 
 resource "aws_s3_bucket" "emails" {
   bucket = "email-gant-ninja"
-  acl    = "private"
 }
 
 resource "aws_s3_bucket_public_access_block" "emails" {
@@ -66,6 +65,25 @@ resource "aws_s3_bucket_public_access_block" "emails" {
   block_public_policy     = true
   ignore_public_acls      = true
   restrict_public_buckets = true
+}
+
+resource "aws_s3_bucket_ownership_controls" "emails" {
+  bucket = aws_s3_bucket.emails.id
+
+  rule {
+    object_ownership = "BucketOwnerPreferred"
+  }
+}
+
+resource "aws_s3_bucket_acl" "emails" {
+  depends_on = [
+    aws_s3_bucket_ownership_controls.emails,
+    aws_s3_bucket_public_access_block.emails,
+  ]
+
+  bucket = aws_s3_bucket.emails.id
+  # Because this bucket redirects all requests it does not need any public acl or policy for access.
+  acl    = "private"
 }
 
 data "aws_iam_policy_document" "emails" {

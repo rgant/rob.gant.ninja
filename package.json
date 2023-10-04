@@ -20,6 +20,8 @@
   "scripts": {
     "prebuild": "rm -rf ./dist",
     "build": "parcel build './src/*.html'",
+    "predeploy": "npm run build",
+    "deploy": "terraform apply",
     "lint": "npm run lint:js; npm run lint:styles",
     "lint:js": "eslint --ext .js ./src/",
     "lint:styles": "stylelint './src/css/'",
