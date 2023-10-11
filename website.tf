@@ -49,7 +49,7 @@ s3cmd sync \
   --add-header="Cache-Control:max-age=31536000" \
   ./dist/ s3://${aws_s3_bucket.website.id}/;
 s3cmd modify \
-  --cf-invalidate-default-index \
+  --cf-invalidate \
   --add-header="Cache-Control:max-age=86400" \
   s3://${aws_s3_bucket.website.id}/index.html
 EOF
@@ -121,6 +121,7 @@ resource "aws_cloudfront_distribution" "website" {
 
   enabled             = true
   is_ipv6_enabled     = true
+  http_version        = "http2and3"
   comment             = "Personal Website using S3 and Route 53"
   default_root_object = "index.html" # Should not start with a slash!
   aliases             = ["rob.gant.ninja"]
@@ -161,7 +162,7 @@ resource "aws_cloudfront_distribution" "website" {
   viewer_certificate {
     acm_certificate_arn      = aws_acm_certificate.gant_ninja_cert.arn
     ssl_support_method       = "sni-only"
-    minimum_protocol_version = "TLSv1.2_2019"
+    minimum_protocol_version = "TLSv1.2_2021"
   }
 
   custom_error_response {

@@ -84,6 +84,7 @@ resource "aws_cloudfront_distribution" "redirect" {
   }
 
   enabled         = true
+  http_version    = "http2and3"
   is_ipv6_enabled = true
   comment         = "Redirect alternative domains to rob.gant.ninja. Includes SSL support."
   aliases = [
@@ -129,7 +130,7 @@ resource "aws_cloudfront_distribution" "redirect" {
   viewer_certificate {
     acm_certificate_arn      = aws_acm_certificate.alt_cert.arn
     ssl_support_method       = "sni-only"
-    minimum_protocol_version = "TLSv1.2_2019"
+    minimum_protocol_version = "TLSv1.2_2021"
   }
 
   wait_for_deployment = false
