@@ -417,7 +417,7 @@ footer {
         display: inline-block;
         height: 37px;
         overflow: hidden;
-        text-indent: -900px;
+        text-indent: -900px; /* stylelint-disable-line plugin/no-unsupported-browser-features */
         width: 42px;
     }
 

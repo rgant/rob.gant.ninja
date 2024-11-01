@@ -48,4 +48,4 @@
 
         $win.scroll(toggleSelectedScroll);
     });
-})(window, document, jQuery);
+})(globalThis, document, jQuery);
