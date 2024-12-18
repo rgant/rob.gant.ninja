@@ -53,7 +53,6 @@ export default [
       'no-useless-backreference': 'error',
       'require-atomic-updates': 'error',
       'array-callback-return': 'error',
-      'block-scoped-var': 'off',
       'consistent-return': 'error',
       curly: 'error',
       'default-case-last': 'error',
@@ -168,8 +167,6 @@ export default [
         'Undefined',
         'undefined',
       ],
-
-      'implicit-arrow-linebreak': 'off',
 
       indent: [ 'error', 4, {
         ArrayExpression: 'first',
@@ -318,10 +315,7 @@ export default [
         name: 'err',
       } ],
 
-      'unicorn/no-array-callback-reference': 'off',
-      'unicorn/prefer-includes': 'off',
       'unicorn/prefer-module': 'off',
-      'unicorn/prefer-string-starts-ends-with': 'off',
       'unicorn/prevent-abbreviations': 'off',
     },
   },

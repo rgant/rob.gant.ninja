@@ -27,12 +27,7 @@ html {
  * Customize the background color to match your design.
  */
 
-::-moz-selection {
-    background: #b3d4fc;
-    text-shadow: none;
-}
-
-::selection { /* stylelint-disable-line plugin/no-unsupported-browser-features */
+::selection { /* stylelint-disable-line plugin/no-unsupported-browser-features -- visual only effect not important for iOS Safari */
     background: #b3d4fc;
     text-shadow: none;
 }
@@ -80,7 +75,7 @@ fieldset {
  */
 
 textarea {
-    resize: vertical; /* stylelint-disable-line plugin/no-unsupported-browser-features */
+    resize: vertical; /* stylelint-disable-line plugin/no-unsupported-browser-features -- not supported by iOS Safari */
 }
 
 /* ==========================================================================
@@ -253,7 +248,7 @@ footer {
 
 .hidden,
 [hidden] {
-    display: none !important; /* stylelint-disable-line declaration-no-important */
+    display: none !important; /* stylelint-disable-line declaration-no-important -- HTML5 Boilerplate default */
 }
 
 /*
@@ -327,8 +322,8 @@ footer {
    Modify as content requires.
    ========================================================================== */
 
-@media only screen and (min-width: 41em) {
-    @media (min-height: 64em) {
+@media only screen and (width >= 41em) {
+    @media (height >= 64em) {
         .main-header {
             left: 0;
             position: fixed;
@@ -417,7 +412,7 @@ footer {
         display: inline-block;
         height: 37px;
         overflow: hidden;
-        text-indent: -900px; /* stylelint-disable-line plugin/no-unsupported-browser-features */
+        text-indent: -900px; /* stylelint-disable-line plugin/no-unsupported-browser-features -- not using each-line or hanging keywords */
         width: 42px;
     }
 
@@ -442,16 +437,16 @@ footer {
     }
 }
 
-@media only screen and (min-width: 57em) {
+@media only screen and (width >= 57em) {
     /* iPad Pro size */
-    @media (min-width: 65em) and (max-height: 55em) {
+    @media (width >= 65em) and (height <= 55em) {
         article {
             background-size: auto 75%;
         }
     }
 
     /* 1920 x 900 size */
-    @media (min-width: 100em) {
+    @media (width >= 100em) {
         article {
             background-size: 40%;
         }
@@ -537,11 +532,9 @@ footer {
     }
 }
 
-/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
 @media print,
-    (-webkit-min-device-pixel-ratio: 1.25),
-    (min-resolution: 1.25dppx),
-    (min-resolution: 120dpi) {
+    (resolution >= 1.25dppx),
+    (resolution >= 120dpi) {
     /* Style adjustments for high resolution devices */
 
     article p {
@@ -556,7 +549,10 @@ footer {
    ========================================================================== */
 
 @media print {
-    /* stylelint-disable declaration-no-important, selector-max-universal, plugin/no-unsupported-browser-features */
+    /* stylelint-disable
+        declaration-no-important, selector-max-universal, plugin/no-unsupported-browser-features
+        -- HTML5 Boilerplate default
+    */
     *,
     *::before,
     *::after {
