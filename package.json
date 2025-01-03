@@ -19,7 +19,7 @@
   ],
   "scripts": {
     "prebuild": "rm -rf ./dist",
-    "build": "parcel build './src/*.html'",
+    "build": "parcel build --no-cache './src/*.html'",
     "clean": "rm -rf ./.parcel-cache",
     "predeploy": "npm run build",
     "deploy": "terraform apply",
