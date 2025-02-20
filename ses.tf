@@ -82,8 +82,8 @@ resource "aws_s3_bucket_acl" "emails" {
   ]
 
   bucket = aws_s3_bucket.emails.id
-  # Because this bucket redirects all requests it does not need any public acl or policy for access.
-  acl    = "private"
+  # Because this bucket only receives emails it does not need any public acl or policy for access.
+  acl = "private"
 }
 
 data "aws_iam_policy_document" "emails" {

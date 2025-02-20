@@ -28,11 +28,13 @@ resource "aws_s3_bucket_acl" "website" {
 
   bucket = aws_s3_bucket.website.id
   # Because this bucket redirects all requests it does not need any public acl or policy for access.
-  acl    = "private"
+  acl = "private"
 }
 
-# Using aws_s3_bucket_object to upload the site means we need to figure out the MIME types, so just
-# stick with s3cmd
+# I could use hashicorp/dir/template and aws_s3_bucket_object to upload the site
+# https://registry.terraform.io/modules/hashicorp/dir/template/latest#uploading-files-to-amazon-s3
+# But since I frequently use s3cmd to upload the files without Terraform I'll still with this method.
+# But perhaps I shouldn't have this as part of the infrastructure at all.
 resource "null_resource" "sync_to_website" {
   triggers = {
     file_hashes = jsonencode({
@@ -83,19 +85,21 @@ resource "aws_route53_record" "gant_ninja_acm_validation" {
   zone_id         = aws_route53_zone.main.zone_id
 }
 
-resource "aws_cloudfront_origin_access_identity" "oai" {
-  comment = "access-identity.s3.amazonaws.com"
-}
-
 data "aws_iam_policy_document" "cloudfront" {
   statement {
-    sid       = "2"
+    sid       = "AllowCloudFrontServicePrincipal"
     actions   = ["s3:GetObject"]
     resources = ["${aws_s3_bucket.website.arn}/*"]
 
     principals {
-      type        = "AWS"
-      identifiers = [aws_cloudfront_origin_access_identity.oai.iam_arn]
+      type        = "Service"
+      identifiers = ["cloudfront.amazonaws.com"]
+    }
+
+    condition {
+      test     = "StringEquals"
+      variable = "AWS:SourceArn"
+      values   = [aws_cloudfront_distribution.website.arn]
     }
   }
 }
@@ -109,14 +113,18 @@ locals {
   website_origin_id = "S3-${aws_s3_bucket.website.bucket}"
 }
 
+resource "aws_cloudfront_origin_access_control" "website" {
+  name                              = "OAC ${aws_s3_bucket.website.bucket}"
+  origin_access_control_origin_type = "s3"
+  signing_behavior                  = "always"
+  signing_protocol                  = "sigv4"
+}
+
 resource "aws_cloudfront_distribution" "website" {
   origin {
-    domain_name = aws_s3_bucket.website.bucket_regional_domain_name
-    origin_id   = local.website_origin_id
-
-    s3_origin_config {
-      origin_access_identity = aws_cloudfront_origin_access_identity.oai.cloudfront_access_identity_path
-    }
+    domain_name              = aws_s3_bucket.website.bucket_regional_domain_name
+    origin_access_control_id = aws_cloudfront_origin_access_control.website.id
+    origin_id                = local.website_origin_id
   }
 
   enabled             = true
@@ -127,28 +135,15 @@ resource "aws_cloudfront_distribution" "website" {
   aliases             = ["rob.gant.ninja"]
 
   default_cache_behavior {
-    allowed_methods  = ["GET", "HEAD"]
-    cached_methods   = ["GET", "HEAD"]
-    target_origin_id = local.website_origin_id
-
-    forwarded_values {
-      query_string = false
-
-      cookies {
-        forward = "none"
-      }
-    }
-
-    function_association {
-      event_type   = "viewer-response"
-      function_arn = aws_cloudfront_function.security_headers.arn
-    }
-
-    min_ttl                = 0
-    default_ttl            = 604800
-    max_ttl                = 31536000
-    compress               = true
-    viewer_protocol_policy = "redirect-to-https"
+    # Managed-CachingOptimized (Recommended for S3)
+    # https://us-east-1.console.aws.amazon.com/cloudfront/v4/home#/policies/cache/658327ea-f89d-4fab-a63d-7e88639e58f6
+    cache_policy_id            = "658327ea-f89d-4fab-a63d-7e88639e58f6"
+    allowed_methods            = ["GET", "HEAD"]
+    cached_methods             = ["GET", "HEAD"]
+    target_origin_id           = local.website_origin_id
+    compress                   = true
+    viewer_protocol_policy     = "redirect-to-https"
+    response_headers_policy_id = aws_cloudfront_response_headers_policy.security_headers.id
   }
 
   price_class = "PriceClass_100"

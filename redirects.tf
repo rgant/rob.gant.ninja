@@ -9,7 +9,7 @@ resource "aws_s3_bucket_website_configuration" "redirect" {
 
   redirect_all_requests_to {
     host_name = "rob.gant.ninja"
-    protocol = "https"
+    protocol  = "https"
   }
 }
 
@@ -38,7 +38,7 @@ resource "aws_s3_bucket_acl" "redirect" {
 
   bucket = aws_s3_bucket.redirect.id
   # Because this bucket redirects all requests it does not need any public acl or policy for access.
-  acl    = "private"
+  acl = "private"
 }
 
 resource "aws_acm_certificate" "alt_cert" {
@@ -68,6 +68,45 @@ locals {
   redirect_origin_id = "S3-Website-${aws_s3_bucket_website_configuration.redirect.website_endpoint}"
 }
 
+resource "aws_cloudfront_response_headers_policy" "security_headers" {
+  name    = "OurSecurityHeadersPolicy"
+  comment = "Adds our security headers to every response"
+
+  security_headers_config {
+    content_security_policy {
+      content_security_policy = "default-src 'none'; font-src https://fonts.gstatic.com; img-src 'self'; manifest-src 'self'; script-src 'self' https://code.jquery.com/jquery-3.7.1.slim.min.js; style-src 'self' https://fonts.googleapis.com/"
+      override                = true
+    }
+
+    content_type_options {
+      override = true
+    }
+
+    frame_options {
+      frame_option = "DENY"
+      override     = true
+    }
+
+    referrer_policy {
+      referrer_policy = "same-origin"
+      override        = true
+    }
+
+    strict_transport_security {
+      access_control_max_age_sec = 63072000
+      include_subdomains         = true
+      override                   = true
+      preload                    = true
+    }
+
+    xss_protection {
+      mode_block = true
+      override   = true
+      protection = true
+    }
+  }
+}
+
 resource "aws_cloudfront_distribution" "redirect" {
   origin {
     domain_name = aws_s3_bucket_website_configuration.redirect.website_endpoint
@@ -95,28 +134,15 @@ resource "aws_cloudfront_distribution" "redirect" {
   ]
 
   default_cache_behavior {
-    allowed_methods  = ["GET", "HEAD"]
-    cached_methods   = ["GET", "HEAD"]
-    target_origin_id = local.redirect_origin_id
-
-    forwarded_values {
-      query_string = false
-
-      cookies {
-        forward = "none"
-      }
-    }
-
-    function_association {
-      event_type   = "viewer-response"
-      function_arn = aws_cloudfront_function.security_headers.arn
-    }
-
-    min_ttl                = 0
-    default_ttl            = 604800
-    max_ttl                = 31536000
-    compress               = true
-    viewer_protocol_policy = "allow-all"
+    # Managed-CachingOptimized (Recommended for S3)
+    # https://us-east-1.console.aws.amazon.com/cloudfront/v4/home#/policies/cache/658327ea-f89d-4fab-a63d-7e88639e58f6
+    cache_policy_id            = "658327ea-f89d-4fab-a63d-7e88639e58f6"
+    allowed_methods            = ["GET", "HEAD"]
+    cached_methods             = ["GET", "HEAD"]
+    target_origin_id           = local.redirect_origin_id
+    compress                   = true
+    viewer_protocol_policy     = "allow-all"
+    response_headers_policy_id = aws_cloudfront_response_headers_policy.security_headers.id
   }
 
   price_class = "PriceClass_100"

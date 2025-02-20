@@ -1,3 +1,4 @@
+# my-ip.io API returns 429 Too Many Requests sometimes which is quite annoying
 data "http" "my_ip4" {
   url = "https://api4.my-ip.io/ip.txt"
 }
