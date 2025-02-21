@@ -104,9 +104,16 @@ data "aws_iam_policy_document" "cloudfront" {
   }
 }
 
+data "aws_iam_policy_document" "combined" {
+  source_policy_documents = [
+    data.aws_iam_policy_document.cloudfront.json,
+    data.aws_iam_policy_document.amplify_website.json,
+  ]
+}
+
 resource "aws_s3_bucket_policy" "website" {
   bucket = aws_s3_bucket.website.id
-  policy = data.aws_iam_policy_document.cloudfront.json
+  policy = data.aws_iam_policy_document.combined.json
 }
 
 locals {
