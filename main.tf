@@ -1,31 +1,21 @@
+# tflint-ignore-file: terraform_standard_module_structure
+# Create the Firebase infrastructure for project
+# `./infrastructure` is a Terraform module to keep things tidy.
+# Attempting to have only `main.tf` file in the root for cleanliness.
+
 terraform {
   required_version = ">= 1.0"
 
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = ">= 5.87.0"
-    }
-
-    http = {
-      source  = "hashicorp/http"
-      version = ">= 3.4.5"
-    }
-
-    null = {
-      source  = "hashicorp/null"
-      version = ">= 3.2.3"
-    }
+  backend "s3" {
+    bucket       = "tfstate-ninja-rob-gant"
+    key          = "tfstate"
+    encrypt      = true
+    profile      = "personal"
+    region       = "us-east-1"
+    use_lockfile = true
   }
 }
 
-variable "region" {
-  type        = string
-  description = "AWS region to use for resources."
-  default     = "us-east-1"
-}
-
-provider "aws" {
-  profile = "personal"
-  region  = var.region
+module "amazon" {
+  source = "./infrastructure"
 }

@@ -1,128 +1,89 @@
-resource "aws_ses_domain_identity" "main" {
-  domain = aws_route53_zone.main.name
+moved {
+  from = aws_ses_domain_identity.main
+  to   = module.amazon.aws_ses_domain_identity.main
 }
 
-resource "aws_ses_email_identity" "main" {
-  email = "robgant@gmail.com"
+moved {
+  from = aws_ses_email_identity.main
+  to   = module.amazon.aws_ses_email_identity.main
 }
 
-resource "aws_ses_domain_dkim" "main" {
-  domain = aws_ses_domain_identity.main.domain
+moved {
+  from = aws_ses_domain_dkim.main
+  to   = module.amazon.aws_ses_domain_dkim.main
 }
 
-resource "aws_route53_record" "amazonses_verification_record" {
-  zone_id = aws_route53_zone.main.zone_id
-  name    = "_amazonses.${aws_ses_domain_identity.main.id}"
-  type    = "TXT"
-  ttl     = "86400"
-  records = [aws_ses_domain_identity.main.verification_token]
+moved {
+  from = aws_route53_record.amazonses_verification_record
+  to   = module.amazon.aws_route53_record.amazonses_verification_record
 }
 
-resource "aws_route53_record" "amazonses_mx" {
-  zone_id = aws_route53_zone.main.id
-  name    = aws_route53_zone.main.name
-  type    = "MX"
-  ttl     = "86400"
-  records = ["10 inbound-smtp.${var.region}.amazonaws.com"]
+moved {
+  from = aws_route53_record.amazonses_mx
+  to   = module.amazon.aws_route53_record.amazonses_mx
 }
 
-# Don't really need these as ses is only for receiving email, but doesn't hurt.
-resource "aws_route53_record" "amazonses_dkim_records" {
-  count   = length(aws_ses_domain_dkim.main.dkim_tokens)
-  zone_id = aws_route53_zone.main.zone_id
-  name    = "${element(aws_ses_domain_dkim.main.dkim_tokens, count.index)}._domainkey.${aws_route53_zone.main.name}"
-  type    = "CNAME"
-  ttl     = "86400"
-  records = ["${element(aws_ses_domain_dkim.main.dkim_tokens, count.index)}.dkim.amazonses.com"]
+moved {
+  from = aws_route53_record.amazonses_dkim_records[0]
+  to   = module.amazon.aws_route53_record.amazonses_dkim_records[0]
 }
 
-# Don't really need this as ses is only for receiving email, but doesn't hurt.
-resource "aws_route53_record" "amazonses_txt" {
-  zone_id = aws_route53_zone.main.id
-  name    = aws_route53_zone.main.name
-  type    = "TXT"
-  ttl     = "86400"
-  records = ["v=spf1 include:amazonses.com -all"]
+moved {
+  from = aws_route53_record.amazonses_dkim_records[1]
+  to   = module.amazon.aws_route53_record.amazonses_dkim_records[1]
 }
 
-# Don't really need this as ses is only for receiving email, and this could hurt
-resource "aws_route53_record" "amazonses_dmarc" {
-  zone_id = aws_route53_zone.main.id
-  name    = "_dmarc.${aws_route53_zone.main.name}"
-  type    = "TXT"
-  ttl     = "86400"
-  records = ["v=DMARC1; p=reject"]
+moved {
+  from = aws_route53_record.amazonses_dkim_records[2]
+  to   = module.amazon.aws_route53_record.amazonses_dkim_records[2]
 }
 
-resource "aws_s3_bucket" "emails" {
-  bucket = "email-gant-ninja"
+moved {
+  from = aws_route53_record.amazonses_txt
+  to   = module.amazon.aws_route53_record.amazonses_txt
 }
 
-resource "aws_s3_bucket_public_access_block" "emails" {
-  bucket = aws_s3_bucket.emails.id
-
-  block_public_acls       = true
-  block_public_policy     = true
-  ignore_public_acls      = true
-  restrict_public_buckets = true
+moved {
+  from = aws_route53_record.amazonses_dmarc
+  to   = module.amazon.aws_route53_record.amazonses_dmarc
 }
 
-resource "aws_s3_bucket_ownership_controls" "emails" {
-  bucket = aws_s3_bucket.emails.id
-
-  rule {
-    object_ownership = "BucketOwnerPreferred"
-  }
+moved {
+  from = aws_s3_bucket.emails
+  to   = module.amazon.aws_s3_bucket.emails
 }
 
-resource "aws_s3_bucket_acl" "emails" {
-  depends_on = [
-    aws_s3_bucket_ownership_controls.emails,
-    aws_s3_bucket_public_access_block.emails,
-  ]
-
-  bucket = aws_s3_bucket.emails.id
-  # Because this bucket only receives emails it does not need any public acl or policy for access.
-  acl = "private"
+moved {
+  from = aws_s3_bucket_public_access_block.emails
+  to   = module.amazon.aws_s3_bucket_public_access_block.emails
 }
 
-data "aws_iam_policy_document" "emails" {
-  statement {
-    sid       = "AllowSESPuts-1500409465678"
-    actions   = ["s3:PutObject"]
-    resources = ["${aws_s3_bucket.emails.arn}/*"]
-
-    condition {
-      test     = "StringEquals"
-      variable = "aws:Referer"
-      values   = ["638703125017"]
-    }
-
-    principals {
-      type        = "Service"
-      identifiers = ["ses.amazonaws.com"]
-    }
-  }
+moved {
+  from = aws_s3_bucket_ownership_controls.emails
+  to   = module.amazon.aws_s3_bucket_ownership_controls.emails
 }
 
-resource "aws_s3_bucket_policy" "emails" {
-  bucket = aws_s3_bucket.emails.id
-  policy = data.aws_iam_policy_document.emails.json
+moved {
+  from = aws_s3_bucket_acl.emails
+  to   = module.amazon.aws_s3_bucket_acl.emails
 }
 
-resource "aws_ses_receipt_rule_set" "main" {
-  rule_set_name = "default-rule-set"
+moved {
+  from = data.aws_iam_policy_document.emails
+  to   = module.amazon.data.aws_iam_policy_document.emails
 }
 
-resource "aws_ses_receipt_rule" "store" {
-  name          = "administrator-gant-ninja"
-  rule_set_name = "default-rule-set"
-  recipients    = ["administrator@gant.ninja"]
-  enabled       = true
-  scan_enabled  = true
+moved {
+  from = aws_s3_bucket_policy.emails
+  to   = module.amazon.aws_s3_bucket_policy.emails
+}
 
-  s3_action {
-    bucket_name = aws_s3_bucket.emails.bucket
-    position    = 1
-  }
+moved {
+  from = aws_ses_receipt_rule_set.main
+  to   = module.amazon.aws_ses_receipt_rule_set.main
+}
+
+moved {
+  from = aws_ses_receipt_rule.store
+  to   = module.amazon.aws_ses_receipt_rule.store
 }
