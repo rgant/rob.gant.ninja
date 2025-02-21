@@ -17,5 +17,12 @@ terraform {
 }
 
 module "amazon" {
-  source = "./infrastructure"
+  source   = "./infrastructure"
+  check_ip = var.check_ip
+}
+
+variable "check_ip" {
+  type        = bool
+  description = "Lookup dynamic home IP, or use existing values from current DNS"
+  default     = false
 }
