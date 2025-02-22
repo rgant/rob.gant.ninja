@@ -76,6 +76,7 @@ data "aws_iam_policy_document" "amplify_website" {
   }
 }
 
+# Manually deploy the S3
 resource "null_resource" "deploy_from_s3" {
   triggers = {
     file_hashes = jsonencode({
@@ -84,9 +85,11 @@ resource "null_resource" "deploy_from_s3" {
     })
   }
 
+  depends_on = [null_resource.sync_to_website]
+
   provisioner "local-exec" {
     command = <<EOF
-aws --profile personal --region us-east-1 \
+aws --profile ${var.aws_profile} --region ${var.region} \
   amplify start-deployment \
   --app-id ${module.amplify_website.amplify_site.id} \
   --branch-name ${module.amplify_website.amplify_site.branch_name} \

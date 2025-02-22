@@ -2,6 +2,10 @@
 
 resource "aws_route53_zone" "main" {
   name = "gant.ninja"
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "aws_route53_record" "gant_ninja_verify_bing" {
@@ -18,6 +22,10 @@ resource "aws_route53_record" "gant_ninja_verify_bing" {
 
 resource "aws_route53_zone" "alt_com" {
   name = "robgant.com"
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 # Just let AWS manage NS and SOA records.
@@ -29,10 +37,6 @@ resource "aws_route53_record" "home_robgant_com_a" {
   type    = "A"
   ttl     = "300"
   records = local.home_a
-
-  lifecycle {
-    prevent_destroy = true
-  }
 }
 
 resource "aws_route53_record" "home_robgant_com_aaaa" {
@@ -48,6 +52,10 @@ resource "aws_route53_record" "home_robgant_com_aaaa" {
 
 resource "aws_route53_zone" "alt_name" {
   name = "robgant.name"
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 # Just let AWS manage NS and SOA records.

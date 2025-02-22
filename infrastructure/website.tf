@@ -1,6 +1,6 @@
+# Because CloudFront directly accesses this bucket using origin access identity it does not need to be a website
 resource "aws_s3_bucket" "website" {
   bucket = "rob-gant-ninja"
-  # Because CloudFront directly accesses this bucket using origin access identity it does not need to be a website
 }
 
 resource "aws_s3_bucket_public_access_block" "website" {
@@ -20,6 +20,7 @@ resource "aws_s3_bucket_ownership_controls" "website" {
   }
 }
 
+# This may not be used anymore, got an error adding it to the new bucket in remote-config
 resource "aws_s3_bucket_acl" "website" {
   depends_on = [
     aws_s3_bucket_ownership_controls.website,
@@ -27,14 +28,12 @@ resource "aws_s3_bucket_acl" "website" {
   ]
 
   bucket = aws_s3_bucket.website.id
-  # Because this bucket redirects all requests it does not need any public acl or policy for access.
-  acl = "private"
+  acl    = "private" # Because this bucket is a CloudFront origin it does not need to be public.
 }
 
 # I could use hashicorp/dir/template and aws_s3_bucket_object to upload the site
 # https://registry.terraform.io/modules/hashicorp/dir/template/latest#uploading-files-to-amazon-s3
-# But since I frequently use s3cmd to upload the files without Terraform I'll still with this method.
-# But perhaps I shouldn't have this as part of the infrastructure at all.
+# But since I frequently use s3cmd to upload the files without Terraform I'll stick with this method.
 resource "null_resource" "sync_to_website" {
   triggers = {
     file_hashes = jsonencode({
