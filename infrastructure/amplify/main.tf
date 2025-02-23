@@ -15,6 +15,18 @@ resource "aws_amplify_app" "site" {
     target = "/404.html"
   }
 
+  custom_rule {
+    source = "https://${var.domain_name}"
+    status = "301"
+    target = "https://${var.sub_domains[0]}.${var.domain_name}"
+  }
+
+  custom_rule {
+    source = "https://*.${var.domain_name}"
+    status = "302"
+    target = "https://${var.sub_domains[0]}.${var.domain_name}"
+  }
+
   lifecycle {
     # Terraform always reports custom_headers need to be updated because of this bug:
     # https://github.com/hashicorp/terraform-provider-aws/issues/34318
