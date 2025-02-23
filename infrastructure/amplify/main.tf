@@ -28,3 +28,21 @@ resource "aws_amplify_branch" "site" {
   branch_name = "main"
   stage       = "PRODUCTION"
 }
+
+locals {
+  sub_domains = toset(concat(["", "*"], var.sub_domains))
+}
+
+resource "aws_amplify_domain_association" "site" {
+  app_id      = aws_amplify_app.site.id
+  domain_name = var.domain_name
+
+  dynamic "sub_domain" {
+    for_each = local.sub_domains
+
+    content {
+      branch_name = aws_amplify_branch.site.branch_name
+      prefix = sub_domain.value
+    }
+  }
+}
