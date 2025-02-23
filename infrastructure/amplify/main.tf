@@ -8,23 +8,18 @@ resource "aws_amplify_app" "site" {
 
   custom_headers = file("${path.module}/custom-headers.yaml")
 
+  # Redirect the root domain to the subdomain. Needs to be first or else it doesn't work!
+  custom_rule {
+    source = "https://${var.domain_name}"
+    status = "301"
+    target = "https://${var.sub_domain}.${var.domain_name}"
+  }
+
   # The default rewrites and redirects added by the Amplify Console.
   custom_rule {
     source = "/<*>"
     status = "404"
     target = "/404.html"
-  }
-
-  custom_rule {
-    source = "https://${var.domain_name}"
-    status = "301"
-    target = "https://${var.sub_domains[0]}.${var.domain_name}"
-  }
-
-  custom_rule {
-    source = "https://*.${var.domain_name}"
-    status = "302"
-    target = "https://${var.sub_domains[0]}.${var.domain_name}"
   }
 
   lifecycle {
@@ -41,20 +36,21 @@ resource "aws_amplify_branch" "site" {
   stage       = "PRODUCTION"
 }
 
-locals {
-  sub_domains = toset(concat(["", "*"], var.sub_domains))
-}
-
+# This automagically creates Route53 DNS records and AWS Certificate Manager (ACM) SSL certificates
+# (which are hidden in the UI). Cleanup and setup is pretty messy, it doesn't remove the
+# `certificate_verification_dns_record` which can cause problems. It is generally better to delete
+# the entire `aws_amplify_domain_association` and manually cleanup the DNS record, then recreate.
 resource "aws_amplify_domain_association" "site" {
   app_id      = aws_amplify_app.site.id
   domain_name = var.domain_name
 
-  dynamic "sub_domain" {
-    for_each = local.sub_domains
+  sub_domain {
+    branch_name = "main"
+    prefix      = ""
+  }
 
-    content {
-      branch_name = aws_amplify_branch.site.branch_name
-      prefix = sub_domain.value
-    }
+  sub_domain {
+    branch_name = "main"
+    prefix      = var.sub_domain
   }
 }

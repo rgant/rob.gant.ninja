@@ -12,7 +12,7 @@ module "amplify_website" {
   source      = "./amplify"
   name        = "rob.perfect-inbox.com"
   domain_name = "perfect-inbox.com"
-  sub_domains = ["rob"]
+  sub_domain  = "rob"
 }
 
 data "aws_caller_identity" "current" {}

@@ -8,7 +8,7 @@ variable "domain_name" {
   description = "The root domain name for the site: E.g.: gant.ninja"
 }
 
-variable "sub_domains" {
-  type        = list(string)
-  description = "Sub-domains of the root domain_name"
+variable "sub_domain" {
+  type        = string
+  description = "Sub-domain of the root domain_name for the primary website"
 }
