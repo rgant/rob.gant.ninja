@@ -17,9 +17,10 @@ terraform {
 }
 
 module "amazon" {
-  source      = "./infrastructure"
-  aws_profile = "personal"
-  check_ip    = var.check_ip
+  source       = "./infrastructure"
+  aws_profile  = "personal"
+  alerts_email = var.my_email
+  check_ip     = var.check_ip
 }
 
 # Use `terraform (apply|plan) -var="check_ip=true"` to lookup the current external IP address and
@@ -28,4 +29,9 @@ variable "check_ip" {
   type        = bool
   description = "Lookup dynamic home IP, or use existing values from current DNS"
   default     = false
+}
+
+variable "my_email" {
+  type        = string
+  description = "My email address for budget alerts"
 }

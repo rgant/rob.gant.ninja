@@ -4,7 +4,7 @@ resource "aws_cloudfront_response_headers_policy" "security_headers" {
 
   security_headers_config {
     content_security_policy {
-      content_security_policy = "default-src 'none'; font-src https://fonts.gstatic.com; img-src 'self'; manifest-src 'self'; script-src 'self' https://code.jquery.com/jquery-3.7.1.slim.min.js; style-src 'self' https://fonts.googleapis.com/"
+      content_security_policy = "default-src 'none'; connect-src 'self'; font-src 'self'; img-src 'self' data:; manifest-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self'; worker-src 'self'"
       override                = true
     }
 

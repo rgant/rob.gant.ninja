@@ -9,16 +9,16 @@ import { defineConfig } from 'astro/config';
 import manifest from './webmanifest.json';
 
 const pwsOpts: PwaOptions = {
-  experimental: {
-    directoryAndTrailingSlashHandler: true,
-  },
+  // experimental: {
+  //   directoryAndTrailingSlashHandler: true,
+  // },
   includeAssets: [ 'icon.svg' ],
   manifest,
   manifestFilename: 'site.webmanifest',
   registerType: 'autoUpdate',
   workbox: {
+    globIgnores: [ '404.html' ],
     globPatterns: [ '**/*.{css,js,html,svg,png,ico,txt}' ],
-    navigateFallback: '/',
   },
 };
 
@@ -27,7 +27,10 @@ export default defineConfig({ // eslint-disable-line import-x/no-default-export 
   integrations: [
     mdx(),
     astroPwa(pwsOpts),
-    playformCompress(),
+    playformCompress({
+      // eslint-disable-next-line @typescript-eslint/naming-convention -- Externally specified configuration
+      HTML: { 'html-minifier-terser': { conservativeCollapse: true } },
+    }),
     shield({}),
     sitemap(),
   ],

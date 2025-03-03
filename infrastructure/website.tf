@@ -47,11 +47,11 @@ resource "null_resource" "sync_to_website" {
 s3cmd sync \
   --no-preserve \
   --delete-removed \
-  --add-header="Cache-Control:max-age=31536000" \
+  --add-header="Cache-Control:public,max-age=31536000" \
   ./dist/ s3://${aws_s3_bucket.website.id}/;
 s3cmd modify \
   --cf-invalidate \
-  --add-header="Cache-Control:max-age=86400" \
+  --add-header="Cache-Control:public,max-age=2592000,stale-while-revalidate=86400" \
   s3://${aws_s3_bucket.website.id}/index.html
 EOF
   }

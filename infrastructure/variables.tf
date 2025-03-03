@@ -13,3 +13,8 @@ variable "region" {
   description = "AWS region to use for resources."
   default     = "us-east-1"
 }
+
+variable "alerts_email" {
+  type        = string
+  description = "Email address for budget alerts"
+}
