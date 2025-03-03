@@ -44,7 +44,7 @@ export class ScrollNav extends HTMLElement implements CustomWebComponentInterfac
     const anchors = this.querySelectorAll('a');
     for (const anchorEl of anchors) {
       const { hash, pathname } = anchorEl;
-      if (hash && pathname === '/') {
+      if (hash && pathname === globalThis.location.pathname) {
         // 'selected' class is set on the anchor's parent list element (<li>)
         const { parentElement: listEl } = anchorEl;
         const articleEl = document.querySelector(hash);
