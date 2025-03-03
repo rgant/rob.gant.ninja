@@ -6,7 +6,10 @@ resource "aws_amplify_app" "site" {
     type = "AMPLIFY_MANAGED_NO_COOKIES"
   }
 
-  custom_headers = file("${path.module}/custom-headers.yaml")
+  custom_headers = templatefile(
+    "${path.module}/custom-headers.yaml",
+    { script_sri = var.script_sri, style_sri = var.style_sri }
+  )
 
   # Redirect the root domain to the subdomain. Needs to be first or else it doesn't work!
   custom_rule {

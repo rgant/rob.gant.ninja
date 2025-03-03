@@ -4,8 +4,17 @@ resource "aws_cloudfront_response_headers_policy" "security_headers" {
 
   security_headers_config {
     content_security_policy {
-      content_security_policy = "default-src 'none'; connect-src 'self'; font-src 'self'; img-src 'self' data:; manifest-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self'; worker-src 'self'"
-      override                = true
+      content_security_policy = join("", [
+        "default-src 'none';",
+        "connect-src 'self';",
+        "font-src 'self';",
+        "img-src 'self';",
+        "manifest-src 'self';",
+        "script-src 'self' ${var.script_sri};",
+        "style-src 'self' ${var.style_sri};",
+        "worker-src 'self'",
+      ])
+      override = true
     }
 
     content_type_options {

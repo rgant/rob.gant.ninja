@@ -44,14 +44,10 @@ This is to avoid causing 429 "Too Many Requests" responses from `my-ip.io`
 | [aws_acm_certificate.alt_cert](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/acm_certificate) | resource |
 | [aws_acm_certificate.gant_ninja_cert](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/acm_certificate) | resource |
 | [aws_budgets_budget.monthly](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/budgets_budget) | resource |
-| [aws_ce_anomaly_monitor.anomaly_monitor](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ce_anomaly_monitor) | resource |
-| [aws_ce_anomaly_subscription.anomaly_monitor](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ce_anomaly_subscription) | resource |
 | [aws_cloudfront_distribution.redirect](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_distribution) | resource |
 | [aws_cloudfront_distribution.website](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_distribution) | resource |
 | [aws_cloudfront_origin_access_control.website](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_origin_access_control) | resource |
 | [aws_cloudfront_response_headers_policy.security_headers](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_response_headers_policy) | resource |
-| [aws_costoptimizationhub_enrollment_status.costoptimization](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/costoptimizationhub_enrollment_status) | resource |
-| [aws_costoptimizationhub_preferences.costoptimization](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/costoptimizationhub_preferences) | resource |
 | [aws_route53_record.alt_acm_validation](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_record) | resource |
 | [aws_route53_record.gant_ninja_acm_validation](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_record) | resource |
 | [aws_route53_record.gant_ninja_verify_bing](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_record) | resource |
@@ -97,6 +93,8 @@ This is to avoid causing 429 "Too Many Requests" responses from `my-ip.io`
 | <a name="input_aws_profile"></a> [aws\_profile](#input\_aws\_profile) | A profile name. See `aws configure list-profiles` | `string` | n/a | yes |
 | <a name="input_check_ip"></a> [check\_ip](#input\_check\_ip) | Lookup dynamic home IP, or use existing values from current DNS | `bool` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | AWS region to use for resources. | `string` | `"us-east-1"` | no |
+| <a name="input_script_sri"></a> [script\_sri](#input\_script\_sri) | SRI hashes for scripts-src in the CSP header | `string` | `""` | no |
+| <a name="input_style_sri"></a> [style\_sri](#input\_style\_sri) | SRI hashes for style-src in the CSP header | `string` | `""` | no |
 
 ## Outputs
 

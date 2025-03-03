@@ -16,11 +16,17 @@ terraform {
   }
 }
 
+locals {
+  json_data = jsondecode(file("${path.root}/generated/sriHashes.json"))
+}
+
 module "amazon" {
   source       = "./infrastructure"
   aws_profile  = "personal"
   alerts_email = var.my_email
   check_ip     = var.check_ip
+  script_sri   = local.json_data.scripts
+  style_sri    = local.json_data.styles
 }
 
 # Use `terraform (apply|plan) -var="check_ip=true"` to lookup the current external IP address and

@@ -1,10 +1,4 @@
 {
-  "excludes": [
-    "**/*-lock.json",
-    "**/dist",
-    "**/node_modules",
-    "**/vendors"
-  ],
   "plugins": [
     "https://plugins.dprint.dev/g-plane/malva-v0.11.1.wasm",
     "https://plugins.dprint.dev/g-plane/markup_fmt-v0.18.0.wasm",

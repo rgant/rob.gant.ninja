@@ -37,6 +37,7 @@ export default tseslint.config(
   pluginPromise.configs['flat/recommended'],
   eslintPluginUnicorn.configs.all,
   {
+    ignores: [ 'generated/**/*' ], // Automatically generated files
     languageOptions: {
       globals: globals.browser,
       parserOptions: {

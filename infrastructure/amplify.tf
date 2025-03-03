@@ -13,6 +13,8 @@ module "amplify_website" {
   name        = "rob.perfect-inbox.com"
   domain_name = "perfect-inbox.com"
   sub_domain  = "rob"
+  script_sri  = var.script_sri
+  style_sri   = var.style_sri
 }
 
 data "aws_caller_identity" "current" {}

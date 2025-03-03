@@ -9,10 +9,10 @@ customHeaders:
           default-src 'none';
           connect-src 'self';
           font-src 'self';
-          img-src 'self' data:;
+          img-src 'self';
           manifest-src 'self';
-          script-src 'self' 'unsafe-inline';
-          style-src 'self';
+          script-src 'self' ${script_sri};
+          style-src 'self' ${style_sri};
           worker-src 'self';
       - key: 'Referrer-Policy'
         value: 'same-origin'

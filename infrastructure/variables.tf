@@ -1,3 +1,8 @@
+variable "alerts_email" {
+  type        = string
+  description = "Email address for budget alerts"
+}
+
 variable "aws_profile" {
   type        = string
   description = "A profile name. See `aws configure list-profiles`"
@@ -14,7 +19,14 @@ variable "region" {
   default     = "us-east-1"
 }
 
-variable "alerts_email" {
+variable "script_sri" {
   type        = string
-  description = "Email address for budget alerts"
+  description = "SRI hashes for scripts-src in the CSP header"
+  default     = ""
+}
+
+variable "style_sri" {
+  type        = string
+  description = "SRI hashes for style-src in the CSP header"
+  default     = ""
 }

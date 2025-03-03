@@ -17,9 +17,11 @@
   "workspaces": [
     "packages/*"
   ],
+  "type": "module",
   "scripts": {
     "astro": "astro",
     "build": "astro build",
+    "postbuild": "./scripts/set-csp-header.ts",
     "predeploy": "npm run build",
     "deploy": "terraform apply",
     "dev": "astro dev",
@@ -30,7 +32,6 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "@astrojs/mdx": "^4.1.0",
     "@astrojs/rss": "^4.0.11",
     "@astrojs/sitemap": "^3.2.1",
     "@kindspells/astro-shield": "^1.7.1",
