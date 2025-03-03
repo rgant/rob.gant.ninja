@@ -6,6 +6,8 @@ resource "aws_amplify_app" "site" {
     type = "AMPLIFY_MANAGED_NO_COOKIES"
   }
 
+  # It is very easy for an error in the custom-headers.yaml file to silently disable a header.
+  # So always need to check after deploy, but remember to wait for caches to update.
   custom_headers = templatefile(
     "${path.module}/custom-headers.yaml",
     { script_sri = var.script_sri, style_sri = var.style_sri }

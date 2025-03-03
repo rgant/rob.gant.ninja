@@ -5,13 +5,13 @@ export const inlineScriptHashes = /** @type {string[]} */ ([])
 export const inlineStyleHashes = /** @type {string[]} */ ([])
 
 export const extScriptHashes = /** @type {string[]} */ ([
-	'sha256-1BYfjj7duocbzcdN/GvMGsh2cG/XF02Xt2TcEWUWzcw=',
 	'sha256-5rNWAEzELFGYPW8yGfOPTyXWzLtiKsWCG7yKU2zYV0E=',
+	'sha256-804Hr6w6TybxtJOfo2YzhkNpeJQcdIWMyBCqsIbFrx0=',
 	'sha256-CxdPP18Ez0SEporALEkE+IXWB/r6zv0mcYaP9Pm7qqo=',
 	'sha256-CxhVl0TZ3haiaTBA2oPNn9F9otMTZxB5IjfhmOZu7lc=',
+	'sha256-olpNlqEybp/aVmRNCMAflOiWJYby/FYBwfSFzAJ+5Y8=',
 	'sha256-tk+a4zsfcDDOFQAxPnCwxapnIDY8lAVVM3VbuHF7X1A=',
 	'sha256-wsakLcn2jz9VZiM2Pw/gC7QwCL641jNRhnsazfZZyAo=',
-	'sha256-yAN3tFldtsQ6McIAFsTs8eeDajlFixlYFGIlnYZDUUc=',
 ])
 
 export const extStyleHashes = /** @type {string[]} */ ([
@@ -30,8 +30,8 @@ export const perPageSriHashes =
 		'index.html': {
 			scripts: [
 				'sha256-5rNWAEzELFGYPW8yGfOPTyXWzLtiKsWCG7yKU2zYV0E=',
+				'sha256-804Hr6w6TybxtJOfo2YzhkNpeJQcdIWMyBCqsIbFrx0=',
 				'sha256-wsakLcn2jz9VZiM2Pw/gC7QwCL641jNRhnsazfZZyAo=',
-				'sha256-yAN3tFldtsQ6McIAFsTs8eeDajlFixlYFGIlnYZDUUc=',
 			],
 			styles: [
 				'sha256-pGUkAjnt8Beo0pqTPCtKuaccnde7Se3xgwgxZZfjNPs=',
@@ -43,10 +43,10 @@ export const perResourceSriHashes = {
 	scripts: /** @type {Record<string,string>} */ ({
 		'/_astro/end-scripts.astro_astro_type_script_index_0_lang.BJ6rjmgj.js': 'sha256-5rNWAEzELFGYPW8yGfOPTyXWzLtiKsWCG7yKU2zYV0E=',
 		'/_astro/index.astro_astro_type_script_index_0_lang.BERqy3iP.js': 'sha256-wsakLcn2jz9VZiM2Pw/gC7QwCL641jNRhnsazfZZyAo=',
-		'/_astro/index.astro_astro_type_script_index_1_lang.BGG8zLWe.js': 'sha256-yAN3tFldtsQ6McIAFsTs8eeDajlFixlYFGIlnYZDUUc=',
+		'/_astro/index.astro_astro_type_script_index_1_lang.Bk6tjTIP.js': 'sha256-804Hr6w6TybxtJOfo2YzhkNpeJQcdIWMyBCqsIbFrx0=',
 		'/_astro/workbox-window.prod.es5.B9K5rw8f.js': 'sha256-tk+a4zsfcDDOFQAxPnCwxapnIDY8lAVVM3VbuHF7X1A=',
 		'/registerSW.js': 'sha256-CxdPP18Ez0SEporALEkE+IXWB/r6zv0mcYaP9Pm7qqo=',
-		'/sw.js': 'sha256-1BYfjj7duocbzcdN/GvMGsh2cG/XF02Xt2TcEWUWzcw=',
+		'/sw.js': 'sha256-olpNlqEybp/aVmRNCMAflOiWJYby/FYBwfSFzAJ+5Y8=',
 		'/workbox-5ffe50d4.js': 'sha256-CxhVl0TZ3haiaTBA2oPNn9F9otMTZxB5IjfhmOZu7lc=',
 	}),
 	styles: /** @type {Record<string,string>} */ ({

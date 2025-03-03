@@ -26,3 +26,5 @@ const sriHashes = {
 
 const jsonStr = JSON.stringify(sriHashes, NOOP_REPLACER, INDENT);
 writeFileSync(JSON_FILE, jsonStr);
+
+console.log(`Generated ${JSON_FILE}`); // eslint-disable-line no-console -- This is a devops script
