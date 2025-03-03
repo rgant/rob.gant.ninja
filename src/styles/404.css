@@ -1,0 +1,27 @@
+:root {
+  --gray-5: #555;
+  --gray-8: #888;
+}
+
+html {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  block-size: 100%;
+
+  font-family: sans-serif;
+  color: var(--gray-8);
+  text-align: center;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--gray-5);
+}
+
+p {
+  inline-size: 17.5rem;
+}

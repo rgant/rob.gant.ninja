@@ -1,0 +1,393 @@
+.diminish {
+  opacity: .7;
+}
+
+.main-header {
+  .heading {
+    font-family: var(--heading-font); /* All heading content should use heading font */
+    font-size: 1.5rem;
+
+    p {
+      margin-block: 0 1rem; /* Smaller space on the bottom of the banner. */
+    }
+  }
+
+  h1 {
+    margin-block: 0; /* With the line-height a top margin isn't necessary. */
+  }
+}
+
+.link-list li {
+  margin-block-start: .5rem;
+}
+
+.subsection {
+  position: relative;
+  padding: 1rem 1rem 2.124rem; /* Space for three dots divider */
+  color: var(--subsection-color);
+  background-color: var(--subsection-bg-color);
+
+  /* three dots divider https://www.diviguide.com/section-dividers/ */
+  &::after {
+    content: '';
+
+    position: absolute;
+    inset-block-end: 1.25rem; /* Place the dots at the bottom of the .subsection, especially
+                                 important when each section is full viewport height. */
+    inset-inline-start: 50%; /* Center the dots horizontally */
+    transform: translateX(-50%);
+
+    display: block;
+
+    inline-size: 14px;
+    block-size: 14px;
+    border-radius: 50%;
+
+    background: var(--light-gray);
+    box-shadow: 30px 0 var(--light-gray), -30px 0 var(--light-gray);
+  }
+
+  &:last-of-type::after {
+    content: none;
+  }
+}
+
+.top-link {
+  padding-inline-start: 12px;
+
+  /* stroke color should be the same as --light-gray */
+  background-image: url('../assets/chevron-up.svg');
+  background-repeat: no-repeat;
+  background-position: left 65%;
+}
+
+#about {
+  --subsection-bg-color: #9d61a2;
+  --subsection-color: #2f1d31;
+}
+
+#resume {
+  --subsection-bg-color: #8fbf4d;
+  --subsection-color: #344b12;
+  --link-color-visited: #57365e;
+  --link-color: #f7f7f7;
+
+  ol {
+    /* List experience in order, but don't display numbers. */
+    list-style-type: disc;
+  }
+}
+
+#projects {
+  --subsection-bg-color: #f2d13e;
+  --subsection-color: #71580c;
+  --link-color-interaction: #00665f;
+  --link-color-visited: #49355f;
+  --link-color: #1000cd;
+}
+
+#tipsntricks {
+  --subsection-bg-color: #ff7f66;
+  --subsection-color: #733429;
+  --link-color-interaction: #00423d;
+  --link-color-visited: #453258;
+  --link-color: #1100c7;
+}
+
+#orgs {
+  --subsection-bg-color: #7ecefd;
+  --subsection-color: #28536d;
+  --link-color-interaction: #005c56;
+  --link-color-visited: #624479;
+  --link-color: #1000cd;
+
+  img {
+    inline-size: 410px;
+    max-inline-size: 76%;
+    block-size: auto;
+  }
+}
+
+.proj-list dd {
+  margin-block-end: 1rem;
+}
+
+.tool-links {
+  margin: 1rem;
+
+  ul {
+    padding-inline: 1.5rem .5rem;
+  }
+}
+
+.close-bttn {
+  float: inline-end;
+}
+
+/* Convert banners and link lists to inline layout. Add icons to the page navigation links. */
+@media only screen and (width >= 42em) {
+  body {
+    margin: 0;
+  }
+
+  .banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline: 1rem;
+
+    footer& {
+      align-items: end;
+    }
+  }
+
+  .link-list {
+    margin: 0;
+    padding-inline-start: 0;
+    white-space: nowrap;
+    list-style-type: none;
+
+    li {
+      display: inline-block;
+      margin-block-start: 0;
+      padding-inline: .5rem;
+    }
+  }
+
+  .page-nav {
+    /*
+      Add an animated underline to the navigation items on hover.
+      Keep the underline visible for the currently .selected item.
+      Not nesting these because of selector complexities. Might be a reason to use SCSS.
+     */
+
+    li::after, /* default state of underline */
+    &:hover .selected::after /* Reset the selected option when hovering over nav. */ {
+      content: '';
+
+      transform: scaleX(0);
+
+      display: block;
+
+      border-block-end: solid 3px #ececec;
+
+      transition: transform 200ms ease-in-out;
+    }
+
+    li:hover::after, /* On hover underline. */
+    /* stylelint-disable-next-line no-descending-specificity -- Applying the same styles in multiple
+        selectors makes this impossible to order without duplicating rules. */
+    .selected::after, /* Underline selected option. */
+    &:hover .selected:hover::after /* Re-underline if hovering over selected. */ {
+      transform: scaleX(1);
+    }
+
+    /* Add icons to the links. */
+    & a {
+      /* Especially when positioned over content the visited color is not always easy to see, plus
+          these are fragment links */
+      --link-color-visited: var(--link-color);
+
+      display: inline-block;
+
+      padding-block-start: 37px;
+
+      text-decoration: none;
+
+      background-repeat: no-repeat;
+      background-position: center top;
+      background-size: auto 32px;
+
+      &[href='#about'] {
+        background-image: url('../assets/about.svg');
+      }
+
+      &[href='#resume'] {
+        background-image: url('../assets/resume.svg');
+      }
+
+      &[href='#projects'] {
+        background-image: url('../assets/projects.svg');
+      }
+
+      &[href='#tipsntricks'] {
+        background-image: url('../assets/tipsntricks.svg');
+      }
+
+      &[href='#orgs'] {
+        background-image: url('../assets/orgs.svg');
+      }
+    }
+  }
+
+  .social-links {
+    flex: 1;
+
+    p {
+      float: inline-start;
+      padding-inline-end: .5rem;
+    }
+
+    ul {
+      margin-block: 1rem;
+    }
+  }
+
+  .acknowledgements {
+    font-size: .8rem;
+  }
+}
+
+/* Convert the main-header to position fixed when the height is tall enough. */
+@media (height >= 64em) {
+  html {
+    /* nominal height of the main-header */
+    scroll-padding-block-start: 7.5rem;
+    padding-block-start: 7.5rem;
+  }
+
+  .main-header {
+    position: fixed;
+    z-index: var(--z-header);
+    inset-block-start: 0;
+    inset-inline: 0;
+
+    background-color: var(--dark-gray); /* Match background-color of html */
+  }
+
+  .top-link {
+    display: none; /* No need for these links as the navigation menu is always visible */
+  }
+}
+
+@media only screen and (width >= 57em) {
+  /* Restore the header to static mode to position the individual elements directly. */
+  html {
+    scroll-padding-block-start: 0;
+    padding-block-start: 0;
+  }
+
+  .main-header {
+    position: static;
+    background-color: transparent;
+
+    .heading {
+      position: fixed;
+      z-index: var(--z-header);
+      inset-block-start: 0;
+      inset-inline-start: 10%;
+    }
+
+    h1 {
+      font-size: 4rem;
+    }
+  }
+
+  .page-nav {
+    position: fixed;
+    z-index: var(--z-header);
+    inset-block-start: 2rem;
+    inset-inline-end: .25rem;
+
+    /* Vertical menu */
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    li {
+      position: relative;
+      flex: 1 0 max-content;
+    }
+
+    li::after, /* default state of sideline */
+    &:hover .selected::after /* Reset the selected option when hovering over nav. */ {
+      position: absolute;
+      inset-block: 0;
+      inset-inline-start: 0;
+      transform: scaleY(0);
+
+      border-block-end: none; /* Remove the underline */
+      border-inline-start: solid 3px var(--light-gray);
+    }
+
+    li:hover::after, /* On hover underline. */
+    /* stylelint-disable-next-line no-descending-specificity -- Applying the same styles in multiple
+        selectors makes this impossible to order without duplicating rules. */
+    .selected::after, /* Sideline selected option. */
+    &:hover .selected:hover::after /* Re-sideline if hovering over selected. */ {
+      transform: scaleY(1);
+    }
+  }
+
+  .top-link {
+    display: none; /* No need for these links as the navigation menu is always visible */
+  }
+
+  /* Make each subsection one viewport tall with space for a background and the nav. */
+  .subsection {
+    box-sizing: border-box;
+    min-block-size: 100vb;
+    padding: 3.5rem 10% 2.125rem 50%;
+
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: left 1rem bottom 1rem;
+
+    /*
+    Background size is relative to viewport because attachement is fixed.
+
+    This doesn't strech the SVG image because the image has it's own viewBox determining the size.
+    So the background 'area' is 45%x67%, but the SVG scales itself to fit within. Which is why it
+    sometimes floats above the bottom since the image is added to the top left corner of the
+    background area. Is my guess. https://github.com/rgant/rob.gant.ninja/issues/6
+    */
+    background-size: 45% 67%;
+  }
+
+  #about {
+    background-image: url('../assets/about.svg');
+  }
+
+  #resume {
+    background-image: url('../assets/resume.svg');
+  }
+
+  #projects {
+    background-image: url('../assets/projects.svg');
+  }
+
+  #tipsntricks {
+    background-image: url('../assets/tipsntricks.svg');
+  }
+
+  #orgs {
+    background-image: url('../assets/orgs.svg');
+  }
+}
+
+@media print, (resolution >= 1.25dppx), (resolution >= 120dpi) {
+  /* Style adjustments for high resolution devices */
+
+  .subsection {
+    /* Applying this change to the .subsection directly makes Chrome's mobile view simulator behave strangely. */
+    dl,
+    ol,
+    p,
+    ul {
+      font-size: 1.25rem;
+    }
+  }
+}
+
+@media print {
+  .subsection {
+    min-block-size: 0;
+  }
+
+  .top-link {
+    display: none;
+  }
+}

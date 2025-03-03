@@ -1,16 +1,36 @@
 {
-  "arrayBracketSpacing": true,
+  "$schema": "http://json.schemastore.org/prettierrc",
   "arrowParens": "always",
+  "bracketSameLine": false,
+  "bracketSpacing": true,
+  "embeddedLanguageFormatting": "auto",
   "endOfLine": "lf",
-  "htmlVoidTags": true,
-  "htmlWhitespaceSensitivity": "ignore",
-  "offsetTernaryExpressions": true,
+  "htmlWhitespaceSensitivity": "css",
+  "jsxSingleQuote": false,
+  "overrides": [
+    {
+      "files": "*.astro",
+      "options": {
+        "parser": "astro"
+      }
+    }
+  ],
+  "plugins": [
+    "@awmottaz/prettier-plugin-void-html",
+    "prettier-plugin-astro",
+    "prettier-plugin-embed",
+    "prettier-plugin-multiline-arrays",
+    "prettier-plugin-organize-attributes"
+  ],
   "printWidth": 140,
+  "proseWrap": "always",
   "quoteProps": "as-needed",
   "semi": true,
+  "singleAttributePerLine": false,
   "singleQuote": true,
-  "tabWidth": 4,
-  "templateCurlySpacing": true,
+  "tabWidth": 2,
   "trailingComma": "all",
-  "useTabs": false
+  "useTabs": false,
+
+  "multilineArraysWrapThreshold": 3
 }

@@ -1,0 +1,422 @@
+---
+import { Image } from 'astro:assets';
+
+import acluImage from '../assets/aclu.png';
+import effImage from '../assets/eff-logo-name-black-72.jpg';
+import mozillaImg from '../assets/mozilla.svg';
+import splcImage from '../assets/splc.png';
+import BaseHead from '../components/base-head.astro';
+import EndScripts from '../components/end-scripts.astro';
+import '../styles/index.css';
+import { unwrap } from '../unwrap.util';
+import { yearsOfExperience } from '../years-experience.util';
+
+const description = unwrap`Senior staff development team lead with 22 years experience building web
+  application software and guiding startup development teams.`;
+
+// Static value for non-script executing user-agents.
+const careerStart = '2002';
+const yearsExperience = yearsOfExperience(careerStart);
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <BaseHead description={description} title="J Rob Gant, Web Application Developer" />
+  </head>
+  <body>
+    <header class="banner main-header">
+      <div class="heading">
+        <h1>
+          <span class="diminish">J</span> Rob <span class="diminish">Gant</span>
+        </h1>
+        <p>Web Application Developer</p>
+      </div>
+
+      <nav class="page-nav">
+        <rob-scroll-nav>
+          <ul id="index-nav" class="link-list">
+            <li><a href="#about">About</a></li>
+            <li><a href="#resume">Resume</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#tipsntricks">Tips &amp; Tricks</a></li>
+            <li><a href="#orgs">Support</a></li>
+          </ul>
+        </rob-scroll-nav>
+      </nav>
+    </header>
+
+    <main>
+      <article id="about" class="subsection">
+        <h2>About</h2>
+
+        <p>
+          Hey, I’m Rob, a full stack developer specializing in web applications. I’m a full stack engineer and utilize my skills to fulfill
+          multiple roles. Mostly I write code, but before that I often need to setup databases, servers, DNS records, etc. I write modular,
+          tested, and documented code. Even when speed is primary I find the time to come back and finish what I started. My goal is always
+          to write code for myself 6 months in the future. I have
+          <rob-years-of-experience role="time" startYear={careerStart}>{yearsExperience}</rob-years-of-experience>
+          of experience helping build up development teams. As things progress and the development team expands I enjoy working with and
+          mentoring other developers.
+        </p>
+
+        <p>
+          Outside of work I find myself frequently coding a solution to annoyances and problems I find. Automating away the pain is one of
+          the joys of being a developer.
+        </p>
+
+        <a href="#index-nav" class="top-link" title="Back to navigation">Top</a>
+      </article>
+
+      <article id="resume" class="subsection">
+        <h2>Relevant Experience</h2>
+
+        <p>Senior development team lead with experience building web application software and guiding startup development teams.</p>
+
+        <section>
+          <h3>Experience</h3>
+          <ol>
+            <li>Staff Software Engineer, LearnLux, Inc.</li>
+            <li>Senior Software Engineer, Sober Grid, Inc.</li>
+            <li>Chief Technology Officer, sixQ</li>
+            <li>Senior Software Engineer, True Impact, Inc.</li>
+            <li>Software Development Engineer, Tervela, Inc.</li>
+            <li>Senior Software Engineer, Happier, Inc.</li>
+            <li>Product Manager, SiteSpect, Inc.</li>
+            <li>Advanced Solutions Engineer, SiteSpect, Inc.</li>
+            <li>Senior Web Developer, RPM Communications</li>
+            <li>Senior Developer, Workflow By Design</li>
+          </ol>
+        </section>
+
+        <section>
+          <h3>Education</h3>
+          <dl>
+            <dt>Worcester Polytechnic Institute</dt>
+            <dd>Bachelor of Science Degree, Computer Science</dd>
+          </dl>
+        </section>
+
+        <section>
+          <h3>Skills</h3>
+          <ul>
+            <li>Linux, MacOS, Unix, Docker, Terraform</li>
+            <li>Amazon Web Services (AWS), Google Cloud Platform (GCP), Firebase, Microsoft Azure</li>
+            <li>Apache, Nginx, Node, Express.js, Nest.js, Next.js</li>
+            <li>JSONAPI, OpenAPI Specification (Swagger), GraphQL</li>
+            <li>Python, Flask, Jinja, FastAPI, Django, Wagtail CMS</li>
+            <li>pip, pipenv, npm, Homebrew, pytest, Pylint, Ruff, Pyright, Mypy, Black</li>
+            <li>MySQL, sqlite, MongoDB, PostgreSQL</li>
+            <li>CSS, HTML, SASS/SCSS, Bootstrap, Material</li>
+            <li>TypeScript, Angular, ESLint, Stylelint, React, JavaScript</li>
+            <li>Sublime Text, SublimeLinter</li>
+            <li>Bash, Awk, Grep, Sed, ShellCheck, Regular Expressions</li>
+            <li>git, Github, Bitbucket, Gitlab, Jira</li>
+            <li>Product &amp; Project Management, Development Team Leadershipt &amp; Management</li>
+          </ul>
+        </section>
+
+        <p><a href="/resume.pdf">Complete CV</a></p>
+
+        <a href="#index-nav" class="top-link" title="Back to navigation">Top</a>
+      </article>
+
+      <article id="projects" class="subsection">
+        <h2>Projects</h2>
+
+        <p>
+          All of my programming projects utilize open source code. I prefer to build applications for the web using RESTful APIs, HTML, and
+          CSS. Native apps have their place, but for the most part if it can be done using a browser then that is how I prefer to do
+          it.
+        </p>
+
+        <section>
+          <h3>Project Repositories</h3>
+
+          <dl class="proj-list">
+            <dt><a href="https://github.com/rgant/brainfry">BrainFry Quiz App</a></dt>
+            <dd>
+              Designing, developing and documenting a modern web application using Angular, Firebase, and Terraform.
+              <!-- Check out my <a href="/brainfry-app/">guides for developing</a> this project. -->
+            </dd>
+
+            <dt><a href="https://github.com/rgant/rob.gant.ninja">rob.gant.ninja</a></dt>
+            <dd>
+              Code for this website.
+              <!-- Checkout some of my thoughts on <a href="/ninja-site/">how to build</a> static websites. -->
+            </dd>
+
+            <dt><a href="https://github.com/rgant/saas-api-boilerplate">saas-api-boilerplate</a></dt>
+            <dd>Boilerplate setup for SaaS JSONAPI in Python using Flask &amp; SQLAlchemy.</dd>
+
+            <dt><a href="https://github.com/rgant/homedir">homedir</a></dt>
+            <dd>OS X Home Directory Files documenting how I setup my environment.</dd>
+
+            <dt><a href="https://github.com/rgant/APODDownloader">APODDownloader</a></dt>
+            <dd>Download the Astronomy Picture of the Day Every Day. Keeping only the most recent 100.</dd>
+
+            <dt><a href="https://github.com/rgant/homedir">Dotfiles and Home Directory Stuff</a></dt>
+            <dd>My setups for MacOS / Bash shell.</dd>
+
+            <dt><a href="https://github.com/rgant/youtube-music-playlist">Music Playlists</a></dt>
+            <dd>
+              The goal is to never hear the same song in a day. Music services seem engineered to thwart that. Lets see what I can do. (WIP)
+            </dd>
+          </dl>
+        </section>
+
+        <p>Most of my work is published in my <a href="https://github.com/rgant">GitHub Account</a>.</p>
+
+        <a href="#index-nav" class="top-link" title="Back to navigation">Top</a>
+      </article>
+
+      <article id="tipsntricks" class="subsection">
+        <h2>Tips and Tricks</h2>
+
+        <p>
+          Life is quickly becoming a software problem; which is great because I like fixing software problems. Here are some of the tweaks
+          I’ve made to make things a bit better for me.
+        </p>
+
+        <section>
+          <h3>User.js Scripts</h3>
+
+          <p>GreaseMonkey Scripts I use to make the website I visit a bit better for me.</p>
+
+          <dl class="proj-list">
+            <dt>
+              <a href="https://github.com/rgant/homedir/blob/master/Greasemonkey_backup/Customize%20Miniflux/Customize%20Miniflux.user.js">
+                Customize Miniflux
+              </a>
+            </dt>
+            <dd>Modify the styles, add some giant navigation bars on posts, and add shortcut to open articles in a new tab.</dd>
+
+            <dt>
+              <a href="https://github.com/rgant/homedir/blob/master/Greasemonkey_backup/Fix%20Fark/fark_auto_article_link.user.js">
+                Fix Fark
+              </a>
+            </dt>
+            <dd>Automatically navigate to article when opening link in new tab. Enable keyboard navigation for comments.</dd>
+
+            <dt>
+              <a href="https://github.com/rgant/homedir/blob/master/Greasemonkey_backup/Fix%20Reddit/Fix_Reddit.user.js">Fix Reddit</a>
+            </dt>
+            <dd>
+              Hide annoying banners. Set links to default to old.reddit.com domain. Open posts in a new tab. Enable keyboard navigation for
+              posts. Remove uninteresting subreddits from list pages. Fix the search default to the current subreddit.
+            </dd>
+
+            <dt>
+              <a href="https://github.com/rgant/homedir/blob/master/Greasemonkey_backup/Fix%20Wirecutter/Fix%20Wirecutter.user.js">
+                Fix Wirecutter
+              </a>
+            </dt>
+            <dd>
+              Un-lazyload images so I don’t need to enable JS on this site. Try to make the header static so it doesn’t takeover my window.
+            </dd>
+
+            <dt>
+              <a href="https://github.com/rgant/homedir/blob/master/Greasemonkey_backup/Remove%20AMP%20%26%20Tracking/remove_utm.user.js">
+                Remove AMP &amp; Tracking
+              </a>
+            </dt>
+            <dd>Remove the tracking codes from URLs so I can share clean links. Attempt to de-AMP links again for better sharing.</dd>
+
+            <dt>
+              <a
+                href="https://github.com/rgant/homedir/blob/main/Greasemonkey_backup/Remove%20Amazon%20tracking%20info/Remove%20Amazon%20tracking%20info.user.js"
+              >
+                Remove Amazon Tracking
+              </a>
+            </dt>
+            <dd>Amazon links are quite ugly, remove that garbage so I can share clean links.</dd>
+
+            <dt><a href="https://github.com/rgant/homedir/blob/master/Greasemonkey_backup/">Other User Scripts</a></dt>
+            <dd>Other minor scripts that don’t do much interesting but still make my web browsing more enjoyable.</dd>
+          </dl>
+        </section>
+
+        <section>
+          <h3>Other Customizations</h3>
+
+          <dl class="proj-list">
+            <dt>
+              <a
+                href="https://github.com/rgant/homedir/blob/1d1e894f0ed238aa116eb2c49070811c7352436a/Library/Application-Support/Firefox/Profiles/robgant.default/chrome/userChrome.css#L10"
+              >
+                Always Show Reader Mode Icon
+              </a>
+            </dt>
+            <dd>
+              Reader mode in Firefox is great, but it’s a bit too conservative when deciding preemptively that it cannot handle a page. This
+              CSS always shows the button which will work most of the time.
+            </dd>
+
+            <dt>Symlink Configuration Folders</dt>
+            <dd>
+              Firefox and Sublime Text both store important customizations in folders buried deep in the disk. But on UNIX-y environments
+              you can symlink the folders to other locations. For example a git repository tracking your settings:
+            </dd>
+            <dd><code>ln -s $PATH_TO_REPO/user.js $PATH_TO_FF_PROFILE/user.js</code></dd>
+            <dd><code>ln -s $PATH_TO_REPO/chrome $PATH_TO_FF_PROFILE/chrome</code></dd>
+            <dd><code>ln -s $PATH_TO_REPO/User $PATH_TO_SUBLIME_PACKAGES/User</code></dd>
+          </dl>
+        </section>
+
+        <a href="#index-nav" class="top-link" title="Back to navigation">Top</a>
+      </article>
+
+      <article id="orgs" class="subsection">
+        <h2>Organizations I Support</h2>
+
+        <section>
+          <h3>
+            <a rel="noreferrer" href="https://supporters.eff.org/donate/donate" title="Donate to the EFF">
+              <Image src={effImage} alt="" width="410" />
+              <span class="visually-hidden">Electronic Frontier Foundation</span>
+            </a>
+          </h3>
+
+          <p>
+            I’ve supported the EFF for over a decade. They work to support Network Neutrality, Internet security, and Internet Privacy. I’m
+            proud to use
+            <a rel="noreferrer" href="https://www.eff.org/https-everywhere">HTTPS Everywhere</a> and
+            <a rel="noreferrer" href="https://www.eff.org/pages/privacy-badger">Privacy Badger</a>
+            extensions in my browsers. They also help create the
+            <a rel="noreferrer" href="https://letsencrypt.org/">Let’s Encrypt Certbot</a>
+            tool that I’ve used to setup my web applications under HTTPS.
+          </p>
+        </section>
+
+        <section>
+          <h3>
+            <a rel="noreferrer" href="https://www.mozilla.org/en-US/contribute/" title="Volunteer with Mozilla!">
+              <Image src={mozillaImg} alt="" width="410" />
+              <span class="visually-hidden">The Mozilla Foundation</span>
+            </a>
+          </h3>
+
+          <p>
+            I’ve long supported Mozilla through my use of the
+            <a rel="noreferrer" href="https://www.mozilla.org/en-US/firefox/">Firefox browser</a>,
+            and I also support the Mozilla Foundation. Like the EFF, Mozilla works to create an open internet usable by everyone. I develop
+            web applications so it is vital to me that the internet be a place innovation thrives. Through my support I hope to help keep
+            the internet from walled gardens and mono-cultures.
+          </p>
+        </section>
+
+        <section>
+          <h3>
+            <a rel="noreferrer" href="https://action.aclu.org/give/now" title="Donate to the ACLU">
+              <Image src={acluImage} alt="" width="410" />
+              <span class="visually-hidden">American Civil Liberties Union</span>
+            </a>
+          </h3>
+
+          <p>
+            As an American I believe that the ACLU is a vital part of our democracy. My donations to the
+            <a rel="noreferrer" href="https://www.aclu.org/">ACLU</a>
+            and
+            <a rel="noreferrer" href="https://action.aclu.org/give/make-tax-deductible-gift-aclu-foundation">ACLU Foundation</a>
+            protect my and all Americans’ civil liberties. It is not always easy to defend the Constitution, and I support those that do
+            this vital work.
+          </p>
+        </section>
+
+        <section>
+          <h3>
+            <a rel="noreferrer" href="https://secure.splcenter.org/page/64745/donate/1" title="Donate to the SPLC">
+              <Image src={splcImage} alt="" width="410" />
+              <span class="visually-hidden">Southern Poverty Law Center</span>
+            </a>
+          </h3>
+
+          <p>
+            I believe that the Southern Poverty Law Center provides important services to my country by shining a light on the hate that is
+            attempting to infest our society. Tolerance and justice aren’t things that just happen, but causes that we must champion.
+            Through my support I hope to promote civil rights and legal reforms that will benefit everyone.
+          </p>
+        </section>
+
+        <a href="#index-nav" class="top-link" title="Back to navigation">Top</a>
+      </article>
+    </main>
+
+    <footer class="banner">
+      <div class="social-links">
+        <p>Find me on:</p>
+        <ul class="link-list">
+          <li><a href="https://stackexchange.com/users/18329/rob">Stack Exchange</a></li>
+          <li><a href="https://wellfound.com/u/rob-gant-1">Wellfound</a></li>
+          <li><a href="https://www.linkedin.com/in/rob-gant/">LinkedIn</a></li>
+          <!-- <li><a href="https://discord.com/invite/angular">Angular Community Discord</a></li> -->
+        </ul>
+        <p class="acknowledgements">
+          Section icons designed by
+          <a rel="noreferrer" href="https://www.flaticon.com/" target="_blank">Freepik from Flaticon</a>
+          <br>
+          <a rel="noreferrer" href="https://icons8.com/icon/43738/external-link" target="_blank">External Link</a>
+          icon by
+          <a rel="noreferrer" href="https://icons8.com" target="_blank">Icons8</a>
+        </p>
+      </div>
+      <div class="tool-links">
+        <button popovertarget="web-tools" type="button">Check my website</button>
+        <div id="web-tools" popover>
+          <button class="close-bttn" popovertarget="web-tools" popovertargetaction="hide" type="button">×</button>
+          <ul>
+            <li><a rel="noreferrer" href="https://www.ssl.org/report/rob.gant.ninja" target="_blank">SSL Certificate Checker</a></li>
+            <li>
+              <a rel="noreferrer" href="https://www.ssllabs.com/ssltest/analyze.html?d=rob.gant.ninja&latest" target="_blank">SSL Report</a>
+            </li>
+            <li>
+              <a rel="noreferrer" href="https://developer.mozilla.org/en-US/observatory/analyze?host=rob.gant.ninja" target="_blank">
+                HTTP Observatory Report
+              </a>
+            </li>
+            <li>
+              <a rel="noreferrer" href="https://www.giftofspeed.com/cache-checker/?url=https%3A%2F%2Frob.gant.ninja%2F" target="_blank">
+                Browser Caching Checker
+              </a>
+            </li>
+            <li><a href="https://validator.w3.org/nu/?doc=https%3A%2F%2Frob.gant.ninja%2F" target="_blank">Nu Html Checker</a></li>
+            <li>
+              <a
+                id=""
+                rel="noreferrer"
+                href="https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Frob.gant.ninja%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en"
+                target="_blank"
+              >
+                CSS Validation Service
+              </a>
+            </li>
+            <li>
+              <a
+                rel="noreferrer"
+                href="https://validator.w3.org/checklink?uri=https%3A%2F%2Frob.gant.ninja%2F&hide_type=dir&depth=&check=Check"
+                target="_blank"
+              >
+                Link Checker
+              </a>
+            </li>
+            <li>
+              <a
+                rel="noreferrer"
+                href="https://pagespeed.web.dev/analysis/https-rob-gant-ninja/j4f5whd8mj?form_factor=mobile"
+                target="_blank"
+              >
+                PageSpeed Insights
+              </a>
+            </li>
+            <li>
+              <a rel="noreferrer" href="https://www.webpagetest.org/result/250221_AiDcXQ_7VJ/" target="_blank">Webpage Performance Test</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../scripts/index-scroll"></script>
+    <script src="../scripts/years-experience"></script>
+    <EndScripts />
+  </body>
+</html>

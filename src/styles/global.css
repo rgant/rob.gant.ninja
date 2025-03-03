@@ -1,0 +1,324 @@
+/*! HTML5 Boilerplate v9.0.1 | MIT License | https://html5boilerplate.com/ */
+
+/* main.css 3.0.0 | MIT License | https://github.com/h5bp/main.css#readme */
+
+/*
+ * What follows is the result of much research on cross-browser styling.
+ * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
+ * Kroc Camen, and the H5BP dev community and team.
+ */
+
+@import url('./typography.css');
+
+:root {
+  /* General  */
+  --black: #000;
+  --dark-gray: #3e454c;
+  --heading-font: ubuntu, helvetica, sans-serif;
+  --light-blue: #b3d4fc;
+  --light-gray: #ececec;
+  --text-font: roboto, 'Helvetica Neue', sans-serif;
+  --white: #fff;
+
+  /* Link Styles */
+  --link-color-interaction: #0fe;
+  --link-color-visited: #bfa9d1;
+  --link-color: var(--light-gray);
+
+  /* Common z-index levels */
+  --z-modal: 9000;
+  --z-overlay: 8000;
+  --z-dropdown: 7000;
+  --z-header: 6000;
+}
+
+/* ==========================================================================
+   Base styles: opinionated defaults
+   ========================================================================== */
+
+html {
+  scrollbar-gutter: stable;
+  scroll-snap-type: y mandatory;
+
+  font-family: var(--text-font);
+  font-size: 1em;
+  line-height: 1.4;
+  color: var(--white);
+
+  /* stylelint-disable-next-line plugin/no-unsupported-browser-features -- stylistic change that can be skip in unsupported browsers */
+  text-decoration-thickness: 8%; /* Sets the thickness as a percentage of the font size */
+  text-underline-offset: 8%; /* Places the underline a bit further below the text. */
+
+  background-color: var(--dark-gray);
+}
+
+/*
+ * Remove text-shadow in selection highlight:
+ * https://twitter.com/miketaylr/status/12228805301
+ *
+ * Customize the background color to match your design.
+ */
+
+::selection { /* stylelint-disable-line plugin/no-unsupported-browser-features -- visual only effect not important for iOS Safari */
+  text-shadow: none;
+  background: var(--light-blue);
+}
+
+/*
+ * A better looking default horizontal rule
+ */
+
+hr {
+  display: block;
+
+  block-size: 1px;
+  margin: 1em 0;
+  padding: 0;
+  border: 0;
+  border-block-start: 1px solid #ccc;
+}
+
+/*
+ * Remove the gap between audio, canvas, iframes,
+ * images, videos and the bottom of their containers:
+ * https://github.com/h5bp/html5-boilerplate/issues/440
+ */
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+  vertical-align: middle;
+}
+
+/*
+ * Remove default fieldset styles.
+ */
+
+fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/*
+ * Allow only vertical resizing of textareas.
+ */
+
+textarea {
+  resize: block; /* stylelint-disable-line plugin/no-unsupported-browser-features -- not important for iOS Safari */
+}
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+a {
+  &:link {
+    color: var(--link-color);
+  }
+
+  &:visited {
+    color: var(--link-color-visited);
+  }
+
+  &:hover,
+  &:active {
+    color: var(--link-color-interaction);
+  }
+
+  &[target='_blank'] {
+    display: inline-flex;
+    gap: .25rem;
+    align-items: center;
+
+    &::after {
+      /* stroke color should be the same as --light-gray */
+      content: url('../assets/external-link.svg');
+      block-size: 1rem;
+    }
+  }
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--heading-font);
+  font-weight: 500;
+  color: var(--white);
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+/*
+ * Hide visually and from screen readers
+ */
+
+.hidden,
+[hidden] {
+  display: none !important; /* stylelint-disable-line declaration-no-important -- HTML5 Boilerplate default */
+}
+
+/*
+ * Hide only visually, but have it available for screen readers:
+ * https://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+ *
+ * 1. For long content, line feeds are not interpreted as spaces and small width
+ *    causes content to wrap 1 word per line:
+ *    https://medium.com/@jessebeach/beware-smushed-off-screen-accessible-text-5952a4c2cbfe
+ */
+
+.visually-hidden {
+  position: absolute;
+
+  overflow: hidden;
+
+  inline-size: 1px;
+  block-size: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+
+  white-space: nowrap;
+
+  /* stylelint-disable-next-line plugin/no-unsupported-browser-features -- not using the unsupported features */
+  clip-path: inset(100% 100% 100% 100%);
+
+  /* 1 */
+}
+
+/*
+ * Extends the .visually-hidden class to allow the element
+ * to be focusable when navigated to via the keyboard:
+ * https://www.drupal.org/node/897638
+ */
+
+.visually-hidden.focusable:active,
+.visually-hidden.focusable:focus {
+  position: static;
+
+  overflow: visible;
+
+  inline-size: auto;
+  block-size: auto;
+  margin: 0;
+
+  white-space: inherit;
+
+  /* stylelint-disable-next-line plugin/no-unsupported-browser-features -- not using the unsupported features */
+  clip-path: none;
+}
+
+/*
+ * Hide visually and from screen readers, but maintain layout
+ */
+
+.invisible {
+  visibility: hidden;
+}
+
+/*
+ * Clearfix: contain floats
+ *
+ * The use of `table` rather than `block` is only necessary if using
+ * `::before` to contain the top-margins of child elements.
+ */
+
+.clearfix::before,
+.clearfix::after {
+  content: '';
+  display: table;
+}
+
+.clearfix::after {
+  clear: both;
+}
+
+/* ==========================================================================
+   Print styles.
+   Inlined to avoid the additional HTTP request:
+   https://www.phpied.com/delay-loading-your-print-css/
+   ========================================================================== */
+
+@media print {
+  /* stylelint-disable
+      declaration-no-important, selector-max-universal, plugin/no-unsupported-browser-features
+      -- HTML5 Boilerplate default
+  */
+  *,
+  *::before,
+  *::after {
+    color: var(--black) !important; /* Black prints faster */
+    text-shadow: none !important;
+    background: var(--white) !important;
+    box-shadow: none !important;
+  }
+
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+
+  a[href]::after {
+    content: ' (' attr(href) ')';
+  }
+
+  abbr[title]::after {
+    content: ' (' attr(title) ')';
+  }
+
+  /*
+   * Don't show links that are fragment identifiers,
+   * or use the `javascript:` pseudo protocol
+   */
+  a[href^='#']::after,
+  a[href^='javascript:']::after {
+    content: '';
+  }
+
+  pre {
+    white-space: pre-wrap !important;
+  }
+
+  pre,
+  blockquote {
+    border: 1px solid #999;
+
+    page-break-inside: avoid;
+  }
+
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+
+  p,
+  h2,
+  h3 {
+    widows: 3;
+    orphans: 3;
+  }
+
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+}
