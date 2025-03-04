@@ -59,7 +59,7 @@ html {
  * Customize the background color to match your design.
  */
 
-::selection { /* stylelint-disable-line plugin/no-unsupported-browser-features -- visual only effect not important for iOS Safari */
+::selection {
   text-shadow: none;
   background: var(--light-blue);
 }
@@ -108,7 +108,7 @@ fieldset {
  */
 
 textarea {
-  resize: block; /* stylelint-disable-line plugin/no-unsupported-browser-features -- not important for iOS Safari */
+  resize: block;
 }
 
 /* ==========================================================================
