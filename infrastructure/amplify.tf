@@ -15,7 +15,7 @@ data "aws_iam_policy_document" "amplify_website" {
   statement {
     sid       = "AllowAmplifyToListPrefix_${module.amplify_website.amplify_site.id}_${module.amplify_website.amplify_site.branch_name}_"
     actions   = ["s3:ListBucket"]
-    resources = [aws_s3_bucket.website.arn]
+    resources = [module.website_bucket.s3_bucket.arn]
 
     principals {
       type        = "Service"
@@ -44,7 +44,7 @@ data "aws_iam_policy_document" "amplify_website" {
   statement {
     sid       = "AllowAmplifyToReadPrefix_${module.amplify_website.amplify_site.id}_${module.amplify_website.amplify_site.branch_name}_"
     actions   = ["s3:GetObject"]
-    resources = ["${aws_s3_bucket.website.arn}/*"]
+    resources = ["${module.website_bucket.s3_bucket.arn}/*"]
 
     principals {
       type        = "Service"
@@ -67,7 +67,7 @@ data "aws_iam_policy_document" "amplify_website" {
   statement {
     actions   = ["s3:*"]
     effect    = "Deny"
-    resources = ["${aws_s3_bucket.website.arn}/*"]
+    resources = ["${module.website_bucket.s3_bucket.arn}/*"]
 
     principals {
       type        = "*"
@@ -80,6 +80,11 @@ data "aws_iam_policy_document" "amplify_website" {
       values   = ["false"]
     }
   }
+}
+
+resource "aws_s3_bucket_policy" "website" {
+  bucket = module.website_bucket.s3_bucket.id
+  policy = data.aws_iam_policy_document.amplify_website.json
 }
 
 # Manually deploy the S3
@@ -99,7 +104,7 @@ aws --profile ${var.aws_profile} --region ${var.region} \
   amplify start-deployment \
   --app-id ${module.amplify_website.amplify_site.id} \
   --branch-name ${module.amplify_website.amplify_site.branch_name} \
-  --source-url s3://${aws_s3_bucket.website.id}/ \
+  --source-url s3://${module.website_bucket.s3_bucket.id}/ \
   --source-url-type BUCKET_PREFIX
 EOF
   }

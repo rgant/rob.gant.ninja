@@ -17,6 +17,8 @@ provider "aws" {
 resource "aws_s3_bucket" "terraform_state" {
   bucket = "tfstate-ninja-rob-gant"
 
+  # Does not support dynamic configuration so cannot use s3-bucket module.
+  # https://github.com/hashicorp/terraform/issues/27360
   lifecycle {
     prevent_destroy = true
   }

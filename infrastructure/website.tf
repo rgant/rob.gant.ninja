@@ -1,34 +1,8 @@
-# Because CloudFront directly accesses this bucket using origin access identity it does not need to be a website
-resource "aws_s3_bucket" "website" {
-  bucket = "rob-gant-ninja"
-}
-
-resource "aws_s3_bucket_public_access_block" "website" {
-  bucket = aws_s3_bucket.website.id
-
-  block_public_acls       = true
-  block_public_policy     = true
-  ignore_public_acls      = true
-  restrict_public_buckets = true
-}
-
-resource "aws_s3_bucket_ownership_controls" "website" {
-  bucket = aws_s3_bucket.website.id
-
-  rule {
-    object_ownership = "BucketOwnerPreferred"
-  }
-}
-
-# This may not be used anymore, got an error adding it to the new bucket in remote-config
-resource "aws_s3_bucket_acl" "website" {
-  depends_on = [
-    aws_s3_bucket_ownership_controls.website,
-    aws_s3_bucket_public_access_block.website,
-  ]
-
-  bucket = aws_s3_bucket.website.id
-  acl    = "private" # Because this bucket is a CloudFront origin it does not need to be public.
+# `terraform validate` reports "Module not installed" here, but that is seemingly an error in the validate command
+# https://discuss.hashicorp.com/t/is-there-a-way-to-fix-module-not-installed-for-local-submodules/54067
+module "website_bucket" {
+  source      = "./s3-bucket"
+  bucket_name = "rob-gant-ninja"
 }
 
 # I could use hashicorp/dir/template and aws_s3_bucket_object to upload the site
@@ -48,16 +22,12 @@ s3cmd sync \
   --no-preserve \
   --delete-removed \
   --add-header="Cache-Control:public,max-age=31536000" \
-  ./dist/ s3://${aws_s3_bucket.website.id}/;
+  ./dist/ s3://${module.website_bucket.s3_bucket.id}/;
 s3cmd modify \
   --cf-invalidate \
   --add-header="Cache-Control:public,max-age=2592000,stale-while-revalidate=86400" \
-  s3://${aws_s3_bucket.website.id}/index.html
+  s3://${module.website_bucket.s3_bucket.id}/index.html
 EOF
   }
 }
 
-resource "aws_s3_bucket_policy" "website" {
-  bucket = aws_s3_bucket.website.id
-  policy = data.aws_iam_policy_document.amplify_website.json
-}

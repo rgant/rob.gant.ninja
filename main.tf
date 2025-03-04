@@ -41,3 +41,45 @@ variable "my_email" {
   type        = string
   description = "My email address for budget alerts"
 }
+
+# Apparently moved need to be at the root, not within the modules!
+# https://www.reddit.com/r/Terraform/comments/17685zu/comment/k4kemog/
+moved {
+  from = module.amazon.aws_s3_bucket.website
+  to   = module.amazon.module.website_bucket.aws_s3_bucket.bucket
+}
+
+moved {
+  from = module.amazon.aws_s3_bucket_public_access_block.website
+  to   = module.amazon.module.website_bucket.aws_s3_bucket_public_access_block.bucket
+}
+
+moved {
+  from = module.amazon.aws_s3_bucket_ownership_controls.website
+  to   = module.amazon.module.website_bucket.aws_s3_bucket_ownership_controls.bucket
+}
+
+moved {
+  from = module.amazon.aws_s3_bucket_acl.website
+  to   = module.amazon.module.website_bucket.aws_s3_bucket_acl.bucket
+}
+
+moved {
+  from = module.amazon.aws_s3_bucket.redirect
+  to   = module.amazon.module.redirect_bucket.aws_s3_bucket.bucket
+}
+
+moved {
+  from = module.amazon.aws_s3_bucket_ownership_controls.redirect
+  to   = module.amazon.module.redirect_bucket.aws_s3_bucket_ownership_controls.bucket
+}
+
+moved {
+  from = module.amazon.aws_s3_bucket_public_access_block.redirect
+  to   = module.amazon.module.redirect_bucket.aws_s3_bucket_public_access_block.bucket
+}
+
+moved {
+  from = module.amazon.aws_s3_bucket_acl.redirect
+  to   = module.amazon.module.redirect_bucket.aws_s3_bucket_acl.bucket
+}

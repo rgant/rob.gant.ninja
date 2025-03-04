@@ -1,44 +1,18 @@
-### https?://robgant.com & https?://robgant.name should redirect to https://rob.gant.ninja
-# S3 Bucket
-resource "aws_s3_bucket" "redirect" {
-  bucket = "robgant-redirect"
+# `terraform validate` reports "Module not installed" here, but that is seemingly an error in the validate command
+# https://discuss.hashicorp.com/t/is-there-a-way-to-fix-module-not-installed-for-local-submodules/54067
+module "redirect_bucket" {
+  source      = "./s3-bucket"
+  bucket_name = "robgant-redirect"
 }
 
+# https?://robgant.com & https?://robgant.name should redirect to https://rob.gant.ninja
 resource "aws_s3_bucket_website_configuration" "redirect" {
-  bucket = aws_s3_bucket.redirect.id
+  bucket = module.redirect_bucket.s3_bucket.id
 
   redirect_all_requests_to {
     host_name = "rob.gant.ninja"
     protocol  = "https"
   }
-}
-
-resource "aws_s3_bucket_ownership_controls" "redirect" {
-  bucket = aws_s3_bucket.redirect.id
-
-  rule {
-    object_ownership = "BucketOwnerPreferred"
-  }
-}
-
-resource "aws_s3_bucket_public_access_block" "redirect" {
-  bucket = aws_s3_bucket.redirect.id
-
-  block_public_acls       = true
-  block_public_policy     = true
-  ignore_public_acls      = true
-  restrict_public_buckets = true
-}
-
-resource "aws_s3_bucket_acl" "redirect" {
-  depends_on = [
-    aws_s3_bucket_ownership_controls.redirect,
-    aws_s3_bucket_public_access_block.redirect,
-  ]
-
-  bucket = aws_s3_bucket.redirect.id
-  # Because this bucket redirects all requests it does not need any public acl or policy for access.
-  acl = "private"
 }
 
 resource "aws_acm_certificate" "alt_cert" {
