@@ -38,6 +38,45 @@ resource "aws_route53_record" "alt_acm_validation" {
   zone_id         = regex("\\.[a-z]+\\.$", each.value.name) == ".com." ? aws_route53_zone.alt_com.zone_id : aws_route53_zone.alt_name.zone_id
 }
 
+resource "aws_cloudfront_response_headers_policy" "security_headers" {
+  name    = "OurSecurityHeadersPolicy"
+  comment = "Adds our security headers to every response"
+
+  security_headers_config {
+    content_security_policy {
+      content_security_policy = "default-src 'none'"
+      override = true
+    }
+
+    content_type_options {
+      override = true
+    }
+
+    frame_options {
+      frame_option = "DENY"
+      override     = true
+    }
+
+    referrer_policy {
+      referrer_policy = "same-origin"
+      override        = true
+    }
+
+    strict_transport_security {
+      access_control_max_age_sec = 63072000
+      include_subdomains         = true
+      override                   = true
+      preload                    = true
+    }
+
+    xss_protection {
+      mode_block = true
+      override   = true
+      protection = true
+    }
+  }
+}
+
 locals {
   redirect_origin_id = "S3-Website-${aws_s3_bucket_website_configuration.redirect.website_endpoint}"
 }
