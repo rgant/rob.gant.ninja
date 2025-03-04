@@ -1,17 +1,9 @@
-resource "aws_route53_zone" "temp" {
-  name = "perfect-inbox.com"
-
-  lifecycle {
-    prevent_destroy = true
-  }
-}
-
 # `terraform validate` reports "Module not installed" here, but that is seemingly an error in the validate command
 # https://discuss.hashicorp.com/t/is-there-a-way-to-fix-module-not-installed-for-local-submodules/54067
 module "amplify_website" {
   source      = "./amplify"
-  name        = "rob.perfect-inbox.com"
-  domain_name = "perfect-inbox.com"
+  name        = "rob.gant.ninja"
+  domain_name = "gant.ninja"
   sub_domain  = "rob"
   script_sri  = var.script_sri
   style_sri   = var.style_sri

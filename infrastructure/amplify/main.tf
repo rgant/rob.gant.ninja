@@ -14,6 +14,8 @@ resource "aws_amplify_app" "site" {
   )
 
   # Redirect the root domain to the subdomain. Needs to be first or else it doesn't work!
+  # It is possible that this redirect prevents deploying the custom domain name, or just that Amplify
+  # has problems.
   custom_rule {
     source = "https://${var.domain_name}"
     status = "301"
