@@ -1,4 +1,4 @@
-import type { CustomWebComponentInterface } from '../web-component.interface';
+import type { CustomWebComponentInterface } from '~/web-component.interface';
 
 export class ScrollNav extends HTMLElement implements CustomWebComponentInterface {
   /** Connects the list element (<li>) with the article element for each navigation link. */

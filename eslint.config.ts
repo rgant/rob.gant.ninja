@@ -44,10 +44,7 @@ export default tseslint.config(
         // Fixes: You have used a rule which requires type information, but don't have parserOptions
         // set to generate type information for this file. See https://typescript-eslint.io/getting-started/typed-linting
         // for enabling linting with type information.
-        projectService: {
-          allowDefaultProject: [ 'eslint.config.mjs' ],
-          defaultProject: 'tsconfig.json',
-        },
+        projectService: true,
       },
     },
     plugins: {
@@ -430,7 +427,7 @@ export default tseslint.config(
       'import-x/no-self-import': 'error',
       'import-x/no-unassigned-import': [
         'error',
-        { allow: [ 'src/styles/**' ] },
+        { allow: [ '~/styles/**' ] },
       ],
       'import-x/no-unresolved': [
         'error',

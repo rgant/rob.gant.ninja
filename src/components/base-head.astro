@@ -2,8 +2,8 @@
 import type { ImageMetadata } from 'astro';
 import { pwaInfo } from 'virtual:pwa-info';
 
-import bigHeadRob from '../assets/bighead-rob.png';
-import '../styles/global.css';
+import '~/styles/global.css';
+import bigHeadRob from '~/assets/bighead-rob.png';
 
 interface Props {
   description: string;
@@ -14,7 +14,6 @@ interface Props {
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const { description, image = bigHeadRob, title } = Astro.props;
 ---
-
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title}</title>

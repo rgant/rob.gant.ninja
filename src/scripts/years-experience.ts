@@ -1,5 +1,5 @@
-import type { CustomWebComponentInterface } from '../web-component.interface';
-import { yearsOfExperience } from '../years-experience.util';
+import type { CustomWebComponentInterface } from '~/web-component.interface';
+import { yearsOfExperience } from '~/years-experience.util';
 
 const ATTR = 'startYear';
 
