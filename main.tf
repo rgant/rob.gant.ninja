@@ -4,7 +4,7 @@
 # Attempting to have only `main.tf` file in the root for cleanliness.
 
 terraform {
-  required_version = ">= 1.0"
+  required_version = ">= 1.11"
 
   backend "s3" {
     bucket       = "tfstate-ninja-rob-gant"
@@ -40,4 +40,31 @@ variable "check_ip" {
 variable "my_email" {
   type        = string
   description = "My email address for budget alerts"
+}
+
+# Amplify DNS record imports. @see infrastructure/amplify/dns.tf for details
+# These are safe to leave in place https://developer.hashicorp.com/terraform/language/import#plan-and-apply-an-import
+locals {
+  ninja_zone_id = "ZBBRM66A8UP3U"
+}
+
+import {
+  to = module.amazon.module.amplify_website.aws_route53_record.certificate_verification
+  # The hash here is randomly generated, so it must be manually looked up
+  id = "${local.ninja_zone_id}__3de338234e081e7bf90a582dc2e37b07.gant.ninja_CNAME"
+}
+
+import {
+  to = module.amazon.module.amplify_website.aws_route53_record.site_a
+  id = "${local.ninja_zone_id}_gant.ninja_A"
+}
+
+import {
+  to = module.amazon.module.amplify_website.aws_route53_record.site_aaaa
+  id = "${local.ninja_zone_id}_gant.ninja_AAAA"
+}
+
+import {
+  to = module.amazon.module.amplify_website.aws_route53_record.site_subdomain_cname
+  id = "${local.ninja_zone_id}_rob.gant.ninja_CNAME"
 }

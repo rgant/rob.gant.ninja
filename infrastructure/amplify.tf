@@ -1,12 +1,14 @@
 # `terraform validate` reports "Module not installed" here, but that is seemingly an error in the validate command
 # https://discuss.hashicorp.com/t/is-there-a-way-to-fix-module-not-installed-for-local-submodules/54067
 module "amplify_website" {
-  source      = "./amplify"
-  name        = "rob.gant.ninja"
-  domain_name = "gant.ninja"
-  sub_domain  = "rob"
-  script_sri  = var.script_sri
-  style_sri   = var.style_sri
+  source           = "./amplify"
+  name             = "rob.gant.ninja"
+  domain_name      = "gant.ninja"
+  hosted_zone_id   = aws_cloudfront_distribution.redirect.hosted_zone_id
+  route_53_zone_id = aws_route53_zone.main.zone_id
+  script_sri       = var.script_sri
+  style_sri        = var.style_sri
+  sub_domain       = "rob"
 }
 
 data "aws_caller_identity" "current" {}

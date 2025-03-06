@@ -33,7 +33,7 @@ resource "aws_route53_record" "alt_acm_validation" {
   allow_overwrite = true
   name            = each.value.name
   records         = [each.value.record]
-  ttl             = 86400
+  ttl             = 172800 # 2 days
   type            = each.value.type
   zone_id         = regex("\\.[a-z]+\\.$", each.value.name) == ".com." ? aws_route53_zone.alt_com.zone_id : aws_route53_zone.alt_name.zone_id
 }
@@ -45,7 +45,7 @@ resource "aws_cloudfront_response_headers_policy" "security_headers" {
   security_headers_config {
     content_security_policy {
       content_security_policy = "default-src 'none'"
-      override = true
+      override                = true
     }
 
     content_type_options {

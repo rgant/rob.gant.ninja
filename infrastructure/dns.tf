@@ -12,7 +12,7 @@ resource "aws_route53_record" "gant_ninja_verify_bing" {
   zone_id = aws_route53_zone.main.zone_id
   name    = "d5883115e215d14a407ea420207e22e0.rob.gant.ninja"
   type    = "CNAME"
-  ttl     = "86400"
+  ttl     = 172800 # 2 days
   records = ["verify.bing.com"]
 }
 
@@ -35,7 +35,7 @@ resource "aws_route53_record" "home_robgant_com_a" {
   zone_id = aws_route53_zone.alt_com.zone_id
   name    = "home.robgant.com"
   type    = "A"
-  ttl     = "300"
+  ttl     = 21600 # 6 hours
   records = local.home_a
 }
 
@@ -44,7 +44,7 @@ resource "aws_route53_record" "home_robgant_com_aaaa" {
   zone_id = aws_route53_zone.alt_com.zone_id
   name    = "home.robgant.com"
   type    = "AAAA"
-  ttl     = "300"
+  ttl     = 21600 # 6 hours
   records = local.home_aaaa
 }
 
@@ -73,7 +73,7 @@ resource "aws_route53_record" "home_robgant_name_a" {
   zone_id = aws_route53_zone.alt_name.zone_id
   name    = "home.robgant.name"
   type    = "A"
-  ttl     = "300"
+  ttl     = 21600 # 6 hours
   records = local.home_a
 
   lifecycle {
@@ -86,6 +86,6 @@ resource "aws_route53_record" "home_robgant_name_aaaa" {
   zone_id = aws_route53_zone.alt_name.zone_id
   name    = "home.robgant.name"
   type    = "AAAA"
-  ttl     = "300"
+  ttl     = 21600 # 6 hours
   records = local.home_aaaa
 }
