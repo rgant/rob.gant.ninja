@@ -37,7 +37,7 @@
     "@kindspells/astro-shield": "^1.7.1",
     "@playform/compress": "^0.1.7",
     "@vite-pwa/astro": "^0.5.0",
-    "astro": "^5.4.0"
+    "astro": "^5.4.2"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.4",
@@ -46,6 +46,7 @@
     "@stylistic/eslint-plugin": "^4.2.0",
     "@stylistic/stylelint-config": "^2.0.0",
     "@stylistic/stylelint-plugin": "^3.1.2",
+    "astro-eslint-parser": "^1.2.1",
     "eslint": "^9.21.0",
     "eslint_d": "^14.3.0",
     "eslint-import-resolver-typescript": "^3.8.3",

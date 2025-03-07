@@ -7,6 +7,7 @@
 /* eslint-disable max-lines -- Configs have a lot of lines */
 import eslint from '@eslint/js';
 import stylistic from '@stylistic/eslint-plugin';
+import astroParser from 'astro-eslint-parser';
 import { createTypeScriptImportResolver } from 'eslint-import-resolver-typescript';
 import { configs as eslintAstroConfigs } from 'eslint-plugin-astro';
 import importx from 'eslint-plugin-import-x';
@@ -39,13 +40,20 @@ export default tseslint.config(
   {
     ignores: [ 'generated/**/*' ], // Automatically generated files
     languageOptions: {
-      globals: globals.browser,
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+      },
       parserOptions: {
         // Fixes: You have used a rule which requires type information, but don't have parserOptions
         // set to generate type information for this file. See https://typescript-eslint.io/getting-started/typed-linting
         // for enabling linting with type information.
         projectService: true,
       },
+    },
+    linterOptions: {
+      reportUnusedDisableDirectives: 'error',
+      reportUnusedInlineConfigs: 'error',
     },
     plugins: {
       preferArrow: { meta, rules },
@@ -679,6 +687,13 @@ export default tseslint.config(
   },
   {
     files: [ 'src/**/*.astro' ],
+    languageOptions: {
+      parser: astroParser,
+      parserOptions: {
+        parser: '@typescript-eslint/parser',
+        extraFileExtensions: [ '.astro' ],
+      },
+    },
     rules: {
       'max-lines': 'off', // HTML files can be long
     },
