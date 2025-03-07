@@ -24,7 +24,7 @@
     "postbuild": "./scripts/set-csp-header.ts",
     "predeploy": "npm run build",
     "deploy": "terraform apply",
-    "dev": "astro dev",
+    "dev": "astro dev --open",
     "lint": "npm run lint:js; npm run lint:styles",
     "lint:js": "eslint ./src",
     "lint:styles": "stylelint './src/'",

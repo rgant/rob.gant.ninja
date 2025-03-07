@@ -38,6 +38,7 @@ export default defineConfig({ // eslint-disable-line import-x/no-default-export 
       // https://github.com/terser/html-minifier-terser/issues/192
       // eslint-disable-next-line @typescript-eslint/naming-convention -- Externally specified configuration
       HTML: {
+        // eslint-disable-next-line @typescript-eslint/naming-convention -- Externally specified configuration
         'html-minifier-terser': {
           conservativeCollapse: true,
           preserveLineBreaks: true, // One long line just makes inspecting the file harder. This doesn't change the actual file size.
