@@ -1,4 +1,5 @@
 ---
+/* eslint-disable import-x/max-dependencies -- 11 dependencies */
 import { Image } from 'astro:assets';
 
 import acluImage from '~/assets/aclu.png';
@@ -6,17 +7,14 @@ import effImage from '~/assets/eff-logo-name-black-72.jpg';
 import mozillaImg from '~/assets/mozilla.svg';
 import splcImage from '~/assets/splc.png';
 import BaseHead from '~/components/base-head.astro';
+import CareerExperience from '~/components/career-experience/career-experience.astro';
+import ScrollNavigation from '~/components/scroll-navigation/scroll-navigation.astro';
 import Structure from '~/layouts/structure.astro';
 import '~/styles/index.css';
 import { unwrap } from '~/unwrap.util';
-import { yearsOfExperience } from '~/years-experience.util';
 
 const description = unwrap`Senior staff development team lead with 22 years experience building web
   application software and guiding startup development teams.`;
-
-// Static value for non-script executing user-agents.
-const careerStart = '2002';
-const yearsExperience = yearsOfExperience(careerStart);
 ---
 <Structure>
   <BaseHead description={description} slot="head" title="J Rob Gant, Web Application Developer" />
@@ -30,7 +28,7 @@ const yearsExperience = yearsOfExperience(careerStart);
     </div>
 
     <nav class="page-nav">
-      <rob-scroll-nav>
+      <ScrollNavigation>
         <ul id="index-nav" class="link-list">
           <li><a href="#about">About</a></li>
           <li><a href="#resume">Resume</a></li>
@@ -38,7 +36,7 @@ const yearsExperience = yearsOfExperience(careerStart);
           <li><a href="#tipsntricks">Tips &amp; Tricks</a></li>
           <li><a href="#orgs">Support</a></li>
         </ul>
-      </rob-scroll-nav>
+      </ScrollNavigation>
     </nav>
   </header>
 
@@ -50,10 +48,8 @@ const yearsExperience = yearsOfExperience(careerStart);
         Hey, I’m Rob, a full stack developer specializing in web applications. I’m a full stack engineer and utilize my skills to fulfill
         multiple roles. Mostly I write code, but before that I often need to setup databases, servers, DNS records, etc. I write modular,
         tested, and documented code. Even when speed is primary I find the time to come back and finish what I started. My goal is always
-        to write code for myself 6 months in the future. I have
-        <rob-years-of-experience role="time" startYear={careerStart}>{yearsExperience}</rob-years-of-experience>
-        of experience helping build up development teams. As things progress and the development team expands I enjoy working with and
-        mentoring other developers.
+        to write code for myself 6 months in the future. I have <CareerExperience /> of experience helping build up development teams. As
+        things progress and the development team expands I enjoy working with and mentoring other developers.
       </p>
 
       <p>
@@ -408,7 +404,4 @@ const yearsExperience = yearsOfExperience(careerStart);
       </div>
     </div>
   </footer>
-
-  <script src="~/scripts/index-scroll"></script>
-  <script src="~/scripts/years-experience"></script>
 </Structure>

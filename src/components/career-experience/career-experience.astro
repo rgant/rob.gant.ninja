@@ -1,0 +1,18 @@
+---
+/**
+ * I cannot find a clear way to get Astro to render the web component in build, but also include
+ * the code for client side.
+ *
+ * `client:load` and the like [don't work on web components](https://github.com/withastro/astro/issues/11623).
+ */
+import { yearsOfExperience } from './years-experience.util';
+
+const careerStart = '2002';
+
+// Static value for non-script executing user-agents.
+const yearsExperience = yearsOfExperience(careerStart);
+---
+<rob-years-of-experience>
+  <time datetime={careerStart}>{yearsExperience}</time>
+</rob-years-of-experience>
+<script src="./years-experience.component"></script>
