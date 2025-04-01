@@ -38,7 +38,19 @@ export default tseslint.config(
   pluginPromise.configs['flat/recommended'],
   eslintPluginUnicorn.configs.all,
   {
-    ignores: [ 'generated/**/*' ], // Automatically generated files
+    /*
+    In your eslint.config.js file, if an ignores key is used without any other keys in the configuration
+    object, then the patterns act as global ignores.
+    https://eslint.org/docs/latest/use/configure/ignore#ignoring-files
+    */
+    ignores: [
+      '.astro/', // Astro cache directory
+      'astro-tmp-src', // Temporary Astro project for experimenting
+      'dist/', // Build output
+      'generated/', // Automatically generated files
+    ],
+  },
+  {
     languageOptions: {
       globals: {
         ...globals.browser,
@@ -690,8 +702,8 @@ export default tseslint.config(
     languageOptions: {
       parser: astroParser,
       parserOptions: {
-        parser: '@typescript-eslint/parser',
         extraFileExtensions: [ '.astro' ],
+        parser: '@typescript-eslint/parser',
       },
     },
     rules: {

@@ -19,7 +19,7 @@ const pwsOpts: PwaOptions = {
   registerType: 'autoUpdate',
   workbox: {
     globIgnores: [ '404.html' ],
-    globPatterns: [ '**/*.{css,js,html,svg,png,jpg,webp,woff2}' ],
+    globPatterns: [ '**/*.{css,js,html,svg,png,jpg,webp,woff2,pdf}' ],
     // Meant to be used in a SPA scenario, which is not this.
     // https://developer.chrome.com/docs/workbox/modules/workbox-build#property-GeneratePartial-navigateFallback
     // navigateFallback: '/',
