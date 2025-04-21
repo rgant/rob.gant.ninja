@@ -10,7 +10,7 @@ import stylistic from '@stylistic/eslint-plugin';
 import astroParser from 'astro-eslint-parser';
 import { createTypeScriptImportResolver } from 'eslint-import-resolver-typescript';
 import { configs as eslintAstroConfigs } from 'eslint-plugin-astro';
-import importx from 'eslint-plugin-import-x';
+import * as pluginImportX from 'eslint-plugin-import-x';
 import perfectionist from 'eslint-plugin-perfectionist';
 import { meta, rules } from 'eslint-plugin-prefer-arrow-functions';
 import pluginPromise from 'eslint-plugin-promise';
@@ -31,7 +31,8 @@ export default tseslint.config(
   stylistic.configs.all,
   tseslint.configs.all,
   eslintAstroConfigs.all,
-  importx.flatConfigs.recommended,
+  pluginImportX.flatConfigs.recommended,
+  pluginImportX.flatConfigs.typescript,
   perfectionist.configs['recommended-natural'],
   /* eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
      -- Package lacks TS definitions */

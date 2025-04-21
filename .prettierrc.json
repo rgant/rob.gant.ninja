@@ -6,6 +6,7 @@
   "embeddedLanguageFormatting": "auto",
   "endOfLine": "lf",
   "htmlWhitespaceSensitivity": "css",
+  "insertPragma": false,
   "jsxSingleQuote": false,
   "overrides": [
     {
@@ -25,6 +26,7 @@
   "printWidth": 140,
   "proseWrap": "always",
   "quoteProps": "as-needed",
+  "requirePragma": false,
   "semi": true,
   "singleAttributePerLine": false,
   "singleQuote": true,
