@@ -33,8 +33,8 @@
     "@astrojs/sitemap": "^3.3.1",
     "@kindspells/astro-shield": "^1.7.1",
     "@playform/compress": "^0.1.9",
-    "@vite-pwa/astro": "^1.0.1",
-    "astro": "^5.7.6"
+    "@vite-pwa/astro": "^1.1.0",
+    "astro": "^5.7.10"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.4",
@@ -44,7 +44,7 @@
     "@stylistic/stylelint-config": "^2.0.0",
     "@stylistic/stylelint-plugin": "^3.1.2",
     "astro-eslint-parser": "^1.2.2",
-    "eslint": "^9.25.1",
+    "eslint": "^9.26.0",
     "eslint_d": "^14.3.0",
     "eslint-import-resolver-typescript": "^4.3.4",
     "eslint-plugin-astro": "^1.3.1",
@@ -76,7 +76,7 @@
     "stylelint-selector-tag-no-without-class": "^3.0.1",
     "stylelint-use-nesting": "^6.0.0",
     "typescript": "^5.8.3",
-    "typescript-eslint": "^8.31.0"
+    "typescript-eslint": "^8.31.1"
   },
   "engines": {
     "node": ">= 22.0.0",
