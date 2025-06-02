@@ -10,14 +10,14 @@ import stylistic from '@stylistic/eslint-plugin';
 import astroParser from 'astro-eslint-parser';
 import { createTypeScriptImportResolver } from 'eslint-import-resolver-typescript';
 import { configs as eslintAstroConfigs } from 'eslint-plugin-astro';
-import * as pluginImportX from 'eslint-plugin-import-x';
+import { importX } from 'eslint-plugin-import-x';
 import perfectionist from 'eslint-plugin-perfectionist';
 import { meta, rules } from 'eslint-plugin-prefer-arrow-functions';
 import pluginPromise from 'eslint-plugin-promise';
 import tsdoc from 'eslint-plugin-tsdoc';
 import eslintPluginUnicorn from 'eslint-plugin-unicorn';
 import globals from 'globals';
-import tseslint from 'typescript-eslint';
+import tseslint, { configs as tseslintConfigs } from 'typescript-eslint';
 
 const INDENT_SIZE = 2;
 
@@ -29,10 +29,10 @@ if (meta == undefined) {
 export default tseslint.config(
   eslint.configs.all,
   stylistic.configs.all,
-  tseslint.configs.all,
+  tseslintConfigs.all,
   eslintAstroConfigs.all,
-  pluginImportX.flatConfigs.recommended,
-  pluginImportX.flatConfigs.typescript,
+  importX.flatConfigs.recommended,
+  importX.flatConfigs.typescript,
   perfectionist.configs['recommended-natural'],
   /* eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
      -- Package lacks TS definitions */
