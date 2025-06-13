@@ -34,7 +34,7 @@
     "@kindspells/astro-shield": "^1.7.1",
     "@playform/compress": "^0.2.0",
     "@vite-pwa/astro": "^1.1.0",
-    "astro": "^5.9.2"
+    "astro": "^5.9.3"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.4",
@@ -48,7 +48,7 @@
     "eslint_d": "^14.3.0",
     "eslint-import-resolver-typescript": "^4.4.3",
     "eslint-plugin-astro": "^1.3.1",
-    "eslint-plugin-import-x": "^4.15.1",
+    "eslint-plugin-import-x": "^4.15.2",
     "eslint-plugin-perfectionist": "^4.14.0",
     "eslint-plugin-prefer-arrow-functions": "^3.6.2",
     "eslint-plugin-promise": "^7.2.1",
