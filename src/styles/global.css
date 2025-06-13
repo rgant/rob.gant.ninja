@@ -11,19 +11,31 @@
 @import url('./typography.css');
 
 :root {
-  /* General  */
-  --black: #000;
-  --dark-gray: #3e454c;
+  /* Fonts  */
   --heading-font: ubuntu, helvetica, sans-serif;
-  --light-blue: #b3d4fc;
-  --light-gray: #ececec;
   --text-font: roboto, 'Helvetica Neue', sans-serif;
-  --white: #fff;
+
+  /* Colors */
+  --black: oklch(0% 0 0deg);
+  --blue-light: oklch(86% .0662 253.44deg);
+  --cyan: oklch(90% .1576 186.2597deg); /* aqua */
+  --gray-dark: oklch(39% .005 300deg);
+  --gray-darker: oklch(8% 0 0deg);
+  --gray-lavender: oklch(90% .061 309.7deg);
+  --gray-light: oklch(94% 0 0deg);
+  --white: oklch(100% 0 0deg);
+
+  /* Content Styles */
+  --surface-0: var(--gray-dark);
+  --text-primary: var(--white);
+  --text-secondary: var(--gray-light);
+  --text-selection-bg: var(--blue-light);
+  --text-selection-fg: var(--gray-darker);
 
   /* Link Styles */
-  --link-color-interaction: #0fe;
-  --link-color-visited: #bfa9d1;
-  --link-color: var(--light-gray);
+  --link-color-interaction: var(--cyan);
+  --link-color-visited: var(--gray-lavender);
+  --link-color: var(--text-secondary);
 
   /* Common z-index levels */
   --z-modal: 9000;
@@ -43,13 +55,13 @@ html {
   font-family: var(--text-font);
   font-size: 1em;
   line-height: 1.4;
-  color: var(--white);
+  color: var(--text-primary);
 
   /* stylelint-disable-next-line plugin/no-unsupported-browser-features -- stylistic change that can be skip in unsupported browsers */
   text-decoration-thickness: 8%; /* Sets the thickness as a percentage of the font size */
   text-underline-offset: 8%; /* Places the underline a bit further below the text. */
 
-  background-color: var(--dark-gray);
+  background-color: var(--surface-0);
 }
 
 /*
@@ -59,9 +71,10 @@ html {
  * Customize the background color to match your design.
  */
 
+/* stylelint-disable-next-line plugin/no-unsupported-browser-features -- stylistic change that can be skip in unsupported browsers */
 ::selection {
   text-shadow: none;
-  background: var(--light-blue);
+  background: var(--text-selection-bg);
 }
 
 /*
@@ -75,7 +88,7 @@ hr {
   margin: 1em 0;
   padding: 0;
   border: 0;
-  border-block-start: 1px solid #ccc;
+  border-block-start: 1px solid var(--text-secondary);
 }
 
 /*
@@ -108,6 +121,9 @@ fieldset {
  */
 
 textarea {
+  /* stylelint-disable-next-line
+     plugin/no-unsupported-browser-features
+     -- progressive enhancement; acceptable lack of iOS Safari support. */
   resize: block;
 }
 
@@ -140,7 +156,7 @@ a {
     align-items: center;
 
     &::after {
-      /* stroke color should be the same as --light-gray */
+      /* stroke color should be the same as --text-secondary */
       content: url('../assets/external-link.svg');
       block-size: 1rem;
     }
@@ -152,7 +168,6 @@ h2,
 h3 {
   font-family: var(--heading-font);
   font-weight: 500;
-  color: var(--white);
 }
 
 h2 {
@@ -299,7 +314,7 @@ h3 {
 
   pre,
   blockquote {
-    border: 1px solid #999;
+    border: 1px solid var(--gray-dark);
 
     page-break-inside: avoid;
   }

@@ -28,6 +28,11 @@ h3 {
 }
 
 .subsection {
+  /* These link colorw work for most of the sections except for About */
+  --link-color-interaction: oklch(34.118% .05975 186.34deg); /* Evergreen */
+  --link-color-visited: oklch(31.2% .0773 320.43deg);        /* Dark Purple */
+  --link-color: oklch(31.8% .176 265.86deg);                 /* Dark blue */
+
   position: relative;
   padding: 1rem 1rem 2.124rem; /* Space for three dots divider */
   color: var(--subsection-color);
@@ -49,34 +54,39 @@ h3 {
     block-size: 14px;
     border-radius: 50%;
 
-    background: var(--light-gray);
-    box-shadow: 30px 0 var(--light-gray), -30px 0 var(--light-gray);
+    background: var(--text-secondary);
+    box-shadow: 30px 0 var(--text-secondary), -30px 0 var(--text-secondary);
   }
 
   &:last-of-type::after {
     content: none;
+  }
+
+  h2,
+  h3 {
+    color: var(--text-primary);
   }
 }
 
 .top-link {
   padding-inline-start: 12px;
 
-  /* stroke color should be the same as --light-gray */
+  /* stroke color should be the same as --text-secondary */
   background-image: url('../assets/chevron-up.svg');
   background-repeat: no-repeat;
   background-position: left 65%;
 }
 
 #about {
-  --subsection-bg-color: #9d61a2;
-  --subsection-color: #2f1d31;
+  /* This section doesn't have links, so not adjusting link colors. */
+  --subsection-bg-color: oklch(60.5% .118 324.2deg); /* Medium Purple */
+  --subsection-color: oklch(20% .0988 323.6262deg);  /* Dark Purple */
 }
 
 #resume {
-  --subsection-bg-color: #8fbf4d;
-  --subsection-color: #344b12;
-  --link-color-visited: #57365e;
-  --link-color: #f7f7f7;
+  --subsection-bg-color: oklch(65.8% .153 128.79deg);      /* Leaf Green */
+  --subsection-color: oklch(29.4% .0906 128.66deg);        /* Dark Green */
+  --link-color-interaction: oklch(31.8% .12695 29.762deg); /* Dark Burgundy */
 
   ol {
     /* List experience in order, but don't display numbers. */
@@ -85,31 +95,22 @@ h3 {
 }
 
 #projects {
-  --subsection-bg-color: #f2d13e;
-  --subsection-color: #71580c;
-  --link-color-interaction: #00665f;
-  --link-color-visited: #49355f;
-  --link-color: #1000cd;
+  --subsection-bg-color: oklch(86.448% .15978 95.866deg);    /* Yellow */
+  --subsection-color: oklch(47.312% .09202 88.276deg);       /* Dark Yellow */
 }
 
 #tipsntricks {
-  --subsection-bg-color: #ff7f66;
-  --subsection-color: #733429;
-  --link-color-interaction: #00423d;
-  --link-color-visited: #453258;
-  --link-color: #1100c7;
+  --subsection-bg-color: oklch(73.819% .16112 32.481deg);    /* Salmon */
+  --subsection-color: oklch(30.5% .123 31.511deg);           /* Dark Red */
 }
 
 #orgs {
-  --subsection-bg-color: #7ecefd;
-  --subsection-color: #28536d;
-  --link-color-interaction: #005c56;
-  --link-color-visited: #624479;
-  --link-color: #1000cd;
+  --subsection-bg-color: oklch(81.75% .10298 235.73deg);     /* Day Sky Blue */
+  --subsection-color: oklch(32.9% .0645 237.5deg);           /* Prussian Blue */
 
   img {
-    inline-size: 410px;
-    max-inline-size: 76%;
+    inline-size: 100%;
+    max-inline-size: 410px;
     block-size: auto;
   }
 }
@@ -175,7 +176,7 @@ h3 {
 
       display: block;
 
-      border-block-end: solid 3px #ececec;
+      border-block-end: solid 3px var(--gray-light);
 
       transition: transform 200ms ease-in-out;
     }
@@ -258,7 +259,7 @@ h3 {
     inset-block-start: 0;
     inset-inline: 0;
 
-    background-color: var(--dark-gray); /* Match background-color of html */
+    background-color: var(--surface-0); /* Match background-color of html */
   }
 
   .top-link {
@@ -316,7 +317,7 @@ h3 {
       transform: scaleY(0);
 
       border-block-end: none; /* Remove the underline */
-      border-inline-start: solid 3px var(--light-gray);
+      border-inline-start: solid 3px var(--text-secondary);
     }
 
     li:hover::after, /* On hover underline. */
@@ -378,13 +379,11 @@ h3 {
   /* Style adjustments for high resolution devices */
 
   .subsection {
-    /* Applying this change to the .subsection directly makes Chrome's mobile view simulator behave strangely. */
-    dl,
-    ol,
-    p,
-    ul {
-      font-size: 1.25rem;
-    }
+    font-size: 1.25rem;
+  }
+
+  .top-link {
+    font-size: 1rem;
   }
 }
 

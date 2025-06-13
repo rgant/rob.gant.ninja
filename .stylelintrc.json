@@ -16,6 +16,7 @@
   "plugins": [
     "stylelint-declaration-block-no-ignored-properties",
     "stylelint-declaration-strict-value",
+    "stylelint-gamut",
     "stylelint-high-performance-animation",
     "stylelint-no-unsupported-browser-features",
     "stylelint-plugin-defensive-css",
@@ -41,11 +42,19 @@
     "@stylistic/string-quotes": "single",
     "@stylistic/unicode-bom": "never",
     "@stylistic/value-list-comma-newline-before": "never-multi-line",
+    "color-function-notation": "modern",
     "color-named": "never",
+    "color-no-hex": true,
     "csstools/use-nesting": "always",
     "declaration-no-important": true,
+    "function-disallowed-list": ["rgba", "hsla", "rgb", "hsl"],
+    "gamut/color-no-out-gamut-range": true,
     "max-nesting-depth": 3,
     "no-unknown-animations": true,
+    "number-max-precision": [
+      4,
+      { "insideFunctions": { "/^(oklch|oklab|lch|lab)$/": 6 } }
+    ],
     "plugin/declaration-block-no-ignored-properties": true,
     "plugin/no-low-performance-animation-properties": true,
     "plugin/no-unsupported-browser-features": [

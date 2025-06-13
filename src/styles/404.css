@@ -1,6 +1,6 @@
 :root {
-  --gray-5: #555;
-  --gray-8: #888;
+  --gray-5: oklch(45% 0 0deg);
+  --gray-8: oklch(62.7% 0 0deg);
 }
 
 html {
