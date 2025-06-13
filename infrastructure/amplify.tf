@@ -89,16 +89,16 @@ resource "aws_s3_bucket_policy" "website" {
   policy = data.aws_iam_policy_document.amplify_website.json
 }
 
-# Manually deploy the S3
-resource "null_resource" "deploy_from_s3" {
-  triggers = {
+# Manually deploy from S3
+resource "terraform_data" "deploy_from_s3" {
+  triggers_replace = {
     file_hashes = jsonencode({
       for fn in fileset("${path.root}/dist", "**") :
       fn => filesha256("${path.root}/dist/${fn}")
     })
   }
 
-  depends_on = [null_resource.sync_to_website]
+  depends_on = [terraform_data.sync_to_website]
 
   provisioner "local-exec" {
     command = <<EOF
@@ -108,6 +108,22 @@ aws --profile ${var.aws_profile} --region ${var.region} \
   --branch-name ${module.amplify_website.amplify_site.branch_name} \
   --source-url s3://${module.website_bucket.s3_bucket.id}/ \
   --source-url-type BUCKET_PREFIX
+EOF
+  }
+}
+
+# Manually update the headers on change
+resource "terraform_data" "amplify_custom_headrs" {
+  triggers_replace = {
+    headers_hash = sha256(module.amplify_website.custom_headers)
+  }
+
+  provisioner "local-exec" {
+    command = <<EOF
+aws --profile ${var.aws_profile} --region ${var.region} \
+  amplify update-app \
+  --app-id ${module.amplify_website.amplify_site.id} \
+  --custom-headers '${jsonencode(yamldecode(module.amplify_website.custom_headers))}'
 EOF
   }
 }

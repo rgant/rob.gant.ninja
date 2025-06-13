@@ -16,20 +16,19 @@ This is to avoid causing 429 "Too Many Requests" responses from `my-ip.io`
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.11 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.93.0 |
-| <a name="requirement_dns"></a> [dns](#requirement\_dns) | >= 3.4.2 |
-| <a name="requirement_http"></a> [http](#requirement\_http) | >= 3.4.5 |
-| <a name="requirement_null"></a> [null](#requirement\_null) | >= 3.2.3 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.12 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.100.0 |
+| <a name="requirement_dns"></a> [dns](#requirement\_dns) | >= 3.4.3 |
+| <a name="requirement_http"></a> [http](#requirement\_http) | >= 3.5.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 5.93.0 |
-| <a name="provider_dns"></a> [dns](#provider\_dns) | >= 3.4.2 |
-| <a name="provider_http"></a> [http](#provider\_http) | >= 3.4.5 |
-| <a name="provider_null"></a> [null](#provider\_null) | >= 3.2.3 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 5.100.0 |
+| <a name="provider_dns"></a> [dns](#provider\_dns) | >= 3.4.3 |
+| <a name="provider_http"></a> [http](#provider\_http) | >= 3.5.0 |
+| <a name="provider_terraform"></a> [terraform](#provider\_terraform) | n/a |
 
 ## Modules
 
@@ -61,8 +60,9 @@ This is to avoid causing 429 "Too Many Requests" responses from `my-ip.io`
 | [aws_route53_zone.main](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_zone) | resource |
 | [aws_s3_bucket_policy.website](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_policy) | resource |
 | [aws_s3_bucket_website_configuration.redirect](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_website_configuration) | resource |
-| [null_resource.deploy_from_s3](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource) | resource |
-| [null_resource.sync_to_website](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource) | resource |
+| [terraform_data.amplify_custom_headrs](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/resources/data) | resource |
+| [terraform_data.deploy_from_s3](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/resources/data) | resource |
+| [terraform_data.sync_to_website](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/resources/data) | resource |
 | [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
 | [aws_iam_policy_document.amplify_website](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 | [dns_a_record_set.home_a](https://registry.terraform.io/providers/hashicorp/dns/latest/docs/data-sources/a_record_set) | data source |

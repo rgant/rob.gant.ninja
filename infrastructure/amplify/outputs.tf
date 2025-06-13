@@ -8,3 +8,8 @@ output "amplify_site" {
     name                       = aws_amplify_app.site.name
   }
 }
+
+output "custom_headers" {
+  description = "The rendered custom-headers.yaml template"
+  value = local.custom_headers
+}

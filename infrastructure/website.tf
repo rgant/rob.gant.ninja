@@ -8,8 +8,8 @@ module "website_bucket" {
 # I could use hashicorp/dir/template and aws_s3_bucket_object to upload the site
 # https://registry.terraform.io/modules/hashicorp/dir/template/latest#uploading-files-to-amazon-s3
 # But since I frequently use s3cmd to upload the files without Terraform I'll stick with this method.
-resource "null_resource" "sync_to_website" {
-  triggers = {
+resource "terraform_data" "sync_to_website" {
+  triggers_replace = {
     file_hashes = jsonencode({
       for fn in fileset("${path.root}/dist", "**") :
       fn => filesha256("${path.root}/dist/${fn}")

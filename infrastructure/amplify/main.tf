@@ -1,3 +1,10 @@
+locals {
+  custom_headers = templatefile(
+    "${path.module}/custom-headers.yaml",
+    { script_sri = var.script_sri, style_sri = var.style_sri }
+  )
+}
+
 resource "aws_amplify_app" "site" {
   name        = var.name
   description = "Static website"
@@ -8,10 +15,7 @@ resource "aws_amplify_app" "site" {
 
   # It is very easy for an error in the custom-headers.yaml file to silently disable a header.
   # So always need to check after deploy, but remember to wait for caches to update.
-  custom_headers = templatefile(
-    "${path.module}/custom-headers.yaml",
-    { script_sri = var.script_sri, style_sri = var.style_sri }
-  )
+  custom_headers = local.custom_headers
 
   # Redirect the root domain to the subdomain. Needs to be first or else it doesn't work!
   # It is possible that this redirect prevents deploying the custom domain name, or just that Amplify
@@ -22,10 +26,10 @@ resource "aws_amplify_app" "site" {
     target = "https://${var.sub_domain}.${var.domain_name}"
   }
 
-  # The default rewrites and redirects added by the Amplify Console.
+  # The default rewrites and redirect added by the Amplify Console.
   custom_rule {
     source = "/<*>"
-    status = "404"
+    status = "404-200" // Rewrite the URL to the 404.html page without updating the address bar
     target = "/404.html"
   }
 
