@@ -1,0 +1,310 @@
+---
+import BaseHead from '~/components/base-head.astro';
+import Structure from '~/layouts/structure.astro';
+import { unwrap } from '~/unwrap.util';
+
+const description = unwrap`How I built this site with Astro SSG, Terraform, AWS, TypeScript, ESLint, Stylelint, and web components.
+  Built for performance and security with PWA and CSP.`;
+---
+<Structure>
+  <BaseHead description={description} slot="head" title="Building a modern secure static website" />
+
+  <header class="banner main-header">
+    <div class="heading">
+      <h1 id="top">Building My Personal Website</h1>
+      <p>A modern approach to static site generation</p>
+    </div>
+
+    <details>
+      <summary id="related-nav">Related Articles</summary>
+
+      <nav aria-labelledby="related-nav">
+        <ul>
+          <li><a href="setup.html">Setup an Astro TypeScript SSG project</a></li>
+          <li><a href="developing.html">Developing with Astro and Web Components</a></li>
+          <li><a href="deploy.html">Deploying SSG websites with Terraform</a></li>
+          <li><a href="lessons.html">What I learned developing this project</a></li>
+        </ul>
+      </nav>
+    </details>
+  </header>
+
+  <article>
+    <aside>
+      <nav aria-label="Article Navigation">
+        <ul>
+          <li><a href="#tools">Why these tools?</a></li>
+          <li><a href="#setup">Project setup and structure</a></li>
+          <li><a href="#developing">Developing the website</a></li>
+          <li><a href="#deploy">Deployment and hosting</a></li>
+          <li><a href="#lessons">Lessons learned</a></li>
+          <li><a href="#history">Page history</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <section aria-labelledby="tools">
+      <h2 id="tools">Why these tools?</h2>
+
+      <ul class="key-points">
+        <li>
+          <strong>Site Generator:</strong>
+          Migrated to <a href="https://astro.build/">Astro</a> because it treats static sites as first-class rather than an afterthought,
+          eliminating <a href="https://github.com/rgant/rob.gant.ninja/tree/a2f09756cfe1b357689677cf20c234e1354d95fc/packages"
+          >custom plugin</a> requirements while providing built-in <abbr title="Static Site Generation">SSG</abbr> optimizations.
+        </li>
+        <li>
+          <strong>Version Control:</strong>
+          <a href="https://git-scm.com/">Git</a> is essential for tracking when and why changes were made over time, especially for projects
+          with infrequent but important updates.
+        </li>
+        <li>
+          <strong>Code Quality Tools:</strong>
+          <a href="https://eslint.org/">ESLint</a>, <a href="https://stylelint.io/">Stylelint</a>, <a href="https://dprint.dev/">dprint</a>
+          &amp; <a href="https://prettier.io/">Prettier</a> provide automated code quality enforcement for solo development where peer code
+          review isn’t available.
+        </li>
+        <li>
+          <strong>Infrastructure as Code:</strong>
+          <a href="https://developer.hashicorp.com/terraform">Terraform</a> documents “what” infrastructure declaratively while supporting
+          “why” reasoning through comments and module structure—crucial for infrequent infrastructure work.
+        </li>
+      </ul>
+
+      <div class="description">
+        <p>
+          Static Site Generation requires tools purpose-built for that workflow rather than general bundlers adapted for static output.
+          Astro’s zero-JS-by-default approach and TypeScript-native architecture provide better performance and developer experience than
+          configuring general-purpose tools.
+        </p>
+
+        <p>
+          Solo development benefits significantly from automated tooling that catches errors and enforces consistency. Without collaborative
+          code review, linters and formatters serve as a safety net for maintaining code quality standards across the entire codebase.
+        </p>
+
+        <p>
+          Infrastructure work happens infrequently but has high stakes. Terraform’s declarative approach combined with good organization
+          ensures that both current configuration and historical reasoning remain accessible when returning to infrastructure tasks months
+          later.
+        </p>
+      </div>
+    </section>
+
+    <section aria-labelledby="setup">
+      <h2 id="setup">Project setup and structure</h2>
+
+      <ul class="key-points">
+        <li>
+          <strong>Build Framework Migration:</strong>
+          Replaced <a href="https://parceljs.org/">Parcel</a> with Astro to leverage its SSG-focused architecture and optimizations.
+        </li>
+        <li>
+          <strong>Configuration Customization:</strong>
+          Implemented strict configurations for code quality assurance.
+        </li>
+        <li>
+          <strong>Infrastructure Modularization:</strong>
+          Restructured Terraform configuration into <a href="https://github.com/rgant/rob.gant.ninja/tree/main/infrastructure">modules</a>
+          with a <a href="https://github.com/rgant/rob.gant.ninja/blob/main/main.tf">single entry point</a> for better maintainability.
+        </li>
+        <li>
+          <strong>Documentation Structure:</strong>
+          Established a dedicated <a href="https://github.com/rgant/rob.gant.ninja/tree/main/docs">documentation directory</a> for processes
+          not captured in code or configuration.
+        </li>
+      </ul>
+
+      <div class="description">
+        <p>
+          The project began as a Parcel-based static site that was migrated to Astro for its enhanced static site generation capabilities
+          and built-in performance optimizations. Starting with Astro’s blog template provided a solid foundation that was customized to
+          meet specific requirements.
+        </p>
+        <p>
+          Strict configuration files for <a href="https://github.com/rgant/rob.gant.ninja/blob/main/tsconfig.json">TypeScript</a>,
+          <a href="https://github.com/rgant/rob.gant.ninja/blob/main/eslint.config.ts">ESLint</a>, and
+          <a href="https://github.com/rgant/rob.gant.ninja/blob/main/.stylelintrc.json">Stylelint</a> were implemented to enforce code
+          quality standards. These configurations were carefully researched to incorporate both established best practices and recently
+          maintained plugins that enhance development efficiency.
+        </p>
+        <p>
+          The project infrastructure was reorganized with modular Terraform configurations using a single entry point, making deployment
+          more maintainable and consistent. A dedicated documentation directory captures processes and procedures that aren’t directly
+          encoded in configuration files or source code.
+        </p>
+      </div>
+
+      <p class="deep-dive"><a href="setup.html">Go into detail about setting up this website.</a></p>
+    </section>
+
+    <section aria-labelledby="developing">
+      <h2 id="developing">Developing the website</h2>
+
+      <ul class="key-points">
+        <li>
+          <strong>Custom Elements:</strong>
+          Implemented native <a href="https://github.com/rgant/rob.gant.ninja/tree/main/src/components">Web Components</a> for interactive
+          features like scroll tracking and dynamic content updates.
+        </li>
+        <li>
+          <strong>Progressive Web App:</strong>
+          Integrated <a href="https://github.com/vite-pwa/astro"><code>@vite-pwa/astro</code></a> to enhance <a
+            href="https://github.com/rgant/rob.gant.ninja/blob/5beb0b79635843a838fda30127aaa908518baf41/astro.config.ts#L10-L27"
+          >performance and offline capabilities</a> for the static site.
+        </li>
+        <li>
+          <strong>Content Security Policy:</strong>
+          Utilized <a href="https://github.com/kindspells/astro-shield"><code>@kindspells/astro-shield</code></a> to generate
+          <abbr title="Subresource Integrity">SRI</abbr> hashes and integrated them into <abbr title="Amazon Web Services">AWS</abbr>
+          Amplify deployment.
+        </li>
+        <li>
+          <strong>Editor Integration:</strong>
+          Configured Sublime Text with appropriate linting and <abbr title="Language Server Protocol">LSP</abbr>
+          <a href="https://github.com/rgant/homedir/tree/main/Library/Application-Support/Sublime-Text-3/Packages/User">packages</a> to
+          enforce code quality during development.
+        </li>
+      </ul>
+
+      <div class="description">
+        <p>
+          Rather than relying on JavaScript frameworks, the site uses native Custom Elements for interactive features. This approach
+          provides progressive enhancement with minimal JavaScript footprint while enabling modern functionality like scroll tracking for
+          navigation highlights and dynamic content updates.
+        </p>
+
+        <p>
+          The site implements Progressive Web App features through <code>@vite-pwa/astro</code> integration, improving performance and
+          providing offline capabilities. Content Security Policies with Subresource Integrity hashes were implemented using
+          <code>@kindspells/astro-shield</code> and integrated into the AWS Amplify deployment process for enhanced security.
+        </p>
+
+        <p>
+          The development workflow was optimized by configuring Sublime Text with appropriate linting and Language Server Protocol packages.
+          This setup provides real-time code quality feedback and TypeScript type checking during the development process.
+        </p>
+      </div>
+
+      <p class="deep-dive"><a href="developing.html">More about the development of this website.</a></p>
+    </section>
+
+    <section aria-labelledby="deploy">
+      <h2 id="deploy">Deployment and hosting</h2>
+
+      <ul class="key-points">
+        <li>
+          <strong>AWS Amplify:</strong>
+          Migrated from S3/CloudFront to Amplify for better support of directory index files and simplified
+          <abbr title="Secure Sockets Layer">SSL</abbr> management.
+        </li>
+        <li>
+          <strong>Terraform Modules:</strong>
+          Organized infrastructure code into modules for Amplify, S3 buckets, remote state, and <abbr title="Domain Name System">DNS</abbr>
+          management.
+        </li>
+        <li>
+          <strong>Scripted Deployment:</strong>
+          Created <a href="https://github.com/rgant/rob.gant.ninja/blob/main/package.json#L18">npm scripts</a> for repeatable build and
+          deployment processes without requiring CI/CD automation.
+        </li>
+        <li>
+          <strong>Security Best Practices:</strong>
+          Implemented AWS security recommendations, locked down S3 bucket access, and integrated Content Security Policy with SRI hashes.
+        </li>
+      </ul>
+
+      <div class="description">
+        <p>
+          The site was migrated from S3/CloudFront to AWS Amplify to better support directory-level <code>index.html</code> files without
+          compromising on SSL or performance. Despite some limitations in Terraform’s support for Amplify and challenges with custom
+          configurations, the service provides an effective hosting solution for static sites.
+        </p>
+
+        <p>
+          Infrastructure is maintained as code using Terraform with modular components for Amplify configuration, S3 bucket management, and
+          remote state storage. AWS budget alerts were implemented to prevent unexpected costs, and all infrastructure follows security best
+          practices to minimize attack surfaces.
+        </p>
+
+        <p>
+          Deployment is handled through npm scripts that combine linting, building, and deploying into repeatable processes. This approach
+          reduces the need for complex CI/CD pipelines while ensuring consistent results and providing the foundation for future automation
+          if needed. Content Security Policy headers with SRI hashes are updated during the build process, though this currently requires
+          some manual intervention due to Terraform state handling.
+        </p>
+      </div>
+
+      <p class="deep-dive"><a href="deploy.html">More details about deploying this website.</a></p>
+    </section>
+
+    <section aria-labelledby="lessons">
+      <h2 id="lessons">Lessons learned</h2>
+
+      <ul class="key-points">
+        <li>
+          <strong>Infrastructure Maintenance:</strong>
+          Regular Terraform plan runs are necessary to manage AWS’s rapid evolution and prevent challenging catch-up scenarios.
+        </li>
+        <li>
+          <strong>Framework Selection:</strong>
+          Astro provides superior out-of-the-box static site generation capabilities compared to Parcel’s custom plugin requirements.
+        </li>
+        <li>
+          <strong>Community Integration Challenges:</strong>
+          Navigating Astro’s ecosystem of similar but competing integrations with varying maintenance levels requires careful evaluation.
+        </li>
+        <li>
+          <strong>Linting Evolution:</strong>
+          Keeping up with ESLint and Stylelint configuration format changes while using third-party plugins requires additional effort.
+        </li>
+        <li>
+          <strong><abbr title="Progressive Web App">PWA</abbr> Knowledge Gaps:</strong>
+          Deeper understanding of <a href="https://github.com/GoogleChrome/workbox">Workbox</a> is necessary for optimal Progressive Web App
+          configuration and troubleshooting.
+        </li>
+      </ul>
+
+      <div class="description">
+        <p>
+          Moving from Parcel to Astro demonstrated the value of using purpose-built frameworks for static site generation, eliminating the
+          need for custom plugins while providing better performance and developer experience. Similarly, restructuring Terraform
+          configurations into modules improved maintainability, though this approach requires understanding the trade-offs of abstraction
+          versus repeated configuration.
+        </p>
+
+        <p>
+          Managing rapidly evolving AWS infrastructure through Terraform requires a regular maintenance schedule to avoid complicated
+          catch-up scenarios. Scheduled quarterly Terraform plan runs help identify drift and necessary updates before they become
+          unmanageable. Similarly, navigating Astro’s ecosystem of community integrations and keeping up with linting tool plugin changes
+          highlighted the importance of evaluating maintenance status and compatibility before adoption.
+        </p>
+
+        <p>
+          Implementing Progressive Web App features revealed knowledge gaps around Workbox configuration that would benefit from deeper
+          understanding for optimal implementation. Using TypeScript for configuration files provides better editor support and type
+          checking, but can introduce additional complexity when tools and plugins have not fully embraced TypeScript.
+        </p>
+      </div>
+
+      <p class="deep-dive"><a href="lessons.html">Dive into the lessons I learned while building this website.</a></p>
+    </section>
+
+    <!-- <section aria-labelledby="history">
+      <h2 id="history">Page history</h2>
+
+      <ol>
+        <li>
+          Add SRI hashes to <abbr title="Content Security Policy">CSP</abbr> headers. Don’t inline resources for better security.
+          <a href="https://github.com/rgant/rob.gant.ninja/compare/03bfbd1..c888b04#diff-somehashvalue">changes</a>
+          <time datetime="2025-03-03 15:29:41 -0500">3/3/2025, 3:29:41 PM</time>
+        </li>
+        <li>
+          Add SRI hashes to CSP headers. Don’t inline resources for better security.
+          <a href="https://github.com/rgant/rob.gant.ninja/compare/cc44250..03bfbd1#diff-somehashvalue">changes</a>
+          <time datetime="2025-03-02 20:22:57 -0500">3/2/2025, 8:22:57 PM</time>
+        </li>
+      </ol>
+    </section> -->
+  </article>
+</Structure>
