@@ -20,7 +20,7 @@ brew install awscli hashicorp/tap/terraform s3cmd
 Configure AWS: `aws configure --profile personal`. Use profiles, don't setup default
 credentials. If you want to stop typing `--profile` then use `export AWS_PROFILE=personal`.
 
-Configure s3cmd: `s3cmd --configure`
+Configure S3cmd: `s3cmd --configure`
 
 ## Linting
 

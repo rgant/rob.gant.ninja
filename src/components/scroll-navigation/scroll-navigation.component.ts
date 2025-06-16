@@ -1,6 +1,9 @@
+import { BaseCustomElement } from '~/custom-element.base';
 import type { CustomWebComponentInterface } from '~/web-component.interface';
 
-export class ScrollNav extends HTMLElement implements CustomWebComponentInterface {
+export class ScrollNav extends BaseCustomElement implements CustomWebComponentInterface {
+  public static override readonly tag: string = 'rob-scroll-nav';
+
   /** Connects the list element (<li>) with the article element for each navigation link. */
   private readonly _articleToListMap: Map<Element, HTMLElement>;
 
@@ -8,6 +11,18 @@ export class ScrollNav extends HTMLElement implements CustomWebComponentInterfac
   private readonly _listToAnchorMap: Map<HTMLElement, HTMLElement>;
 
   private readonly _observer: IntersectionObserver;
+
+  /**
+   * Static initialization block that automatically defines the custom element when the class is loaded.
+   *
+   * This block executes immediately when the class is evaluated, enabling automatic registration
+   * without requiring manual calls to customElements.define().
+   *
+   * Static blocks are a ES2022 feature that run once when the class is first evaluated.
+   */
+  static {
+    this.define(this.tag);
+  }
 
   constructor() {
     super();
@@ -84,5 +99,3 @@ export class ScrollNav extends HTMLElement implements CustomWebComponentInterfac
     }
   };
 }
-
-customElements.define('rob-scroll-nav', ScrollNav);

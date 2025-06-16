@@ -1,4 +1,17 @@
 #!/usr/bin/env -S node --experimental-strip-types --disable-warning=ExperimentalWarning
+/**
+ * This CLI script extracts Subresource Integrity (SRI) hashes from the`@kindspells/astro-shield`
+ * JavaScript module and exports them to a JSON file.
+ *
+ * The generated JSON file is designed for consumption by Terraform, facilitating automated
+ * deployment of Content Security Policy (CSP) headers.
+ *
+ * This utility addresses a limitation in `@kindspells/astro-shield`, which lacks built-in support
+ * for directly exporting SRI hashes to JSON format.
+ *
+ * For more details, refer to the related issue:
+ * {@link https://github.com/kindspells/astro-shield/issues/67}
+ */
 import { writeFileSync } from 'node:fs'; // eslint-disable-line import-x/no-nodejs-modules -- This is a node script
 import { resolve } from 'node:path'; // eslint-disable-line unicorn/import-style, import-x/no-nodejs-modules -- This is a node script
 

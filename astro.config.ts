@@ -22,10 +22,11 @@ const pwsOpts: PwaOptions = {
     globPatterns: [ '**/*.{css,js,html,svg,png,jpg,webp,woff2,pdf}' ],
     // Meant to be used in a SPA scenario, which is not this.
     // https://developer.chrome.com/docs/workbox/modules/workbox-build#property-GeneratePartial-navigateFallback
-    navigateFallback: '/404.html',
+    navigateFallback: '/404',
   },
 };
 
+// Cannot export to JSON currently https://github.com/kindspells/astro-shield/issues/67
 const modulePath = resolve(import.meta.dirname, 'generated', 'sriHashes.mjs');
 
 // https://astro.build/config

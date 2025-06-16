@@ -17,9 +17,7 @@ resource "aws_amplify_app" "site" {
   # So always need to check after deploy, but remember to wait for caches to update.
   custom_headers = local.custom_headers
 
-  # Redirect the root domain to the subdomain. Needs to be first or else it doesn't work!
-  # It is possible that this redirect prevents deploying the custom domain name, or just that Amplify
-  # has problems.
+  # Redirect the root domain to the subdomain.
   custom_rule {
     source = "https://${var.domain_name}"
     status = "301"

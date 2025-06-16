@@ -90,6 +90,7 @@ resource "aws_s3_bucket_policy" "website" {
 }
 
 # Manually deploy from S3
+# https://github.com/hashicorp/terraform-provider-aws/issues/24720
 resource "terraform_data" "deploy_from_s3" {
   triggers_replace = {
     file_hashes = jsonencode({
