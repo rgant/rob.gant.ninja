@@ -1,0 +1,444 @@
+---
+import BaseHead from '~/components/base-head.astro';
+import Structure from '~/layouts/structure.astro';
+import { unwrap } from '~/unwrap.util';
+
+const description = unwrap`How to deploy static websites with Terraform and AWS Amplify, including
+  migration from S3/CloudFront, managing custom domains, and working around Terraform limitations.`;
+---
+<Structure>
+  <BaseHead description={description} slot="head" title="Deploying Static Websites with Terraform and AWS Amplify" />
+
+  <header class="banner main-header">
+    <div class="heading">
+      <h1 id="top">Deploying Static Websites with Terraform</h1>
+      <p>Using <abbr title="Amazon Web Services">AWS</abbr> Amplify for static site generator hosting</p>
+    </div>
+
+    <details>
+      <summary id="related-nav">Related articles</summary>
+
+      <nav aria-labelledby="related-nav">
+        <ul>
+          <li><a href="index.html">Building a modern secure static website</a></li>
+          <li><a href="setup.html">Setup an Astro TypeScript SSG project</a></li>
+          <li><a href="developing.html">Developing with Astro and Web Components</a></li>
+          <li><a href="lessons.html">What I learned developing this project</a></li>
+        </ul>
+      </nav>
+    </details>
+  </header>
+
+  <article>
+    <aside>
+      <nav aria-label="Article Navigation">
+        <ul>
+          <li><a href="#migration">From S3/CloudFront to Amplify</a></li>
+          <li><a href="#terraform">Terraform configuration</a></li>
+          <li><a href="#challenges">Challenges and workarounds</a></li>
+          <li><a href="#security">Security considerations</a></li>
+          <li><a href="#process">Deployment process</a></li>
+          <li><a href="#monitoring">Monitoring and observability</a></li>
+          <li><a href="#future">Future improvements</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <section aria-labelledby="migration">
+      <h2 id="migration">From S3/CloudFront to Amplify</h2>
+
+      <ul class="key-points">
+        <li>
+          <strong>Directory Index Limitations:</strong>
+          CloudFront’s root object configuration only applies to the root domain, not subdirectories.
+        </li>
+        <li>
+          <strong>S3 Website Hosting:</strong>
+          A basic static file server that requires public bucket access and complex CloudFront <abbr title="Content Delivery Network"
+          >CDN</abbr> configuration, introducing security exposure and operational complexity.
+        </li>
+        <li>
+          <strong>AWS Amplify:</strong>
+          Supports per-directory <code>index.html</code> files with integrated <abbr title="Secure Sockets Layer">SSL</abbr> certificate
+          management, custom <abbr title="HyperText Transfer Protocol">HTTP</abbr> response headers, and CloudFront. I chose this solution
+          for its comprehensive static hosting capabilities.
+        </li>
+        <li>
+          <strong>Migration Strategy:</strong>
+          Test Amplify by deploying to a separate domain before switching production domains to validate functionality and identify
+          configuration issues.
+        </li>
+      </ul>
+
+      <div class="description">
+        <p>
+          My initial website architecture used an <a
+            href="https://github.com/rgant/rob.gant.ninja/blob/965c74fdd00c25d212505d80f6f9916f515eaef5/infrastructure/website.tf"
+          >S3 bucket as a CloudFront origin</a>, which functioned correctly for a single-page site. When expanding to multiple pages
+          organized in directories, I required each directory to have its own <code>index.html</code> root object. I could have implemented
+          a CloudFront Function to <a
+            href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/example_cloudfront_functions_url_rewrite_single_page_apps_section.html"
+          >add <code>index.html</code> to the origin request URI</a>, but this approach would require maintaining custom CloudFront
+          Functions while AWS continues expanding Amplify’s comprehensive static hosting capabilities.
+        </p>
+
+        <p>
+          S3 website hosting would have required making the bucket publicly accessible, introducing security exposure even for static
+          content. CloudFront requires manual configuration of the S3 website endpoint for the origin, adding complexity compared to direct
+          S3 bucket origins that are automatically populated by the AWS console interface. Custom response headers, redirects, and error
+          page support is limited and can conflict with CloudFront configuration.
+        </p>
+
+        <p>
+          AWS Amplify is the recommended solution for static website hosting on AWS. It offers support for directory-level
+          <code>index.html</code> files, automatic configuration of Route53 <abbr title="Domain Name System">DNS</abbr> and SSL
+          certificates, and <abbr title="Uniform Resource Identifier">URI</abbr> pattern based customizable HTTP response headers. While
+          Amplify is primarily marketed for single-page applications (SPAs), it works equally well for static site generators like Astro.
+          Amplify uses CloudFront internally without exposing configuration options. The default CloudFront configuration appears reasonably
+          strict, making this limitation acceptable for my security requirements.
+        </p>
+
+        <p>
+          Before migrating the production site, I created a <a
+            href="https://github.com/rgant/rob.gant.ninja/tree/107dc465b922391d8317e0380cb36bc9f96fc00d/infrastructure/amplify"
+          >test deployment</a> under a different domain to validate functionality. This allowed me to identify potential issues with domain
+          configuration and content delivery before switching the main domain. Testing proved essential since configuring Amplify through
+          Terraform presented significant challenges. I needed to delete and recreate the test site multiple times to resolve issues with
+          automatic SSL certificate generation, redirects, and custom headers.
+        </p>
+      </div>
+    </section>
+
+    <section aria-labelledby="terraform">
+      <h2 id="terraform">Terraform configuration</h2>
+
+      <ul class="key-points">
+        <li>
+          <strong>Modular Structure:</strong>
+          Organized Amplify configuration into a reusable <a href="https://github.com/rgant/rob.gant.ninja/tree/main/infrastructure/amplify"
+          >module</a> for better maintainability.
+        </li>
+        <li>
+          <strong>State Management:</strong>
+          Auto-generated Amplify resources must be <a
+            href="https://github.com/rgant/rob.gant.ninja/blob/8bd8208146607a8b47409129b409f46be5307b93/main.tf#L51-L70"
+          >imported</a> into Terraform state for consistent infrastructure management.
+        </li>
+        <li>
+          <strong>Custom Headers:</strong>
+          <a href="https://github.com/rgant/rob.gant.ninja/blob/8bd8208146607a8b47409129b409f46be5307b93/infrastructure/amplify/main.tf#L2"
+          >Implemented</a> using <code>templatefile</code> function to insert <a
+            href="https://github.com/rgant/rob.gant.ninja/blob/main/scripts/set-csp-header.ts"
+          >dynamic</a>
+          <abbr title="Subresource Integrity">SRI</abbr> hashes.
+        </li>
+        <li>
+          <strong>Custom Domains:</strong>
+          Managed through <code>aws_amplify_domain_association</code>
+          <a href="https://github.com/rgant/rob.gant.ninja/blob/8bd8208146607a8b47409129b409f46be5307b93/infrastructure/amplify/main.tf#L54"
+          >resource</a> with additional Route53 configuration.
+        </li>
+      </ul>
+
+      <div class="description">
+        <p>
+          The Terraform <a href="https://github.com/rgant/rob.gant.ninja/tree/main/infrastructure">configuration for the website</a>
+          consists of modular components that handle different aspects of the AWS infrastructure. The Amplify module includes resources for
+          the Amplify app itself, branch configuration, domain association, and custom headers. Additional modules manage supporting
+          infrastructure like S3 buckets for deployment artifacts and DNS configuration. Terraform state is stored <a
+            href="https://github.com/rgant/rob.gant.ninja/tree/main/infrastructure/remote-config"
+          >remotely in an S3 bucket</a>.
+        </p>
+
+        <p>
+          One complexity with Amplify is that it automatically creates several sub-resources, only some of which are directly accessible
+          through Terraform. For example, Amplify automatically generates DNS records for domain verification, which must be imported into
+          the Terraform state to ensure consistent management. This maintains the infrastructure-as-code approach while working within
+          Amplify’s architectural constraints. Although Amplify uses <a
+            href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/website-hosting-amplify.html#:~:text=globally%20available%20content%20delivery%20network%20(CDN)%20powered%20by%20Amazon%20CloudFront"
+          >CloudFront</a> internally, it does not expose CloudFront configuration options. The default CloudFront configuration appears
+          adequate for basic security requirements, though detailed security analysis remains pending.
+        </p>
+
+        <p>
+          Custom headers, including Content Security Policy with SRI hashes, are implemented using Terraform’s <code>templatefile</code>
+          function to insert dynamic values into a <abbr title="YAML Ain’t Markup Language">YAML</abbr> configuration. This allows the
+          security headers to be updated with each deployment while keeping the configuration declarative and version-controlled. As part of
+          the build process, Astro exports the integrity hashes as a TypeScript file. Since <a
+            href="https://github.com/kindspells/astro-shield"
+          ><code>@kindspells/astro-shield</code></a> does not provide direct JSON export functionality, I added a <code>postbuild</code>
+          script to the npm package configuration that automatically writes the hashes to a JSON file that Terraform can consume.
+        </p>
+      </div>
+    </section>
+
+    <section aria-labelledby="challenges">
+      <h2 id="challenges">Challenges and workarounds</h2>
+
+      <ul class="key-points">
+        <li>
+          <strong>Terraform Provider Limitations:</strong>
+          AWS Amplify’s rapid evolution outpaces Terraform provider capabilities.
+        </li>
+        <li>
+          <strong>Domain Provisioning Issues:</strong>
+          Amplify domain association enters "PENDING_VERIFICATION" state indefinitely, requiring resource deletion and recreation.
+        </li>
+        <li>
+          <strong>Custom Headers Bug:</strong>
+          Terraform always detects header changes due to provider issue <a
+            href="https://github.com/hashicorp/terraform-provider-aws/issues/34318"
+          >#34318</a>, requiring <a href="https://github.com/rgant/rob.gant.ninja/blob/main/infrastructure/amplify.tf#L92-L114">AWS CLI</a>
+          workaround.
+        </li>
+        <li>
+          <strong>Deploying to Amplify:</strong>
+          Terraform lacks deployment resource support, requiring AWS CLI <code>start-deployment</code> integration via <code
+          >terraform_data</code>.
+        </li>
+      </ul>
+
+      <div class="description">
+        <p>
+          Working with AWS Amplify through Terraform presented several challenges, primarily stemming from Amplify’s rapid feature evolution
+          outpacing the Terraform provider’s capabilities. Domain provisioning was particularly problematic during initial setup and testing
+          phases. Multiple deletion and recreation cycles were required before successful domain association, suggesting race conditions or
+          incomplete state synchronization within Amplify’s domain verification process.
+        </p>
+
+        <p>
+          The custom headers workaround using <code>ignore_changes</code> proved unreliable because it required manual intervention for
+          legitimate updates. Switching to AWS CLI execution via <code>terraform_data</code> provides better automation while maintaining
+          infrastructure-as-code principles. This approach emerged as superior to alternatives like external deployment scripts or CI/CD
+          pipeline integration, which would have introduced additional dependencies outside the Terraform workflow.
+        </p>
+
+        <p>
+          Manual deployment triggering through Terraform maintains consistency with the infrastructure management approach while working
+          around provider limitations. Alternative solutions like GitHub integration would require exposing repository access to AWS and
+          managing webhook configurations. The current AWS CLI approach keeps deployment control within the same tool managing
+          infrastructure state and configuration.
+        </p>
+      </div>
+    </section>
+
+    <section aria-labelledby="security">
+      <h2 id="security">Security considerations</h2>
+
+      <ul class="key-points">
+        <li>
+          <strong>Content Security Policy (CSP):</strong>
+          Implemented with <a
+            href="https://github.com/rgant/rob.gant.ninja/blob/8bd8208146607a8b47409129b409f46be5307b93/astro.config.ts#L61"
+          >SRI hashes</a> for all scripts and stylesheets, with <code>default-src 'none'</code> baseline policy.
+        </li>
+        <li>
+          <strong>Resource Separation:</strong>
+          Disabled <a href="https://github.com/rgant/rob.gant.ninja/blob/8bd8208146607a8b47409129b409f46be5307b93/astro.config.ts#L68-L69"
+          >inline resources</a> to maintain security boundaries at minimal performance cost.
+        </li>
+        <li>
+          <strong>Access Control:</strong>
+          Configured <a href="https://github.com/rgant/rob.gant.ninja/blob/main/infrastructure/s3-bucket/main.tf">S3 bucket policies</a> and
+          <abbr title="Identity and Access Management">IAM</abbr> roles with least privilege principles.
+        </li>
+        <li>
+          <strong>SSL Management:</strong>
+          Leveraged Amplify’s <a
+            href="https://github.com/rgant/rob.gant.ninja/blob/8bd8208146607a8b47409129b409f46be5307b93/infrastructure/amplify/dns.tf#L8-L26"
+          >automated certificate provisioning</a> while maintaining infrastructure control through Terraform.
+        </li>
+      </ul>
+
+      <div class="description">
+        <p>
+          The CSP approach was chosen over simpler alternatives because static sites still face injection risks through compromised CDNs or
+          build tools. Available tooling for generating and managing CSP and <abbr title="Subresource Integrity">SRI</abbr> hashes requires
+          improvement, but I automated as much of the process as possible to ensure consistent implementation without manual hash
+          management.
+        </p>
+
+        <p>
+          The security boundary benefits outweigh minimal performance costs, especially since the target audience values security over
+          microsecond load time improvements. Future iterations may explore selective inlining for non-executable resources.
+        </p>
+
+        <p>
+          Access controls for supporting infrastructure follow least privilege principles, with S3 bucket policies and IAM roles configured
+          to provide only the necessary permissions for deployment and operation. While IAM management through Terraform would be ideal,
+          documentation for this approach is sparse and not commonly practiced. I plan to investigate comprehensive IAM management options
+          for future infrastructure iterations.
+        </p>
+
+        <p>
+          SSL certificate management is handled through Amplify’s automated provisioning, which creates and renews certificates through AWS
+          Certificate Manager. While this automation reduces manual maintenance, the certificates are not tracked in Terraform state. I
+          manage the DNS verification record by importing it into Terraform after Amplify creates it, but the actual certificates remain
+          outside Terraform management.
+        </p>
+      </div>
+    </section>
+
+    <section aria-labelledby="process">
+      <h2 id="process">Deployment process</h2>
+
+      <ul class="key-points">
+        <li>
+          <strong>Build Pipeline:</strong>
+          <code>npm run build</code> generates optimized static assets with SRI hashes.
+        </li>
+        <li>
+          <strong>Terraform Application:</strong>
+          <code>npm run deploy</code> applies infrastructure changes including updated assets and CSP headers.
+        </li>
+        <li>
+          <strong>S3 Staging:</strong>
+          Distribution files are synchronized to S3 bucket before Amplify deployment due to Terraform provider limitations.
+        </li>
+        <li>
+          <strong>Amplify Deployment:</strong>
+          Terraform triggers deployment via AWS <abbr title="Command Line Interface">CLI</abbr>
+          <code>start-deployment</code> command when distribution files change.
+        </li>
+        <li>
+          <strong>Amplify Response Headers:</strong>
+          Terraform triggers updates via AWS CLI <code>update-app --custom-headers</code> when SRI hashes or template changes occur.
+        </li>
+      </ul>
+
+      <div class="description">
+        <p>
+          The build process is handled by an npm script, which invokes Astro’s build command to generate optimized static assets in the
+          <code>dist/</code> folder. The <code>postbuild</code> npm script automatically calculates SRI hashes for all JavaScript and
+          <abbr title="Cascading Style Sheets">CSS</abbr> files, which are recorded for later inclusion in the Content Security Policy
+          headers.
+        </p>
+
+        <p>
+          An npm script applies the Terraform configuration to update infrastructure as needed and deploys updated assets and headers. The
+          process first synchronizes the generated static files to an S3 bucket, which serves as a staging area for deployment. Terraform
+          then triggers Amplify to deploy content from this S3 bucket to the live environment and updates response headers if necessary.
+        </p>
+
+        <p>
+          S3 staging exists because Terraform cannot directly deploy files to Amplify. Direct file upload to Amplify would require switching
+          to GitHub integration or similar, which introduces additional complexity and external dependencies. The S3 approach maintains full
+          control within the AWS ecosystem while working around provider limitations.
+        </p>
+
+        <p>
+          The AWS CLI workaround for deployment triggers emerged from Terraform’s lack of deployment resource support. Alternative
+          approaches like GitHub webhooks or CodePipeline would introduce external dependencies or additional AWS services. The current
+          approach keeps the deployment process contained within the existing Terraform workflow.
+        </p>
+
+        <p>
+          Header updates require AWS CLI due to the previously mentioned Terraform provider bug that always detects header changes even when
+          identical. A <code>terraform_data</code> resource tracks changes by hashing the rendered template, triggering updates only when
+          SRI hashes or template content actually change. This approach proved more reliable than manually managing the Terraform
+          <code>ignore_changes</code> lifecycle rule.
+        </p>
+      </div>
+    </section>
+
+    <section aria-labelledby="monitoring">
+      <h2 id="monitoring">Monitoring and observability</h2>
+
+      <ul class="key-points">
+        <li>
+          <strong>Amplify Console Metrics:</strong>
+          Built-in deployment tracking, build success/failure visibility, and basic traffic analytics through the AWS Amplify console.
+        </li>
+        <li>
+          <strong>Error Monitoring:</strong>
+          Configurable Amplify Alerts for 4xx error rates, request count spikes, and deployment failures with
+          <abbr title="Simple Notification Service">SNS</abbr> notifications.
+        </li>
+        <li>
+          <strong>Certificate Monitoring:</strong>
+          AWS Certificate Manager automatically handles renewal notifications and provides expiration alerts through CloudWatch events.
+        </li>
+        <li>
+          <strong>Budget Alerts:</strong>
+          Existing Terraform configuration includes <a href="https://github.com/rgant/rob.gant.ninja/blob/main/infrastructure/budget.tf"
+          >cost monitoring</a> to prevent unexpected billing charges.
+        </li>
+      </ul>
+
+      <div class="description">
+        <p>
+          The monitoring approach prioritizes AWS-native tools to avoid introducing additional dependencies or complex observability stacks
+          for a static website. Third-party monitoring solutions like Datadog or New Relic would introduce unnecessary complexity and cost
+          for the limited monitoring requirements of a personal website with predictable traffic patterns.
+        </p>
+
+        <p>
+          Amplify and Budget alerts serve as an effective early warning system for infrastructure misconfigurations or unexpected traffic
+          spikes that could result in billing surprises. This approach proved more practical than implementing detailed CloudWatch metrics
+          for a low-traffic site where cost anomalies are often the first indicator of technical issues requiring attention.
+        </p>
+      </div>
+    </section>
+
+    <section aria-labelledby="future">
+      <h2 id="future">Future improvements</h2>
+
+      <ul class="key-points">
+        <li>
+          <strong>Branch Understanding:</strong>
+          Explore Amplify’s branch capabilities for potential development/production environment separation.
+        </li>
+        <li>
+          <strong>Performance Monitoring:</strong>
+          Implement CloudWatch <abbr title="Real User Monitoring">RUM</abbr> for client-side performance metrics and Core Web Vitals
+          tracking.
+        </li>
+        <li>
+          <strong>Advanced Alerting:</strong>
+          Expand Amplify alerts to include deployment duration thresholds and geographic traffic pattern monitoring.
+        </li>
+        <li>
+          <strong>Recovery Documentation:</strong>
+          Document domain recovery procedures and infrastructure recreation processes from Git and Terraform state.
+        </li>
+        <li>
+          <strong>Provider Monitoring:</strong>
+          Track AWS provider updates to leverage improvements to Amplify support.
+        </li>
+      </ul>
+
+      <div class="description">
+        <p>
+          While not currently leveraged, Amplify’s branch capabilities offer potential for separating development and production
+          environments. Further exploration of this feature could enable more sophisticated deployment workflows with proper staging and
+          testing before production releases.
+        </p>
+
+        <p>
+          Performance monitoring improvements would focus on implementing CloudWatch RUM to gather client-side performance data including
+          Core Web Vitals metrics. This would provide insights into real user experience across different devices and network conditions,
+          helping identify optimization opportunities for page load times and interactive elements.
+        </p>
+
+        <p>
+          Advanced alerting would build upon the current Amplify alerts configuration to include deployment duration monitoring and
+          geographic traffic analysis. Recovery planning would focus on documentation rather than redundant infrastructure, including
+          procedures for domain recovery scenarios and complete infrastructure recreation from Git repositories and Terraform state backups.
+        </p>
+
+        <p>
+          Backup and disaster recovery planning would establish cross-region S3 replication for critical deployment artifacts and Terraform
+          state files. This includes documenting recovery procedures for domain transfers, SSL certificate replacement, and infrastructure
+          recreation from Terraform state backups. Enhanced observability would involve structured logging implementation and custom
+          CloudWatch dashboards for monitoring deployment pipelines and infrastructure health metrics.
+        </p>
+
+        <p>
+          Terraform’s AWS provider releases rapidly. I will be <a href="https://github.com/hashicorp/terraform-provider-aws/releases"
+          >monitoring the releases</a> to notice when new features or updates apply to my infrastructure and to ensure that I don’t fall
+          behind.
+        </p>
+      </div>
+    </section>
+  </article>
+</Structure>
