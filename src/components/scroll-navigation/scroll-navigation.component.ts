@@ -1,8 +1,7 @@
-import { BaseCustomElement } from '~/custom-element.base';
 import type { CustomWebComponentInterface } from '~/web-component.interface';
 
-export class ScrollNav extends BaseCustomElement implements CustomWebComponentInterface {
-  public static override readonly tag: string = 'rob-scroll-nav';
+export class ScrollNav extends HTMLElement implements CustomWebComponentInterface {
+  public static readonly tag: string = 'rob-scroll-nav';
 
   /** Connects the list element (<li>) with the article element for each navigation link. */
   private readonly _articleToListMap: Map<Element, HTMLElement>;
@@ -21,7 +20,7 @@ export class ScrollNav extends BaseCustomElement implements CustomWebComponentIn
    * Static blocks are a ES2022 feature that run once when the class is first evaluated.
    */
   static {
-    this.define(this.tag);
+    customElements.define(this.tag, this);
   }
 
   constructor() {

@@ -1,4 +1,3 @@
-import { BaseCustomElement } from '~/custom-element.base';
 import type { CustomWebComponentInterface } from '~/web-component.interface';
 
 import { yearsOfExperience } from './years-experience.util';
@@ -8,8 +7,8 @@ import { yearsOfExperience } from './years-experience.util';
  *
  * Note: this does not update automatically over time, only on page load/component connected.
  */
-export class YearsOfExperience extends BaseCustomElement implements CustomWebComponentInterface {
-  public static override readonly tag: string = 'rob-years-of-experience';
+export class YearsOfExperience extends HTMLElement implements CustomWebComponentInterface {
+  public static readonly tag: string = 'rob-years-of-experience';
 
   private _timeEl: HTMLTimeElement | null | undefined;
 
@@ -22,7 +21,10 @@ export class YearsOfExperience extends BaseCustomElement implements CustomWebCom
    * Static blocks are a ES2022 feature that run once when the class is first evaluated.
    */
   static {
-    this.define(this.tag);
+    // Safari doesn't support custom built-in elements: https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/is
+    // Plus the syntax `<time is="years-of-experience"` is ugly IMHO.
+    // customElements.define('years-of-experience', YearsOfExperience, { extends: 'time' });
+    customElements.define(this.tag, this);
   }
 
   public connectedCallback(): void {
@@ -39,7 +41,3 @@ export class YearsOfExperience extends BaseCustomElement implements CustomWebCom
     }
   }
 }
-
-// Safari doesn't support custom built-in elements: https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/is
-// Plus the syntax `<time is="years-of-experience"` is ugly IMHO.
-// customElements.define('years-of-experience', YearsOfExperience, { extends: 'time' });
