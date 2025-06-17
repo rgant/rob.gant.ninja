@@ -50,8 +50,8 @@ const description = unwrap`Setting up an Astro TypeScript static site generator 
       <ul class="key-points">
         <li>
           <strong>Language Version Management:</strong>
-          I recommend <a href="https://github.com/nvm-sh/nvm"><code>nvm</code></a> for Node.js version management when working across
-          multiple projects with different requirements.
+          I recommend <a href="https://github.com/nvm-sh/nvm"><code>nvm</code></a> for <a href="https://nodejs.org/en">Node.js</a> version
+          management when working across multiple projects with different requirements.
         </li>
         <li>
           <strong>Package Manager Choice:</strong>
@@ -62,11 +62,6 @@ const description = unwrap`Setting up an Astro TypeScript static site generator 
           <strong>Editor Configuration:</strong>
           Configuring linters, <abbr title="Language Server Protocol">LSP</abbr> servers, and formatters improve development efficiency.
           Try out <abbr title="Large Language Model">LLM</abbr> assistants to see if you find them helpful.
-        </li>
-        <li>
-          <strong>Strict Configuration Approach:</strong>
-          My approach is to enable all linting rules by default, then selectively customize or disable based on project needs and
-          preferences.
         </li>
         <li>
           <strong>Configuration Documentation:</strong>
@@ -86,15 +81,7 @@ const description = unwrap`Setting up an Astro TypeScript static site generator 
         <p>
           Editor setup significantly impacts development efficiency. Prioritize linter integration for code quality, LSP for type checking
           and autocomplete, and formatters for consistency. While automatic formatting helps maintain consistency, manual formatting control
-          often produces cleaner results. I recommend more linters, even overlapping ones, to figure out which are most helpful. Adding
-          standards to an existing project is more difficult than lower them.
-        </p>
-
-        <p>
-          Starting with all linting rules enabled provides maximum code quality enforcement and ensures new rules are enabled by default
-          when upgrading, avoiding unknown rule states. Explicit customization to resolve conflicts and align with project preferences
-          maintains clear rule management. Documenting configuration choices and linking to source configurations enables future updates and
-          team knowledge sharing.
+          often produces cleaner results.
         </p>
       </div>
     </section>
@@ -104,13 +91,10 @@ const description = unwrap`Setting up an Astro TypeScript static site generator 
 
       <ul class="key-points">
         <li>
-          <strong>Maintenance Assessment:</strong>
-          I prioritize packages updated within the last year, with exceptions for stable packages in slower-changing domains.
-        </li>
-        <li>
-          <strong>Quality Indicators:</strong>
-          Consider looking for automated testing, CI/CD integration, and positive contributor interactions in potential package
-          repositories.
+          <strong>Version Range Management:</strong>
+          Follow framework template conventions for version ranges before implementing custom policies. Generally tilde ranges
+          (<code>~1.2.4</code>) for production dependencies and caret ranges (<code>^1.3.2</code>) for <code>devDependencies</code>, but
+          since this project runs entirely locally, minor release flexibility provides better security updates without deployment risk.
         </li>
         <li>
           <strong>Dependency Locking:</strong>
@@ -127,23 +111,17 @@ const description = unwrap`Setting up an Astro TypeScript static site generator 
 
       <div class="description">
         <p>
-          Package selection requires balancing recency with stability. Recently updated packages typically incorporate current best
-          practices and security fixes, while some older packages remain viable if they address stable problem domains with quality
-          implementations.
-        </p>
-
-        <p>
-          Repository quality indicators like comprehensive testing, automated CI/CD, and respectful contributor interactions suggest
-          packages that will be reliable long-term development partners. Rude or unresponsive maintainers often indicate future
-          collaboration challenges.
-        </p>
-
-        <p>
           Dependency locking prevents unexpected version changes that can break builds or introduce inconsistencies between team members.
           For web applications or sites, I categorize dependencies as production (necessary for building the website) versus development
           (linters, compilers, and development tools). Development dependencies can accept more frequent updates in version range specifiers
-          since they don’t affect the final build output. Regular dependency updates should be routine rather than intimidating when
-          combined with strict code quality enforcement and automated testing that catch regressions early.
+          since they don't affect the final build output.
+        </p>
+
+        <p>
+          Regular dependency updates should be routine rather than intimidating when combined with strict code quality enforcement and
+          automated testing that catch regressions early. Cross-platform compatibility awareness helps avoid deployment surprises,
+          particularly between Unix-like development environments and different production platforms. Version range management requires
+          balancing stability with security updates, especially for development tools that change rapidly.
         </p>
 
         <p>
@@ -172,11 +150,6 @@ const description = unwrap`Setting up an Astro TypeScript static site generator 
           The migration eliminated <a href="https://github.com/rgant/rob.gant.ninja/tree/a2f09756cfe1b357689677cf20c234e1354d95fc/packages"
           >custom plugins</a> that were required by Parcel for SSG functionality.
         </li>
-        <li>
-          <strong>Framework-Based Organization:</strong>
-          I recommend adopting framework naming conventions and organizational patterns from official examples and style guides. If a
-          framework offers “strict” mode, enable it at the start of your project.
-        </li>
       </ul>
 
       <div class="description">
@@ -187,10 +160,8 @@ const description = unwrap`Setting up an Astro TypeScript static site generator 
         </p>
 
         <p>
-          Starting with Astro’s blog template provided essential configurations for TypeScript, build processes, and development server
-          setup that accelerated initial project setup. Following framework conventions and examining popular Astro projects helped
-          establish consistent organizational patterns. It is easier to relax your rules from strict mode than it is to turn a lax standards
-          project into a strict one.
+          Starting with Astro’s blog template and strict <a href="https://www.typescriptlang.org/">TypeScript</a> configuration provided
+          essential configurations for TypeScript, build processes, and development server setup that accelerated initial project setup.
         </p>
       </div>
     </section>
@@ -238,9 +209,11 @@ const description = unwrap`Setting up an Astro TypeScript static site generator 
         </p>
 
         <p>
-          Strict configurations were carefully researched to incorporate established best practices and recently maintained plugins.
-          Starting with all rules enabled then customizing based on conflicts and preferences ensures maximum code quality while maintaining
-          development efficiency.
+          Strict configurations were carefully researched to incorporate established best practices and recently maintained plugins. The
+          research process involved examining multiple configuration examples, plugin documentation, and community discussions to understand
+          the implications of different rule sets. Configuration conflicts between tools required careful resolution to maintain both code
+          quality and development efficiency. Some plugins required custom configuration due to project-specific requirements or
+          compatibility issues with other tools in the development stack.
         </p>
       </div>
     </section>

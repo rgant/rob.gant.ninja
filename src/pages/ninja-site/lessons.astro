@@ -1,0 +1,98 @@
+---
+import BaseHead from '~/components/base-head.astro';
+import Structure from '~/layouts/structure.astro';
+import { unwrap } from '~/unwrap.util';
+
+const description = unwrap``;
+---
+<Structure>
+  <BaseHead description={description} slot="head" title="Lessons learned" />
+
+  <header class="banner main-header">
+    <div class="heading">
+      <h1 id="top">Lessons learned</h1>
+    </div>
+  </header>
+
+  <section aria-labelledby="setup">
+    <h2 id="setup">Project setup and structure</h2>
+
+    <ul class="key-points">
+      <li>
+        <strong>Tool Evaluation Strategy:</strong>
+        Evaluate multiple tools for each function rather than selecting the first viable option. I assessed several
+        <abbr title="Search Engine Optimization">SEO</abbr>, <abbr title="Progressive Web App">PWA</abbr>, and optimization tools before
+        selecting current implementations. Choose tools closest to the framework's ecosystem (like <code>@vite-pwa/astro</code> managed by
+        Vite) over feature-rich but distant alternatives. Manual implementation often proves simpler than configuring complex automation
+        tools for straightforward tasks like SEO tags.
+      </li>
+      <li>
+        <strong>Configuration Format Evolution:</strong>
+        Linting tools frequently change configuration formats - <a href="https://stylelint.io/">Stylelint</a> moved from
+        <abbr title="YAML Ain't Markup Language">YAML</abbr> to <abbr title="JavaScript Object Notation">JSON</abbr> to
+        <abbr title="JavaScript">JS</abbr>, <a href="https://eslint.org/">ESLint</a> added
+        <a href="https://www.typescriptlang.org/">TypeScript</a> support. Many plugins lack TypeScript configuration support and
+        documentation, making proper setup challenging. I remain uncertain about optimal <code>eslint-import-resolver-typescript</code> and
+        <code>eslint-plugin-import-x</code> plugin configuration due to poor documentation and examples.
+      </li>
+      <li>
+        <strong>Infrastructure Maintenance Scheduling:</strong>
+        Run <code>terraform plan</code> quarterly to identify configuration drift before it becomes unmanageable. I learned this from client
+        projects where stable infrastructure required extensive updates before adding new features. Calendar reminders ensure consistent
+        maintenance across all projects and prevent infrastructure technical debt accumulation.
+      </li>
+      <li>
+        <strong>Documentation Organization:</strong>
+        Separate documentation files with cross-linking work better than monolithic README files for complex projects. Scanning document
+        titles provides better overview than maintaining table of contents in single files. Long documentation gets searched but rarely read
+        completely, making focused separate files more effective.
+      </li>
+      <li>
+        <strong>Framework Migration Strategy:</strong>
+        <a href="https://astro.build/">Astro</a> requires React-like thinking patterns despite being different from React, which wasn't
+        immediately obvious. Moving existing code to temporary folders alongside framework templates enables side-by-side comparison during
+        migration. This approach clarifies structural differences and prevents loss of working implementations during framework transitions.
+      </li>
+      <li>
+        <strong>Linting Configuration Approach:</strong>
+        Start with all linting rules enabled by default, then selectively customize based on project conflicts and preferences. This ensures
+        maximum code quality enforcement and automatically enables new rules when upgrading tools, avoiding unknown rule states that require
+        manual review during updates. I recommend more linters, even overlapping ones, to figure out which are most helpful. Adding
+        standards to an existing project is more difficult than lower them. It is easier to relax your rules from strict mode than it is to
+        turn a lax standards project into a strict one. Starting with all rules enabled then customizing based on conflicts and preferences
+        ensures maximum code quality while maintaining development efficiency.
+      </li>
+    </ul>
+
+    <div class="description">
+      <p>
+        Tool evaluation revealed that ecosystem proximity often matters more than feature completeness. <code>@vite-pwa/astro</code>
+        integration proved more reliable than feature-rich alternatives because it's maintained by the Vite team and follows Astro's
+        architectural patterns. Manual SEO tag implementation avoided configuration complexity while providing exactly the needed
+        functionality without unused features. <code>@playform/compress</code> initially seemed comprehensive for optimization but revealed
+        outdated dependencies and incomplete image processing, highlighting the importance of evaluating tool maintenance status during
+        selection.
+      </p>
+
+      <p>
+        Configuration format changes in linting tools create ongoing maintenance overhead, particularly when plugin ecosystems lag behind
+        core tool updates. TypeScript configuration support varies significantly across plugins, with some providing excellent type safety
+        while others require guesswork and trial-and-error configuration approaches. This inconsistency makes plugin evaluation more
+        time-consuming but essential for long-term maintainability.
+      </p>
+
+      <p>
+        Infrastructure maintenance scheduling prevents the accumulation of technical debt that makes routine changes difficult. Quarterly
+        Terraform planning catches provider updates, deprecated resources, and configuration drift before they compound into major upgrade
+        projects. This proactive approach saves significant time compared to reactive infrastructure updates when urgent changes are needed.
+      </p>
+
+      <p>
+        Documentation structure affects both discoverability and maintenance overhead. Single large files become difficult to navigate and
+        update, while well-organized separate files with clear naming conventions improve both developer experience and documentation
+        maintenance. Cross-linking between related documents helps readers understand relationships without requiring comprehensive reading
+        of all documentation.
+      </p>
+    </div>
+  </section>
+</Structure>
