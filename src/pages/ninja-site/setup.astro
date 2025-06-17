@@ -1,0 +1,380 @@
+---
+import BaseHead from '~/components/base-head.astro';
+import Structure from '~/layouts/structure.astro';
+import { unwrap } from '~/unwrap.util';
+
+const description = unwrap`Setting up an Astro TypeScript static site generator project with strict linting,
+  modular Terraform infrastructure, and organized development workflow.`;
+---
+<Structure>
+  <BaseHead description={description} slot="head" title="Setup an Astro TypeScript SSG Project" />
+
+  <header class="banner main-header">
+    <div class="heading">
+      <h1 id="top">Project setup and structure</h1>
+      <p>Starting out with an organized development workflow</p>
+    </div>
+
+    <details>
+      <summary id="related-nav">Related articles</summary>
+
+      <nav aria-labelledby="related-nav">
+        <ul>
+          <li><a href="index.html">Building a modern secure static website</a></li>
+          <li><a href="developing.html">Developing with Astro and Web Components</a></li>
+          <li><a href="deploy.html">Deploying SSG websites with Terraform</a></li>
+          <li><a href="lessons.html">What I learned developing this project</a></li>
+        </ul>
+      </nav>
+    </details>
+  </header>
+
+  <article>
+    <aside>
+      <nav aria-label="Article Navigation">
+        <ul>
+          <li><a href="#environment">Development environment</a></li>
+          <li><a href="#dependencies">Dependency management</a></li>
+          <li><a href="#migration">Framework migration</a></li>
+          <li><a href="#configuration">Build process configuration</a></li>
+          <li><a href="#infrastructure">Infrastructure organization</a></li>
+          <li><a href="#challenges">Setup challenges</a></li>
+          <li><a href="#future">Future improvements</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <section aria-labelledby="environment">
+      <h2 id="environment">Development environment</h2>
+
+      <ul class="key-points">
+        <li>
+          <strong>Language Version Management:</strong>
+          I recommend <a href="https://github.com/nvm-sh/nvm"><code>nvm</code></a> for Node.js version management when working across
+          multiple projects with different requirements.
+        </li>
+        <li>
+          <strong>Package Manager Choice:</strong>
+          <a href="https://www.npmjs.com/"><code>npm</code></a> provides sufficient functionality as the default Node.js package manager,
+          with <a href="https://github.com/nodejs/corepack"><code>Corepack</code></a> enabling cross-project compatibility.
+        </li>
+        <li>
+          <strong>Editor Configuration:</strong>
+          Configuring linters, <abbr title="Language Server Protocol">LSP</abbr> servers, and formatters improve development efficiency.
+          Try out <abbr title="Large Language Model">LLM</abbr> assistants to see if you find them helpful.
+        </li>
+        <li>
+          <strong>Strict Configuration Approach:</strong>
+          My approach is to enable all linting rules by default, then selectively customize or disable based on project needs and
+          preferences.
+        </li>
+        <li>
+          <strong>Configuration Documentation:</strong>
+          I suggest commenting configuration files and linking to source configurations for future reference and updates.
+        </li>
+      </ul>
+
+      <div class="description">
+        <p>
+          Language version management tools like <code>nvm</code> are essential when working across multiple projects with different version
+          requirements. I use <code>npm</code> because it’s the default package manager that comes with Node.js, though other package
+          managers work equally well. <code>Corepack</code> ensures access to the appropriate package manager for each codebase regardless
+          of personal preference. Although npm will not include <code>Corepack</code> by default, it will remain available as a separate
+          installation for cross-project package manager compatibility.
+        </p>
+
+        <p>
+          Editor setup significantly impacts development efficiency. Prioritize linter integration for code quality, LSP for type checking
+          and autocomplete, and formatters for consistency. While automatic formatting helps maintain consistency, manual formatting control
+          often produces cleaner results. I recommend more linters, even overlapping ones, to figure out which are most helpful. Adding
+          standards to an existing project is more difficult than lower them.
+        </p>
+
+        <p>
+          Starting with all linting rules enabled provides maximum code quality enforcement and ensures new rules are enabled by default
+          when upgrading, avoiding unknown rule states. Explicit customization to resolve conflicts and align with project preferences
+          maintains clear rule management. Documenting configuration choices and linking to source configurations enables future updates and
+          team knowledge sharing.
+        </p>
+      </div>
+    </section>
+
+    <section aria-labelledby="dependencies">
+      <h2 id="dependencies">Dependency management</h2>
+
+      <ul class="key-points">
+        <li>
+          <strong>Maintenance Assessment:</strong>
+          I prioritize packages updated within the last year, with exceptions for stable packages in slower-changing domains.
+        </li>
+        <li>
+          <strong>Quality Indicators:</strong>
+          Consider looking for automated testing, CI/CD integration, and positive contributor interactions in potential package
+          repositories.
+        </li>
+        <li>
+          <strong>Dependency Locking:</strong>
+          I recommend locking dependency versions and committing lock files to ensure reproducible builds across environments. Organize
+          dependencies between production (necessary for the primary goal) and development (workflow tools like linters and compilers), with
+          <code>devDependencies</code> accepting more frequent updates in <code>package.json</code>.
+        </li>
+        <li>
+          <strong>Cross-Platform Compatibility:</strong>
+          Worth considering potential compatibility issues between development and deployment environments. Windows vs. Linux can often need
+          separate dependencies even in straightforward projects.
+        </li>
+      </ul>
+
+      <div class="description">
+        <p>
+          Package selection requires balancing recency with stability. Recently updated packages typically incorporate current best
+          practices and security fixes, while some older packages remain viable if they address stable problem domains with quality
+          implementations.
+        </p>
+
+        <p>
+          Repository quality indicators like comprehensive testing, automated CI/CD, and respectful contributor interactions suggest
+          packages that will be reliable long-term development partners. Rude or unresponsive maintainers often indicate future
+          collaboration challenges.
+        </p>
+
+        <p>
+          Dependency locking prevents unexpected version changes that can break builds or introduce inconsistencies between team members.
+          For web applications or sites, I categorize dependencies as production (necessary for building the website) versus development
+          (linters, compilers, and development tools). Development dependencies can accept more frequent updates in version range specifiers
+          since they don’t affect the final build output. Regular dependency updates should be routine rather than intimidating when
+          combined with strict code quality enforcement and automated testing that catch regressions early.
+        </p>
+
+        <p>
+          Cross-platform compatibility awareness helps avoid deployment surprises, particularly between Unix-like development environments
+          and different production platforms.
+        </p>
+      </div>
+    </section>
+
+    <section aria-labelledby="migration">
+      <h2 id="migration">Framework migration</h2>
+
+      <ul class="key-points">
+        <li>
+          <strong>Build Framework Migration:</strong>
+          I replaced <a href="https://parceljs.org/">Parcel</a> with Astro to leverage its
+          <abbr title="Static Site Generation">SSG</abbr>-focused architecture and optimizations.
+        </li>
+        <li>
+          <strong>Template Foundation:</strong>
+          Starting with Astro’s <a href="https://github.com/withastro/astro/tree/main/examples/blog">blog template</a> provided a solid
+          foundation.
+        </li>
+        <li>
+          <strong>Custom Plugin Elimination:</strong>
+          The migration eliminated <a href="https://github.com/rgant/rob.gant.ninja/tree/a2f09756cfe1b357689677cf20c234e1354d95fc/packages"
+          >custom plugins</a> that were required by Parcel for SSG functionality.
+        </li>
+        <li>
+          <strong>Framework-Based Organization:</strong>
+          I recommend adopting framework naming conventions and organizational patterns from official examples and style guides. If a
+          framework offers “strict” mode, enable it at the start of your project.
+        </li>
+      </ul>
+
+      <div class="description">
+        <p>
+          The project began as a Parcel-based static site that required custom plugins to achieve static site generation capabilities. Astro
+          treats static sites as first-class rather than an afterthought, eliminating the need for custom plugin development while providing
+          built-in SSG optimizations and better performance.
+        </p>
+
+        <p>
+          Starting with Astro’s blog template provided essential configurations for TypeScript, build processes, and development server
+          setup that accelerated initial project setup. Following framework conventions and examining popular Astro projects helped
+          establish consistent organizational patterns. It is easier to relax your rules from strict mode than it is to turn a lax standards
+          project into a strict one.
+        </p>
+      </div>
+    </section>
+
+    <section aria-labelledby="configuration">
+      <h2 id="configuration">Build process configuration</h2>
+
+      <ul class="key-points">
+        <li>
+          <strong>Security:</strong>
+          I implemented <a href="https://github.com/kindspells/astro-shield"><code>@kindspells/astro-shield</code></a> for
+          <abbr title="Subresource Integrity">SRI</abbr> hash generation in <abbr title="Content Security Policy">CSP</abbr> headers.
+        </li>
+        <li>
+          <strong>Optimizations:</strong>
+          I use <a href="https://github.com/playform/compress"><code>@playform/compress</code></a> for asset minification, although it has
+          outdated dependencies requiring workarounds.
+        </li>
+        <li>
+          <strong>Performance:</strong>
+          I integrated <a href="https://github.com/vite-pwa/astro"><code>@vite-pwa/astro</code></a> for resource precaching and offline
+          capabilities.
+        </li>
+        <li>
+          <strong>Configuration Strictness:</strong>
+          I established strict <a href="https://github.com/rgant/rob.gant.ninja/blob/main/tsconfig.json">TypeScript</a>,
+          <a href="https://github.com/rgant/rob.gant.ninja/blob/main/eslint.config.ts">ESLint</a>, and
+          <a href="https://github.com/rgant/rob.gant.ninja/blob/main/.stylelintrc.json">Stylelint</a> configurations.
+        </li>
+      </ul>
+
+      <div class="description">
+        <p>
+          I prioritized security then performance because they are vital requirements for modern web projects.
+          <code>@kindspells/astro-shield</code> provides essential security headers with SRI hashes, while <code>@vite-pwa/astro</code>
+          delivers performance benefits through resource precaching that benefit even static sites.
+        </p>
+
+        <p>
+          <code>@playform/compress</code> handles asset optimization but relies on outdated tools like
+          <a href="https://github.com/css/csso"><code>csso</code></a> (conflicts with modern <abbr title="Cascading Style Sheets"
+          >CSS</abbr>) and <a href="https://github.com/terser/html-minifier-terser"><code>html-minifier-terser</code></a> (unmaintained).
+          Manual optimization documented in <a href="https://github.com/rgant/rob.gant.ninja/blob/main/docs/optimizing-svgs.md"><code
+          >optimizing-svgs.md</code></a> addresses limitations with CSS background-image compression.
+        </p>
+
+        <p>
+          Strict configurations were carefully researched to incorporate established best practices and recently maintained plugins.
+          Starting with all rules enabled then customizing based on conflicts and preferences ensures maximum code quality while maintaining
+          development efficiency.
+        </p>
+      </div>
+    </section>
+
+    <section aria-labelledby="infrastructure">
+      <h2 id="infrastructure">Infrastructure organization</h2>
+
+      <ul class="key-points">
+        <li>
+          <strong>Modular Structure:</strong>
+          I organized <a href="https://developer.hashicorp.com/terraform">Terraform</a> configuration into reusable
+          <a href="https://github.com/rgant/rob.gant.ninja/tree/main/infrastructure/amplify">modules</a> for better maintainability.
+        </li>
+        <li>
+          <strong>Single Entry Point:</strong>
+          Creating <a href="https://github.com/rgant/rob.gant.ninja/blob/main/main.tf">main.tf</a> as a single entry point helps eliminate
+          project root clutter.
+        </li>
+        <li>
+          <strong>Component Organization:</strong>
+          I recommend separating infrastructure into logical modules for <a href="https://aws.amazon.com/amplify/">Amplify</a>, S3 buckets,
+          <abbr title="Domain Name System">DNS</abbr>, and remote state management.
+        </li>
+      </ul>
+
+      <div class="description">
+        <p>
+          The Terraform configuration consists of modular components handling different <abbr title="Amazon Web Services">AWS</abbr>
+          infrastructure aspects. The Amplify module includes resources for the app, branch configuration, domain association, and custom
+          headers. Additional modules manage S3 buckets, DNS configuration, and remote state storage.
+        </p>
+
+        <p>
+          Directory organization eliminated project root clutter that made it difficult to locate important files among numerous
+          configuration files. Terraform modules organize components into well-known locations for easier navigation during maintenance and
+          updates.
+        </p>
+      </div>
+    </section>
+
+    <section aria-labelledby="challenges">
+      <h2 id="challenges">Setup challenges</h2>
+
+      <ul class="key-points">
+        <li>
+          <strong>Environment Variable Management:</strong>
+          I created a <a href="https://github.com/rgant/rob.gant.ninja/blob/main/.auto.tfvars.example"><code>.auto.tfvars.example</code></a>
+          pattern for Terraform variables while excluding actual values from version control.
+        </li>
+        <li>
+          <strong>Astro Configuration Compatibility:</strong>
+          Resolving <a href="https://github.com/rgant/rob.gant.ninja/blob/main/src/env.d.ts"><code>env.d.ts</code></a> requirements for
+          <code>@vite-pwa/astro</code> required research because Astro no longer adds this file in the starter template.
+        </li>
+        <li>
+          <strong>Documentation Structure:</strong>
+          I established a dedicated <a href="https://github.com/rgant/rob.gant.ninja/tree/main/docs">documentation directory</a>
+          which can also be used for eventual GitHub Pages documentation website.
+        </li>
+      </ul>
+
+      <div class="description">
+        <p>
+          Environment variable management required research to determine appropriate patterns for both Terraform and Astro configurations.
+          The <code>.auto.tfvars.example</code> pattern provides template guidance while maintaining security by excluding actual values
+          from version control. Terraform automatically includes <code>.auto.tfvars</code> file when running commands, making this a
+          convenient pattern for local configuration.
+        </p>
+
+        <p>
+          <abbr title="Progressive Web App">PWA</abbr> integration presented compatibility challenges as Astro moves away from
+          <code>env.d.ts</code> while <code>@vite-pwa/astro</code> still requires it. Resolving this required consulting documentation from
+          both projects to ensure long-term compatibility and support.
+        </p>
+
+        <p>
+          The docs directory follows GitHub Pages patterns, providing a convenient location for documentation that doesn’t clutter the
+          project root.
+        </p>
+      </div>
+    </section>
+
+    <section aria-labelledby="future">
+      <h2 id="future">Future improvements</h2>
+
+      <ul class="key-points">
+        <li>
+          <strong>Development Environment Modernization:</strong>
+          I’m considering <a href="https://devenv.sh/"><code>devenv.sh</code></a> for comprehensive development environment management,
+          though potential workflow changes require careful evaluation.
+        </li>
+        <li>
+          <strong>Automated Formatting Integration:</strong>
+          Worth exploring <a href="https://github.com/lint-staged/lint-staged"><code>lint-staged</code></a> to automatically format files
+          before commit, improving consistency without manual intervention.
+        </li>
+        <li>
+          <strong>Build Tool Replacement:</strong>
+          I plan to replace <code>@playform/compress</code> with modern alternatives that support CSS background-image optimization and
+          maintained <abbr title="HyperText Markup Language">HTML</abbr> minification. Worth evaluating
+          <a href="https://github.com/j9t/html-minifier-next"><code>html-minifier-next</code></a> though changes appear limited to updated
+          dependencies rather than new features.
+        </li>
+        <li>
+          <strong>Direct Vite Integration:</strong>
+          Evaluating a switch to direct <a href="https://github.com/parcel-bundler/lightningcss"><code>lightningcss</code></a> integration
+          through Vite for better CSS processing and fewer dependency layers.
+        </li>
+        <li>
+          <strong>Plugin Modernization:</strong>
+          I continue periodic evaluation of older plugins for actively maintained alternatives with better feature sets.
+        </li>
+      </ul>
+
+      <div class="description">
+        <p>
+          Development environment management could benefit from more comprehensive tooling like <code>devenv.sh</code>, though such changes
+          require careful consideration of workflow disruption versus benefits. Similarly, automated formatting through
+          <code>lint-staged</code> could reduce manual formatting effort while maintaining code consistency.
+        </p>
+
+        <p>
+          The current build optimization stack has maintenance challenges with outdated dependencies like <code>csso</code> and <code
+          >html-minifier-terser</code>. Finding modern replacements that handle CSS background-image optimization and reliable HTML
+          minification would eliminate these technical debt concerns. <code>html-minifier-next</code> appears to primarily offer updated
+          dependencies rather than substantial feature improvements.
+        </p>
+
+        <p>
+          Direct Vite integration for CSS processing through <code>lightningcss</code> could simplify the build pipeline and provide better
+          CSS optimization. Ongoing plugin evaluation ensures the project benefits from community improvements while avoiding abandoned or
+          problematic dependencies.
+        </p>
+      </div>
+    </section>
+  </article>
+</Structure>
