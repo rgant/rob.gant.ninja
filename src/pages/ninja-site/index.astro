@@ -104,7 +104,7 @@ const description = unwrap`How I built this site with Astro SSG, Terraform, AWS,
           Implemented strict configurations for code quality assurance.
         </li>
         <li>
-          <strong>Infrastructure Modularization:</strong>
+          <strong>Infrastructure Organization:</strong>
           Restructured Terraform configuration into <a href="https://github.com/rgant/rob.gant.ninja/tree/main/infrastructure">modules</a>
           with a <a href="https://github.com/rgant/rob.gant.ninja/blob/main/main.tf">single entry point</a> for better maintainability.
         </li>
@@ -131,9 +131,8 @@ const description = unwrap`How I built this site with Astro SSG, Terraform, AWS,
         </p>
 
         <p>
-          The project infrastructure was reorganized with modular Terraform configurations using a single entry point, making deployment
-          more maintainable and consistent. A dedicated documentation directory captures processes and procedures that aren’t directly
-          encoded in configuration files or source code.
+          File organization eliminated project root clutter and improves findability of configuration files through well-known locations.
+          The docs directory structure anticipates potential GitHub Pages integration.
         </p>
       </div>
 
@@ -177,9 +176,9 @@ const description = unwrap`How I built this site with Astro SSG, Terraform, AWS,
         </p>
 
         <p>
-          The site implements Progressive Web App features through <code>@vite-pwa/astro</code> integration, improving performance and
-          providing offline capabilities. Content Security Policies with Subresource Integrity hashes were implemented using
-          <code>@kindspells/astro-shield</code> and integrated into the AWS Amplify deployment process for enhanced security.
+          <abbr title="Progressive Web App">PWA</abbr> features were implemented because Vite and Workbox integration with Astro made them
+          essentially free to add. <abbr title="Content Security Policy">CSP</abbr> with SRI hashes was prioritized despite poor tooling
+          because security remains important even for small websites.
         </p>
 
         <p>
@@ -201,9 +200,9 @@ const description = unwrap`How I built this site with Astro SSG, Terraform, AWS,
           <abbr title="Secure Sockets Layer">SSL</abbr> management.
         </li>
         <li>
-          <strong>Terraform Modules:</strong>
-          Organized infrastructure code into modules for Amplify, S3 buckets, remote state, and <abbr title="Domain Name System">DNS</abbr>
-          management.
+          <strong>Terraform:</strong>
+          Enable reusability and standardized configurations that simplify management and enforce consistency, accelerating provisioning and
+          reducing deployment errors.
         </li>
         <li>
           <strong>Scripted Deployment:</strong>
@@ -224,16 +223,15 @@ const description = unwrap`How I built this site with Astro SSG, Terraform, AWS,
         </p>
 
         <p>
-          Infrastructure is maintained as code using Terraform with modular components for Amplify configuration, S3 bucket management, and
-          remote state storage. AWS budget alerts were implemented to prevent unexpected costs, and all infrastructure follows security best
-          practices to minimize attack surfaces.
+          Infrastructure as code provides documentation that can detect drift and verify accuracy, though it requires maintenance to prevent
+          provider compatibility issues. Budget alerts are essential protection against unexpected cloud costs that can escalate rapidly.
+          Even static sites warrant baseline security practices regardless of limited interactivity.
         </p>
 
         <p>
-          Deployment is handled through npm scripts that combine linting, building, and deploying into repeatable processes. This approach
-          reduces the need for complex CI/CD pipelines while ensuring consistent results and providing the foundation for future automation
-          if needed. Content Security Policy headers with SRI hashes are updated during the build process, though this currently requires
-          some manual intervention due to Terraform state handling.
+          The scripted approach reduces the need for complex CI/CD pipelines while ensuring consistent results and providing the foundation
+          for future automation if needed. Content Security Policy headers with SRI hashes are automatically updated during the build
+          process but must work around Terraform provider limitations.
         </p>
       </div>
 
@@ -268,13 +266,6 @@ const description = unwrap`How I built this site with Astro SSG, Terraform, AWS,
       </ul>
 
       <div class="description">
-        <p>
-          Moving from Parcel to Astro demonstrated the value of using purpose-built frameworks for static site generation, eliminating the
-          need for custom plugins while providing better performance and developer experience. Similarly, restructuring Terraform
-          configurations into modules improved maintainability, though this approach requires understanding the trade-offs of abstraction
-          versus repeated configuration.
-        </p>
-
         <p>
           Managing rapidly evolving AWS infrastructure through Terraform requires a regular maintenance schedule to avoid complicated
           catch-up scenarios. Scheduled quarterly Terraform plan runs help identify drift and necessary updates before they become

@@ -65,8 +65,8 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
         </li>
         <li>
           <strong>Migration Strategy:</strong>
-          Test Amplify by deploying to a separate domain before switching production domains to validate functionality and identify
-          configuration issues.
+          Test <a href="https://aws.amazon.com/amplify/">Amplify</a> by deploying to a separate domain before switching production domains
+          to validate functionality and identify configuration issues.
         </li>
       </ul>
 
@@ -78,8 +78,9 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
           organized in directories, I required each directory to have its own <code>index.html</code> root object. I could have implemented
           a CloudFront Function to <a
             href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/example_cloudfront_functions_url_rewrite_single_page_apps_section.html"
-          >add <code>index.html</code> to the origin request URI</a>, but this approach would require maintaining custom CloudFront
-          Functions while AWS continues expanding Amplify’s comprehensive static hosting capabilities.
+          >add <code>index.html</code> to the origin request <abbr title="Uniform Resource Identifier">URI</abbr></a>, but this approach
+          would require maintaining custom CloudFront Functions while AWS continues expanding Amplify’s comprehensive static hosting
+          capabilities.
         </p>
 
         <p>
@@ -92,10 +93,10 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
         <p>
           AWS Amplify is the recommended solution for static website hosting on AWS. It offers support for directory-level
           <code>index.html</code> files, automatic configuration of Route53 <abbr title="Domain Name System">DNS</abbr> and SSL
-          certificates, and <abbr title="Uniform Resource Identifier">URI</abbr> pattern based customizable HTTP response headers. While
-          Amplify is primarily marketed for single-page applications (SPAs), it works equally well for static site generators like Astro.
-          Amplify uses CloudFront internally without exposing configuration options. The default CloudFront configuration appears reasonably
-          strict, making this limitation acceptable for my security requirements.
+          certificates, and URI pattern based customizable HTTP response headers. While Amplify is primarily marketed for single-page
+          applications (SPAs), it works equally well for static site generators like Astro. Amplify uses CloudFront internally without
+          exposing configuration options. The default CloudFront configuration appears reasonably strict, making this limitation acceptable
+          for my security requirements.
         </p>
 
         <p>
@@ -103,8 +104,8 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
             href="https://github.com/rgant/rob.gant.ninja/tree/107dc465b922391d8317e0380cb36bc9f96fc00d/infrastructure/amplify"
           >test deployment</a> under a different domain to validate functionality. This allowed me to identify potential issues with domain
           configuration and content delivery before switching the main domain. Testing proved essential since configuring Amplify through
-          Terraform presented significant challenges. I needed to delete and recreate the test site multiple times to resolve issues with
-          automatic SSL certificate generation, redirects, and custom headers.
+          <a href="https://developer.hashicorp.com/terraform">Terraform</a> presented significant challenges. I needed to delete and
+          recreate the test site multiple times to resolve issues with automatic SSL certificate generation, redirects, and custom headers.
         </p>
       </div>
     </section>
@@ -114,23 +115,17 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
 
       <ul class="key-points">
         <li>
-          <strong>Modular Structure:</strong>
-          Organized Amplify configuration into a reusable <a href="https://github.com/rgant/rob.gant.ninja/tree/main/infrastructure/amplify"
-          >module</a> for better maintainability.
-        </li>
-        <li>
           <strong>State Management:</strong>
-          Auto-generated Amplify resources must be <a
-            href="https://github.com/rgant/rob.gant.ninja/blob/8bd8208146607a8b47409129b409f46be5307b93/main.tf#L51-L70"
-          >imported</a> into Terraform state for consistent infrastructure management.
+          Auto-generated Amplify resources must be
+          <a href="https://github.com/rgant/rob.gant.ninja/blob/8bd8208146607a8b47409129b409f46be5307b93/main.tf#L51-L70">imported</a> into
+          Terraform state for consistent infrastructure management.
         </li>
         <li>
           <strong>Custom Headers:</strong>
           <a href="https://github.com/rgant/rob.gant.ninja/blob/8bd8208146607a8b47409129b409f46be5307b93/infrastructure/amplify/main.tf#L2"
           >Implemented</a> using <code>templatefile</code> function to insert <a
             href="https://github.com/rgant/rob.gant.ninja/blob/main/scripts/set-csp-header.ts"
-          >dynamic</a>
-          <abbr title="Subresource Integrity">SRI</abbr> hashes.
+          >dynamic</a> <abbr title="Subresource Integrity">SRI</abbr> hashes.
         </li>
         <li>
           <strong>Custom Domains:</strong>
@@ -166,8 +161,9 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
           security headers to be updated with each deployment while keeping the configuration declarative and version-controlled. As part of
           the build process, Astro exports the integrity hashes as a TypeScript file. Since <a
             href="https://github.com/kindspells/astro-shield"
-          ><code>@kindspells/astro-shield</code></a> does not provide direct JSON export functionality, I added a <code>postbuild</code>
-          script to the npm package configuration that automatically writes the hashes to a JSON file that Terraform can consume.
+          ><code>@kindspells/astro-shield</code></a> does not provide direct <abbr title="JavaScript Object Notation">JSON</abbr> export
+          functionality, I added a <code>postbuild</code> script to the npm package configuration that automatically writes the hashes to a
+          JSON file that Terraform can consume.
         </p>
       </div>
     </section>
@@ -182,7 +178,8 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
         </li>
         <li>
           <strong>Domain Provisioning Issues:</strong>
-          Amplify domain association enters "PENDING_VERIFICATION" state indefinitely, requiring resource deletion and recreation.
+          Amplify domain association enters <code>PENDING_VERIFICATION</code> state indefinitely, requiring resource deletion and
+          recreation.
         </li>
         <li>
           <strong>Custom Headers Bug:</strong>
@@ -193,8 +190,8 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
         </li>
         <li>
           <strong>Deploying to Amplify:</strong>
-          Terraform lacks deployment resource support, requiring AWS CLI <code>start-deployment</code> integration via <code
-          >terraform_data</code>.
+          Terraform lacks deployment resource support, requiring AWS <abbr title="Command-Line Interface">CLI</abbr>
+          <code>start-deployment</code> integration via <code>terraform_data</code>.
         </li>
       </ul>
 
@@ -253,9 +250,8 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
       <div class="description">
         <p>
           The CSP approach was chosen over simpler alternatives because static sites still face injection risks through compromised CDNs or
-          build tools. Available tooling for generating and managing CSP and <abbr title="Subresource Integrity">SRI</abbr> hashes requires
-          improvement, but I automated as much of the process as possible to ensure consistent implementation without manual hash
-          management.
+          build tools. Available tooling for generating and managing CSP and SRI hashes requires improvement, but I automated as much of the
+          process as possible to ensure consistent implementation without manual hash management.
         </p>
 
         <p>
