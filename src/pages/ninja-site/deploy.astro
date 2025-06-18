@@ -50,12 +50,14 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
       <ul class="key-points">
         <li>
           <strong>Directory Index Limitations:</strong>
-          CloudFront’s root object configuration only applies to the root domain, not subdirectories.
+          <a href="https://aws.amazon.com/cloudfront/" title="AWS CloudFront">CloudFront</a>’s root object configuration only applies to the
+          root domain, not subdirectories.
         </li>
         <li>
           <strong>S3 Website Hosting:</strong>
-          A basic static file server that requires public bucket access and complex CloudFront <abbr title="Content Delivery Network"
-          >CDN</abbr> configuration, introducing security exposure and operational complexity.
+          A basic static file server that requires public <a href="https://aws.amazon.com/s3/" title="AWS S3">S3</a> bucket access and
+          complex CloudFront <abbr title="Content Delivery Network">CDN</abbr> configuration, introducing security exposure and operational
+          complexity.
         </li>
         <li>
           <strong>AWS Amplify:</strong>
@@ -65,8 +67,8 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
         </li>
         <li>
           <strong>Migration Strategy:</strong>
-          Test <a href="https://aws.amazon.com/amplify/">Amplify</a> by deploying to a separate domain before switching production domains
-          to validate functionality and identify configuration issues.
+          Test <a href="https://aws.amazon.com/amplify/" title="AWS Amplify">Amplify</a> by deploying to a separate domain before switching
+          production domains to validate functionality and identify configuration issues.
         </li>
       </ul>
 
@@ -79,8 +81,8 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
           a CloudFront Function to <a
             href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/example_cloudfront_functions_url_rewrite_single_page_apps_section.html"
           >add <code>index.html</code> to the origin request <abbr title="Uniform Resource Identifier">URI</abbr></a>, but this approach
-          would require maintaining custom CloudFront Functions while AWS continues expanding Amplify’s comprehensive static hosting
-          capabilities.
+          would require maintaining custom CloudFront Functions while <a href="https://aws.amazon.com/" title="Amazon Web Services">AWS</a>
+          continues expanding Amplify’s comprehensive static hosting capabilities.
         </p>
 
         <p>
@@ -94,9 +96,9 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
           AWS Amplify is the recommended solution for static website hosting on AWS. It offers support for directory-level
           <code>index.html</code> files, automatic configuration of Route53 <abbr title="Domain Name System">DNS</abbr> and SSL
           certificates, and URI pattern based customizable HTTP response headers. While Amplify is primarily marketed for single-page
-          applications (SPAs), it works equally well for static site generators like Astro. Amplify uses CloudFront internally without
-          exposing configuration options. The default CloudFront configuration appears reasonably strict, making this limitation acceptable
-          for my security requirements.
+          applications (SPAs), it works equally well for static site generators like <a href="https://astro.build/">Astro</a>. Amplify uses
+          CloudFront internally without exposing configuration options. The default CloudFront configuration appears reasonably strict,
+          making this limitation acceptable for my security requirements.
         </p>
 
         <p>
@@ -159,11 +161,11 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
           Custom headers, including Content Security Policy with SRI hashes, are implemented using Terraform’s <code>templatefile</code>
           function to insert dynamic values into a <abbr title="YAML Ain’t Markup Language">YAML</abbr> configuration. This allows the
           security headers to be updated with each deployment while keeping the configuration declarative and version-controlled. As part of
-          the build process, Astro exports the integrity hashes as a TypeScript file. Since <a
-            href="https://github.com/kindspells/astro-shield"
-          ><code>@kindspells/astro-shield</code></a> does not provide direct <abbr title="JavaScript Object Notation">JSON</abbr> export
-          functionality, I added a <code>postbuild</code> script to the npm package configuration that automatically writes the hashes to a
-          JSON file that Terraform can consume.
+          the build process, Astro exports the integrity hashes as a <a href="https://www.typescriptlang.org/">TypeScript</a> file. Since
+          <a href="https://github.com/kindspells/astro-shield">@kindspells/astro-shield</a> does not provide direct
+          <abbr title="JavaScript Object Notation">JSON</abbr> export functionality, I added a <code>postbuild</code> script to the
+          <a href="https://www.npmjs.com/" title="Node Package Manager">npm</a> package configuration that automatically writes the hashes
+          to a JSON file that Terraform can consume.
         </p>
       </div>
     </section>
@@ -190,7 +192,7 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
         </li>
         <li>
           <strong>Deploying to Amplify:</strong>
-          Terraform lacks deployment resource support, requiring AWS <abbr title="Command-Line Interface">CLI</abbr>
+          Terraform lacks deployment resource support, requiring <a href="https://aws.amazon.com/cli/">AWS CLI</a>
           <code>start-deployment</code> integration via <code>terraform_data</code>.
         </li>
       </ul>
@@ -205,9 +207,10 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
 
         <p>
           The custom headers workaround using <code>ignore_changes</code> proved unreliable because it required manual intervention for
-          legitimate updates. Switching to AWS CLI execution via <code>terraform_data</code> provides better automation while maintaining
-          infrastructure-as-code principles. This approach emerged as superior to alternatives like external deployment scripts or CI/CD
-          pipeline integration, which would have introduced additional dependencies outside the Terraform workflow.
+          legitimate updates. Switching to AWS <abbr title="Command-Line Interface">CLI</abbr> execution via <code>terraform_data</code>
+          provides better automation while maintaining infrastructure-as-code principles. This approach emerged as superior to alternatives
+          like external deployment scripts or CI/CD pipeline integration, which would have introduced additional dependencies outside the
+          Terraform workflow.
         </p>
 
         <p>
@@ -293,8 +296,7 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
         </li>
         <li>
           <strong>Amplify Deployment:</strong>
-          Terraform triggers deployment via AWS <abbr title="Command Line Interface">CLI</abbr>
-          <code>start-deployment</code> command when distribution files change.
+          Terraform triggers deployment via AWS CLI <code>start-deployment</code> command when distribution files change.
         </li>
         <li>
           <strong>Amplify Response Headers:</strong>
@@ -304,16 +306,17 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
 
       <div class="description">
         <p>
-          The build process is handled by an npm script, which invokes Astro’s build command to generate optimized static assets in the
-          <code>dist/</code> folder. The <code>postbuild</code> npm script automatically calculates SRI hashes for all JavaScript and
-          <abbr title="Cascading Style Sheets">CSS</abbr> files, which are recorded for later inclusion in the Content Security Policy
-          headers.
+          The build process is handled by an <abbr title="Node Package Manager">npm</abbr> script, which invokes Astro’s build command to
+          generate optimized static assets in the <code>dist/</code> folder. The <code>postbuild</code> npm script automatically calculates
+          SRI hashes for all JavaScript and <abbr title="Cascading Style Sheets">CSS</abbr> files, which are recorded for later inclusion in
+          the Content Security Policy headers.
         </p>
 
         <p>
-          An npm script applies the Terraform configuration to update infrastructure as needed and deploys updated assets and headers. The
-          process first synchronizes the generated static files to an S3 bucket, which serves as a staging area for deployment. Terraform
-          then triggers Amplify to deploy content from this S3 bucket to the live environment and updates response headers if necessary.
+          An npm script applies the Terraform configuration to update infrastructure as needed and deploys updated assets and
+          headers. The process first synchronizes the generated static files to an S3 bucket, which serves as a staging area for deployment.
+          Terraform then triggers Amplify to deploy content from this S3 bucket to the live environment and updates response headers if
+          necessary.
         </p>
 
         <p>
@@ -395,7 +398,8 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
         </li>
         <li>
           <strong>Recovery Documentation:</strong>
-          Document domain recovery procedures and infrastructure recreation processes from Git and Terraform state.
+          Document domain recovery procedures and infrastructure recreation processes from <a href="https://git-scm.com/">Git</a> and
+          Terraform state.
         </li>
         <li>
           <strong>Provider Monitoring:</strong>

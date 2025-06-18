@@ -75,7 +75,7 @@ const description = unwrap`Developing with Astro and native Custom Elements for 
           transitions.
         </li>
         <li>
-          <strong>DOM Encapsulation:</strong>
+          <strong><abbr title="Document Object Model">DOM</abbr> Encapsulation:</strong>
           Custom Elements enable accessing navigation elements within component tags without requiring global IDs or unique classes.
         </li>
       </ul>
@@ -83,9 +83,8 @@ const description = unwrap`Developing with Astro and native Custom Elements for 
       <div class="description">
         <p>
           For a static website with minimal interactive requirements, JavaScript frameworks introduce unnecessary complexity and bundle
-          size. Native Custom Elements provide sufficient functionality while keeping the <abbr title="Document Object Model">DOM</abbr> and
-          logic co-located, improving maintainability and reducing the cognitive overhead of managing framework-specific patterns for simple
-          interactions.
+          size. Native Custom Elements provide sufficient functionality while keeping the DOM and logic co-located, improving
+          maintainability and reducing the cognitive overhead of managing framework-specific patterns for simple interactions.
         </p>
 
         <p>
@@ -96,18 +95,19 @@ const description = unwrap`Developing with Astro and native Custom Elements for 
         </p>
 
         <p>
-          The scroll navigation feature existed in the previous Parcel-based website using jQuery scroll events. While scroll events weren’t
-          actually problematic for this simple single-page site, migrating to Intersection Observer provided better performance
-          characteristics and aligned with modern web development practices. Typical Intersection Observer implementations for this type of
-          feature watch for heading elements, but mine triggers on any part of the section content instead.
+          The scroll navigation feature existed in the previous <a href="https://parceljs.org/">Parcel</a>-based website using
+          <a href="https://jquery.com/">jQuery</a> scroll events. While scroll events weren’t actually problematic for this simple
+          single-page site, migrating to Intersection Observer provided better performance characteristics and aligned with modern web
+          development practices. Typical Intersection Observer implementations for this type of feature watch for heading elements, but mine
+          triggers on any part of the section content instead.
         </p>
 
         <p>
-          Configuring the Intersection Observer required understanding that <code>rootMargin</code> syntax differs from CSS margin
-          properties, where negative percentages shrink the root intersection area rather than expanding it. The fundamental problem with
-          default Intersection Observer behavior for this case is that multiple sections can intersect simultaneously, making it impractical
-          to identify which section should actually activate the corresponding navigation item. The solution ensures that only one section
-          intersects at any time.
+          Configuring the Intersection Observer required understanding that <code>rootMargin</code> syntax differs from
+          <abbr title="Cascading Style Sheets">CSS</abbr> margin properties, where negative percentages shrink the root intersection area
+          rather than expanding it. The fundamental problem with default Intersection Observer behavior for this case is that multiple
+          sections can intersect simultaneously, making it impractical to identify which section should actually activate the corresponding
+          navigation item. The solution ensures that only one section intersects at any time.
         </p>
       </div>
     </section>
@@ -119,11 +119,12 @@ const description = unwrap`Developing with Astro and native Custom Elements for 
         <li>
           <strong>Motivation:</strong>
           <a href="https://html5boilerplate.com/">HTML5 Boilerplate</a> includes a default <code>site.webmanifest</code> file, and research
-          showed <abbr title="Progressive Web App">PWA</abbr> features are essentially free to implement with Vite and Workbox integration.
+          showed <abbr title="Progressive Web App">PWA</abbr> features are essentially free to implement with <a href="https://vite.dev/"
+          >Vite</a> and <a href="https://github.com/GoogleChrome/workbox">Workbox</a> integration.
         </li>
         <li>
           <strong>Implementation:</strong>
-          Used <a href="https://github.com/vite-pwa/astro"><code>@vite-pwa/astro</code></a> with separate <a
+          Used <a href="https://github.com/vite-pwa/astro">@vite-pwa/astro</a> with separate <a
             href="https://github.com/rgant/rob.gant.ninja/blob/main/webmanifest.json"
           ><code>webmanifest.json</code></a> to keep static configuration outside build files.
         </li>
@@ -140,8 +141,9 @@ const description = unwrap`Developing with Astro and native Custom Elements for 
         </li>
         <li>
           <strong>Integration Requirements:</strong>
-          Resolved TypeScript recognition by adding references to <code>env.d.ts</code> and configured script import in an
-          <a href="https://github.com/rgant/rob.gant.ninja/blob/feature/ninja-site/src/components/end-scripts.astro"
+          Resolved <a href="https://www.typescriptlang.org/">TypeScript</a> recognition by adding references to
+          <a href="https://github.com/rgant/rob.gant.ninja/blob/main/src/env.d.ts"><code>env.d.ts</code></a> and configured script import in
+          an <a href="https://github.com/rgant/rob.gant.ninja/blob/feature/ninja-site/src/components/end-scripts.astro"
           >EndScripts component</a>.
         </li>
       </ul>
@@ -185,8 +187,8 @@ const description = unwrap`Developing with Astro and native Custom Elements for 
         </li>
         <li>
           <strong>Implementation Tool:</strong>
-          Used <a href="https://github.com/kindspells/astro-shield"><code>@kindspells/astro-shield</code></a> for automatic SRI hash
-          generation and integration with build process.
+          Used <a href="https://github.com/kindspells/astro-shield">@kindspells/astro-shield</a> for automatic SRI hash generation and
+          integration with build process.
         </li>
         <li>
           <strong>Asset Inlining Decision:</strong>
@@ -209,9 +211,11 @@ const description = unwrap`Developing with Astro and native Custom Elements for 
         </p>
 
         <p>
-          SRI hash integration presented the primary technical challenge, specifically how to inject dynamically generated hashes into HTTP
-          response headers managed by AWS Amplify. The <code>@kindspells/astro-shield</code> tool handles hash computation effectively, but
-          requires custom scripting to export hashes in JSON format for Terraform consumption, as detailed in the <a href="deploy.html"
+          SRI hash integration presented the primary technical challenge, specifically how to inject dynamically generated hashes into
+          <abbr title="HyperText Transfer Protocol">HTTP</abbr> response headers managed by <a href="https://aws.amazon.com/amplify/"
+          >AWS Amplify</a>. The @kindspells/astro-shield tool handles hash computation effectively, but requires custom scripting to
+          export hashes in <abbr title="JavaScript Object Notation">JSON</abbr> format for
+          <a href="https://developer.hashicorp.com/terraform">Terraform</a> consumption, as detailed in the <a href="deploy.html"
           >deployment</a> process.
         </p>
 
@@ -237,8 +241,8 @@ const description = unwrap`Developing with Astro and native Custom Elements for 
       <ul class="key-points">
         <li>
           <strong>Editor Choice:</strong>
-          Configured Sublime Text with linting and <abbr title="Language Server Protocol">LSP</abbr> packages for code quality enforcement
-          during development.
+          Configured <a href="https://www.sublimetext.com/">Sublime Text</a> with linting and <abbr title="Language Server Protocol"
+          >LSP</abbr> packages for code quality enforcement during development.
         </li>
         <li>
           <strong>Configuration Reference:</strong>
@@ -250,10 +254,12 @@ const description = unwrap`Developing with Astro and native Custom Elements for 
 
       <div class="description">
         <p>
-          While most developers use VSCode, Sublime Text remains a viable option with proper LSP and linting integration. The configuration
-          provides real-time feedback for TypeScript, ESLint, and Stylelint rules, ensuring code quality standards are maintained throughout
-          the development process. Since this represents a minority editor choice, detailed configuration explanation would benefit few
-          readers compared to linking to the complete setup for those specifically interested in Sublime Text workflows.
+          While most developers use <a href="https://code.visualstudio.com/" title="Visual Studio Code">VSCode</a>, Sublime Text remains a
+          viable option with proper LSP and linting integration. The configuration provides real-time feedback for TypeScript,
+          <a href="https://eslint.org/">ESLint</a>, and <a href="https://stylelint.io/">Stylelint</a> rules, ensuring code quality standards
+          are maintained throughout the development process. Since this represents a minority editor choice, detailed configuration
+          explanation would benefit few readers compared to linking to the complete setup for those specifically interested in Sublime Text
+          workflows.
         </p>
       </div>
     </section>
@@ -264,7 +270,8 @@ const description = unwrap`Developing with Astro and native Custom Elements for 
       <ul class="key-points">
         <li>
           <strong>TypeScript Integration:</strong>
-          Astro’s native TypeScript support provides excellent developer experience without additional configuration complexity.
+          <a href="https://astro.build/">Astro</a>’s native TypeScript support provides excellent developer experience without additional
+          configuration complexity.
         </li>
         <li>
           <strong>Build Process Coordination:</strong>
