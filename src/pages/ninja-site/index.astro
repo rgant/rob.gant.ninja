@@ -3,8 +3,8 @@ import BaseHead from '~/components/base-head.astro';
 import Structure from '~/layouts/structure.astro';
 import { unwrap } from '~/unwrap.util';
 
-const description = unwrap`How I built this site with Astro SSG, Terraform, AWS, TypeScript, ESLint, Stylelint, and web components.
-  Built for performance and security with PWA and CSP.`;
+const description = unwrap`How I built this site with Astro SSG, Terraform, AWS, TypeScript, ESLint,
+  Stylelint, and web components. Built for performance and security with PWA and CSP.`;
 ---
 <Structure>
   <BaseHead description={description} slot="head" title="Building a modern secure static website" />
