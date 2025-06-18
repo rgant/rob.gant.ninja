@@ -67,8 +67,8 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
         </li>
         <li>
           <strong>Migration Strategy:</strong>
-          Test <a href="https://aws.amazon.com/amplify/" title="AWS Amplify">Amplify</a> by deploying to a separate domain before switching
-          production domains to validate functionality and identify configuration issues.
+          I tested <a href="https://aws.amazon.com/amplify/" title="AWS Amplify">Amplify</a> by deploying to a separate domain before
+          switching production domains to validate functionality and identify configuration issues.
         </li>
       </ul>
 
@@ -208,16 +208,16 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
         <p>
           The custom headers workaround using <code>ignore_changes</code> proved unreliable because it required manual intervention for
           legitimate updates. Switching to AWS <abbr title="Command-Line Interface">CLI</abbr> execution via <code>terraform_data</code>
-          provides better automation while maintaining infrastructure-as-code principles. This approach emerged as superior to alternatives
-          like external deployment scripts or CI/CD pipeline integration, which would have introduced additional dependencies outside the
+          provides better automation while maintaining infrastructure-as-code principles. This approach worked better than alternatives like
+          external deployment scripts or CI/CD pipeline integration, which would have introduced additional dependencies outside the
           Terraform workflow.
         </p>
 
         <p>
-          Manual deployment triggering through Terraform maintains consistency with the infrastructure management approach while working
-          around provider limitations. Alternative solutions like GitHub integration would require exposing repository access to AWS and
-          managing webhook configurations. The current AWS CLI approach keeps deployment control within the same tool managing
-          infrastructure state and configuration.
+          Manual deployment triggering through Terraform keeps consistent with the infrastructure management approach while working around
+          provider limitations. Alternative solutions like GitHub integration would require exposing repository access to AWS and managing
+          webhook configurations. The current AWS CLI approach keeps deployment control within the same tool managing infrastructure state
+          and configuration.
         </p>
       </div>
     </section>
@@ -366,9 +366,9 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
 
       <div class="description">
         <p>
-          The monitoring approach prioritizes AWS-native tools to avoid introducing additional dependencies or complex observability stacks
-          for a static website. Third-party monitoring solutions like Datadog or New Relic would introduce unnecessary complexity and cost
-          for the limited monitoring requirements of a personal website with predictable traffic patterns.
+          The monitoring approach uses AWS-native tools to avoid introducing additional dependencies or complex observability stacks for a
+          static website. Third-party monitoring solutions like Datadog or New Relic would introduce unnecessary complexity and cost for the
+          limited monitoring requirements of a personal website with predictable traffic patterns.
         </p>
 
         <p>
