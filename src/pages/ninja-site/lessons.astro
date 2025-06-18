@@ -3,96 +3,283 @@ import BaseHead from '~/components/base-head.astro';
 import Structure from '~/layouts/structure.astro';
 import { unwrap } from '~/unwrap.util';
 
-const description = unwrap``;
+const description = unwrap`Key lessons learned building a modern static website: framework selection
+  principles, infrastructure maintenance strategies, and practical development workflow improvements.`;
 ---
 <Structure>
-  <BaseHead description={description} slot="head" title="Lessons learned" />
+  <BaseHead description={description} slot="head" title="Lessons learned building a modern static website" />
 
   <header class="banner main-header">
     <div class="heading">
       <h1 id="top">Lessons learned</h1>
+      <p>What I discovered building this website</p>
     </div>
+
+    <details>
+      <summary id="related-nav">Related articles</summary>
+
+      <nav aria-labelledby="related-nav">
+        <ul>
+          <li><a href="index.html">Building a modern secure static website</a></li>
+          <li><a href="setup.html">Setup an Astro TypeScript SSG project</a></li>
+          <li><a href="developing.html">Developing with Astro and Web Components</a></li>
+          <li><a href="deploy.html">Deploying SSG websites with Terraform</a></li>
+        </ul>
+      </nav>
+    </details>
   </header>
 
-  <section aria-labelledby="setup">
-    <h2 id="setup">Project setup and structure</h2>
+  <article>
+    <aside>
+      <nav aria-label="Article Navigation">
+        <ul>
+          <li><a href="#setup">Project setup and structure</a></li>
+          <li><a href="#developing">Developing the website</a></li>
+          <li><a href="#deployment">Deployment and infrastructure</a></li>
+          <li><a href="#general">General development principles</a></li>
+        </ul>
+      </nav>
+    </aside>
 
-    <ul class="key-points">
-      <li>
-        <strong>Tool Evaluation Strategy:</strong>
-        Evaluate multiple tools for each function rather than selecting the first viable option. I assessed several
-        <abbr title="Search Engine Optimization">SEO</abbr>, <abbr title="Progressive Web App">PWA</abbr>, and optimization tools before
-        selecting current implementations. Choose tools closest to the framework's ecosystem (like <code>@vite-pwa/astro</code> managed by
-        Vite) over feature-rich but distant alternatives. Manual implementation often proves simpler than configuring complex automation
-        tools for straightforward tasks like SEO tags.
-      </li>
-      <li>
-        <strong>Configuration Format Evolution:</strong>
-        Linting tools frequently change configuration formats - <a href="https://stylelint.io/">Stylelint</a> moved from
-        <abbr title="YAML Ain't Markup Language">YAML</abbr> to <abbr title="JavaScript Object Notation">JSON</abbr> to
-        <abbr title="JavaScript">JS</abbr>, <a href="https://eslint.org/">ESLint</a> added
-        <a href="https://www.typescriptlang.org/">TypeScript</a> support. Many plugins lack TypeScript configuration support and
-        documentation, making proper setup challenging. I remain uncertain about optimal <code>eslint-import-resolver-typescript</code> and
-        <code>eslint-plugin-import-x</code> plugin configuration due to poor documentation and examples.
-      </li>
-      <li>
-        <strong>Infrastructure Maintenance Scheduling:</strong>
-        Run <code>terraform plan</code> quarterly to identify configuration drift before it becomes unmanageable. I learned this from client
-        projects where stable infrastructure required extensive updates before adding new features. Calendar reminders ensure consistent
-        maintenance across all projects and prevent infrastructure technical debt accumulation.
-      </li>
-      <li>
-        <strong>Documentation Organization:</strong>
-        Separate documentation files with cross-linking work better than monolithic README files for complex projects. Scanning document
-        titles provides better overview than maintaining table of contents in single files. Long documentation gets searched but rarely read
-        completely, making focused separate files more effective.
-      </li>
-      <li>
-        <strong>Framework Migration Strategy:</strong>
-        <a href="https://astro.build/">Astro</a> requires React-like thinking patterns despite being different from React, which wasn't
-        immediately obvious. Moving existing code to temporary folders alongside framework templates enables side-by-side comparison during
-        migration. This approach clarifies structural differences and prevents loss of working implementations during framework transitions.
-      </li>
-      <li>
-        <strong>Linting Configuration Approach:</strong>
-        Start with all linting rules enabled by default, then selectively customize based on project conflicts and preferences. This ensures
-        maximum code quality enforcement and automatically enables new rules when upgrading tools, avoiding unknown rule states that require
-        manual review during updates. I recommend more linters, even overlapping ones, to figure out which are most helpful. Adding
-        standards to an existing project is more difficult than lower them. It is easier to relax your rules from strict mode than it is to
-        turn a lax standards project into a strict one. Starting with all rules enabled then customizing based on conflicts and preferences
-        ensures maximum code quality while maintaining development efficiency.
-      </li>
-    </ul>
+    <section aria-labelledby="setup">
+      <h2 id="setup">Project setup and structure</h2>
 
-    <div class="description">
-      <p>
-        Tool evaluation revealed that ecosystem proximity often matters more than feature completeness. <code>@vite-pwa/astro</code>
-        integration proved more reliable than feature-rich alternatives because it's maintained by the Vite team and follows Astro's
-        architectural patterns. Manual SEO tag implementation avoided configuration complexity while providing exactly the needed
-        functionality without unused features. <code>@playform/compress</code> initially seemed comprehensive for optimization but revealed
-        outdated dependencies and incomplete image processing, highlighting the importance of evaluating tool maintenance status during
-        selection.
-      </p>
+      <ul class="key-points">
+        <li>
+          <strong>Tool Evaluation Strategy:</strong>
+          Choose tools closest to the framework’s ecosystem over feature-rich but distant alternatives. <code>@vite-pwa/astro</code> was
+          the most feature-rich <abbr title="Progressive Web App">PWA</abbr> option but chosen because Vite is core to Astro, ensuring
+          long-term support over simpler alternatives like <code>astro-webmanifest</code> or <code>webapp-astro-pwa</code> with maintenance
+          or popularity concerns.
+        </li>
+        <li>
+          <strong>Configuration Format Evolution:</strong>
+          Linting tools have frequently changed configuration formats; both <a href="https://stylelint.io/">Stylelint</a> and
+          <a href="https://eslint.org/">ESLint</a> evolved from <abbr title="JavaScript Object Notation">JSON</abbr> to
+          <abbr title="JavaScript">JS</abbr> and will hopefully include <a href="https://www.typescriptlang.org/">TypeScript</a> soon.
+          TypeScript configurations avoid mixing JavaScript files and provide better editor support, though many plugins still lack
+          TypeScript support and documentation.
+        </li>
+        <li>
+          <strong>Linting Configuration Approach:</strong>
+          Start with all linting rules enabled by default, then selectively customize based on project conflicts and preferences. Adding
+          standards to an existing project is more difficult than lowering them. Starting with strict rules then customizing ensures maximum
+          code quality while maintaining development efficiency.
+        </li>
+        <li>
+          <strong>Shareable Configuration Management:</strong>
+          Maintaining multiple copies of linter configurations across personal and professional projects becomes unsustainable as tools
+          evolve. Implementing shareable configurations eliminates duplication and centralizes maintenance; a future project to research
+          and implement now that configurations are code-based rather than JSON.
+        </li>
+        <li>
+          <strong>Documentation Organization:</strong>
+          Separate documentation files with cross-linking work better than monolithic README files for complex projects. Scanning document
+          filenames provides better overview than maintaining table of contents in single files.
+        </li>
+        <li>
+          <strong>Framework Migration Strategy:</strong>
+          <a href="https://astro.build/">Astro</a> requires React-like thinking patterns despite being different from React. Moving existing
+          code to temporary folders alongside framework templates enables side-by-side comparison during migration, clarifying structural
+          differences and preventing loss of working implementations.
+        </li>
+      </ul>
 
-      <p>
-        Configuration format changes in linting tools create ongoing maintenance overhead, particularly when plugin ecosystems lag behind
-        core tool updates. TypeScript configuration support varies significantly across plugins, with some providing excellent type safety
-        while others require guesswork and trial-and-error configuration approaches. This inconsistency makes plugin evaluation more
-        time-consuming but essential for long-term maintainability.
-      </p>
+      <div class="description">
+        <p>
+          Tool evaluation revealed that ecosystem proximity often matters more than feature completeness. <code>@vite-pwa/astro</code>
+          integration was selected because it’s maintained by the Vite which is core to Astro’s architectural patterns. Manual
+          <abbr title="Search Engine Optimization">SEO</abbr> tag implementation avoided configuration complexity while providing exactly
+          the needed functionality without unused features.
+        </p>
 
-      <p>
-        Infrastructure maintenance scheduling prevents the accumulation of technical debt that makes routine changes difficult. Quarterly
-        Terraform planning catches provider updates, deprecated resources, and configuration drift before they compound into major upgrade
-        projects. This proactive approach saves significant time compared to reactive infrastructure updates when urgent changes are needed.
-      </p>
+        <p>
+          Configuration format changes in linting tools create ongoing maintenance overhead, particularly when plugin ecosystems lag behind
+          core tool updates. TypeScript configuration support varies significantly across plugins, with some providing excellent type safety
+          while others require guesswork and trial-and-error configuration approaches. This inconsistency makes plugin evaluation more
+          time-consuming but essential for long-term maintainability.
+        </p>
 
-      <p>
-        Documentation structure affects both discoverability and maintenance overhead. Single large files become difficult to navigate and
-        update, while well-organized separate files with clear naming conventions improve both developer experience and documentation
-        maintenance. Cross-linking between related documents helps readers understand relationships without requiring comprehensive reading
-        of all documentation.
-      </p>
-    </div>
-  </section>
+        <p>
+          Managing configurations across multiple projects highlighted the need for shareable configurations. With linting configurations
+          now code-based rather than JSON, implementing shareable configurations should leverage familiar programming concepts for easier
+          maintenance and distribution.
+        </p>
+
+        <p>
+          Documentation structure affects both discoverability and maintenance overhead. Single large files become difficult to navigate and
+          update, while well-organized separate files with clear naming conventions improve both developer experience and documentation
+          maintenance.
+        </p>
+      </div>
+
+      <p class="deep-dive"><a href="setup.html">Go into detail about setting up this website.</a></p>
+    </section>
+
+    <section aria-labelledby="developing">
+      <h2 id="developing">Developing the website</h2>
+
+      <ul class="key-points">
+        <li>
+          <strong>Framework Selection Process:</strong>
+          Learning to identify the correct tool for specific requirements rather than defaulting to popular choices.
+          <a href="https://astro.build/">Astro</a> and Custom Elements were chosen together for static sites with minimal interactivity,
+          providing sufficient functionality without framework overhead designed for complex application state management.
+        </li>
+        <li>
+          <strong>Documentation Priority:</strong>
+          Writing flexible code requires documenting the “why” for future maintainability. Code will inevitably have different requirements
+          and additional interconnections, so documenting reasoning and writing automated tests ensures stability and prevents difficult
+          future changes.
+        </li>
+        <li>
+          <strong>Security vs Performance Trade-offs:</strong>
+          Default to security when faced with genuine trade-offs, trusting that performance improvements occur over time while security
+          typically degrades without active maintenance. Pursue both when possible, accepting trade-offs only when genuine conflicts exist.
+        </li>
+        <li>
+          <strong><abbr title="Cascading Style Sheets">CSS</abbr> Framework Concerns:</strong>
+          Styling frameworks like <a href="https://getbootstrap.com/">Bootstrap</a> and
+          <a href="https://tailwindcss.com/" title="Tailwind CSS">Tailwind</a> can prevent developers from understanding CSS fundamentals
+          and cascade behavior. Too many web developers try to avoid writing CSS rather than embracing the cascade and understanding
+          encapsulation patterns.
+        </li>
+        <li>
+          <strong>Developer Skill Gaps:</strong>
+          The separation between developers who avoid CSS and designers who avoid code creates problematic gaps. More developers should
+          understand design implementation, and more designers should understand CSS and componentization principles.
+        </li>
+      </ul>
+
+      <div class="description">
+        <p>
+          <abbr title="Single Page Application">SPAs</abbr> aren’t ideal for public websites meant to be indexed by search engines. Adding
+          <abbr title="Server-Side Rendering">SSR</abbr> to facilitate both performance and non-JavaScript web crawlers is generally a
+          heavy task. Next.js with React or Angular are beasts that should be used in appropriately complex systems where they are
+          required, not as default choices for simple sites.
+        </p>
+
+        <p>
+          Documentation is critical for all projects: solo ones because you cannot remember everything anymore, and team ones because team
+          members will change and the scope will be so wide that no one developer can keep it all in their head. It boils down to the same
+          thing: you cannot know everything. Documenting the reasoning behind technical decisions enables confident modifications when
+          requirements change or new features are needed.
+        </p>
+
+        <p>
+          Security-first decision making proved valuable because performance optimizations continue improving through tool updates and
+          hardware advancement, while security posture tends to degrade over time without active maintenance. The PWA implementation
+          exemplified pursuing both objectives without compromise.
+        </p>
+
+        <p>
+          Styling framework concerns reflect a broader issue where developers avoid learning fundamental web technologies. Understanding CSS
+          cascade behavior and proper encapsulation techniques provides better long-term solutions than utility-based approaches that
+          abstract away the underlying platform. Everyone should be attempting to learn new skills, maintain existing ones, and keep up to
+          date with development trends; not doing so is a recipe for becoming irrelevant.
+        </p>
+      </div>
+
+      <p class="deep-dive"><a href="developing.html">More about the development of this website.</a></p>
+    </section>
+
+    <section aria-labelledby="deployment">
+      <h2 id="deployment">Deployment and infrastructure</h2>
+
+      <ul class="key-points">
+        <li>
+          <strong>Infrastructure as Code Limitations:</strong>
+          Infrastructure providers (<a href="https://aws.amazon.com/" title="Amazon Web Services">AWS</a>,
+          <a href="https://azure.microsoft.com/en-us/" title="Microsoft Azure">Azure</a>, <a href="https://www.docker.com/">Docker</a>,
+          <a href="https://www.cloudflare.com/">Cloudflare</a>) and <abbr title="Infrastructure as Code">IaC</abbr> tools rapidly
+          update. Users are in a race to keep up with both. Bugs need to be documented and filed with the tools. Workarounds also need
+          documentation so projects can progress while adapting when updates open new solution possibilities.
+        </li>
+        <li>
+          <strong>Infrastructure Maintenance Scheduling:</strong>
+          Run <code>terraform plan</code> quarterly to identify configuration drift before it becomes unmanageable. Proactive maintenance
+          prevents infrastructure technical debt accumulation and avoids extensive catch-up scenarios when urgent changes are needed.
+        </li>
+        <li>
+          <strong>Tool Mismatch Recognition:</strong>
+          <a href="https://parceljs.org/">Parcel</a> wasn’t a good fit for my static website, requiring too much customization and fighting
+          against the tool’s priorities. S3/CloudFront limitations for directory index files showed <abbr title="Amazon Web Services"
+          >AWS</abbr> priorities don’t align with basic static file server expectations.
+        </li>
+        <li>
+          <strong>Service Focus Alignment:</strong>
+          Static Site Generation isn’t <a href="https://aws.amazon.com/amplify/" title="AWS Amplify">Amplify</a>’s primary focus, but SPA
+          requirements largely overlap with static website needs, providing reasonable future compatibility. Recognition that tools may not
+          perfectly match use cases but can still be viable solutions.
+        </li>
+      </ul>
+
+      <div class="description">
+        <p>
+          Infrastructure as Code limitations highlight the challenge of managing rapidly evolving cloud services through automation tools.
+          The race between infrastructure providers, IaC tools, and users creates constant maintenance overhead. Documenting bugs and
+          workarounds enables project progress while maintaining the ability to adapt when better solutions become available.
+        </p>
+
+        <p>
+          Infrastructure maintenance scheduling emerged from client projects where stable infrastructure required extensive updates before
+          adding new features. Quarterly <a href="https://developer.hashicorp.com/terraform">Terraform</a> planning catches provider
+          updates, deprecated resources, and configuration drift before they compound into major upgrade projects, saving significant time
+          compared to reactive infrastructure updates.
+        </p>
+
+        <p>
+          Tool selection requires understanding that perfect matches rarely exist. Parcel’s focus on application bundling conflicted with
+          static site requirements, while S3/CloudFront’s enterprise focus doesn’t prioritize basic static file server functionality.
+          Amplify provides adequate functionality despite different primary objectives because SPA and static site requirements
+          substantially overlap.
+        </p>
+      </div>
+
+      <p class="deep-dive"><a href="deploy.html">More details about deploying this website.</a></p>
+    </section>
+
+    <section aria-labelledby="general">
+      <h2 id="general">General development principles</h2>
+
+      <ul class="key-points">
+        <li>
+          <strong>Simplicity Principle:</strong>
+          The correct tool is often the simplest; either to write, test, or maintain. Limited ability to predict future requirements means
+          choosing flexible solutions over feature-rich ones that may not match actual needs.
+        </li>
+        <li>
+          <strong>Flexibility Through Documentation:</strong>
+          True flexibility comes from documenting the “why” behind code decisions so future modifications can be made confidently. Code will
+          inevitably require different requirements and interconnections with new systems.
+        </li>
+        <li>
+          <strong>Feature Addition Restraint:</strong>
+          Don’t add features that aren’t necessary unless trivial to implement. Premature optimization and feature addition create
+          maintenance overhead without providing immediate value.
+        </li>
+        <li>
+          <strong>Predictable Investment Areas:</strong>
+          Some investments reliably pay dividends: comprehensive test coverage, clear documentation, and robust error handling. These areas
+          can be prioritized because they consistently reduce future development friction.
+        </li>
+      </ul>
+
+      <div class="description">
+        <p>
+          The simplicity principle emerged from recognizing that predicting future requirements remains challenging despite experience.
+          Stakeholder and user responses to projects often surprise developers, making flexibility more valuable than feature completeness.
+          Simple solutions typically adapt better to changing requirements than complex ones optimized for specific scenarios.
+        </p>
+
+        <p>
+          Documentation and testing represent reliable investments because code modification requirements are predictable even when specific
+          changes aren’t. Comprehensive test coverage ensures that future changes don’t introduce regressions, while clear documentation
+          enables confident modifications when context has been lost over time.
+        </p>
+      </div>
+
+      <p class="deep-dive"><a href="index.html">Overview of building a modern secure static website.</a></p>
+    </section>
+  </article>
 </Structure>
