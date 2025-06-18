@@ -711,4 +711,11 @@ export default tseslint.config(
       'max-lines': 'off', // HTML files can be long
     },
   },
+  {
+    files: [ 'stylelint.config.mjs' ],
+    rules: {
+      '@typescript-eslint/naming-convention': 'off',
+      'tsdoc/syntax': 'off',
+    },
+  },
 );
