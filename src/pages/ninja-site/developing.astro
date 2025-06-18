@@ -49,13 +49,13 @@ const description = unwrap`Developing with Astro and native Custom Elements for 
       <ul class="key-points">
         <li>
           <strong>Web Components:</strong>
-          Chose native <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements">Custom Elements</a>
+          I chose native <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements">Custom Elements</a>
           over <a href="https://angular.dev/">Angular</a>/<a href="https://react.dev/">React</a>/<a href="https://vuejs.org/">Vue</a>
           because a small amount of code could accomplish the interactive goals without framework overhead.
         </li>
         <li>
           <strong>Career Experience Component:</strong>
-          Implemented <a href="https://github.com/rgant/rob.gant.ninja/tree/main/src/components/career-experience"
+          I implemented <a href="https://github.com/rgant/rob.gant.ninja/tree/main/src/components/career-experience"
           >progressive enhancement</a> that provides static dates in <abbr title="HyperText Markup Language">HTML</abbr> with dynamic
           updates via JavaScript.
         </li>
@@ -83,22 +83,21 @@ const description = unwrap`Developing with Astro and native Custom Elements for 
       <div class="description">
         <p>
           For a static website with minimal interactive requirements, JavaScript frameworks introduce unnecessary complexity and bundle
-          size. Native Custom Elements provide sufficient functionality while keeping the DOM and logic co-located, improving
-          maintainability and reducing the cognitive overhead of managing framework-specific patterns for simple interactions.
+          size. Native Custom Elements work well enough while keeping the DOM and logic co-located, improving maintainability and reducing
+          the cognitive overhead of managing framework-specific patterns for simple interactions.
         </p>
 
         <p>
-          The career experience component demonstrates progressive enhancement by serving static calculation in the initial HTML for
-          non-JavaScript environments while automatically updating to current calculations when JavaScript executes. This approach ensures
-          the content remains functional and informative regardless of JavaScript availability while providing enhanced accuracy when
-          possible.
+          The career experience component uses progressive enhancement by serving static calculation in the initial HTML for non-JavaScript
+          environments while automatically updating to current calculations when JavaScript executes. This approach ensures the content
+          remains functional and informative regardless of JavaScript availability while providing enhanced accuracy when possible.
         </p>
 
         <p>
           The scroll navigation feature existed in the previous <a href="https://parceljs.org/">Parcel</a>-based website using
           <a href="https://jquery.com/">jQuery</a> scroll events. While scroll events weren’t actually problematic for this simple
-          single-page site, migrating to Intersection Observer provided better performance characteristics and aligned with modern web
-          development practices. Typical Intersection Observer implementations for this type of feature watch for heading elements, but mine
+          single-page site, migrating to Intersection Observer provided better performance characteristics and follows current practices.
+          Typical Intersection Observer implementations for this type of feature watch for heading elements, but mine
           triggers on any part of the section content instead.
         </p>
 
@@ -124,7 +123,7 @@ const description = unwrap`Developing with Astro and native Custom Elements for 
         </li>
         <li>
           <strong>Implementation:</strong>
-          Used <a href="https://github.com/vite-pwa/astro">@vite-pwa/astro</a> with separate <a
+          I used <a href="https://github.com/vite-pwa/astro">@vite-pwa/astro</a> with separate <a
             href="https://github.com/rgant/rob.gant.ninja/blob/main/webmanifest.json"
           ><code>webmanifest.json</code></a> to keep static configuration outside build files.
         </li>
@@ -150,16 +149,16 @@ const description = unwrap`Developing with Astro and native Custom Elements for 
 
       <div class="description">
         <p>
-          The decision to implement PWA features stemmed from discovering that many developers consider them essentially free additions when
-          using modern build tools. Since HTML5 Boilerplate had already included a manifest file that went unused, researching PWA
-          implementation revealed minimal effort required for meaningful performance improvements.
+          The decision to implement PWA features came from learning that many developers consider them essentially free additions when using
+          modern build tools. Since HTML5 Boilerplate had already included a manifest file that went unused, researching PWA implementation
+          revealed minimal effort required for meaningful performance improvements.
         </p>
 
         <p>
           Workbox configuration required careful testing of build artifacts to ensure the precache list included necessary resources while
           excluding unnecessary ones. The <a href="https://github.com/vite-pwa/astro/tree/main/examples">vite-pwa examples</a> demonstrate
-          practically every available option but lack clear explanations of individual option purposes, necessitating cross-referencing
-          multiple documentation sources to understand the configuration impact.
+          practically every available option but lack clear explanations of individual option purposes, requiring me to check multiple
+          documentation sources to understand the configuration impact.
         </p>
 
         <p>
@@ -335,9 +334,9 @@ const description = unwrap`Developing with Astro and native Custom Elements for 
 
       <div class="description">
         <p>
-          The framework selection process demonstrates the importance of matching tools to specific requirements rather than defaulting to
-          popular choices. For a static site with minimal interactivity, Custom Elements provide sufficient functionality without the
-          overhead and complexity of larger frameworks designed for complex application state management.
+          The framework selection process shows why of matching tools to specific requirements rather than defaulting to popular choices.
+          For a static site with minimal interactivity, Custom Elements works well enough without the overhead and complexity of larger
+          frameworks designed for complex application state management.
         </p>
 
         <p>
@@ -349,7 +348,7 @@ const description = unwrap`Developing with Astro and native Custom Elements for 
 
         <p>
           When genuine conflicts between security and performance requirements don’t exist, pursuing both objectives simultaneously produces
-          superior outcomes. The PWA implementation exemplifies this approach by providing both security benefits through manifest
+          superior outcomes. The PWA implementation demonstrates this approach by providing both security benefits through manifest
           configuration and performance improvements through resource precaching without compromising either objective.
         </p>
       </div>
