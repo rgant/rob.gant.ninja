@@ -84,7 +84,7 @@ const description = unwrap`Developing with Astro and native Custom Elements for 
         <p>
           For a static website with minimal interactive requirements, JavaScript frameworks introduce unnecessary complexity and bundle
           size. Native Custom Elements work well enough while keeping the DOM and logic co-located, improving maintainability and reducing
-          the cognitive overhead of managing framework-specific patterns for simple interactions.
+          the complexity of managing framework-specific patterns for simple interactions.
         </p>
 
         <p>
@@ -151,7 +151,7 @@ const description = unwrap`Developing with Astro and native Custom Elements for 
         <p>
           The decision to implement PWA features came from learning that many developers consider them essentially free additions when using
           modern build tools. Since HTML5 Boilerplate had already included a manifest file that went unused, researching PWA implementation
-          revealed minimal effort required for meaningful performance improvements.
+          revealed minimal effort required for performance improvements.
         </p>
 
         <p>
@@ -203,14 +203,13 @@ const description = unwrap`Developing with Astro and native Custom Elements for 
 
       <div class="description">
         <p>
-          The CSP implementation was motivated by automated security analysis tool recommendations and the Angular framework’s recent
-          addition of easier CSP integration features. Rather than implementing relaxed rules that provide minimal security benefits, the
-          strict approach with SRI hashes provides meaningful protection against code injection attacks, even for static sites with limited
-          server-side functionality.
+          Security analysis tools and Angular’s improved support motivated the CSP implementation. Rather than implementing relaxed rules
+          that provide minimal security benefits, the strict approach with SRI hashes provides meaningful protection against code injection
+          attacks, even for static sites with limited server-side functionality.
         </p>
 
         <p>
-          SRI hash integration presented the primary technical challenge, specifically how to inject dynamically generated hashes into
+          SRI hash integration was the primary technical challenge, specifically how to inject dynamically generated hashes into
           <abbr title="HyperText Transfer Protocol">HTTP</abbr> response headers managed by <a href="https://aws.amazon.com/amplify/"
           >AWS Amplify</a>. The @kindspells/astro-shield tool handles hash computation effectively, but requires custom scripting to
           export hashes in <abbr title="JavaScript Object Notation">JSON</abbr> format for
@@ -278,7 +277,7 @@ const description = unwrap`Developing with Astro and native Custom Elements for 
         </li>
         <li>
           <strong>Development Server:</strong>
-          Vite-powered development server provides exceptional hot reload performance and developer experience improvements.
+          Vite-powered development server provides fast hot reload and developer experience improvements.
         </li>
         <li>
           <strong>Astro Islands Limitation:</strong>
@@ -295,9 +294,9 @@ const description = unwrap`Developing with Astro and native Custom Elements for 
         </p>
 
         <p>
-          The Vite development server provides significantly better performance than previous build tool experiences, explaining why
-          frameworks like Angular are migrating to Vite-based development servers. The hot reload functionality works reliably with the
-          TypeScript and Custom Elements combination without requiring special configuration.
+          The Vite development server provides better performance than previous build tool experiences, explaining why frameworks like
+          Angular are migrating to Vite-based development servers. The hot reload functionality works reliably with the TypeScript and
+          Custom Elements combination without requiring special configuration.
         </p>
 
         <p>

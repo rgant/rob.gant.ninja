@@ -79,7 +79,7 @@ const description = unwrap`Setting up an Astro TypeScript static site generator 
         </p>
 
         <p>
-          Editor setup improves development efficiency. Prioritize linter integration for code quality, LSP for type checking and
+          Editor setup improves developer efficiency. Prioritize linter integration for code quality, LSP for type checking and
           autocomplete, and formatters for consistency. While automatic formatting helps maintain consistency, manual formatting control
           often produces cleaner results.
         </p>
@@ -111,7 +111,7 @@ const description = unwrap`Setting up an Astro TypeScript static site generator 
 
       <div class="description">
         <p>
-          Dependency locking prevents unexpected version changes that can break builds or introduce inconsistencies between team members.
+          Lock dependencies to prevent unexpected version changes that can break builds or introduce inconsistencies between team members.
           For web applications or sites, I categorize dependencies as production (necessary for building the website) versus development
           (linters, compilers, and development tools). Development dependencies can accept more frequent updates in version range specifiers
           since they don’t affect the final build output.
@@ -120,8 +120,8 @@ const description = unwrap`Setting up an Astro TypeScript static site generator 
         <p>
           Regular dependency updates should be routine rather than intimidating when combined with strict code quality enforcement and
           automated testing that catch regressions early. Cross-platform compatibility awareness helps avoid deployment surprises,
-          particularly between Unix-like development environments and different production platforms. Version range management requires
-          balancing stability with security updates, especially for development tools that change rapidly.
+          particularly between Unix-like development environments and different production platforms. You must balance version range
+          stability with security updates, especially for development tools that change rapidly.
         </p>
 
         <p>
@@ -160,8 +160,8 @@ const description = unwrap`Setting up an Astro TypeScript static site generator 
         </p>
 
         <p>
-          Starting with Astro’s blog template and strict <a href="https://www.typescriptlang.org/">TypeScript</a> configuration provided
-          essential configurations for TypeScript, build processes, and development server setup that accelerated initial project setup.
+          Starting with Astro's blog template and a strict <a href="https://www.typescriptlang.org/">TypeScript</a> configuration, which
+          included settings for build processes and development server setup, sped up development.
         </p>
       </div>
     </section>
@@ -211,9 +211,9 @@ const description = unwrap`Setting up an Astro TypeScript static site generator 
         <p>
           Strict configurations were carefully researched to incorporate established best practices and recently maintained plugins. The
           research process involved examining multiple configuration examples, plugin documentation, and community discussions to understand
-          the implications of different rule sets. Configuration conflicts between tools required careful resolution to maintain both code
-          quality and development efficiency. Some plugins required custom configuration due to project-specific requirements or
-          compatibility issues with other tools in the development stack.
+          the implications of different rule sets. I resolved configuration conflicts between tools to keep both code quality and
+          development efficiency. Some plugins required custom configuration due to project-specific requirements or compatibility issues
+          with other tools in the development stack.
         </p>
       </div>
     </section>
@@ -279,10 +279,10 @@ const description = unwrap`Setting up an Astro TypeScript static site generator 
 
       <div class="description">
         <p>
-          Environment variable management required research to determine appropriate patterns for both Terraform and Astro configurations.
-          The <code>.auto.tfvars.example</code> pattern provides template guidance while maintaining security by excluding actual values
-          from version control. Terraform automatically includes <code>.auto.tfvars</code> file when running commands, making this a
-          convenient pattern for local configuration.
+          I researched environment variable management to determine appropriate patterns for both Terraform and Astro configurations. The
+          <code>.auto.tfvars.example</code> pattern provides template guidance while maintaining security by excluding actual values from
+          version control. Terraform automatically includes <code>.auto.tfvars</code> file when running commands, making this a convenient
+          pattern for local configuration.
         </p>
 
         <p>
@@ -332,16 +332,16 @@ const description = unwrap`Setting up an Astro TypeScript static site generator 
 
       <div class="description">
         <p>
-          Development environment management could benefit from more comprehensive tooling like devenv.sh, though such changes require
-          careful consideration of workflow disruption versus benefits. Similarly, automated formatting through lint-staged could reduce
-          manual formatting effort while maintaining code consistency.
+          Development environment management could benefit from more better tools like devenv.sh, though such changes require considering
+          workflow changes versus benefits. Similarly, automated formatting through lint-staged could reduce manual formatting effort while
+          maintaining code consistency.
         </p>
 
         <p>
           The current build optimization stack has maintenance challenges with outdated dependencies like csso and html-minifier-terser.
           Finding modern replacements that handle CSS background-image optimization and reliable HTML minification would eliminate these
-          technical debt concerns. html-minifier-next appears to primarily offer updated dependencies rather than substantial feature
-          improvements.
+          technical debt concerns. html-minifier-next appears to primarily offer updated dependencies rather than feature improvements, so
+          far.
         </p>
 
         <p>

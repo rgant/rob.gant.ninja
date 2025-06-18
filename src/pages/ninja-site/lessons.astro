@@ -89,17 +89,17 @@ const description = unwrap`Key lessons learned building a modern static website:
 
       <div class="description">
         <p>
-          Tool evaluation revealed that ecosystem proximity often matters more than feature completeness. @vite-pwa/astro integration was
-          selected because it’s maintained by the Vite which is core to Astro’s architectural patterns. Manual
+          I found during tool evaluation that ecosystem proximity often matters more than features. @vite-pwa/astro integration was selected
+          because it’s maintained by the Vite which is core to Astro’s architectural patterns. Manual
           <abbr title="Search Engine Optimization">SEO</abbr> tag implementation avoided configuration complexity while providing exactly
           the needed functionality without unused features.
         </p>
 
         <p>
-          Configuration format changes in linting tools create ongoing maintenance overhead, particularly when plugin ecosystems lag behind
-          core tool updates. TypeScript configuration support varies significantly across plugins, with some providing excellent type safety
+          Configuration format changes in linting tools require ongoing maintenance, particularly when plugin ecosystems lag behind core
+          tool updates. TypeScript configuration support varies significantly across plugins, with some providing excellent type safety
           while others require guesswork and trial-and-error configuration approaches. This inconsistency makes plugin evaluation more
-          time-consuming but essential for long-term maintainability.
+          time-consuming but necessary for maintenance.
         </p>
 
         <p>
@@ -162,10 +162,10 @@ const description = unwrap`Key lessons learned building a modern static website:
         </p>
 
         <p>
-          Documentation is critical for all projects: solo ones because you cannot remember everything anymore, and team ones because team
-          members will change and the scope will be so wide that no one developer can keep it all in their head. It boils down to the same
-          thing: you cannot know everything. Documenting the reasoning behind technical decisions enables confident modifications when
-          requirements change or new features are needed.
+          Documentation purpose, reasoning, and decision making for all projects: solo ones because you cannot remember everything anymore,
+          and team ones because team members will change and the scope will be so wide that no one developer can keep it all in their head.
+          It boils down to the same thing: you cannot know everything. Documenting the reasoning behind technical decisions enables
+          confident modifications when requirements change or new features are needed.
         </p>
 
         <p>
@@ -224,8 +224,8 @@ const description = unwrap`Key lessons learned building a modern static website:
         </p>
 
         <p>
-          Infrastructure maintenance scheduling emerged from client projects where stable infrastructure required extensive updates before
-          adding new features. Quarterly <a href="https://developer.hashicorp.com/terraform">Terraform</a> planning catches provider
+          I started scheduling infrastructure maintenance after client projects where stable infrastructure required extensive updates
+          before adding new features. Quarterly <a href="https://developer.hashicorp.com/terraform">Terraform</a> planning catches provider
           updates, deprecated resources, and configuration drift before they compound into major upgrade projects, saving significant time
           compared to reactive infrastructure updates.
         </p>
@@ -233,8 +233,7 @@ const description = unwrap`Key lessons learned building a modern static website:
         <p>
           Tool selection requires understanding that perfect matches rarely exist. Parcel’s focus on application bundling conflicted with
           static site requirements, while S3/CloudFront’s enterprise focus doesn’t prioritize basic static file server functionality.
-          Amplify provides adequate functionality despite different primary objectives because SPA and static site requirements
-          substantially overlap.
+          Amplify provides adequate functionality despite different primary objectives because SPA and static site requirements overlap.
         </p>
       </div>
 
@@ -269,7 +268,7 @@ const description = unwrap`Key lessons learned building a modern static website:
 
       <div class="description">
         <p>
-          The simplicity principle emerged from recognizing that predicting future requirements remains challenging despite experience.
+          The simplicity principle came from recognizing that predicting future requirements remains challenging despite experience.
           Stakeholder and user responses to projects often surprise developers, making flexibility more valuable than feature completeness.
           Simple solutions typically adapt better to changing requirements than complex ones optimized for specific scenarios.
         </p>

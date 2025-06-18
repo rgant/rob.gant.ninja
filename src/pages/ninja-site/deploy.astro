@@ -63,7 +63,7 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
           <strong>AWS Amplify:</strong>
           Supports per-directory <code>index.html</code> files with integrated <abbr title="Secure Sockets Layer">SSL</abbr> certificate
           management, custom <abbr title="HyperText Transfer Protocol">HTTP</abbr> response headers, and CloudFront. I chose this solution
-          for its comprehensive static hosting capabilities.
+          for its static hosting capabilities.
         </li>
         <li>
           <strong>Migration Strategy:</strong>
@@ -82,7 +82,7 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
             href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/example_cloudfront_functions_url_rewrite_single_page_apps_section.html"
           >add <code>index.html</code> to the origin request <abbr title="Uniform Resource Identifier">URI</abbr></a>, but this approach
           would require maintaining custom CloudFront Functions while <a href="https://aws.amazon.com/" title="Amazon Web Services">AWS</a>
-          continues expanding Amplify’s comprehensive static hosting capabilities.
+          continues expanding Amplify’s static hosting features.
         </p>
 
         <p>
@@ -158,7 +158,7 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
         </p>
 
         <p>
-          Custom headers, including Content Security Policy with SRI hashes, are implemented using Terraform’s <code>templatefile</code>
+          I implemented custom headers, including Content Security Policy with SRI hashes, using Terraform’s <code>templatefile</code>
           function to insert dynamic values into a <abbr title="YAML Ain’t Markup Language">YAML</abbr> configuration. This allows the
           security headers to be updated with each deployment while keeping the configuration declarative and version-controlled. As part of
           the build process, Astro exports the integrity hashes as a <a href="https://www.typescriptlang.org/">TypeScript</a> file. Since
@@ -200,8 +200,8 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
       <div class="description">
         <p>
           Working with AWS Amplify through Terraform presented several challenges, primarily stemming from Amplify’s rapid feature evolution
-          outpacing the Terraform provider’s capabilities. Domain provisioning was particularly problematic during initial setup and testing
-          phases. Multiple deletion and recreation cycles were required before successful domain association, suggesting race conditions or
+          outpacing the Terraform provider’s capabilities. Domain provisioning failed repeatedly during initial setup and testing phases.
+          Multiple deletion and recreation cycles were required before successful domain association, suggesting race conditions or
           incomplete state synchronization within Amplify’s domain verification process.
         </p>
 
@@ -215,9 +215,8 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
 
         <p>
           Manual deployment triggering through Terraform keeps consistent with the infrastructure management approach while working around
-          provider limitations. Alternative solutions like GitHub integration would require exposing repository access to AWS and managing
-          webhook configurations. The current AWS CLI approach keeps deployment control within the same tool managing infrastructure state
-          and configuration.
+          provider limitations. GitHub integration requires an additional tool in the process and managing webhook configurations. The
+          current AWS CLI approach keeps deployment control within the same tool managing infrastructure state and configuration.
         </p>
       </div>
     </section>
@@ -258,8 +257,8 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
         </p>
 
         <p>
-          The security boundary benefits outweigh minimal performance costs, especially since the target audience values security over
-          microsecond load time improvements. Future iterations may explore selective inlining for non-executable resources.
+          Security benefits outweigh minimal performance costs. Future iterations may explore selective inlining for non-executable
+          resources.
         </p>
 
         <p>
@@ -327,8 +326,8 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
 
         <p>
           The AWS CLI workaround for deployment triggers emerged from Terraform’s lack of deployment resource support. Alternative
-          approaches like GitHub webhooks or CodePipeline would introduce external dependencies or additional AWS services. The current
-          approach keeps the deployment process contained within the existing Terraform workflow.
+          approaches like GitHub webhooks or CodePipeline would introduce external dependencies or additional AWS services. This approach
+          keeps the deployment process contained within the existing Terraform workflow.
         </p>
 
         <p>
