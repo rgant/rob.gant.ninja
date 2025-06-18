@@ -43,7 +43,6 @@
     "@stylistic/eslint-plugin": "^4.4.1",
     "@stylistic/stylelint-config": "^2.0.0",
     "@stylistic/stylelint-plugin": "^3.1.2",
-    "@types/stylelint": "^13.13.3",
     "astro-eslint-parser": "^1.2.2",
     "eslint": "^9.29.0",
     "eslint_d": "^14.3.0",
