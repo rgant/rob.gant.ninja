@@ -74,8 +74,8 @@ const description = unwrap`How I built this site with Astro SSG, Terraform, AWS,
       <div class="description">
         <p>
           Static Site Generation requires tools purpose-built for that workflow rather than general bundlers adapted for static output.
-          Astro’s zero-JS-by-default approach and TypeScript-native architecture provide better performance and developer experience than
-          configuring general-purpose tools.
+          Astro’s zero-JS-by-default approach and <a href="https://www.typescriptlang.org/">TypeScript</a>-native architecture provide
+          better performance and developer experience than configuring general-purpose tools.
         </p>
 
         <p>
@@ -150,19 +150,20 @@ const description = unwrap`How I built this site with Astro SSG, Terraform, AWS,
         </li>
         <li>
           <strong>Progressive Web App:</strong>
-          Integrated <a href="https://github.com/vite-pwa/astro"><code>@vite-pwa/astro</code></a> to enhance <a
+          Integrated <a href="https://github.com/vite-pwa/astro">@vite-pwa/astro</a> to enhance <a
             href="https://github.com/rgant/rob.gant.ninja/blob/5beb0b79635843a838fda30127aaa908518baf41/astro.config.ts#L10-L27"
           >performance and offline capabilities</a> for the static site.
         </li>
         <li>
           <strong>Content Security Policy:</strong>
-          Utilized <a href="https://github.com/kindspells/astro-shield"><code>@kindspells/astro-shield</code></a> to generate
-          <abbr title="Subresource Integrity">SRI</abbr> hashes and integrated them into <abbr title="Amazon Web Services">AWS</abbr>
-          Amplify deployment.
+          Utilized <a href="https://github.com/kindspells/astro-shield">@kindspells/astro-shield</a> to generate
+          <abbr title="Subresource Integrity">SRI</abbr> hashes and integrated them into <a href="https://aws.amazon.com/amplify/"
+          >Amplify</a> deployment.
         </li>
         <li>
           <strong>Editor Integration:</strong>
-          Configured Sublime Text with appropriate linting and <abbr title="Language Server Protocol">LSP</abbr>
+          Configured <a href="https://www.sublimetext.com/">Sublime Text</a> with appropriate linting and
+          <abbr title="Language Server Protocol">LSP</abbr>
           <a href="https://github.com/rgant/homedir/tree/main/Library/Application-Support/Sublime-Text-3/Packages/User">packages</a> to
           enforce code quality during development.
         </li>
@@ -170,15 +171,17 @@ const description = unwrap`How I built this site with Astro SSG, Terraform, AWS,
 
       <div class="description">
         <p>
-          Rather than relying on JavaScript frameworks, the site uses native Custom Elements for interactive features. This approach
-          provides progressive enhancement with minimal JavaScript footprint while enabling modern functionality like scroll tracking for
-          navigation highlights and dynamic content updates.
+          Rather than relying on JavaScript frameworks, the site uses native <a
+            href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements"
+          >Custom Elements</a> for interactive features. This approach provides progressive enhancement with minimal JavaScript footprint
+          while enabling modern functionality like scroll tracking for navigation highlights and dynamic content updates.
         </p>
 
         <p>
-          <abbr title="Progressive Web App">PWA</abbr> features were implemented because Vite and Workbox integration with Astro made them
-          essentially free to add. <abbr title="Content Security Policy">CSP</abbr> with SRI hashes was prioritized despite poor tooling
-          because security remains important even for small websites.
+          <abbr title="Progressive Web App">PWA</abbr> features were implemented because <a href="https://vite.dev/">Vite</a> and
+          <a href="https://github.com/GoogleChrome/workbox">Workbox</a> integration with Astro made them essentially free to add.
+          <abbr title="Content Security Policy">CSP</abbr> with SRI hashes was prioritized despite poor tooling because security remains
+          important even for small websites.
         </p>
 
         <p>
@@ -196,8 +199,11 @@ const description = unwrap`How I built this site with Astro SSG, Terraform, AWS,
       <ul class="key-points">
         <li>
           <strong>AWS Amplify:</strong>
-          Migrated from S3/CloudFront to Amplify for better support of directory index files and simplified
-          <abbr title="Secure Sockets Layer">SSL</abbr> management.
+          Migrated from <a href="https://aws.amazon.com/s3/" title="AWS S3">S3</a>/<a
+            href="https://aws.amazon.com/cloudfront/"
+            title="AWS CloudFront"
+          >CloudFront</a> to Amplify for better support of directory index files and simplified <abbr title="Secure Sockets Layer"
+          >SSL</abbr> management.
         </li>
         <li>
           <strong>Terraform:</strong>
@@ -211,15 +217,16 @@ const description = unwrap`How I built this site with Astro SSG, Terraform, AWS,
         </li>
         <li>
           <strong>Security Best Practices:</strong>
-          Implemented AWS security recommendations, locked down S3 bucket access, and integrated Content Security Policy with SRI hashes.
+          Implemented <a href="https://aws.amazon.com/" title="Amazon Web Services">AWS</a> security recommendations, locked down S3 bucket
+          access, and integrated Content Security Policy with SRI hashes.
         </li>
       </ul>
 
       <div class="description">
         <p>
-          The site was migrated from S3/CloudFront to AWS Amplify to better support directory-level <code>index.html</code> files without
-          compromising on SSL or performance. Despite some limitations in Terraform’s support for Amplify and challenges with custom
-          configurations, the service provides an effective hosting solution for static sites.
+          The site was migrated from S3/CloudFront to <abbr title="Amazon Web Services">AWS</abbr> Amplify to better support directory-level
+          <code>index.html</code> files without compromising on SSL or performance. Despite some limitations in Terraform’s support for
+          Amplify and challenges with custom configurations, the service provides an effective hosting solution for static sites.
         </p>
 
         <p>
@@ -259,9 +266,8 @@ const description = unwrap`How I built this site with Astro SSG, Terraform, AWS,
           Keeping up with ESLint and Stylelint configuration format changes while using third-party plugins requires additional effort.
         </li>
         <li>
-          <strong><abbr title="Progressive Web App">PWA</abbr> Knowledge Gaps:</strong>
-          Deeper understanding of <a href="https://github.com/GoogleChrome/workbox">Workbox</a> is necessary for optimal Progressive Web App
-          configuration and troubleshooting.
+          <strong>PWA Knowledge Gaps:</strong>
+          Deeper understanding of Workbox is necessary for optimal Progressive Web App configuration and troubleshooting.
         </li>
       </ul>
 
@@ -288,7 +294,7 @@ const description = unwrap`How I built this site with Astro SSG, Terraform, AWS,
 
       <ol>
         <li>
-          Add SRI hashes to <abbr title="Content Security Policy">CSP</abbr> headers. Don’t inline resources for better security.
+          Add SRI hashes to CSP headers. Don’t inline resources for better security.
           <a href="https://github.com/rgant/rob.gant.ninja/compare/03bfbd1..c888b04#diff-somehashvalue">changes</a>
           <time datetime="2025-03-03 15:29:41 -0500">3/3/2025, 3:29:41 PM</time>
         </li>

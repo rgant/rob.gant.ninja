@@ -50,13 +50,13 @@ const description = unwrap`Setting up an Astro TypeScript static site generator 
       <ul class="key-points">
         <li>
           <strong>Language Version Management:</strong>
-          I recommend <a href="https://github.com/nvm-sh/nvm"><code>nvm</code></a> for <a href="https://nodejs.org/en">Node.js</a> version
-          management when working across multiple projects with different requirements.
+          I recommend <a href="https://github.com/nvm-sh/nvm" title="Node Version Manager">nvm</a> for
+          <a href="https://nodejs.org/en">Node.js</a> version management when working across multiple projects with different requirements.
         </li>
         <li>
           <strong>Package Manager Choice:</strong>
-          <a href="https://www.npmjs.com/"><code>npm</code></a> provides sufficient functionality as the default Node.js package manager,
-          with <a href="https://github.com/nodejs/corepack"><code>Corepack</code></a> enabling cross-project compatibility.
+          <a href="https://www.npmjs.com/" title="Node Package Manager">npm</a> provides sufficient functionality as the default Node.js
+          package manager, with <a href="https://github.com/nodejs/corepack">Corepack</a> enabling cross-project compatibility.
         </li>
         <li>
           <strong>Editor Configuration:</strong>
@@ -71,11 +71,11 @@ const description = unwrap`Setting up an Astro TypeScript static site generator 
 
       <div class="description">
         <p>
-          Language version management tools like <code>nvm</code> are essential when working across multiple projects with different version
-          requirements. I use <code>npm</code> because it’s the default package manager that comes with Node.js, though other package
-          managers work equally well. <code>Corepack</code> ensures access to the appropriate package manager for each codebase regardless
-          of personal preference. Although npm will not include <code>Corepack</code> by default, it will remain available as a separate
-          installation for cross-project package manager compatibility.
+          Language version management tools like <abbr title="Node Version Manager">nvm</abbr> are essential when working across multiple
+          projects with different version requirements. I use <abbr title="Node Package Manager">npm</abbr> because it’s the default package
+          manager that comes with Node.js, though other package managers work equally well. Corepack ensures access to the appropriate
+          package manager for each codebase regardless of personal preference. Although npm will not include Corepack by default, it will
+          remain available as a separate installation for cross-project package manager compatibility.
         </p>
 
         <p>
@@ -137,7 +137,7 @@ const description = unwrap`Setting up an Astro TypeScript static site generator 
       <ul class="key-points">
         <li>
           <strong>Build Framework Migration:</strong>
-          I replaced <a href="https://parceljs.org/">Parcel</a> with Astro to leverage its
+          I replaced <a href="https://parceljs.org/">Parcel</a> with <a href="https://astro.build/">Astro</a> to leverage its
           <abbr title="Static Site Generation">SSG</abbr>-focused architecture and optimizations.
         </li>
         <li>
@@ -172,17 +172,17 @@ const description = unwrap`Setting up an Astro TypeScript static site generator 
       <ul class="key-points">
         <li>
           <strong>Security:</strong>
-          I implemented <a href="https://github.com/kindspells/astro-shield"><code>@kindspells/astro-shield</code></a> for
+          I implemented <a href="https://github.com/kindspells/astro-shield">@kindspells/astro-shield</a> for
           <abbr title="Subresource Integrity">SRI</abbr> hash generation in <abbr title="Content Security Policy">CSP</abbr> headers.
         </li>
         <li>
           <strong>Optimizations:</strong>
-          I use <a href="https://github.com/playform/compress"><code>@playform/compress</code></a> for asset minification, although it has
+          I use <a href="https://github.com/playform/compress">@playform/compress</a> for asset minification, although it has
           outdated dependencies requiring workarounds.
         </li>
         <li>
           <strong>Performance:</strong>
-          I integrated <a href="https://github.com/vite-pwa/astro"><code>@vite-pwa/astro</code></a> for resource precaching and offline
+          I integrated <a href="https://github.com/vite-pwa/astro">@vite-pwa/astro</a> for resource precaching and offline
           capabilities.
         </li>
         <li>
@@ -195,15 +195,15 @@ const description = unwrap`Setting up an Astro TypeScript static site generator 
 
       <div class="description">
         <p>
-          I prioritized security then performance because they are vital requirements for modern web projects.
-          <code>@kindspells/astro-shield</code> provides essential security headers with SRI hashes, while <code>@vite-pwa/astro</code>
-          delivers performance benefits through resource precaching that benefit even static sites.
+          I prioritized security then performance because they are vital requirements for modern web projects. @kindspells/astro-shield
+          provides essential security headers with SRI hashes, while @vite-pwa/astro delivers performance benefits through resource
+          precaching that benefit even static sites.
         </p>
 
         <p>
-          <code>@playform/compress</code> handles asset optimization but relies on outdated tools like
-          <a href="https://github.com/css/csso"><code>csso</code></a> (conflicts with modern <abbr title="Cascading Style Sheets"
-          >CSS</abbr>) and <a href="https://github.com/terser/html-minifier-terser"><code>html-minifier-terser</code></a> (unmaintained).
+          @playform/compress handles asset optimization but relies on outdated tools like <a href="https://github.com/css/csso">csso</a>
+          (conflicts with modern <abbr title="Cascading Style Sheets">CSS</abbr>) and
+          <a href="https://github.com/terser/html-minifier-terser">html-minifier-terser</a> (unmaintained).
           Manual optimization documented in <a href="https://github.com/rgant/rob.gant.ninja/blob/main/docs/optimizing-svgs.md"><code
           >optimizing-svgs.md</code></a> addresses limitations with CSS background-image compression.
         </p>
@@ -234,16 +234,18 @@ const description = unwrap`Setting up an Astro TypeScript static site generator 
         </li>
         <li>
           <strong>Component Organization:</strong>
-          I recommend separating infrastructure into logical modules for <a href="https://aws.amazon.com/amplify/">Amplify</a>, S3 buckets,
-          <abbr title="Domain Name System">DNS</abbr>, and remote state management.
+          I recommend separating infrastructure into logical modules for <a href="https://aws.amazon.com/amplify/">AWS Amplify</a>,
+          <a href="https://aws.amazon.com/s3/" title="AWS S3">S3</a> buckets, <abbr title="Domain Name System">DNS</abbr>, and remote state
+          management.
         </li>
       </ul>
 
       <div class="description">
         <p>
-          The Terraform configuration consists of modular components handling different <abbr title="Amazon Web Services">AWS</abbr>
-          infrastructure aspects. The Amplify module includes resources for the app, branch configuration, domain association, and custom
-          headers. Additional modules manage S3 buckets, DNS configuration, and remote state storage.
+          The Terraform configuration consists of modular components handling different
+          <a href="https://aws.amazon.com/" title="Amazon Web Services">AWS</a> infrastructure aspects. The Amplify module includes
+          resources for the app, branch configuration, domain association, and custom headers. Additional modules manage S3 buckets, DNS
+          configuration, and remote state storage.
         </p>
 
         <p>
@@ -266,7 +268,7 @@ const description = unwrap`Setting up an Astro TypeScript static site generator 
         <li>
           <strong>Astro Configuration Compatibility:</strong>
           Resolving <a href="https://github.com/rgant/rob.gant.ninja/blob/main/src/env.d.ts"><code>env.d.ts</code></a> requirements for
-          <code>@vite-pwa/astro</code> required research because Astro no longer adds this file in the starter template.
+          @vite-pwa/astro required research because Astro no longer adds this file in the starter template.
         </li>
         <li>
           <strong>Documentation Structure:</strong>
@@ -285,7 +287,7 @@ const description = unwrap`Setting up an Astro TypeScript static site generator 
 
         <p>
           <abbr title="Progressive Web App">PWA</abbr> integration presented compatibility challenges as Astro moves away from
-          <code>env.d.ts</code> while <code>@vite-pwa/astro</code> still requires it. Resolving this required consulting documentation from
+          <code>env.d.ts</code> while @vite-pwa/astro still requires it. Resolving this required consulting documentation from
           both projects to ensure long-term compatibility and support.
         </p>
 
@@ -302,25 +304,25 @@ const description = unwrap`Setting up an Astro TypeScript static site generator 
       <ul class="key-points">
         <li>
           <strong>Development Environment Modernization:</strong>
-          I’m considering <a href="https://devenv.sh/"><code>devenv.sh</code></a> for comprehensive development environment management,
-          though potential workflow changes require careful evaluation.
+          I’m considering <a href="https://devenv.sh/">devenv.sh</a> for comprehensive development environment management, though potential
+          workflow changes require careful evaluation.
         </li>
         <li>
           <strong>Automated Formatting Integration:</strong>
-          Worth exploring <a href="https://github.com/lint-staged/lint-staged"><code>lint-staged</code></a> to automatically format files
-          before commit, improving consistency without manual intervention.
+          Worth exploring <a href="https://github.com/lint-staged/lint-staged">lint-staged</a> to automatically format files before commit,
+          improving consistency without manual intervention.
         </li>
         <li>
           <strong>Build Tool Replacement:</strong>
-          I plan to replace <code>@playform/compress</code> with modern alternatives that support CSS background-image optimization and
-          maintained <abbr title="HyperText Markup Language">HTML</abbr> minification. Worth evaluating
-          <a href="https://github.com/j9t/html-minifier-next"><code>html-minifier-next</code></a> though changes appear limited to updated
-          dependencies rather than new features.
+          I plan to replace @playform/compress with modern alternatives that support CSS background-image optimization and maintained
+          <abbr title="HyperText Markup Language">HTML</abbr> minification. Worth evaluating
+          <a href="https://github.com/j9t/html-minifier-next">html-minifier-next</a> though changes appear limited to updated dependencies
+          rather than new features.
         </li>
         <li>
           <strong>Direct Vite Integration:</strong>
-          Evaluating a switch to direct <a href="https://github.com/parcel-bundler/lightningcss"><code>lightningcss</code></a> integration
-          through Vite for better CSS processing and fewer dependency layers.
+          Evaluating a switch to direct <a href="https://github.com/parcel-bundler/lightningcss">lightningcss</a> integration through
+          <a href="https://vite.dev/">Vite</a> for better CSS processing and fewer dependency layers.
         </li>
         <li>
           <strong>Plugin Modernization:</strong>
@@ -330,21 +332,21 @@ const description = unwrap`Setting up an Astro TypeScript static site generator 
 
       <div class="description">
         <p>
-          Development environment management could benefit from more comprehensive tooling like <code>devenv.sh</code>, though such changes
-          require careful consideration of workflow disruption versus benefits. Similarly, automated formatting through
-          <code>lint-staged</code> could reduce manual formatting effort while maintaining code consistency.
+          Development environment management could benefit from more comprehensive tooling like devenv.sh, though such changes require
+          careful consideration of workflow disruption versus benefits. Similarly, automated formatting through lint-staged could reduce
+          manual formatting effort while maintaining code consistency.
         </p>
 
         <p>
-          The current build optimization stack has maintenance challenges with outdated dependencies like <code>csso</code> and <code
-          >html-minifier-terser</code>. Finding modern replacements that handle CSS background-image optimization and reliable HTML
-          minification would eliminate these technical debt concerns. <code>html-minifier-next</code> appears to primarily offer updated
-          dependencies rather than substantial feature improvements.
+          The current build optimization stack has maintenance challenges with outdated dependencies like csso and html-minifier-terser.
+          Finding modern replacements that handle CSS background-image optimization and reliable HTML minification would eliminate these
+          technical debt concerns. html-minifier-next appears to primarily offer updated dependencies rather than substantial feature
+          improvements.
         </p>
 
         <p>
-          Direct Vite integration for CSS processing through <code>lightningcss</code> could simplify the build pipeline and provide better
-          CSS optimization. Ongoing plugin evaluation ensures the project benefits from community improvements while avoiding abandoned or
+          Direct Vite integration for CSS processing through lightningcss could simplify the build pipeline and provide better CSS
+          optimization. Ongoing plugin evaluation ensures the project benefits from community improvements while avoiding abandoned or
           problematic dependencies.
         </p>
       </div>
