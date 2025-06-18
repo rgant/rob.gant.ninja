@@ -7,8 +7,11 @@
  */
 import { yearsOfExperience } from './years-experience.util';
 
-const careerStart = '2002';
+interface Props {
+  careerStart: string;
+}
 
+const { careerStart } = Astro.props;
 // Static value for non-script executing user-agents.
 const yearsExperience = yearsOfExperience(careerStart);
 ---

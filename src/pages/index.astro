@@ -13,8 +13,10 @@ import Structure from '~/layouts/structure.astro';
 import '~/styles/index.css';
 import { unwrap } from '~/unwrap.util';
 
-const description = unwrap`Senior staff development team lead with 22 years experience building web
-  application software and guiding startup development teams.`;
+const careerStart = '2002';
+const years = new Date().getFullYear() - Number(careerStart);
+const description = unwrap`Senior staff development team lead with ${years} years of experience
+  building web application software and guiding startup development teams.`;
 ---
 <Structure>
   <BaseHead description={description} slot="head" title="J Rob Gant, Web Application Developer" />

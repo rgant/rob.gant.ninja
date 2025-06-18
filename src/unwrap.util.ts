@@ -1,4 +1,4 @@
-export const unwrap = (strings: TemplateStringsArray, ...values: string[]): string => {
+export const unwrap = (strings: TemplateStringsArray, ...values: Array<string | number>): string => {
   let result = '';
 
   for (const [ indx, str ] of strings.entries()) {

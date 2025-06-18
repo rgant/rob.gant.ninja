@@ -53,8 +53,8 @@ const numbersToEnglish = (num: number): string => {
  *
  * @example
  * ```ts
- * YearsOfExperience.yearsOfExperience('2002');
- * // Returns 'twenty-three' (in 2025)
+ * yearsOfExperience('2002');
+ * // Returns 'twenty-three years' (in 2025)
  * ```
  */
 export const yearsOfExperience = (careerStart: string, now: Date = new Date()): string => {
