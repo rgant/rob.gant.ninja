@@ -69,8 +69,10 @@ const description = unwrap`Developing with Astro and native Custom Elements for 
         </li>
         <li>
           <strong>Intersection Observer Configuration:</strong>
-          Used <code>rootMargin: '-20% 0px -80%'</code> to create a single-pixel observation area preventing multiple sections from
-          triggering simultaneously.
+          Used <code>rootMargin: '-20% 0px -80%'</code> which counterintuitively results a 1-pixel height observation area that ensures only
+          one section can have <code>isIntersecting: true</code> at any time, preventing multiple navigation items from activating
+          simultaneously. The -20% top margin positions the observation area about one-fifth down the viewport for smoother navigation
+          transitions.
         </li>
         <li>
           <strong>DOM Encapsulation:</strong>
@@ -101,11 +103,11 @@ const description = unwrap`Developing with Astro and native Custom Elements for 
         </p>
 
         <p>
-          Configuring the Intersection Observer required experimentation to understand how <code>rootMargin</code> percentages work. The
-          counterintuitive calculation where <code>-20% + -80% = -100%</code> actually results in a 1-pixel height observation area rather
-          than zero pixels. This precise configuration ensures only one section can have <code>isIntersecting: true</code> at any time,
-          preventing race conditions that could activate multiple navigation items simultaneously. Using percentages instead of fixed pixel
-          values adapts automatically to different device viewport sizes.
+          Configuring the Intersection Observer required understanding that <code>rootMargin</code> syntax differs from CSS margin
+          properties, where negative percentages shrink the root intersection area rather than expanding it. The fundamental problem with
+          default Intersection Observer behavior for this case is that multiple sections can intersect simultaneously, making it impractical
+          to identify which section should actually activate the corresponding navigation item. The solution ensures that only one section
+          intersects at any time.
         </p>
       </div>
     </section>
@@ -216,8 +218,8 @@ const description = unwrap`Developing with Astro and native Custom Elements for 
         <p>
           Disabling asset inlining eliminates potential security vulnerabilities where inline resources could bypass CSP restrictions. The
           performance cost of additional HTTP requests proved negligible compared to the security boundary benefits, particularly when
-          pursuing comprehensive security analysis tool compliance. The goal of achieving complete green checkmarks from security analysis
-          tools justified the trade-off between minimal performance costs and enhanced security posture.
+          pursuing comprehensive security analysis tool compliance. The goal of achieving clean security reports from analysis tools
+          justified the trade-off between minimal performance costs and enhanced security posture.
         </p>
 
         <p>
