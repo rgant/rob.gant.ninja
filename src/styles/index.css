@@ -68,15 +68,6 @@ h3 {
   }
 }
 
-.top-link {
-  padding-inline-start: 12px;
-
-  /* stroke color should be the same as --text-secondary */
-  background-image: url('../assets/chevron-up.svg');
-  background-repeat: no-repeat;
-  background-position: left 65%;
-}
-
 #about {
   /* This section doesn't have links, so not adjusting link colors. */
   --subsection-bg-color: oklch(60.5% .118 324.2deg); /* Medium Purple */

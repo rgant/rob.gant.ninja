@@ -178,6 +178,20 @@ h3 {
   font-size: 1.5rem;
 }
 
+.in-page-nav {
+  list-style-image: url('../assets/arrow-down.svg');
+}
+
+.top-link {
+  padding-inline-start: .875rem;
+
+  /* fill color should be the same as --text-secondary */
+  background-image: url('../assets/arrow-up.svg');
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: .75rem;
+}
+
 /* Convert banner and link lists to inline layout. */
 @media only screen and (width >= 42em) {
   .banner {
