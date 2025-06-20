@@ -1,4 +1,4 @@
 <svg width="10" height="10" xmlns="http://www.w3.org/2000/svg">
-  <!-- fill color should be the same as light-gray -->
-  <path fill="transparent" stroke="#ececec" stroke-width="2" d="m2 8 3-6 3 6" />
+  <!-- fill color should be the same as --text-secondary -->
+  <path fill="transparent" stroke="#ebebeb" stroke-width="2" d="m2 8 3-6 3 6" />
 </svg>

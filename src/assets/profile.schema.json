@@ -1,0 +1,123 @@
+{
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "mainEntity": {
+    "@type": "Person",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Boston",
+      "addressRegion": "MA"
+    },
+    "alumniOf": {
+      "@type": "OrganizationRole",
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "alternateName": "WPI",
+        "name": "Worcester Polytechnic Institute",
+        "sameAs": "https://www.wpi.edu/"
+      },
+      "endDate": "2002",
+      "roleName": "student",
+      "startDate": "1998"
+    },
+    "description": "Senior staff development team lead experienced building web application software and guiding startup development teams.",
+    "email": "mailto:rgant@alum.wpi.edu",
+    "hasOccupation": {
+      "@type": "Occupation",
+      "description": "Specializing in full-stack web application development, including backend APIs, databases, and front-end user interfaces.",
+      "name": "Software Engineer",
+      "responsibilities": [
+        "Building web application software",
+        "Guiding startup development teams",
+        "Project and product management"
+      ],
+      "skills": [
+        {
+          "@type": "DefinedTerm",
+          "description": "Expert proficiency in Python for backend web development and scripting.",
+          "name": "Python"
+        },
+        {
+          "@type": "DefinedTerm",
+          "description": "Developing RESTful APIs with various frameworks and specifications.",
+          "name": "API Development"
+        },
+        {
+          "@type": "DefinedTerm",
+          "description": "Proficient in TypeScript for robust frontend and backend development.",
+          "name": "TypeScript"
+        },
+        {
+          "@type": "DefinedTerm",
+          "description": "HyperText Markup Language for building web content.",
+          "name": "HTML"
+        },
+        {
+          "@type": "DefinedTerm",
+          "description": "Cascading Style Sheets for styling web content.",
+          "name": "CSS"
+        },
+        {
+          "@type": "DefinedTerm",
+          "description": "Experienced with Amazon Web Services (AWS), Google Cloud Platform (GCP), Firebase, Microsoft Azure.",
+          "name": "Cloud Computing"
+        },
+        {
+          "@type": "DefinedTerm",
+          "description": "Proficient in DevOps practices including Linux, Docker, and Terraform.",
+          "name": "DevOps"
+        },
+        {
+          "@type": "DefinedTerm",
+          "description": "Overseeing and directing projects from inception to completion, ensuring on-time and within-budget delivery.",
+          "name": "Project Management"
+        },
+        {
+          "@type": "DefinedTerm",
+          "description": "Defining product vision, strategy, and roadmap, bridging the gap between business goals and technical development.",
+          "name": "Product Management"
+        },
+        {
+          "@type": "DefinedTerm",
+          "description": "Leading and mentoring software development teams, fostering collaboration and growth.",
+          "name": "Leadership"
+        }
+      ]
+    },
+    "image": "https://rob.gant.ninja/images/rob-gant.jpg",
+    "jobTitle": "Principal Software Engineer",
+    "knowsAbout": [
+      "Web Application Development",
+      "DevOps",
+      "Cloud Computing",
+      "Software Architecture",
+      "Startup Scaling",
+      {
+        "@type": "ComputerLanguage",
+        "name": "Python"
+      },
+      {
+        "@type": "ComputerLanguage",
+        "name": "TypeScript"
+      },
+      {
+        "@type": "ComputerLanguage",
+        "name": "JavaScript"
+      }
+    ],
+    "knowsLanguage": [
+      {
+        "@type": "Language",
+        "name": "en"
+      }
+    ],
+    "name": "J Rob Gant",
+    "sameAs": [
+      "https://github.com/robgant",
+      "https://stackexchange.com/users/18329/rob",
+      "https://wellfound.com/u/rob-gant-1",
+      "https://www.linkedin.com/in/rob-gant/"
+    ],
+    "url": "https://rob.gant.ninja/"
+  }
+}
