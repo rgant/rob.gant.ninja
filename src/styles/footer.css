@@ -1,0 +1,22 @@
+.tool-links {
+  margin: 1rem;
+
+  ul {
+    padding-inline: 1.5rem .5rem;
+  }
+}
+
+@media only screen and (width >= 42em) {
+  .social-links {
+    flex: 1;
+
+    p {
+      float: inline-start;
+      padding-inline-end: .5rem;
+    }
+
+    ul {
+      margin-block: 1rem;
+    }
+  }
+}

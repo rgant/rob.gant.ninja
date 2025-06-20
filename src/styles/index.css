@@ -119,46 +119,14 @@ h3 {
   margin-block-end: 1rem;
 }
 
-.tool-links {
-  margin: 1rem;
-
-  ul {
-    padding-inline: 1.5rem .5rem;
-  }
-}
-
 .close-bttn {
   float: inline-end;
 }
 
-/* Convert banners and link lists to inline layout. Add icons to the page navigation links. */
+/* Add icons to the page navigation links. */
 @media only screen and (width >= 42em) {
   body {
     margin: 0;
-  }
-
-  .banner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-inline: 1rem;
-
-    footer& {
-      align-items: end;
-    }
-  }
-
-  .link-list {
-    margin: 0;
-    padding-inline-start: 0;
-    white-space: nowrap;
-    list-style-type: none;
-
-    li {
-      display: inline-block;
-      margin-block-start: 0;
-      padding-inline: .5rem;
-    }
   }
 
   .page-nav {
@@ -224,19 +192,6 @@ h3 {
       &[href='#orgs'] {
         background-image: url('../assets/orgs.svg');
       }
-    }
-  }
-
-  .social-links {
-    flex: 1;
-
-    p {
-      float: inline-start;
-      padding-inline-end: .5rem;
-    }
-
-    ul {
-      margin-block: 1rem;
     }
   }
 

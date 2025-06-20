@@ -1,5 +1,6 @@
 ---
 import EndScripts from '~/components/end-scripts.astro';
+import Footer from '~/components/footer.astro';
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -8,6 +9,9 @@ import EndScripts from '~/components/end-scripts.astro';
   </head>
   <body>
     <slot />
+    <Footer>
+      <slot name="footer-extra" />
+    </Footer>
     <EndScripts />
   </body>
 </html>

@@ -1,0 +1,63 @@
+---
+import '~/styles/footer.css';
+
+const domain = 'rob.gant.ninja';
+const currentPath = Astro.url.pathname;
+const toolUri = encodeURIComponent(`https://${domain}${currentPath}`);
+---
+<footer class="banner">
+  <div class="social-links">
+    <p>Find me on:</p>
+    <ul class="link-list">
+      <li><a href="https://github.com/robgant">GitHub</a></li>
+      <li><a href="https://stackexchange.com/users/18329/rob">Stack Exchange</a></li>
+      <li><a href="https://wellfound.com/u/rob-gant-1">Wellfound</a></li>
+      <li><a href="https://www.linkedin.com/in/rob-gant/">LinkedIn</a></li>
+      <!-- <li><a href="https://discord.com/invite/angular">Angular Community Discord</a></li> -->
+    </ul>
+    <slot />
+  </div>
+  <div class="tool-links">
+    <button popovertarget="web-tools" type="button">Check my website</button>
+    <div id="web-tools" popover>
+      <button class="close-bttn" popovertarget="web-tools" popovertargetaction="hide" type="button">×</button>
+      <ul>
+        <li><a rel="noreferrer" href={`https://www.ssl.org/report/${domain}`} target="_blank">SSL Certificate Checker</a></li>
+        <li>
+          <a rel="noreferrer" href={`https://www.ssllabs.com/ssltest/analyze.html?d=${domain}&amp;latest`} target="_blank">SSL Report</a>
+        </li>
+        <li>
+          <a rel="noreferrer" href={`https://developer.mozilla.org/en-US/observatory/analyze?host=${domain}`} target="_blank">
+            HTTP Observatory Report
+          </a>
+        </li>
+        <li>
+          <a rel="noreferrer" href={`https://www.giftofspeed.com/cache-checker/?url=${toolUri}`} target="_blank">Browser Caching Checker</a>
+        </li>
+        <li><a href={`https://validator.w3.org/nu/?doc=${toolUri}`} target="_blank">Nu Html Checker</a></li>
+        <li>
+          <a
+            rel="noreferrer"
+            href={`https://jigsaw.w3.org/css-validator/validator?uri=${toolUri}&amp;profile=css3svg&amp;usermedium=all&amp;warning=1&amp;vextwarning=&lang=en`}
+            target="_blank"
+          >
+            CSS Validation Service
+          </a>
+        </li>
+        <li>
+          <a
+            rel="noreferrer"
+            href={`https://validator.w3.org/checklink?uri=${toolUri}&amp;hide_type=dir&amp;depth=&amp;check=Check`}
+            target="_blank"
+          >
+            Link Checker
+          </a>
+        </li>
+        <li><a rel="noreferrer" href={`https://pagespeed.web.dev/analysis?url=${toolUri}`} target="_blank">PageSpeed Insights</a></li>
+        <li>
+          <a rel="noreferrer" href="https://www.webpagetest.org/result/250303_AiDcRG_9HS/" target="_blank">Webpage Performance Test</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</footer>

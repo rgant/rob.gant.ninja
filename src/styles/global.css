@@ -178,6 +178,33 @@ h3 {
   font-size: 1.5rem;
 }
 
+/* Convert banner and link lists to inline layout. */
+@media only screen and (width >= 42em) {
+  .banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline: 1rem;
+
+    footer& {
+      align-items: end;
+    }
+  }
+
+  .link-list {
+    margin: 0;
+    padding-inline-start: 0;
+    white-space: nowrap;
+    list-style-type: none;
+
+    li {
+      display: inline-block;
+      margin-block-start: 0;
+      padding-inline: .5rem;
+    }
+  }
+}
+
 /* ==========================================================================
    Helper classes
    ========================================================================== */
