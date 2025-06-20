@@ -13,6 +13,7 @@ import { configs as eslintAstroConfigs } from 'eslint-plugin-astro';
 import { importX } from 'eslint-plugin-import-x';
 import perfectionist from 'eslint-plugin-perfectionist';
 import { meta, rules } from 'eslint-plugin-prefer-arrow-functions';
+// @ts-expect-error -- waiting for this to be resolved https://github.com/eslint-community/eslint-plugin-promise/issues/488
 import pluginPromise from 'eslint-plugin-promise';
 import tsdoc from 'eslint-plugin-tsdoc';
 import eslintPluginUnicorn from 'eslint-plugin-unicorn';
@@ -705,6 +706,9 @@ export default tseslint.config(
       parserOptions: {
         extraFileExtensions: [ '.astro' ],
         parser: '@typescript-eslint/parser',
+        // Hide "`astro-eslint-parser` does not support the `projectService` option, it will parse it as `project: true` instead." messages.
+        project: true,
+        projectService: false,
       },
     },
     rules: {
