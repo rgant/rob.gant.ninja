@@ -8,13 +8,13 @@ export const extScriptHashes = /** @type {string[]} */ ([
 	'sha256-+fz+LxoZFpDaAEuwZ/AqhsipuGBTBr37kqavXru/mrU=',
 	'sha256-3Ej65L40t2CoK9PwHnWOxuXkOuzU6RTpy7psKykz4ec=',
 	'sha256-CxhVl0TZ3haiaTBA2oPNn9F9otMTZxB5IjfhmOZu7lc=',
-	'sha256-X1hl48YjKwS2Cy1WK2Urz2t7v9/ArsEE4+0Cj9s2muc=',
-	'sha256-lskjptSm5g/eDK20OnJAEb3UOlx8rP77WW2i8clDxGw=',
+	'sha256-KGvijAf8sHJ2nuw9INHv+lEJQ4gZBMrgJUFu+eBEx5M=',
+	'sha256-dZNXMImCEkfiJtz7gPJuwMU4nUD3s++Yno2MucPf/z8=',
 	'sha256-tk+a4zsfcDDOFQAxPnCwxapnIDY8lAVVM3VbuHF7X1A=',
 ])
 
 export const extStyleHashes = /** @type {string[]} */ ([
-	'sha256-RNMiTn3gQPmv8vTw/v+cqaPZIm/8HmIFHrVmn2b6Vro=',
+	'sha256-E3UWv2CCj4nscWN7iLjBNe+uRdyrN/jokbEC6Zo/7f4=',
 	'sha256-xNtfpjfhxrW+P/oGK9aKt+qglaKw1+Fef7FP/JdmJp0=',
 ])
 
@@ -34,10 +34,10 @@ export const perPageSriHashes =
 			scripts: [
 				'sha256-+fz+LxoZFpDaAEuwZ/AqhsipuGBTBr37kqavXru/mrU=',
 				'sha256-3Ej65L40t2CoK9PwHnWOxuXkOuzU6RTpy7psKykz4ec=',
-				'sha256-X1hl48YjKwS2Cy1WK2Urz2t7v9/ArsEE4+0Cj9s2muc=',
+				'sha256-dZNXMImCEkfiJtz7gPJuwMU4nUD3s++Yno2MucPf/z8=',
 			],
 			styles: [
-				'sha256-RNMiTn3gQPmv8vTw/v+cqaPZIm/8HmIFHrVmn2b6Vro=',
+				'sha256-E3UWv2CCj4nscWN7iLjBNe+uRdyrN/jokbEC6Zo/7f4=',
 			],
 		}}
 )
@@ -46,13 +46,13 @@ export const perResourceSriHashes = {
 	scripts: /** @type {Record<string,string>} */ ({
 		'/_astro/career-experience.astro_astro_type_script_index_0_lang.JcDqZIje.js': 'sha256-3Ej65L40t2CoK9PwHnWOxuXkOuzU6RTpy7psKykz4ec=',
 		'/_astro/end-scripts.astro_astro_type_script_index_0_lang.-6sWAJC_.js': 'sha256-+fz+LxoZFpDaAEuwZ/AqhsipuGBTBr37kqavXru/mrU=',
-		'/_astro/scroll-navigation.astro_astro_type_script_index_0_lang.Ctomo4Xf.js': 'sha256-X1hl48YjKwS2Cy1WK2Urz2t7v9/ArsEE4+0Cj9s2muc=',
+		'/_astro/scroll-navigation.astro_astro_type_script_index_0_lang.DpQfyq-H.js': 'sha256-dZNXMImCEkfiJtz7gPJuwMU4nUD3s++Yno2MucPf/z8=',
 		'/_astro/workbox-window.prod.es5.B9K5rw8f.js': 'sha256-tk+a4zsfcDDOFQAxPnCwxapnIDY8lAVVM3VbuHF7X1A=',
-		'/sw.js': 'sha256-lskjptSm5g/eDK20OnJAEb3UOlx8rP77WW2i8clDxGw=',
+		'/sw.js': 'sha256-KGvijAf8sHJ2nuw9INHv+lEJQ4gZBMrgJUFu+eBEx5M=',
 		'/workbox-5ffe50d4.js': 'sha256-CxhVl0TZ3haiaTBA2oPNn9F9otMTZxB5IjfhmOZu7lc=',
 	}),
 	styles: /** @type {Record<string,string>} */ ({
 		'/_astro/404.Xeo1OP5o.css': 'sha256-xNtfpjfhxrW+P/oGK9aKt+qglaKw1+Fef7FP/JdmJp0=',
-		'/_astro/index.BDWGoBnO.css': 'sha256-RNMiTn3gQPmv8vTw/v+cqaPZIm/8HmIFHrVmn2b6Vro=',
+		'/_astro/index.p9QwGID-.css': 'sha256-E3UWv2CCj4nscWN7iLjBNe+uRdyrN/jokbEC6Zo/7f4=',
 	}),
 }

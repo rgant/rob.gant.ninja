@@ -7,7 +7,7 @@
   width="16px"
   height="16px"
 >
-  <!-- stroke color should be the same as --text-secondary -->
+  <!-- stroke color should be the same as text-secondary -->
   <line style="fill: none; stroke: #ebebeb; stroke-miterlimit: 10" x1="13" y1="3" x2="6.375" y2="9.625" />
   <path
     stroke="#ebebeb"
