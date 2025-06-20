@@ -2,6 +2,8 @@
 
 Personal Website
 
+[How I built this website](https://rob.gant.ninja/ninja-site/)
+
 ## Deployment
 
 ```sh
