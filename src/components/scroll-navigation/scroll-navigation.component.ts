@@ -88,7 +88,7 @@ export class ScrollNav extends HTMLElement implements CustomWebComponentInterfac
 
         const anchorEl = this._listToAnchorMap.get(listEl);
         if (anchorEl) {
-          anchorEl.ariaCurrent = isIntersecting ? 'page' : 'false';
+          anchorEl.ariaCurrent = isIntersecting ? 'location' : 'false';
         } else {
           console.error('List', listEl, 'has no anchorEl in _listToAnchorMap');
         }
