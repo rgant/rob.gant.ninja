@@ -8,13 +8,13 @@ export const extScriptHashes = /** @type {string[]} */ ([
 	'sha256-+fz+LxoZFpDaAEuwZ/AqhsipuGBTBr37kqavXru/mrU=',
 	'sha256-3Ej65L40t2CoK9PwHnWOxuXkOuzU6RTpy7psKykz4ec=',
 	'sha256-CxhVl0TZ3haiaTBA2oPNn9F9otMTZxB5IjfhmOZu7lc=',
-	'sha256-KGvijAf8sHJ2nuw9INHv+lEJQ4gZBMrgJUFu+eBEx5M=',
+	'sha256-ZdNt1V8soHzWoWkZ2c5VwbXaZ8fMJBB5bouMyZdcVP8=',
 	'sha256-dZNXMImCEkfiJtz7gPJuwMU4nUD3s++Yno2MucPf/z8=',
 	'sha256-tk+a4zsfcDDOFQAxPnCwxapnIDY8lAVVM3VbuHF7X1A=',
 ])
 
 export const extStyleHashes = /** @type {string[]} */ ([
-	'sha256-E3UWv2CCj4nscWN7iLjBNe+uRdyrN/jokbEC6Zo/7f4=',
+	'sha256-X6oKxGwD6+4sWfQ8sGrbr5P9XZTsB1xRkTTQEhYm19U=',
 	'sha256-xNtfpjfhxrW+P/oGK9aKt+qglaKw1+Fef7FP/JdmJp0=',
 ])
 
@@ -37,7 +37,7 @@ export const perPageSriHashes =
 				'sha256-dZNXMImCEkfiJtz7gPJuwMU4nUD3s++Yno2MucPf/z8=',
 			],
 			styles: [
-				'sha256-E3UWv2CCj4nscWN7iLjBNe+uRdyrN/jokbEC6Zo/7f4=',
+				'sha256-X6oKxGwD6+4sWfQ8sGrbr5P9XZTsB1xRkTTQEhYm19U=',
 			],
 		}}
 )
@@ -48,11 +48,11 @@ export const perResourceSriHashes = {
 		'/_astro/end-scripts.astro_astro_type_script_index_0_lang.-6sWAJC_.js': 'sha256-+fz+LxoZFpDaAEuwZ/AqhsipuGBTBr37kqavXru/mrU=',
 		'/_astro/scroll-navigation.astro_astro_type_script_index_0_lang.DpQfyq-H.js': 'sha256-dZNXMImCEkfiJtz7gPJuwMU4nUD3s++Yno2MucPf/z8=',
 		'/_astro/workbox-window.prod.es5.B9K5rw8f.js': 'sha256-tk+a4zsfcDDOFQAxPnCwxapnIDY8lAVVM3VbuHF7X1A=',
-		'/sw.js': 'sha256-KGvijAf8sHJ2nuw9INHv+lEJQ4gZBMrgJUFu+eBEx5M=',
+		'/sw.js': 'sha256-ZdNt1V8soHzWoWkZ2c5VwbXaZ8fMJBB5bouMyZdcVP8=',
 		'/workbox-5ffe50d4.js': 'sha256-CxhVl0TZ3haiaTBA2oPNn9F9otMTZxB5IjfhmOZu7lc=',
 	}),
 	styles: /** @type {Record<string,string>} */ ({
 		'/_astro/404.Xeo1OP5o.css': 'sha256-xNtfpjfhxrW+P/oGK9aKt+qglaKw1+Fef7FP/JdmJp0=',
-		'/_astro/index.p9QwGID-.css': 'sha256-E3UWv2CCj4nscWN7iLjBNe+uRdyrN/jokbEC6Zo/7f4=',
+		'/_astro/index.Bb1E7274.css': 'sha256-X6oKxGwD6+4sWfQ8sGrbr5P9XZTsB1xRkTTQEhYm19U=',
 	}),
 }
