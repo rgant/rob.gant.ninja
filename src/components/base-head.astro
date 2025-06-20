@@ -38,32 +38,4 @@ const { description, image = bigHeadRob, title } = Astro.props;
 <meta name="generator" content={Astro.generator}>
 <meta name="theme-color" content="#3e454c">
 
-{ /* eslint-disable @stylistic/max-len */}
-<script is:inline type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Boston",
-    "addressRegion": "MA"
-  },
-  "alumniOf": {
-    "@type": "OrganizationRole",
-    "alumniOf": {
-      "@type": "CollegeOrUniversity",
-      "alternateName": "WPI",
-      "name": "Worcester Polytechnic Institute",
-      "sameAs": "https://www.wpi.edu/"
-    },
-    "endDate": "2002",
-    "roleName": "student",
-    "startDate": "1998"
-  },
-  "description": "Senior staff development team lead with 22 years experience building web application software and guiding startup development teams.",
-  "email": "mailto:rgant@alum.wpi.edu",
-  "jobTitle": "Principal Software Engineer",
-  "name": "J Rob Gant",
-  "url": "https://rob.gant.ninja/"
-}
-</script>
+<slot />

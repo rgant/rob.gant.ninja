@@ -8,6 +8,7 @@ import mozillaImg from '~/assets/mozilla.svg';
 import splcImage from '~/assets/splc.png';
 import BaseHead from '~/components/base-head.astro';
 import CareerExperience from '~/components/career-experience/career-experience.astro';
+import ProfileSchema from '~/components/profile-schema.astro';
 import ScrollNavigation from '~/components/scroll-navigation/scroll-navigation.astro';
 import Structure from '~/layouts/structure.astro';
 import '~/styles/index.css';
@@ -19,7 +20,9 @@ const description = unwrap`Senior staff development team lead with ${years} year
   building web application software and guiding startup development teams.`;
 ---
 <Structure>
-  <BaseHead description={description} slot="head" title="J Rob Gant, Web Application Developer" />
+  <BaseHead description={description} slot="head" title="J Rob Gant, Web Application Developer">
+    <ProfileSchema description={description} />
+  </BaseHead>
 
   <header class="banner main-header">
     <div class="heading">

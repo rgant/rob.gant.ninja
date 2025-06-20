@@ -1,0 +1,16 @@
+---
+import schemaData from '../assets/profile.schema.json';
+
+interface Props {
+  description: string;
+}
+
+const { description } = Astro.props;
+
+// Update the static default description with the one provided
+schemaData.mainEntity.description = description;
+
+const jsonLdString = JSON.stringify(schemaData);
+---
+{ /* eslint-disable-next-line astro/no-set-html-directive -- jsonLdString is static with no user input involved. */ }
+<script is:inline set:html={jsonLdString} type="application/ld+json" />
