@@ -1,5 +1,8 @@
 ---
+import ArticleHeader from '~/components/article-header.astro';
 import BaseHead from '~/components/base-head.astro';
+import MySiteNav from '~/components/my-site-nav.astro';
+import ScrollNavigation from '~/components/scroll-navigation/scroll-navigation.astro';
 import Structure from '~/layouts/structure.astro';
 import { unwrap } from '~/unwrap.util';
 
@@ -9,43 +12,31 @@ const description = unwrap`Setting up an Astro TypeScript static site generator 
 <Structure>
   <BaseHead description={description} slot="head" title="Setup an Astro TypeScript SSG Project" />
 
-  <header class="banner main-header">
-    <div class="heading">
-      <h1 id="top">Project setup and structure</h1>
-      <p>Starting out with an organized development workflow</p>
-    </div>
-
-    <details>
-      <summary id="related-nav">Related articles</summary>
-
-      <nav aria-labelledby="related-nav">
-        <ul>
-          <li><a href="index.html">Building a modern secure static website</a></li>
-          <li><a href="developing.html">Developing with Astro and Web Components</a></li>
-          <li><a href="deploy.html">Deploying SSG websites with Terraform</a></li>
-          <li><a href="lessons.html">What I learned developing this project</a></li>
-        </ul>
-      </nav>
-    </details>
-  </header>
+  <ArticleHeader currentPage="setup.html">
+    <h1 id="top">Project setup and structure</h1>
+    <p>Starting out with an organized development workflow</p>
+  </ArticleHeader>
 
   <article>
     <aside>
-      <nav aria-label="Article Navigation">
-        <ul>
-          <li><a href="#environment">Development environment</a></li>
-          <li><a href="#dependencies">Dependency management</a></li>
-          <li><a href="#migration">Framework migration</a></li>
-          <li><a href="#configuration">Build process configuration</a></li>
-          <li><a href="#infrastructure">Infrastructure organization</a></li>
-          <li><a href="#challenges">Setup challenges</a></li>
-          <li><a href="#future">Future improvements</a></li>
-        </ul>
+      <nav aria-labelledby="article-nav">
+        <h3 id="article-nav">On this page</h3>
+        <ScrollNavigation>
+          <ul class="in-page-nav">
+            <li><a href="#environment">Development environment</a></li>
+            <li><a href="#dependencies">Dependency management</a></li>
+            <li><a href="#migration">Framework migration</a></li>
+            <li><a href="#configuration">Build process configuration</a></li>
+            <li><a href="#infrastructure">Infrastructure organization</a></li>
+            <li><a href="#challenges">Setup challenges</a></li>
+            <li><a href="#future">Future improvements</a></li>
+          </ul>
+        </ScrollNavigation>
       </nav>
     </aside>
 
-    <section aria-labelledby="environment">
-      <h2 id="environment">Development environment</h2>
+    <section id="environment">
+      <h2>Development environment</h2>
 
       <ul class="key-points">
         <li>
@@ -84,10 +75,12 @@ const description = unwrap`Setting up an Astro TypeScript static site generator 
           often produces cleaner results.
         </p>
       </div>
+
+      <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
     </section>
 
-    <section aria-labelledby="dependencies">
-      <h2 id="dependencies">Dependency management</h2>
+    <section id="dependencies">
+      <h2>Dependency management</h2>
 
       <ul class="key-points">
         <li>
@@ -129,10 +122,12 @@ const description = unwrap`Setting up an Astro TypeScript static site generator 
           and different production platforms.
         </p>
       </div>
+
+      <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
     </section>
 
-    <section aria-labelledby="migration">
-      <h2 id="migration">Framework migration</h2>
+    <section id="migration">
+      <h2>Framework migration</h2>
 
       <ul class="key-points">
         <li>
@@ -164,10 +159,12 @@ const description = unwrap`Setting up an Astro TypeScript static site generator 
           included settings for build processes and development server setup, sped up development.
         </p>
       </div>
+
+      <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
     </section>
 
-    <section aria-labelledby="configuration">
-      <h2 id="configuration">Build process configuration</h2>
+    <section id="configuration">
+      <h2>Build process configuration</h2>
 
       <ul class="key-points">
         <li>
@@ -216,10 +213,12 @@ const description = unwrap`Setting up an Astro TypeScript static site generator 
           with other tools in the development stack.
         </p>
       </div>
+
+      <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
     </section>
 
-    <section aria-labelledby="infrastructure">
-      <h2 id="infrastructure">Infrastructure organization</h2>
+    <section id="infrastructure">
+      <h2>Infrastructure organization</h2>
 
       <ul class="key-points">
         <li>
@@ -254,10 +253,12 @@ const description = unwrap`Setting up an Astro TypeScript static site generator 
           updates.
         </p>
       </div>
+
+      <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
     </section>
 
-    <section aria-labelledby="challenges">
-      <h2 id="challenges">Setup challenges</h2>
+    <section id="challenges">
+      <h2>Setup challenges</h2>
 
       <ul class="key-points">
         <li>
@@ -296,10 +297,12 @@ const description = unwrap`Setting up an Astro TypeScript static site generator 
           project root.
         </p>
       </div>
+
+      <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
     </section>
 
-    <section aria-labelledby="future">
-      <h2 id="future">Future improvements</h2>
+    <section id="future">
+      <h2>Future improvements</h2>
 
       <ul class="key-points">
         <li>
@@ -350,6 +353,15 @@ const description = unwrap`Setting up an Astro TypeScript static site generator 
           problematic dependencies.
         </p>
       </div>
+
+      <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
     </section>
+
+    <aside>
+      <nav aria-labelledby="section-nav">
+        <h3 id="section-nav">Continue reading about my site</h3>
+        <MySiteNav />
+      </nav>
+    </aside>
   </article>
 </Structure>

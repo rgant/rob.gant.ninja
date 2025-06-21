@@ -1,5 +1,8 @@
 ---
+import ArticleHeader from '~/components/article-header.astro';
 import BaseHead from '~/components/base-head.astro';
+import MySiteNav from '~/components/my-site-nav.astro';
+import ScrollNavigation from '~/components/scroll-navigation/scroll-navigation.astro';
 import Structure from '~/layouts/structure.astro';
 import { unwrap } from '~/unwrap.util';
 
@@ -9,42 +12,30 @@ const description = unwrap`Developing with Astro and native Custom Elements for 
 <Structure>
   <BaseHead description={description} slot="head" title="Developing with Astro and Web Components" />
 
-  <header class="banner main-header">
-    <div class="heading">
-      <h1 id="top">Developing the website</h1>
-      <p>Building interactive features with native web technologies</p>
-    </div>
-
-    <details>
-      <summary id="related-nav">Related articles</summary>
-
-      <nav aria-labelledby="related-nav">
-        <ul>
-          <li><a href="index.html">Building a modern secure static website</a></li>
-          <li><a href="setup.html">Setup an Astro TypeScript SSG project</a></li>
-          <li><a href="deploy.html">Deploying SSG websites with Terraform</a></li>
-          <li><a href="lessons.html">What I learned developing this project</a></li>
-        </ul>
-      </nav>
-    </details>
-  </header>
+  <ArticleHeader currentPage="developing.html">
+    <h1 id="top">Developing the website</h1>
+    <p>Building interactive features with native web technologies</p>
+  </ArticleHeader>
 
   <article>
     <aside>
-      <nav aria-label="Article Navigation">
-        <ul>
-          <li><a href="#components">Custom Elements architecture</a></li>
-          <li><a href="#pwa">Progressive Web App integration</a></li>
-          <li><a href="#security">Content Security Policy implementation</a></li>
-          <li><a href="#environment">Development environment</a></li>
-          <li><a href="#experience">Astro development experience</a></li>
-          <li><a href="#decisions">Technical decision framework</a></li>
-        </ul>
+      <nav aria-labelledby="article-nav">
+        <h3 id="article-nav">On this page</h3>
+        <ScrollNavigation>
+          <ul class="in-page-nav">
+            <li><a href="#components">Custom Elements architecture</a></li>
+            <li><a href="#pwa">Progressive Web App integration</a></li>
+            <li><a href="#security">Content Security Policy implementation</a></li>
+            <li><a href="#environment">Development environment</a></li>
+            <li><a href="#experience">Astro development experience</a></li>
+            <li><a href="#decisions">Technical decision framework</a></li>
+          </ul>
+        </ScrollNavigation>
       </nav>
     </aside>
 
-    <section aria-labelledby="components">
-      <h2 id="components">Custom Elements architecture</h2>
+    <section id="components">
+      <h2>Custom Elements architecture</h2>
 
       <ul class="key-points">
         <li>
@@ -109,10 +100,12 @@ const description = unwrap`Developing with Astro and native Custom Elements for 
           navigation item. The solution ensures that only one section intersects at any time.
         </p>
       </div>
+
+      <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
     </section>
 
-    <section aria-labelledby="pwa">
-      <h2 id="pwa">Progressive Web App integration</h2>
+    <section id="pwa">
+      <h2>Progressive Web App integration</h2>
 
       <ul class="key-points">
         <li>
@@ -167,10 +160,12 @@ const description = unwrap`Developing with Astro and native Custom Elements for 
           projects requiring offline capabilities and enhanced performance characteristics.
         </p>
       </div>
+
+      <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
     </section>
 
-    <section aria-labelledby="security">
-      <h2 id="security">Content Security Policy implementation</h2>
+    <section id="security">
+      <h2>Content Security Policy implementation</h2>
 
       <ul class="key-points">
         <li>
@@ -231,10 +226,12 @@ const description = unwrap`Developing with Astro and native Custom Elements for 
           grows in complexity.
         </p>
       </div>
+
+      <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
     </section>
 
-    <section aria-labelledby="environment">
-      <h2 id="environment">Development environment</h2>
+    <section id="environment">
+      <h2>Development environment</h2>
 
       <ul class="key-points">
         <li>
@@ -260,10 +257,12 @@ const description = unwrap`Developing with Astro and native Custom Elements for 
           workflows.
         </p>
       </div>
+
+      <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
     </section>
 
-    <section aria-labelledby="experience">
-      <h2 id="experience">Astro development experience</h2>
+    <section id="experience">
+      <h2>Astro development experience</h2>
 
       <ul class="key-points">
         <li>
@@ -305,10 +304,12 @@ const description = unwrap`Developing with Astro and native Custom Elements for 
           limitation doesn’t affect functionality but prevents leveraging Astro’s selective hydration optimizations for Custom Elements.
         </p>
       </div>
+
+      <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
     </section>
 
-    <section aria-labelledby="decisions">
-      <h2 id="decisions">Technical decision framework</h2>
+    <section id="decisions">
+      <h2>Technical decision framework</h2>
 
       <ul class="key-points">
         <li>
@@ -351,6 +352,15 @@ const description = unwrap`Developing with Astro and native Custom Elements for 
           configuration and performance improvements through resource precaching without compromising either objective.
         </p>
       </div>
+
+      <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
     </section>
+
+    <aside>
+      <nav aria-labelledby="section-nav">
+        <h3 id="section-nav">Continue reading about my site</h3>
+        <MySiteNav />
+      </nav>
+    </aside>
   </article>
 </Structure>

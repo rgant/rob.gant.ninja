@@ -8,21 +8,6 @@ h3 {
   opacity: .7;
 }
 
-.main-header {
-  .heading {
-    font-family: var(--heading-font); /* All heading content should use heading font */
-    font-size: 1.5rem;
-
-    p {
-      margin-block: 0 1rem; /* Smaller space on the bottom of the banner. */
-    }
-  }
-
-  h1 {
-    margin-block: 0; /* With the line-height a top margin isn't necessary. */
-  }
-}
-
 .subsection {
   /* These link colorw work for most of the sections except for About */
   --link-color-interaction: oklch(34.118% .05975 186.34deg); /* Evergreen */
@@ -336,5 +321,34 @@ h3 {
 
   .top-link {
     display: none;
+  }
+}
+
+/* Only when going "to" the home page will you see a magical star wipe transition. */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+
+  @keyframes star-wipe-reveal {
+    from {
+      mask-composite: intersect;
+      mask-image: url('../assets/star.svg');
+      mask-position: center center;
+      mask-repeat: no-repeat;
+      mask-size: 0% 0%; /* Start invisible */
+    }
+
+    to {
+      mask-composite: intersect;
+      mask-image: url('../assets/star.svg');
+      mask-position: center center;
+      mask-repeat: no-repeat;
+      mask-size: 400% 400%; /* Expand to cover entire page */
+    }
+  }
+
+  ::view-transition-new(root) {
+    animation: star-wipe-reveal .8s cubic-bezier(.25, .46, .45, .94) forwards;
   }
 }

@@ -1,0 +1,24 @@
+---
+import type { JSX } from 'astro/jsx-runtime';
+
+const currentPage = Astro.url.pathname;
+
+interface NavLink {
+  href: string;
+  text: string;
+}
+
+const ninjaSiteNavLinks: NavLink[] = [
+  { href: '/ninja-site/', text: 'Building a modern secure static website' },
+  { href: '/ninja-site/setup.html', text: 'Setup an Astro TypeScript SSG project' },
+  { href: '/ninja-site/developing.html', text: 'Developing with Astro and Web Components' },
+  { href: '/ninja-site/deploy.html', text: 'Deploying SSG websites with Terraform' },
+  { href: '/ninja-site/lessons.html', text: 'What I learned developing this project' },
+];
+---
+<ul>
+  {ninjaSiteNavLinks.map((link: NavLink): JSX.Element =>
+    link.href === currentPage
+      ? <li aria-current="page">{link.text}</li>
+      : <li><a href={link.href}>{link.text}</a></li>)}
+</ul>
