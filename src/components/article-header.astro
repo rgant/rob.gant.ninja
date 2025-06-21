@@ -1,0 +1,35 @@
+---
+import MySiteNav from '~/components/my-site-nav.astro';
+import '~/styles/article-header.css';
+---
+<header class="banner main-header">
+  <a href="/" title="Profile"><img src="/icons/icon-mask.png" alt="J Rob Gant" class="profile-icon"></a>
+
+  <div class="heading">
+    <slot />
+  </div>
+
+  <nav aria-label="Global navigation" class="global-nav">
+    <a href="/" class="bttn" title="Profile">My Profile</a>
+
+    <div class="dropdown-wrap">
+      <details class="dropdown">
+        <summary id="related-nav" class="bttn">Brainfry project</summary>
+
+        <nav aria-labelledby="related-nav" class="dropdown-content">
+          <MySiteNav />
+        </nav>
+      </details>
+    </div>
+
+    <div class="dropdown-wrap">
+      <details class="dropdown">
+        <summary id="related-nav" class="bttn">My site</summary>
+
+        <nav aria-labelledby="related-nav" class="dropdown-content">
+          <MySiteNav />
+        </nav>
+      </details>
+    </div>
+  </nav>
+</header>

@@ -1,5 +1,8 @@
 ---
+import ArticleHeader from '~/components/article-header.astro';
 import BaseHead from '~/components/base-head.astro';
+import MySiteNav from '~/components/my-site-nav.astro';
+import ScrollNavigation from '~/components/scroll-navigation/scroll-navigation.astro';
 import Structure from '~/layouts/structure.astro';
 import { unwrap } from '~/unwrap.util';
 
@@ -9,43 +12,31 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
 <Structure>
   <BaseHead description={description} slot="head" title="Deploying Static Websites with Terraform and AWS Amplify" />
 
-  <header class="banner main-header">
-    <div class="heading">
-      <h1 id="top">Deploying Static Websites with Terraform</h1>
-      <p>Using <abbr title="Amazon Web Services">AWS</abbr> Amplify for static site generator hosting</p>
-    </div>
-
-    <details>
-      <summary id="related-nav">Related articles</summary>
-
-      <nav aria-labelledby="related-nav">
-        <ul>
-          <li><a href="index.html">Building a modern secure static website</a></li>
-          <li><a href="setup.html">Setup an Astro TypeScript SSG project</a></li>
-          <li><a href="developing.html">Developing with Astro and Web Components</a></li>
-          <li><a href="lessons.html">What I learned developing this project</a></li>
-        </ul>
-      </nav>
-    </details>
-  </header>
+  <ArticleHeader currentPage="deploy.html">
+    <h1 id="top">Deploying Static Websites with Terraform</h1>
+    <p>Using <abbr title="Amazon Web Services">AWS</abbr> Amplify for static site generator hosting</p>
+  </ArticleHeader>
 
   <article>
     <aside>
-      <nav aria-label="Article Navigation">
-        <ul>
-          <li><a href="#migration">From S3/CloudFront to Amplify</a></li>
-          <li><a href="#terraform">Terraform configuration</a></li>
-          <li><a href="#challenges">Challenges and workarounds</a></li>
-          <li><a href="#security">Security considerations</a></li>
-          <li><a href="#process">Deployment process</a></li>
-          <li><a href="#monitoring">Monitoring and observability</a></li>
-          <li><a href="#future">Future improvements</a></li>
-        </ul>
+      <nav aria-labelledby="article-nav">
+        <h3 id="article-nav">On this page</h3>
+        <ScrollNavigation>
+          <ul class="in-page-nav">
+            <li><a href="#migration">From S3/CloudFront to Amplify</a></li>
+            <li><a href="#terraform">Terraform configuration</a></li>
+            <li><a href="#challenges">Challenges and workarounds</a></li>
+            <li><a href="#security">Security considerations</a></li>
+            <li><a href="#process">Deployment process</a></li>
+            <li><a href="#monitoring">Monitoring and observability</a></li>
+            <li><a href="#future">Future improvements</a></li>
+          </ul>
+        </ScrollNavigation>
       </nav>
     </aside>
 
-    <section aria-labelledby="migration">
-      <h2 id="migration">From S3/CloudFront to Amplify</h2>
+    <section id="migration">
+      <h2>From S3/CloudFront to Amplify</h2>
 
       <ul class="key-points">
         <li>
@@ -110,10 +101,12 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
           recreate the test site multiple times to resolve issues with automatic SSL certificate generation, redirects, and custom headers.
         </p>
       </div>
+
+      <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
     </section>
 
-    <section aria-labelledby="terraform">
-      <h2 id="terraform">Terraform configuration</h2>
+    <section id="terraform">
+      <h2>Terraform configuration</h2>
 
       <ul class="key-points">
         <li>
@@ -168,10 +161,12 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
           to a JSON file that Terraform can consume.
         </p>
       </div>
+
+      <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
     </section>
 
-    <section aria-labelledby="challenges">
-      <h2 id="challenges">Challenges and workarounds</h2>
+    <section id="challenges">
+      <h2>Challenges and workarounds</h2>
 
       <ul class="key-points">
         <li>
@@ -219,10 +214,12 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
           current AWS CLI approach keeps deployment control within the same tool managing infrastructure state and configuration.
         </p>
       </div>
+
+      <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
     </section>
 
-    <section aria-labelledby="security">
-      <h2 id="security">Security considerations</h2>
+    <section id="security">
+      <h2>Security considerations</h2>
 
       <ul class="key-points">
         <li>
@@ -275,10 +272,12 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
           outside Terraform management.
         </p>
       </div>
+
+      <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
     </section>
 
-    <section aria-labelledby="process">
-      <h2 id="process">Deployment process</h2>
+    <section id="process">
+      <h2>Deployment process</h2>
 
       <ul class="key-points">
         <li>
@@ -337,10 +336,12 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
           <code>ignore_changes</code> lifecycle rule.
         </p>
       </div>
+
+      <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
     </section>
 
-    <section aria-labelledby="monitoring">
-      <h2 id="monitoring">Monitoring and observability</h2>
+    <section id="monitoring">
+      <h2>Monitoring and observability</h2>
 
       <ul class="key-points">
         <li>
@@ -376,10 +377,12 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
           for a low-traffic site where cost anomalies are often the first indicator of technical issues requiring attention.
         </p>
       </div>
+
+      <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
     </section>
 
-    <section aria-labelledby="future">
-      <h2 id="future">Future improvements</h2>
+    <section id="future">
+      <h2>Future improvements</h2>
 
       <ul class="key-points">
         <li>
@@ -438,6 +441,15 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
           behind.
         </p>
       </div>
+
+      <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
     </section>
+
+    <aside>
+      <nav aria-labelledby="section-nav">
+        <h3 id="section-nav">Continue reading about my site</h3>
+        <MySiteNav />
+      </nav>
+    </aside>
   </article>
 </Structure>

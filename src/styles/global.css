@@ -212,8 +212,31 @@ h3 {
   font-size: 1.5rem;
 }
 
+summary {
+  cursor: pointer; /* These are clicky, so why isn't this the default? */
+
+  &:hover {
+    color: var(--link-color-interaction);
+  }
+}
+
 .link-list li {
   margin-block-start: .5rem;
+}
+
+.main-header {
+  .heading {
+    font-family: var(--heading-font); /* All heading content should use heading font */
+    font-size: 1.5rem;
+
+    p {
+      margin-block: 0 1rem; /* Smaller space on the bottom of the banner. */
+    }
+  }
+
+  h1 {
+    margin-block: 0; /* With the line-height a top margin isn't necessary. */
+  }
 }
 
 .in-page-nav {

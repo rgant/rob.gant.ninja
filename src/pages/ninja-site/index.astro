@@ -1,6 +1,10 @@
 ---
+import ArticleHeader from '~/components/article-header.astro';
 import BaseHead from '~/components/base-head.astro';
+import MySiteNav from '~/components/my-site-nav.astro';
+import ScrollNavigation from '~/components/scroll-navigation/scroll-navigation.astro';
 import Structure from '~/layouts/structure.astro';
+import '~/styles/article-pages.css';
 import { unwrap } from '~/unwrap.util';
 
 const description = unwrap`Modern static site development workflow using Astro, TypeScript, custom
@@ -9,42 +13,30 @@ const description = unwrap`Modern static site development workflow using Astro, 
 <Structure>
   <BaseHead description={description} slot="head" title="Building a modern secure static website" />
 
-  <header class="banner main-header">
-    <div class="heading">
-      <h1 id="top">Building My Personal Website</h1>
-      <p>A modern approach to static site generation</p>
-    </div>
-
-    <details>
-      <summary id="related-nav">Related Articles</summary>
-
-      <nav aria-labelledby="related-nav">
-        <ul>
-          <li><a href="setup.html">Setup an Astro TypeScript SSG project</a></li>
-          <li><a href="developing.html">Developing with Astro and Web Components</a></li>
-          <li><a href="deploy.html">Deploying SSG websites with Terraform</a></li>
-          <li><a href="lessons.html">What I learned developing this project</a></li>
-        </ul>
-      </nav>
-    </details>
-  </header>
+  <ArticleHeader currentPage="">
+    <h1 id="top">Building My Personal Website</h1>
+    <p>A modern approach to static site generation</p>
+  </ArticleHeader>
 
   <article>
     <aside>
-      <nav aria-label="Article Navigation">
-        <ul>
-          <li><a href="#tools">Why these tools?</a></li>
-          <li><a href="#setup">Project setup and structure</a></li>
-          <li><a href="#developing">Developing the website</a></li>
-          <li><a href="#deploy">Deployment and hosting</a></li>
-          <li><a href="#lessons">Lessons learned</a></li>
-          <li><a href="#history">Page history</a></li>
-        </ul>
+      <nav aria-labelledby="article-nav">
+        <h3 id="article-nav">On this page</h3>
+        <ScrollNavigation>
+          <ul class="in-page-nav">
+            <li><a href="#tools">Why these tools?</a></li>
+            <li><a href="#setup">Project setup and structure</a></li>
+            <li><a href="#developing">Developing the website</a></li>
+            <li><a href="#deploy">Deployment and hosting</a></li>
+            <li><a href="#lessons">Lessons learned</a></li>
+            <li><a href="#history">Page history</a></li>
+          </ul>
+        </ScrollNavigation>
       </nav>
     </aside>
 
-    <section aria-labelledby="tools">
-      <h2 id="tools">Why these tools?</h2>
+    <section id="tools">
+      <h2>Why these tools?</h2>
 
       <ul class="key-points">
         <li>
@@ -89,10 +81,12 @@ const description = unwrap`Modern static site development workflow using Astro, 
           later.
         </p>
       </div>
+
+      <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
     </section>
 
-    <section aria-labelledby="setup">
-      <h2 id="setup">Project setup and structure</h2>
+    <section id="setup">
+      <h2>Project setup and structure</h2>
 
       <ul class="key-points">
         <li>
@@ -137,15 +131,17 @@ const description = unwrap`Modern static site development workflow using Astro, 
       </div>
 
       <p class="deep-dive"><a href="setup.html">Go into detail about setting up this website.</a></p>
+
+      <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
     </section>
 
-    <section aria-labelledby="developing">
-      <h2 id="developing">Developing the website</h2>
+    <section id="developing">
+      <h2>Developing the website</h2>
 
       <ul class="key-points">
         <li>
-          <strong>Custom Elements:</strong>
-          Implemented native <a href="https://github.com/rgant/rob.gant.ninja/tree/main/src/components">Web Components</a> for interactive
+          <strong>Web Components:</strong>
+          Implemented native <a href="https://github.com/rgant/rob.gant.ninja/tree/main/src/components">Custom Elements</a> for interactive
           features like scroll tracking and dynamic content updates.
         </li>
         <li>
@@ -191,10 +187,12 @@ const description = unwrap`Modern static site development workflow using Astro, 
       </div>
 
       <p class="deep-dive"><a href="developing.html">More about the development of this website.</a></p>
+
+      <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
     </section>
 
-    <section aria-labelledby="deploy">
-      <h2 id="deploy">Deployment and hosting</h2>
+    <section id="deploy">
+      <h2>Deployment and hosting</h2>
 
       <ul class="key-points">
         <li>
@@ -243,10 +241,12 @@ const description = unwrap`Modern static site development workflow using Astro, 
       </div>
 
       <p class="deep-dive"><a href="deploy.html">More details about deploying this website.</a></p>
+
+      <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
     </section>
 
-    <section aria-labelledby="lessons">
-      <h2 id="lessons">Lessons learned</h2>
+    <section id="lessons">
+      <h2>Lessons learned</h2>
 
       <ul class="key-points">
         <li>
@@ -287,10 +287,19 @@ const description = unwrap`Modern static site development workflow using Astro, 
       </div>
 
       <p class="deep-dive"><a href="lessons.html">Dive into the lessons I learned while building this website.</a></p>
+
+      <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
     </section>
 
-    <!-- <section aria-labelledby="history">
-      <h2 id="history">Page history</h2>
+    <aside>
+      <nav aria-labelledby="section-nav">
+        <h3 id="section-nav">Continue reading about my site</h3>
+        <MySiteNav />
+      </nav>
+    </aside>
+
+    <!-- <section id="history">
+      <h2>Page history</h2>
 
       <ol>
         <li>
