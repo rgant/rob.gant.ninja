@@ -28,6 +28,12 @@
     "preview": "astro preview",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "//": "https://github.com/kindspells/astro-shield/issues/176",
+  "overrides": {
+    "@kindspells/astro-shield@^1.7.1": {
+      "astro@^4.0.0": "^5.0.0"
+    }
+  },
   "dependencies": {
     "@astrojs/rss": "^4.0.12",
     "@astrojs/sitemap": "^3.4.1",
@@ -90,12 +96,6 @@
     "packageManager": {
       "name": "npm",
       "onFail": "error"
-    }
-  },
-  "//": "https://github.com/kindspells/astro-shield/issues/176",
-  "overrides": {
-    "@kindspells/astro-shield@^1.7.1": {
-      "astro@^4.0.0": "^5.0.0"
     }
   }
 }

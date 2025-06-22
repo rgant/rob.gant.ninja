@@ -10,7 +10,6 @@
 			"folder_exclude_patterns":
 			[
 				".cache",
-				".parcel-cache",
 				".terraform",
 				"node_modules"
 			],
