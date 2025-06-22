@@ -14,11 +14,11 @@ const description = unwrap`Modern static site development workflow using Astro, 
   <BaseHead description={description} slot="head" title="Building a modern secure static website" />
 
   <ArticleHeader currentPage="">
-    <h1 id="top">Building My Personal Website</h1>
+    <h1 class="decorated-heading primary">Building My Personal Website</h1>
     <p>A modern approach to static site generation</p>
   </ArticleHeader>
 
-  <article>
+  <article class="presentation">
     <aside>
       <nav aria-labelledby="article-nav">
         <h3 id="article-nav">On this page</h3>
@@ -35,39 +35,50 @@ const description = unwrap`Modern static site development workflow using Astro, 
       </nav>
     </aside>
 
-    <section id="tools">
-      <h2>Why these tools?</h2>
+    <section id="tools" class="slide">
+      <h2 class="decorated-heading second">Why these tools?</h2>
 
       <ul class="key-points">
         <li>
           <strong>Site Generator:</strong>
-          Migrated to <a href="https://astro.build/">Astro</a> because it treats static sites as first-class rather than an afterthought,
-          eliminating <a href="https://github.com/rgant/rob.gant.ninja/tree/a2f09756cfe1b357689677cf20c234e1354d95fc/packages"
-          >custom plugin</a> requirements while providing built-in <abbr title="Static Site Generation">SSG</abbr> optimizations.
+          Migrated to
+          <a rel="noreferrer" href="https://astro.build/" target="_blank">Astro</a>
+          because it treats static sites as first-class rather than an afterthought, eliminating
+          <a
+            rel="noreferrer"
+            href="https://github.com/rgant/rob.gant.ninja/tree/a2f09756cfe1b357689677cf20c234e1354d95fc/packages"
+            target="_blank"
+          >custom plugin</a>
+          requirements while providing built-in <abbr title="Static Site Generation">SSG</abbr> optimizations.
         </li>
         <li>
           <strong>Version Control:</strong>
-          <a href="https://git-scm.com/">Git</a> is essential for tracking when and why changes were made over time, especially for projects
-          with infrequent but important updates.
+          <a rel="noreferrer" href="https://git-scm.com/" target="_blank">Git</a>
+          is essential for tracking when and why changes were made over time, especially for projects with infrequent but important updates.
         </li>
         <li>
           <strong>Code Quality Tools:</strong>
-          <a href="https://eslint.org/">ESLint</a>, <a href="https://stylelint.io/">Stylelint</a>, <a href="https://dprint.dev/">dprint</a>
-          &amp; <a href="https://prettier.io/">Prettier</a> provide automated code quality enforcement for solo development where peer code
-          review isn’t available.
+          <a rel="noreferrer" href="https://eslint.org/" target="_blank">ESLint</a>,
+          <a rel="noreferrer" href="https://stylelint.io/" target="_blank">Stylelint</a>,
+          <a rel="noreferrer" href="https://dprint.dev/" target="_blank">dprint</a>
+          &amp;
+          <a rel="noreferrer" href="https://prettier.io/" target="_blank">Prettier</a>
+          provide automated code quality enforcement for solo development where peer code review isn’t available.
         </li>
         <li>
           <strong>Infrastructure as Code:</strong>
-          <a href="https://developer.hashicorp.com/terraform">Terraform</a> documents “what” infrastructure declaratively while supporting
-          “why” reasoning through comments and module structure—crucial for infrequent infrastructure work.
+          <a rel="noreferrer" href="https://developer.hashicorp.com/terraform" target="_blank">Terraform</a>
+          documents “what” infrastructure declaratively while supporting “why” reasoning through comments and module structure—crucial for
+          infrequent infrastructure work.
         </li>
       </ul>
 
       <div class="description">
         <p>
           Static Site Generation requires tools purpose-built for that workflow rather than general bundlers adapted for static output.
-          Astro’s zero-JS-by-default approach and <a href="https://www.typescriptlang.org/">TypeScript</a>-native architecture provide
-          better performance and developer experience than configuring general-purpose tools.
+          Astro’s zero-JS-by-default approach and
+          <a rel="noreferrer" href="https://www.typescriptlang.org/" target="_blank">TypeScript</a>-native architecture provide better
+          performance and developer experience than configuring general-purpose tools.
         </p>
 
         <p>
@@ -82,16 +93,20 @@ const description = unwrap`Modern static site development workflow using Astro, 
         </p>
       </div>
 
-      <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+      <div class="section-nav">
+        <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+      </div>
     </section>
 
-    <section id="setup">
-      <h2>Project setup and structure</h2>
+    <section id="setup" class="slide">
+      <h2 class="decorated-heading third">Project setup and structure</h2>
 
       <ul class="key-points">
         <li>
           <strong>Build Framework Migration:</strong>
-          Replaced <a href="https://parceljs.org/">Parcel</a> with Astro to leverage its SSG-focused architecture and optimizations.
+          Replaced
+          <a rel="noreferrer" href="https://parceljs.org/" target="_blank">Parcel</a>
+          with Astro to leverage its SSG-focused architecture and optimizations.
         </li>
         <li>
           <strong>Configuration Customization:</strong>
@@ -99,29 +114,35 @@ const description = unwrap`Modern static site development workflow using Astro, 
         </li>
         <li>
           <strong>Infrastructure Organization:</strong>
-          Restructured Terraform configuration into <a href="https://github.com/rgant/rob.gant.ninja/tree/main/infrastructure">modules</a>
-          with a <a href="https://github.com/rgant/rob.gant.ninja/blob/main/main.tf">single entry point</a> for better maintainability.
+          Restructured Terraform configuration into
+          <a rel="noreferrer" href="https://github.com/rgant/rob.gant.ninja/tree/main/infrastructure" target="_blank">modules</a>
+          with a
+          <a rel="noreferrer" href="https://github.com/rgant/rob.gant.ninja/blob/main/main.tf" target="_blank">single entry point</a>
+          for better maintainability.
         </li>
         <li>
           <strong>Documentation Structure:</strong>
-          Established a dedicated <a href="https://github.com/rgant/rob.gant.ninja/tree/main/docs">documentation directory</a> for processes
-          not captured in code or configuration.
+          Established a dedicated
+          <a rel="noreferrer" href="https://github.com/rgant/rob.gant.ninja/tree/main/docs" target="_blank">documentation directory</a>
+          for processes not captured in code or configuration.
         </li>
       </ul>
 
       <div class="description">
         <p>
           The project began as a Parcel-based static site that was migrated to Astro for its enhanced static site generation capabilities
-          and built-in performance optimizations. Starting with Astro’s <a href="https://github.com/withastro/astro/tree/main/examples/blog"
-          >blog template</a> provided a solid foundation that was customized to meet specific requirements.
+          and built-in performance optimizations. Starting with Astro’s
+          <a rel="noreferrer" href="https://github.com/withastro/astro/tree/main/examples/blog" target="_blank">blog template</a>
+          provided a solid foundation that was customized to meet specific requirements.
         </p>
 
         <p>
-          Strict configuration files for <a href="https://github.com/rgant/rob.gant.ninja/blob/main/tsconfig.json">TypeScript</a>,
-          <a href="https://github.com/rgant/rob.gant.ninja/blob/main/eslint.config.ts">ESLint</a>, and
-          <a href="https://github.com/rgant/rob.gant.ninja/blob/main/.stylelintrc.json">Stylelint</a> were implemented to enforce code
-          quality standards. These configurations were carefully researched to incorporate both established best practices and recently
-          maintained plugins that enhance development efficiency.
+          Strict configuration files for
+          <a rel="noreferrer" href="https://github.com/rgant/rob.gant.ninja/blob/main/tsconfig.json" target="_blank">TypeScript</a>,
+          <a rel="noreferrer" href="https://github.com/rgant/rob.gant.ninja/blob/main/eslint.config.ts" target="_blank">ESLint</a>, and
+          <a rel="noreferrer" href="https://github.com/rgant/rob.gant.ninja/blob/main/.stylelintrc.json" target="_blank">Stylelint</a>
+          were implemented to enforce code quality standards. These configurations were carefully researched to incorporate both established
+          best practices and recently maintained plugins that enhance development efficiency.
         </p>
 
         <p>
@@ -130,54 +151,73 @@ const description = unwrap`Modern static site development workflow using Astro, 
         </p>
       </div>
 
-      <p class="deep-dive"><a href="setup.html">Go into detail about setting up this website.</a></p>
+      <div class="section-nav">
+        <p class="deep-dive"><a href="setup.html">Go into detail about setting up this website.</a></p>
 
-      <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+        <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+      </div>
     </section>
 
-    <section id="developing">
-      <h2>Developing the website</h2>
+    <section id="developing" class="slide">
+      <h2 class="decorated-heading fourth">Developing the website</h2>
 
       <ul class="key-points">
         <li>
           <strong>Web Components:</strong>
-          Implemented native <a href="https://github.com/rgant/rob.gant.ninja/tree/main/src/components">Custom Elements</a> for interactive
-          features like scroll tracking and dynamic content updates.
+          Implemented native
+          <a rel="noreferrer" href="https://github.com/rgant/rob.gant.ninja/tree/main/src/components" target="_blank">Custom Elements</a>
+          for interactive features like scroll tracking and dynamic content updates.
         </li>
         <li>
           <strong>Progressive Web App:</strong>
-          Integrated <a href="https://github.com/vite-pwa/astro">@vite-pwa/astro</a> to enhance <a
+          Integrated
+          <a rel="noreferrer" href="https://github.com/vite-pwa/astro" target="_blank">@vite-pwa/astro</a>
+          to enhance
+          <a
+            rel="noreferrer"
             href="https://github.com/rgant/rob.gant.ninja/blob/5beb0b79635843a838fda30127aaa908518baf41/astro.config.ts#L10-L27"
-          >performance and offline capabilities</a> for the static site.
+            target="_blank"
+          >performance and offline capabilities</a>
+          for the static site.
         </li>
         <li>
           <strong>Content Security Policy:</strong>
-          Utilized <a href="https://github.com/kindspells/astro-shield">@kindspells/astro-shield</a> to generate
-          <abbr title="Subresource Integrity">SRI</abbr> hashes and integrated them into <a href="https://aws.amazon.com/amplify/"
-          >Amplify</a> deployment.
+          Utilized
+          <a rel="noreferrer" href="https://github.com/kindspells/astro-shield" target="_blank">@kindspells/astro-shield</a>
+          to generate <abbr title="Subresource Integrity">SRI</abbr> hashes and integrated them into
+          <a rel="noreferrer" href="https://aws.amazon.com/amplify/" target="_blank">Amplify</a>
+          deployment.
         </li>
         <li>
           <strong>Editor Integration:</strong>
-          Configured <a href="https://www.sublimetext.com/">Sublime Text</a> with appropriate linting and
-          <abbr title="Language Server Protocol">LSP</abbr>
-          <a href="https://github.com/rgant/homedir/tree/main/Library/Application-Support/Sublime-Text-3/Packages/User">packages</a> to
-          enforce code quality during development.
+          Configured
+          <a rel="noreferrer" href="https://www.sublimetext.com/" target="_blank">Sublime Text</a>
+          with appropriate linting and <abbr title="Language Server Protocol">LSP</abbr>
+          <a
+            rel="noreferrer"
+            href="https://github.com/rgant/homedir/tree/main/Library/Application-Support/Sublime-Text-3/Packages/User"
+            target="_blank"
+          >packages</a>
+          to enforce code quality during development.
         </li>
       </ul>
 
       <div class="description">
         <p>
-          Rather than relying on JavaScript frameworks, the site uses native <a
-            href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements"
-          >Custom Elements</a> for interactive features. This approach provides progressive enhancement with minimal JavaScript footprint
-          while enabling modern functionality like scroll tracking for navigation highlights and dynamic content updates.
+          Rather than relying on JavaScript frameworks, the site uses native
+          <a rel="noreferrer" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements" target="_blank"
+          >Custom Elements</a>
+          for interactive features. This approach provides progressive enhancement with minimal JavaScript footprint while enabling modern
+          functionality like scroll tracking for navigation highlights and dynamic content updates.
         </p>
 
         <p>
-          <abbr title="Progressive Web App">PWA</abbr> features were implemented because <a href="https://vite.dev/">Vite</a> and
-          <a href="https://github.com/GoogleChrome/workbox">Workbox</a> integration with Astro made them essentially free to add.
-          <abbr title="Content Security Policy">CSP</abbr> with SRI hashes was prioritized despite poor tooling because security remains
-          important even for small websites.
+          <abbr title="Progressive Web App">PWA</abbr> features were implemented because
+          <a rel="noreferrer" href="https://vite.dev/" target="_blank">Vite</a>
+          and
+          <a rel="noreferrer" href="https://github.com/GoogleChrome/workbox" target="_blank">Workbox</a>
+          integration with Astro made them essentially free to add. <abbr title="Content Security Policy">CSP</abbr> with SRI hashes was
+          prioritized despite poor tooling because security remains important even for small websites.
         </p>
 
         <p>
@@ -186,22 +226,23 @@ const description = unwrap`Modern static site development workflow using Astro, 
         </p>
       </div>
 
-      <p class="deep-dive"><a href="developing.html">More about the development of this website.</a></p>
+      <div class="section-nav">
+        <p class="deep-dive"><a href="developing.html">More about the development of this website.</a></p>
 
-      <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+        <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+      </div>
     </section>
 
-    <section id="deploy">
-      <h2>Deployment and hosting</h2>
+    <section id="deploy" class="slide">
+      <h2 class="decorated-heading fifth">Deployment and hosting</h2>
 
       <ul class="key-points">
         <li>
           <strong>AWS Amplify:</strong>
-          Migrated from <a href="https://aws.amazon.com/s3/" title="AWS S3">S3</a>/<a
-            href="https://aws.amazon.com/cloudfront/"
-            title="AWS CloudFront"
-          >CloudFront</a> to Amplify for better support of directory index files and simplified <abbr title="Secure Sockets Layer"
-          >SSL</abbr> management.
+          Migrated from
+          <a href="https://aws.amazon.com/s3/" title="AWS S3">S3</a>/<a href="https://aws.amazon.com/cloudfront/" title="AWS CloudFront"
+          >CloudFront</a>
+          to Amplify for better support of directory index files and simplified <abbr title="Secure Sockets Layer">SSL</abbr> management.
         </li>
         <li>
           <strong>Terraform:</strong>
@@ -210,13 +251,15 @@ const description = unwrap`Modern static site development workflow using Astro, 
         </li>
         <li>
           <strong>Scripted Deployment:</strong>
-          Created <a href="https://github.com/rgant/rob.gant.ninja/blob/main/package.json#L18">npm scripts</a> for repeatable build and
-          deployment processes without requiring CI/CD automation.
+          Created
+          <a rel="noreferrer" href="https://github.com/rgant/rob.gant.ninja/blob/main/package.json#L18" target="_blank">npm scripts</a>
+          for repeatable build and deployment processes without requiring CI/CD automation.
         </li>
         <li>
           <strong>Security Best Practices:</strong>
-          Implemented <a href="https://aws.amazon.com/" title="Amazon Web Services">AWS</a> security recommendations, locked down S3 bucket
-          access, and integrated Content Security Policy with SRI hashes.
+          Implemented
+          <a href="https://aws.amazon.com/" title="Amazon Web Services">AWS</a>
+          security recommendations, locked down S3 bucket access, and integrated Content Security Policy with SRI hashes.
         </li>
       </ul>
 
@@ -240,13 +283,15 @@ const description = unwrap`Modern static site development workflow using Astro, 
         </p>
       </div>
 
-      <p class="deep-dive"><a href="deploy.html">More details about deploying this website.</a></p>
+      <div class="section-nav">
+        <p class="deep-dive"><a href="deploy.html">More details about deploying this website.</a></p>
 
-      <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+        <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+      </div>
     </section>
 
-    <section id="lessons">
-      <h2>Lessons learned</h2>
+    <section id="lessons" class="slide">
+      <h2 class="decorated-heading second">Lessons learned</h2>
 
       <ul class="key-points">
         <li>
@@ -286,14 +331,16 @@ const description = unwrap`Modern static site development workflow using Astro, 
         </p>
       </div>
 
-      <p class="deep-dive"><a href="lessons.html">Dive into the lessons I learned while building this website.</a></p>
+      <div class="section-nav">
+        <p class="deep-dive"><a href="lessons.html">Dive into the lessons I learned while building this website.</a></p>
 
-      <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+        <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+      </div>
     </section>
 
     <aside>
       <nav aria-labelledby="section-nav">
-        <h3 id="section-nav">Continue reading about my site</h3>
+        <h3 id="section-nav" class="decorated-heading primary">Continue reading about my site</h3>
         <MySiteNav />
       </nav>
     </aside>
@@ -304,12 +351,14 @@ const description = unwrap`Modern static site development workflow using Astro, 
       <ol>
         <li>
           Add SRI hashes to CSP headers. Don’t inline resources for better security.
-          <a href="https://github.com/rgant/rob.gant.ninja/compare/03bfbd1..c888b04#diff-somehashvalue">changes</a>
+          <a rel="noreferrer" href="https://github.com/rgant/rob.gant.ninja/compare/03bfbd1..c888b04#diff-somehashvalue" target="_blank"
+          >changes</a>
           <time datetime="2025-03-03 15:29:41 -0500">3/3/2025, 3:29:41 PM</time>
         </li>
         <li>
           Add SRI hashes to CSP headers. Don’t inline resources for better security.
-          <a href="https://github.com/rgant/rob.gant.ninja/compare/cc44250..03bfbd1#diff-somehashvalue">changes</a>
+          <a rel="noreferrer" href="https://github.com/rgant/rob.gant.ninja/compare/cc44250..03bfbd1#diff-somehashvalue" target="_blank"
+          >changes</a>
           <time datetime="2025-03-02 20:22:57 -0500">3/2/2025, 8:22:57 PM</time>
         </li>
       </ol>

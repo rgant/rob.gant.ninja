@@ -4,15 +4,11 @@ h3 {
   text-transform: uppercase;
 }
 
-.diminish {
-  opacity: .7;
-}
-
 .subsection {
   /* These link colorw work for most of the sections except for About */
-  --link-color-interaction: oklch(34.118% .05975 186.34deg); /* Evergreen */
-  --link-color-visited: oklch(31.2% .0773 320.43deg);        /* Dark Purple */
-  --link-color: oklch(31.8% .176 265.86deg);                 /* Dark blue */
+  --link-color-interaction: var(--green-ever);
+  --link-color-visited: var(--purple-dark);
+  --link-color: var(--blue-dark);
 
   position: relative;
   padding: 1rem 1rem 2.124rem; /* Space for three dots divider */
@@ -51,14 +47,14 @@ h3 {
 
 #about {
   /* This section doesn't have links, so not adjusting link colors. */
-  --subsection-bg-color: oklch(60.5% .118 324.2deg); /* Medium Purple */
-  --subsection-color: oklch(20% .0988 323.6262deg);  /* Dark Purple */
+  --subsection-bg-color: var(--purple);
+  --subsection-color: var(--purple-darker);
 }
 
 #resume {
-  --subsection-bg-color: oklch(65.8% .153 128.79deg);      /* Leaf Green */
-  --subsection-color: oklch(29.4% .0906 128.66deg);        /* Dark Green */
-  --link-color-interaction: oklch(31.8% .12695 29.762deg); /* Dark Burgundy */
+  --subsection-bg-color: var(--green-leaf);
+  --subsection-color: var(--green-dark);
+  --link-color-interaction: var(--red-burgundy);
 
   ol {
     /* List experience in order, but don't display numbers. */
@@ -67,18 +63,18 @@ h3 {
 }
 
 #projects {
-  --subsection-bg-color: oklch(86.448% .15978 95.866deg);    /* Yellow */
-  --subsection-color: oklch(47.312% .09202 88.276deg);       /* Dark Yellow */
+  --subsection-bg-color: var(--yellow);
+  --subsection-color: var(--yellow-dark);
 }
 
 #tipsntricks {
-  --subsection-bg-color: oklch(73.819% .16112 32.481deg);    /* Salmon */
-  --subsection-color: oklch(30.5% .123 31.511deg);           /* Dark Red */
+  --subsection-bg-color: var(--red-salmon);
+  --subsection-color: var(--red-dark);
 }
 
 #orgs {
-  --subsection-bg-color: oklch(81.75% .10298 235.73deg);     /* Day Sky Blue */
-  --subsection-color: oklch(32.9% .0645 237.5deg);           /* Prussian Blue */
+  --subsection-bg-color: var(--blue-sky);
+  --subsection-color: var(--blue-prussian);
 
   img {
     inline-size: 100%;
@@ -302,18 +298,6 @@ h3 {
   }
 }
 
-@media print, (resolution >= 1.25dppx), (resolution >= 120dpi) {
-  /* Style adjustments for high resolution devices */
-
-  .subsection {
-    font-size: 1.25rem;
-  }
-
-  .top-link {
-    font-size: 1rem;
-  }
-}
-
 @media print {
   .subsection {
     min-block-size: 0;
@@ -324,7 +308,16 @@ h3 {
   }
 }
 
-/* Only when going "to" the home page will you see a magical star wipe transition. */
+/*
+Only when going "to" the home page will you see a magical star wipe transition.
+
+"... hopefully isn’t into star wipes or anything like that."
+-- Tina Blecher, Fraud Of The Dead Zombie Docu Pocalypse
+
+"Dad, there are other wipes beside star-wipes.
+Why eat hamburger when you can have steak?"
+-- Lisa and Homer Simpsons, Alone Again, Natura-diddily
+*/
 @media (prefers-reduced-motion: no-preference) {
   @view-transition {
     navigation: auto;

@@ -4,6 +4,7 @@ import BaseHead from '~/components/base-head.astro';
 import MySiteNav from '~/components/my-site-nav.astro';
 import ScrollNavigation from '~/components/scroll-navigation/scroll-navigation.astro';
 import Structure from '~/layouts/structure.astro';
+import '~/styles/article-pages.css';
 import { unwrap } from '~/unwrap.util';
 
 const description = unwrap`How to deploy static websites with Terraform and AWS Amplify, including
@@ -13,11 +14,11 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
   <BaseHead description={description} slot="head" title="Deploying Static Websites with Terraform and AWS Amplify" />
 
   <ArticleHeader currentPage="deploy.html">
-    <h1 id="top">Deploying Static Websites with Terraform</h1>
+    <h1 class="decorated-heading primary">Deploying Static Websites with Terraform</h1>
     <p>Using <abbr title="Amazon Web Services">AWS</abbr> Amplify for static site generator hosting</p>
   </ArticleHeader>
 
-  <article>
+  <article class="presentation">
     <aside>
       <nav aria-labelledby="article-nav">
         <h3 id="article-nav">On this page</h3>
@@ -35,20 +36,21 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
       </nav>
     </aside>
 
-    <section id="migration">
-      <h2>From S3/CloudFront to Amplify</h2>
+    <section id="migration" class="slide">
+      <h2 class="decorated-heading second">From S3/CloudFront to Amplify</h2>
 
       <ul class="key-points">
         <li>
           <strong>Directory Index Limitations:</strong>
-          <a href="https://aws.amazon.com/cloudfront/" title="AWS CloudFront">CloudFront</a>’s root object configuration only applies to the
-          root domain, not subdirectories.
+          <a rel="noreferrer" href="https://aws.amazon.com/cloudfront/" target="_blank" title="AWS CloudFront">CloudFront</a>’s root object
+          configuration only applies to the root domain, not subdirectories.
         </li>
         <li>
           <strong>S3 Website Hosting:</strong>
-          A basic static file server that requires public <a href="https://aws.amazon.com/s3/" title="AWS S3">S3</a> bucket access and
-          complex CloudFront <abbr title="Content Delivery Network">CDN</abbr> configuration, introducing security exposure and operational
-          complexity.
+          A basic static file server that requires public
+          <a rel="noreferrer" href="https://aws.amazon.com/s3/" target="_blank" title="AWS S3">S3</a>
+          bucket access and complex CloudFront <abbr title="Content Delivery Network">CDN</abbr> configuration, introducing security
+          exposure and operational complexity.
         </li>
         <li>
           <strong>AWS Amplify:</strong>
@@ -58,21 +60,29 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
         </li>
         <li>
           <strong>Migration Strategy:</strong>
-          I tested <a href="https://aws.amazon.com/amplify/" title="AWS Amplify">Amplify</a> by deploying to a separate domain before
-          switching production domains to validate functionality and identify configuration issues.
+          I tested
+          <a rel="noreferrer" href="https://aws.amazon.com/amplify/" target="_blank" title="AWS Amplify">Amplify</a>
+          by deploying to a separate domain before switching production domains to validate functionality and identify configuration issues.
         </li>
       </ul>
 
       <div class="description">
         <p>
-          My initial website architecture used an <a
+          My initial website architecture used an
+          <a
+            rel="noreferrer"
             href="https://github.com/rgant/rob.gant.ninja/blob/965c74fdd00c25d212505d80f6f9916f515eaef5/infrastructure/website.tf"
+            target="_blank"
           >S3 bucket as a CloudFront origin</a>, which functioned correctly for a single-page site. When expanding to multiple pages
           organized in directories, I required each directory to have its own <code>index.html</code> root object. I could have implemented
-          a CloudFront Function to <a
+          a CloudFront Function to
+          <a
+            rel="noreferrer"
             href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/example_cloudfront_functions_url_rewrite_single_page_apps_section.html"
+            target="_blank"
           >add <code>index.html</code> to the origin request <abbr title="Uniform Resource Identifier">URI</abbr></a>, but this approach
-          would require maintaining custom CloudFront Functions while <a href="https://aws.amazon.com/" title="Amazon Web Services">AWS</a>
+          would require maintaining custom CloudFront Functions while
+          <a rel="noreferrer" href="https://aws.amazon.com/" target="_blank" title="Amazon Web Services">AWS</a>
           continues expanding Amplify’s static hosting features.
         </p>
 
@@ -87,56 +97,78 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
           AWS Amplify is the recommended solution for static website hosting on AWS. It offers support for directory-level
           <code>index.html</code> files, automatic configuration of Route53 <abbr title="Domain Name System">DNS</abbr> and SSL
           certificates, and URI pattern based customizable HTTP response headers. While Amplify is primarily marketed for single-page
-          applications (SPAs), it works equally well for static site generators like <a href="https://astro.build/">Astro</a>. Amplify uses
-          CloudFront internally without exposing configuration options. The default CloudFront configuration appears reasonably strict,
-          making this limitation acceptable for my security requirements.
+          applications (SPAs), it works equally well for static site generators like
+          <a rel="noreferrer" href="https://astro.build/" target="_blank">Astro</a>. Amplify uses CloudFront internally without exposing
+          configuration options. The default CloudFront configuration appears reasonably strict, making this limitation acceptable for my
+          security requirements.
         </p>
 
         <p>
-          Before migrating the production site, I created a <a
+          Before migrating the production site, I created a
+          <a
+            rel="noreferrer"
             href="https://github.com/rgant/rob.gant.ninja/tree/107dc465b922391d8317e0380cb36bc9f96fc00d/infrastructure/amplify"
-          >test deployment</a> under a different domain to validate functionality. This allowed me to identify potential issues with domain
-          configuration and content delivery before switching the main domain. Testing proved essential since configuring Amplify through
-          <a href="https://developer.hashicorp.com/terraform">Terraform</a> presented significant challenges. I needed to delete and
-          recreate the test site multiple times to resolve issues with automatic SSL certificate generation, redirects, and custom headers.
+            target="_blank"
+          >test deployment</a>
+          under a different domain to validate functionality. This allowed me to identify potential issues with domain configuration and
+          content delivery before switching the main domain. Testing proved essential since configuring Amplify through
+          <a rel="noreferrer" href="https://developer.hashicorp.com/terraform" target="_blank">Terraform</a>
+          presented significant challenges. I needed to delete and recreate the test site multiple times to resolve issues with automatic
+          SSL certificate generation, redirects, and custom headers.
         </p>
       </div>
 
-      <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+      <div class="section-nav">
+        <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+      </div>
     </section>
 
-    <section id="terraform">
-      <h2>Terraform configuration</h2>
+    <section id="terraform" class="slide">
+      <h2 class="decorated-heading third">Terraform configuration</h2>
 
       <ul class="key-points">
         <li>
           <strong>State Management:</strong>
           Auto-generated Amplify resources must be
-          <a href="https://github.com/rgant/rob.gant.ninja/blob/8bd8208146607a8b47409129b409f46be5307b93/main.tf#L51-L70">imported</a> into
-          Terraform state for consistent infrastructure management.
+          <a
+            rel="noreferrer"
+            href="https://github.com/rgant/rob.gant.ninja/blob/8bd8208146607a8b47409129b409f46be5307b93/main.tf#L51-L70"
+            target="_blank"
+          >imported</a>
+          into Terraform state for consistent infrastructure management.
         </li>
         <li>
           <strong>Custom Headers:</strong>
-          <a href="https://github.com/rgant/rob.gant.ninja/blob/8bd8208146607a8b47409129b409f46be5307b93/infrastructure/amplify/main.tf#L2"
-          >Implemented</a> using <code>templatefile</code> function to insert <a
-            href="https://github.com/rgant/rob.gant.ninja/blob/main/scripts/set-csp-header.ts"
-          >dynamic</a> <abbr title="Subresource Integrity">SRI</abbr> hashes.
+          <a
+            rel="noreferrer"
+            href="https://github.com/rgant/rob.gant.ninja/blob/8bd8208146607a8b47409129b409f46be5307b93/infrastructure/amplify/main.tf#L2"
+            target="_blank"
+          >Implemented</a>
+          using <code>templatefile</code> function to insert
+          <a rel="noreferrer" href="https://github.com/rgant/rob.gant.ninja/blob/main/scripts/set-csp-header.ts" target="_blank">dynamic</a>
+          <abbr title="Subresource Integrity">SRI</abbr> hashes.
         </li>
         <li>
           <strong>Custom Domains:</strong>
           Managed through <code>aws_amplify_domain_association</code>
-          <a href="https://github.com/rgant/rob.gant.ninja/blob/8bd8208146607a8b47409129b409f46be5307b93/infrastructure/amplify/main.tf#L54"
-          >resource</a> with additional Route53 configuration.
+          <a
+            rel="noreferrer"
+            href="https://github.com/rgant/rob.gant.ninja/blob/8bd8208146607a8b47409129b409f46be5307b93/infrastructure/amplify/main.tf#L54"
+            target="_blank"
+          >resource</a>
+          with additional Route53 configuration.
         </li>
       </ul>
 
       <div class="description">
         <p>
-          The Terraform <a href="https://github.com/rgant/rob.gant.ninja/tree/main/infrastructure">configuration for the website</a>
+          The Terraform
+          <a rel="noreferrer" href="https://github.com/rgant/rob.gant.ninja/tree/main/infrastructure" target="_blank"
+          >configuration for the website</a>
           consists of modular components that handle different aspects of the AWS infrastructure. The Amplify module includes resources for
           the Amplify app itself, branch configuration, domain association, and custom headers. Additional modules manage supporting
-          infrastructure like S3 buckets for deployment artifacts and DNS configuration. Terraform state is stored <a
-            href="https://github.com/rgant/rob.gant.ninja/tree/main/infrastructure/remote-config"
+          infrastructure like S3 buckets for deployment artifacts and DNS configuration. Terraform state is stored
+          <a rel="noreferrer" href="https://github.com/rgant/rob.gant.ninja/tree/main/infrastructure/remote-config" target="_blank"
           >remotely in an S3 bucket</a>.
         </p>
 
@@ -144,29 +176,37 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
           One complexity with Amplify is that it automatically creates several sub-resources, only some of which are directly accessible
           through Terraform. For example, Amplify automatically generates DNS records for domain verification, which must be imported into
           the Terraform state to ensure consistent management. This maintains the infrastructure-as-code approach while working within
-          Amplify’s architectural constraints. Although Amplify uses <a
+          Amplify’s architectural constraints. Although Amplify uses
+          <a
+            rel="noreferrer"
             href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/website-hosting-amplify.html#:~:text=globally%20available%20content%20delivery%20network%20(CDN)%20powered%20by%20Amazon%20CloudFront"
-          >CloudFront</a> internally, it does not expose CloudFront configuration options. The default CloudFront configuration appears
-          adequate for basic security requirements, though detailed security analysis remains pending.
+            target="_blank"
+          >CloudFront</a>
+          internally, it does not expose CloudFront configuration options. The default CloudFront configuration appears adequate for basic
+          security requirements, though detailed security analysis remains pending.
         </p>
 
         <p>
           I implemented custom headers, including Content Security Policy with SRI hashes, using Terraform’s <code>templatefile</code>
           function to insert dynamic values into a <abbr title="YAML Ain’t Markup Language">YAML</abbr> configuration. This allows the
           security headers to be updated with each deployment while keeping the configuration declarative and version-controlled. As part of
-          the build process, Astro exports the integrity hashes as a <a href="https://www.typescriptlang.org/">TypeScript</a> file. Since
-          <a href="https://github.com/kindspells/astro-shield">@kindspells/astro-shield</a> does not provide direct
-          <abbr title="JavaScript Object Notation">JSON</abbr> export functionality, I added a <code>postbuild</code> script to the
-          <a href="https://www.npmjs.com/" title="Node Package Manager">npm</a> package configuration that automatically writes the hashes
-          to a JSON file that Terraform can consume.
+          the build process, Astro exports the integrity hashes as a
+          <a rel="noreferrer" href="https://www.typescriptlang.org/" target="_blank">TypeScript</a> file. Since
+          <a rel="noreferrer" href="https://github.com/kindspells/astro-shield" target="_blank">@kindspells/astro-shield</a>
+          does not provide direct <abbr title="JavaScript Object Notation">JSON</abbr> export functionality, I added a <code
+          >postbuild</code> script to the
+          <a rel="noreferrer" href="https://www.npmjs.com/" target="_blank" title="Node Package Manager">npm</a>
+          package configuration that automatically writes the hashes to a JSON file that Terraform can consume.
         </p>
       </div>
 
-      <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+      <div class="section-nav">
+        <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+      </div>
     </section>
 
-    <section id="challenges">
-      <h2>Challenges and workarounds</h2>
+    <section id="challenges" class="slide">
+      <h2 class="decorated-heading fourth">Challenges and workarounds</h2>
 
       <ul class="key-points">
         <li>
@@ -180,14 +220,15 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
         </li>
         <li>
           <strong>Custom Headers Bug:</strong>
-          Terraform always detects header changes due to provider issue <a
-            href="https://github.com/hashicorp/terraform-provider-aws/issues/34318"
-          >#34318</a>, requiring <a href="https://github.com/rgant/rob.gant.ninja/blob/main/infrastructure/amplify.tf#L92-L114">AWS CLI</a>
-          workaround.
+          Terraform always detects header changes due to provider issue
+          <a rel="noreferrer" href="https://github.com/hashicorp/terraform-provider-aws/issues/34318" target="_blank">#34318</a>, requiring
+          <a rel="noreferrer" href="https://github.com/rgant/rob.gant.ninja/blob/main/infrastructure/amplify.tf#L92-L114" target="_blank"
+          >AWS CLI</a> workaround.
         </li>
         <li>
           <strong>Deploying to Amplify:</strong>
-          Terraform lacks deployment resource support, requiring <a href="https://aws.amazon.com/cli/">AWS CLI</a>
+          Terraform lacks deployment resource support, requiring
+          <a rel="noreferrer" href="https://aws.amazon.com/cli/" target="_blank">AWS CLI</a>
           <code>start-deployment</code> integration via <code>terraform_data</code>.
         </li>
       </ul>
@@ -215,34 +256,51 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
         </p>
       </div>
 
-      <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+      <div class="section-nav">
+        <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+      </div>
     </section>
 
-    <section id="security">
-      <h2>Security considerations</h2>
+    <section id="security" class="slide">
+      <h2 class="decorated-heading fifth">Security considerations</h2>
 
       <ul class="key-points">
         <li>
           <strong>Content Security Policy (CSP):</strong>
-          Implemented with <a
+          Implemented with
+          <a
+            rel="noreferrer"
             href="https://github.com/rgant/rob.gant.ninja/blob/8bd8208146607a8b47409129b409f46be5307b93/astro.config.ts#L61"
-          >SRI hashes</a> for all scripts and stylesheets, with <code>default-src 'none'</code> baseline policy.
+            target="_blank"
+          >SRI hashes</a>
+          for all scripts and stylesheets, with <code>default-src 'none'</code> baseline policy.
         </li>
         <li>
           <strong>Resource Separation:</strong>
-          Disabled <a href="https://github.com/rgant/rob.gant.ninja/blob/8bd8208146607a8b47409129b409f46be5307b93/astro.config.ts#L68-L69"
-          >inline resources</a> to maintain security boundaries at minimal performance cost.
+          Disabled
+          <a
+            rel="noreferrer"
+            href="https://github.com/rgant/rob.gant.ninja/blob/8bd8208146607a8b47409129b409f46be5307b93/astro.config.ts#L68-L69"
+            target="_blank"
+          >inline resources</a>
+          to maintain security boundaries at minimal performance cost.
         </li>
         <li>
           <strong>Access Control:</strong>
-          Configured <a href="https://github.com/rgant/rob.gant.ninja/blob/main/infrastructure/s3-bucket/main.tf">S3 bucket policies</a> and
-          <abbr title="Identity and Access Management">IAM</abbr> roles with least privilege principles.
+          Configured
+          <a rel="noreferrer" href="https://github.com/rgant/rob.gant.ninja/blob/main/infrastructure/s3-bucket/main.tf" target="_blank"
+          >S3 bucket policies</a>
+          and <abbr title="Identity and Access Management">IAM</abbr> roles with least privilege principles.
         </li>
         <li>
           <strong>SSL Management:</strong>
-          Leveraged Amplify’s <a
+          Leveraged Amplify’s
+          <a
+            rel="noreferrer"
             href="https://github.com/rgant/rob.gant.ninja/blob/8bd8208146607a8b47409129b409f46be5307b93/infrastructure/amplify/dns.tf#L8-L26"
-          >automated certificate provisioning</a> while maintaining infrastructure control through Terraform.
+            target="_blank"
+          >automated certificate provisioning</a>
+          while maintaining infrastructure control through Terraform.
         </li>
       </ul>
 
@@ -273,11 +331,13 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
         </p>
       </div>
 
-      <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+      <div class="section-nav">
+        <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+      </div>
     </section>
 
-    <section id="process">
-      <h2>Deployment process</h2>
+    <section id="process" class="slide">
+      <h2 class="decorated-heading second">Deployment process</h2>
 
       <ul class="key-points">
         <li>
@@ -311,10 +371,9 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
         </p>
 
         <p>
-          An npm script applies the Terraform configuration to update infrastructure as needed and deploys updated assets and
-          headers. The process first synchronizes the generated static files to an S3 bucket, which serves as a staging area for deployment.
-          Terraform then triggers Amplify to deploy content from this S3 bucket to the live environment and updates response headers if
-          necessary.
+          An npm script applies the Terraform configuration to update infrastructure as needed and deploys updated assets and headers. The
+          process first synchronizes the generated static files to an S3 bucket, which serves as a staging area for deployment. Terraform
+          then triggers Amplify to deploy content from this S3 bucket to the live environment and updates response headers if necessary.
         </p>
 
         <p>
@@ -337,11 +396,13 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
         </p>
       </div>
 
-      <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+      <div class="section-nav">
+        <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+      </div>
     </section>
 
-    <section id="monitoring">
-      <h2>Monitoring and observability</h2>
+    <section id="monitoring" class="slide">
+      <h2 class="decorated-heading third">Monitoring and observability</h2>
 
       <ul class="key-points">
         <li>
@@ -359,8 +420,10 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
         </li>
         <li>
           <strong>Budget Alerts:</strong>
-          Existing Terraform configuration includes <a href="https://github.com/rgant/rob.gant.ninja/blob/main/infrastructure/budget.tf"
-          >cost monitoring</a> to prevent unexpected billing charges.
+          Existing Terraform configuration includes
+          <a rel="noreferrer" href="https://github.com/rgant/rob.gant.ninja/blob/main/infrastructure/budget.tf" target="_blank"
+          >cost monitoring</a>
+          to prevent unexpected billing charges.
         </li>
       </ul>
 
@@ -378,11 +441,13 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
         </p>
       </div>
 
-      <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+      <div class="section-nav">
+        <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+      </div>
     </section>
 
-    <section id="future">
-      <h2>Future improvements</h2>
+    <section id="future" class="slide">
+      <h2 class="decorated-heading fourth">Future improvements</h2>
 
       <ul class="key-points">
         <li>
@@ -400,8 +465,9 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
         </li>
         <li>
           <strong>Recovery Documentation:</strong>
-          Document domain recovery procedures and infrastructure recreation processes from <a href="https://git-scm.com/">Git</a> and
-          Terraform state.
+          Document domain recovery procedures and infrastructure recreation processes from
+          <a rel="noreferrer" href="https://git-scm.com/" target="_blank">Git</a>
+          and Terraform state.
         </li>
         <li>
           <strong>Provider Monitoring:</strong>
@@ -436,18 +502,21 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
         </p>
 
         <p>
-          Terraform’s AWS provider releases rapidly. I will be <a href="https://github.com/hashicorp/terraform-provider-aws/releases"
-          >monitoring the releases</a> to notice when new features or updates apply to my infrastructure and to ensure that I don’t fall
-          behind.
+          Terraform’s AWS provider releases rapidly. I will be
+          <a rel="noreferrer" href="https://github.com/hashicorp/terraform-provider-aws/releases" target="_blank"
+          >monitoring the releases</a>
+          to notice when new features or updates apply to my infrastructure and to ensure that I don’t fall behind.
         </p>
       </div>
 
-      <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+      <div class="section-nav">
+        <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+      </div>
     </section>
 
     <aside>
       <nav aria-labelledby="section-nav">
-        <h3 id="section-nav">Continue reading about my site</h3>
+        <h3 id="section-nav" class="decorated-heading primary">Continue reading about my site</h3>
         <MySiteNav />
       </nav>
     </aside>

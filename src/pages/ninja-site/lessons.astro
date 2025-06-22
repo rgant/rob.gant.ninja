@@ -4,6 +4,7 @@ import BaseHead from '~/components/base-head.astro';
 import MySiteNav from '~/components/my-site-nav.astro';
 import ScrollNavigation from '~/components/scroll-navigation/scroll-navigation.astro';
 import Structure from '~/layouts/structure.astro';
+import '~/styles/article-pages.css';
 import { unwrap } from '~/unwrap.util';
 
 const description = unwrap`Key lessons learned building a modern static website: framework selection
@@ -13,11 +14,11 @@ const description = unwrap`Key lessons learned building a modern static website:
   <BaseHead description={description} slot="head" title="Lessons learned building a modern static website" />
 
   <ArticleHeader currentPage="developing.html">
-    <h1 id="top">Lessons learned</h1>
+    <h1 class="decorated-heading primary">Lessons learned</h1>
     <p>What I discovered building this website</p>
   </ArticleHeader>
 
-  <article>
+  <article class="presentation">
     <aside>
       <nav aria-labelledby="article-nav">
         <h3 id="article-nav">On this page</h3>
@@ -32,25 +33,31 @@ const description = unwrap`Key lessons learned building a modern static website:
       </nav>
     </aside>
 
-    <section id="setup">
-      <h2>Project setup and structure</h2>
+    <section id="setup" class="slide">
+      <h2 class="decorated-heading second">Project setup and structure</h2>
 
       <ul class="key-points">
         <li>
           <strong>Tool Evaluation Strategy:</strong>
           Choose tools closest to the framework’s ecosystem over feature-rich but distant alternatives.
-          <a href="https://github.com/vite-pwa/astro">@vite-pwa/astro</a> was the most feature-rich
-          <abbr title="Progressive Web App">PWA</abbr> option but chosen because <a href="https://vite.dev/">Vite</a> is core to
-          <a href="https://astro.build/">Astro</a>, ensuring long-term support over simpler alternatives like
-          <a href="https://github.com/alextim/astro-lib/tree/main/packages/astro-webmanifest">astro-webmanifest</a> or
-          <a href="https://github.com/aondodawid/WebApp-Astro-PWA">webapp-astro-pwa</a> with maintenance or popularity concerns.
+          <a rel="noreferrer" href="https://github.com/vite-pwa/astro" target="_blank">@vite-pwa/astro</a>
+          was the most feature-rich <abbr title="Progressive Web App">PWA</abbr> option but chosen because
+          <a rel="noreferrer" href="https://vite.dev/" target="_blank">Vite</a> is core to
+          <a rel="noreferrer" href="https://astro.build/" target="_blank">Astro</a>, ensuring long-term support over simpler alternatives
+          like
+          <a rel="noreferrer" href="https://github.com/alextim/astro-lib/tree/main/packages/astro-webmanifest" target="_blank"
+          >astro-webmanifest</a> or
+          <a rel="noreferrer" href="https://github.com/aondodawid/WebApp-Astro-PWA" target="_blank">webapp-astro-pwa</a>
+          with maintenance or popularity concerns.
         </li>
         <li>
           <strong>Configuration Format Evolution:</strong>
-          Linting tools have frequently changed configuration formats; both <a href="https://stylelint.io/">Stylelint</a> and
-          <a href="https://eslint.org/">ESLint</a> evolved from <abbr title="JavaScript Object Notation">JSON</abbr> to
-          <abbr title="JavaScript">JS</abbr> and will hopefully include <a href="https://www.typescriptlang.org/">TypeScript</a> soon.
-          TypeScript configurations avoid mixing JavaScript files and provide better editor support, though many plugins still lack
+          Linting tools have frequently changed configuration formats; both
+          <a rel="noreferrer" href="https://stylelint.io/" target="_blank">Stylelint</a> and
+          <a rel="noreferrer" href="https://eslint.org/" target="_blank">ESLint</a>
+          evolved from <abbr title="JavaScript Object Notation">JSON</abbr> to <abbr title="JavaScript">JS</abbr> and will hopefully include
+          <a rel="noreferrer" href="https://www.typescriptlang.org/" target="_blank">TypeScript</a>
+          soon. TypeScript configurations avoid mixing JavaScript files and provide better editor support, though many plugins still lack
           TypeScript support and documentation.
         </li>
         <li>
@@ -72,9 +79,10 @@ const description = unwrap`Key lessons learned building a modern static website:
         </li>
         <li>
           <strong>Framework Migration Strategy:</strong>
-          Astro requires React-like thinking patterns despite being different from <a href="https://react.dev/">React</a>. Moving existing
-          code to temporary folders alongside framework templates enables side-by-side comparison during migration, clarifying structural
-          differences and preventing loss of working implementations.
+          Astro requires React-like thinking patterns despite being different from
+          <a rel="noreferrer" href="https://react.dev/" target="_blank">React</a>. Moving existing code to temporary folders alongside
+          framework templates enables side-by-side comparison during migration, clarifying structural differences and preventing loss of
+          working implementations.
         </li>
       </ul>
 
@@ -106,13 +114,15 @@ const description = unwrap`Key lessons learned building a modern static website:
         </p>
       </div>
 
-      <p class="deep-dive"><a href="setup.html">Go into detail about setting up this website.</a></p>
+      <div class="section-nav">
+        <p class="deep-dive"><a href="setup.html">Go into detail about setting up this website.</a></p>
 
-      <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+        <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+      </div>
     </section>
 
-    <section id="developing">
-      <h2>Developing the website</h2>
+    <section id="developing" class="slide">
+      <h2 class="decorated-heading third">Developing the website</h2>
 
       <ul class="key-points">
         <li>
@@ -134,10 +144,11 @@ const description = unwrap`Key lessons learned building a modern static website:
         </li>
         <li>
           <strong><abbr title="Cascading Style Sheets">CSS</abbr> Framework Concerns:</strong>
-          Styling frameworks like <a href="https://getbootstrap.com/">Bootstrap</a> and
-          <a href="https://tailwindcss.com/" title="Tailwind CSS">Tailwind</a> can prevent developers from understanding CSS fundamentals
-          and cascade behavior. Too many web developers try to avoid writing CSS rather than embracing the cascade and understanding
-          encapsulation patterns.
+          Styling frameworks like
+          <a rel="noreferrer" href="https://getbootstrap.com/" target="_blank">Bootstrap</a> and
+          <a rel="noreferrer" href="https://tailwindcss.com/" target="_blank" title="Tailwind CSS">Tailwind</a>
+          can prevent developers from understanding CSS fundamentals and cascade behavior. Too many web developers try to avoid writing CSS
+          rather than embracing the cascade and understanding encapsulation patterns.
         </li>
         <li>
           <strong>Developer Skill Gaps:</strong>
@@ -150,8 +161,9 @@ const description = unwrap`Key lessons learned building a modern static website:
         <p>
           <abbr title="Single Page Application">SPA</abbr>s aren’t ideal for public websites meant to be indexed by search engines. Adding
           <abbr title="Server-Side Rendering">SSR</abbr> to facilitate both performance and non-JavaScript web crawlers is generally a heavy
-          task. Next.js with React or <a href="https://angular.dev/">Angular</a> are beasts that should be used in appropriately complex
-          systems where they are required, not as default choices for simple sites.
+          task. Next.js with React or
+          <a rel="noreferrer" href="https://angular.dev/" target="_blank">Angular</a>
+          are beasts that should be used in appropriately complex systems where they are required, not as default choices for simple sites.
         </p>
 
         <p>
@@ -175,13 +187,15 @@ const description = unwrap`Key lessons learned building a modern static website:
         </p>
       </div>
 
-      <p class="deep-dive"><a href="developing.html">More about the development of this website.</a></p>
+      <div class="section-nav">
+        <p class="deep-dive"><a href="developing.html">More about the development of this website.</a></p>
 
-      <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+        <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+      </div>
     </section>
 
-    <section id="deployment">
-      <h2>Deployment and infrastructure</h2>
+    <section id="deployment" class="slide">
+      <h2 class="decorated-heading fourth">Deployment and infrastructure</h2>
 
       <ul class="key-points">
         <li>
@@ -196,16 +210,21 @@ const description = unwrap`Key lessons learned building a modern static website:
         </li>
         <li>
           <strong>Tool Mismatch Recognition:</strong>
-          <a href="https://parceljs.org/">Parcel</a> wasn’t a good fit for my static website, requiring too much customization and fighting
-          against the tool’s priorities. <a href="https://aws.amazon.com/s3/" title="AWS S3">S3</a>/<a
+          <a rel="noreferrer" href="https://parceljs.org/" target="_blank">Parcel</a>
+          wasn’t a good fit for my static website, requiring too much customization and fighting against the tool’s priorities.
+          <a rel="noreferrer" href="https://aws.amazon.com/s3/" target="_blank" title="AWS S3">S3</a>/<a
+            rel="noreferrer"
             href="https://aws.amazon.com/cloudfront/"
+            target="_blank"
             title="AWS CloudFront"
-          >CloudFront</a> limitations for directory index files showed <abbr title="Amazon Web Services">AWS</abbr> priorities don’t align
-          with basic static file server expectations.
+          >CloudFront</a>
+          limitations for directory index files showed <abbr title="Amazon Web Services">AWS</abbr> priorities don’t align with basic static
+          file server expectations.
         </li>
         <li>
           <strong>Service Focus Alignment:</strong>
-          Static Site Generation isn’t <a href="https://aws.amazon.com/amplify/">AWS Amplify</a>’s primary focus, but SPA requirements
+          Static Site Generation isn’t
+          <a rel="noreferrer" href="https://aws.amazon.com/amplify/" target="_blank">AWS Amplify</a>’s primary focus, but SPA requirements
           largely overlap with static website needs, providing reasonable future compatibility. Recognition that tools may not perfectly
           match use cases but can still be viable solutions.
         </li>
@@ -220,9 +239,10 @@ const description = unwrap`Key lessons learned building a modern static website:
 
         <p>
           I started scheduling infrastructure maintenance after client projects where stable infrastructure required extensive updates
-          before adding new features. Quarterly <a href="https://developer.hashicorp.com/terraform">Terraform</a> planning catches provider
-          updates, deprecated resources, and configuration drift before they compound into major upgrade projects, saving significant time
-          compared to reactive infrastructure updates.
+          before adding new features. Quarterly
+          <a rel="noreferrer" href="https://developer.hashicorp.com/terraform" target="_blank">Terraform</a>
+          planning catches provider updates, deprecated resources, and configuration drift before they compound into major upgrade projects,
+          saving significant time compared to reactive infrastructure updates.
         </p>
 
         <p>
@@ -232,13 +252,15 @@ const description = unwrap`Key lessons learned building a modern static website:
         </p>
       </div>
 
-      <p class="deep-dive"><a href="deploy.html">More details about deploying this website.</a></p>
+      <div class="section-nav">
+        <p class="deep-dive"><a href="deploy.html">More details about deploying this website.</a></p>
 
-      <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+        <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+      </div>
     </section>
 
-    <section id="general">
-      <h2>General development principles</h2>
+    <section id="general" class="slide">
+      <h2 class="decorated-heading fifth">General development principles</h2>
 
       <ul class="key-points">
         <li>
@@ -277,14 +299,16 @@ const description = unwrap`Key lessons learned building a modern static website:
         </p>
       </div>
 
-      <p class="deep-dive"><a href="index.html">Overview of building a modern secure static website.</a></p>
+      <div class="section-nav">
+        <p class="deep-dive"><a href="index.html">Overview of building a modern secure static website.</a></p>
 
-      <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+        <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+      </div>
     </section>
 
     <aside>
       <nav aria-labelledby="section-nav">
-        <h3 id="section-nav">Continue reading about my site</h3>
+        <h3 id="section-nav" class="decorated-heading primary">Continue reading about my site</h3>
         <MySiteNav />
       </nav>
     </aside>

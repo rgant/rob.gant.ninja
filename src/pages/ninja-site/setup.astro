@@ -4,6 +4,7 @@ import BaseHead from '~/components/base-head.astro';
 import MySiteNav from '~/components/my-site-nav.astro';
 import ScrollNavigation from '~/components/scroll-navigation/scroll-navigation.astro';
 import Structure from '~/layouts/structure.astro';
+import '~/styles/article-pages.css';
 import { unwrap } from '~/unwrap.util';
 
 const description = unwrap`Setting up an Astro TypeScript static site generator project with strict
@@ -13,11 +14,11 @@ const description = unwrap`Setting up an Astro TypeScript static site generator 
   <BaseHead description={description} slot="head" title="Setup an Astro TypeScript SSG Project" />
 
   <ArticleHeader currentPage="setup.html">
-    <h1 id="top">Project setup and structure</h1>
+    <h1 class="decorated-heading primary">Project setup and structure</h1>
     <p>Starting out with an organized development workflow</p>
   </ArticleHeader>
 
-  <article>
+  <article class="presentation">
     <aside>
       <nav aria-labelledby="article-nav">
         <h3 id="article-nav">On this page</h3>
@@ -35,24 +36,27 @@ const description = unwrap`Setting up an Astro TypeScript static site generator 
       </nav>
     </aside>
 
-    <section id="environment">
-      <h2>Development environment</h2>
+    <section id="environment" class="slide">
+      <h2 class="decorated-heading second">Development environment</h2>
 
       <ul class="key-points">
         <li>
           <strong>Language Version Management:</strong>
-          I use <a href="https://github.com/nvm-sh/nvm" title="Node Version Manager">nvm</a> for <a href="https://nodejs.org/en">Node.js</a>
+          I use <a rel="noreferrer" href="https://github.com/nvm-sh/nvm" target="_blank" title="Node Version Manager">nvm</a> for
+          <a rel="noreferrer" href="https://nodejs.org/en" target="_blank">Node.js</a>
           version management when working across multiple projects with different requirements.
         </li>
         <li>
           <strong>Package Manager Choice:</strong>
-          <a href="https://www.npmjs.com/" title="Node Package Manager">npm</a> works well enough as the default Node.js package manager,
-          with <a href="https://github.com/nodejs/corepack">Corepack</a> enabling cross-project compatibility.
+          <a rel="noreferrer" href="https://www.npmjs.com/" target="_blank" title="Node Package Manager">npm</a>
+          works well enough as the default Node.js package manager, with
+          <a rel="noreferrer" href="https://github.com/nodejs/corepack" target="_blank">Corepack</a>
+          enabling cross-project compatibility.
         </li>
         <li>
           <strong>Editor Configuration:</strong>
-          Configuring linters, <abbr title="Language Server Protocol">LSP</abbr> servers, and formatters improve development efficiency.
-          Try out <abbr title="Large Language Model">LLM</abbr> assistants to see if you find them helpful.
+          Configuring linters, <abbr title="Language Server Protocol">LSP</abbr> servers, and formatters improve development efficiency. Try
+          out <abbr title="Large Language Model">LLM</abbr> assistants to see if you find them helpful.
         </li>
         <li>
           <strong>Configuration Documentation:</strong>
@@ -76,18 +80,20 @@ const description = unwrap`Setting up an Astro TypeScript static site generator 
         </p>
       </div>
 
-      <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+      <div class="section-nav">
+        <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+      </div>
     </section>
 
-    <section id="dependencies">
-      <h2>Dependency management</h2>
+    <section id="dependencies" class="slide">
+      <h2 class="decorated-heading third">Dependency management</h2>
 
       <ul class="key-points">
         <li>
           <strong>Version Range Management:</strong>
-          Follow framework template conventions for version ranges before implementing custom policies. Generally tilde ranges
-          (<code>~1.2.4</code>) for production dependencies and caret ranges (<code>^1.3.2</code>) for <code>devDependencies</code>, but
-          since this project runs entirely locally, minor release flexibility provides better security updates without deployment risk.
+          Follow framework template conventions for version ranges before implementing custom policies. Generally tilde ranges (<code
+          >~1.2.4</code>) for production dependencies and caret ranges (<code>^1.3.2</code>) for <code>devDependencies</code>, but since
+          this project runs entirely locally, minor release flexibility provides better security updates without deployment risk.
         </li>
         <li>
           <strong>Dependency Locking:</strong>
@@ -123,27 +129,36 @@ const description = unwrap`Setting up an Astro TypeScript static site generator 
         </p>
       </div>
 
-      <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+      <div class="section-nav">
+        <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+      </div>
     </section>
 
-    <section id="migration">
-      <h2>Framework migration</h2>
+    <section id="migration" class="slide">
+      <h2 class="decorated-heading fourth">Framework migration</h2>
 
       <ul class="key-points">
         <li>
           <strong>Build Framework Migration:</strong>
-          I replaced <a href="https://parceljs.org/">Parcel</a> with <a href="https://astro.build/">Astro</a> to leverage its
-          <abbr title="Static Site Generation">SSG</abbr>-focused architecture and optimizations.
+          I replaced <a rel="noreferrer" href="https://parceljs.org/" target="_blank">Parcel</a> with
+          <a rel="noreferrer" href="https://astro.build/" target="_blank">Astro</a>
+          to leverage its <abbr title="Static Site Generation">SSG</abbr>-focused architecture and optimizations.
         </li>
         <li>
           <strong>Template Foundation:</strong>
-          Starting with Astro’s <a href="https://github.com/withastro/astro/tree/main/examples/blog">blog template</a> provided a solid
-          foundation.
+          Starting with Astro’s
+          <a rel="noreferrer" href="https://github.com/withastro/astro/tree/main/examples/blog" target="_blank">blog template</a>
+          provided a solid foundation.
         </li>
         <li>
           <strong>Custom Plugin Elimination:</strong>
-          The migration eliminated <a href="https://github.com/rgant/rob.gant.ninja/tree/a2f09756cfe1b357689677cf20c234e1354d95fc/packages"
-          >custom plugins</a> that were required by Parcel for SSG functionality.
+          The migration eliminated
+          <a
+            rel="noreferrer"
+            href="https://github.com/rgant/rob.gant.ninja/tree/a2f09756cfe1b357689677cf20c234e1354d95fc/packages"
+            target="_blank"
+          >custom plugins</a>
+          that were required by Parcel for SSG functionality.
         </li>
       </ul>
 
@@ -155,38 +170,43 @@ const description = unwrap`Setting up an Astro TypeScript static site generator 
         </p>
 
         <p>
-          Starting with Astro's blog template and a strict <a href="https://www.typescriptlang.org/">TypeScript</a> configuration, which
-          included settings for build processes and development server setup, sped up development.
+          Starting with Astro's blog template and a strict
+          <a rel="noreferrer" href="https://www.typescriptlang.org/" target="_blank">TypeScript</a>
+          configuration, which included settings for build processes and development server setup, sped up development.
         </p>
       </div>
 
-      <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+      <div class="section-nav">
+        <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+      </div>
     </section>
 
-    <section id="configuration">
-      <h2>Build process configuration</h2>
+    <section id="configuration" class="slide">
+      <h2 class="decorated-heading fifth">Build process configuration</h2>
 
       <ul class="key-points">
         <li>
           <strong>Security:</strong>
-          I implemented <a href="https://github.com/kindspells/astro-shield">@kindspells/astro-shield</a> for
-          <abbr title="Subresource Integrity">SRI</abbr> hash generation in <abbr title="Content Security Policy">CSP</abbr> headers.
+          I implemented <a rel="noreferrer" href="https://github.com/kindspells/astro-shield" target="_blank">@kindspells/astro-shield</a>
+          for <abbr title="Subresource Integrity">SRI</abbr> hash generation in <abbr title="Content Security Policy">CSP</abbr> headers.
         </li>
         <li>
           <strong>Optimizations:</strong>
-          I use <a href="https://github.com/playform/compress">@playform/compress</a> for asset minification, although it has
-          outdated dependencies requiring workarounds.
+          I use <a rel="noreferrer" href="https://github.com/playform/compress" target="_blank">@playform/compress</a> for asset
+          minification, although it has outdated dependencies requiring workarounds.
         </li>
         <li>
           <strong>Performance:</strong>
-          I integrated <a href="https://github.com/vite-pwa/astro">@vite-pwa/astro</a> for resource precaching and offline
-          capabilities.
+          I integrated <a rel="noreferrer" href="https://github.com/vite-pwa/astro" target="_blank">@vite-pwa/astro</a> for resource
+          precaching and offline capabilities.
         </li>
         <li>
           <strong>Configuration Strictness:</strong>
-          I established strict <a href="https://github.com/rgant/rob.gant.ninja/blob/main/tsconfig.json">TypeScript</a>,
-          <a href="https://github.com/rgant/rob.gant.ninja/blob/main/eslint.config.ts">ESLint</a>, and
-          <a href="https://github.com/rgant/rob.gant.ninja/blob/main/.stylelintrc.json">Stylelint</a> configurations.
+          I established strict
+          <a rel="noreferrer" href="https://github.com/rgant/rob.gant.ninja/blob/main/tsconfig.json" target="_blank">TypeScript</a>,
+          <a rel="noreferrer" href="https://github.com/rgant/rob.gant.ninja/blob/main/eslint.config.ts" target="_blank">ESLint</a>, and
+          <a rel="noreferrer" href="https://github.com/rgant/rob.gant.ninja/blob/main/.stylelintrc.json" target="_blank">Stylelint</a>
+          configurations.
         </li>
       </ul>
 
@@ -198,11 +218,14 @@ const description = unwrap`Setting up an Astro TypeScript static site generator 
         </p>
 
         <p>
-          @playform/compress handles asset optimization but relies on outdated tools like <a href="https://github.com/css/csso">csso</a>
+          @playform/compress handles asset optimization but relies on outdated tools like
+          <a rel="noreferrer" href="https://github.com/css/csso" target="_blank">csso</a>
           (conflicts with modern <abbr title="Cascading Style Sheets">CSS</abbr>) and
-          <a href="https://github.com/terser/html-minifier-terser">html-minifier-terser</a> (unmaintained).
-          Manual optimization documented in <a href="https://github.com/rgant/rob.gant.ninja/blob/main/docs/optimizing-svgs.md"><code
-          >optimizing-svgs.md</code></a> addresses limitations with CSS background-image compression.
+          <a rel="noreferrer" href="https://github.com/terser/html-minifier-terser" target="_blank">html-minifier-terser</a>
+          (unmaintained). Manual optimization documented in
+          <a rel="noreferrer" href="https://github.com/rgant/rob.gant.ninja/blob/main/docs/optimizing-svgs.md" target="_blank"><code
+          >optimizing-svgs.md</code></a>
+          addresses limitations with CSS background-image compression.
         </p>
 
         <p>
@@ -214,37 +237,42 @@ const description = unwrap`Setting up an Astro TypeScript static site generator 
         </p>
       </div>
 
-      <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+      <div class="section-nav">
+        <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+      </div>
     </section>
 
-    <section id="infrastructure">
-      <h2>Infrastructure organization</h2>
+    <section id="infrastructure" class="slide">
+      <h2 class="decorated-heading second">Infrastructure organization</h2>
 
       <ul class="key-points">
         <li>
           <strong>Modular Structure:</strong>
-          I organized <a href="https://developer.hashicorp.com/terraform">Terraform</a> configuration into reusable
-          <a href="https://github.com/rgant/rob.gant.ninja/tree/main/infrastructure/amplify">modules</a> for better maintainability.
+          I organized <a rel="noreferrer" href="https://developer.hashicorp.com/terraform" target="_blank">Terraform</a>
+          configuration into reusable
+          <a rel="noreferrer" href="https://github.com/rgant/rob.gant.ninja/tree/main/infrastructure/amplify" target="_blank">modules</a>
+          for better maintainability.
         </li>
         <li>
           <strong>Single Entry Point:</strong>
-          Creating <a href="https://github.com/rgant/rob.gant.ninja/blob/main/main.tf">main.tf</a> as a single entry point helps eliminate
-          project root clutter.
+          Creating <a rel="noreferrer" href="https://github.com/rgant/rob.gant.ninja/blob/main/main.tf" target="_blank">main.tf</a>
+          as a single entry point helps eliminate project root clutter.
         </li>
         <li>
           <strong>Component Organization:</strong>
-          I recommend separating infrastructure into logical modules for <a href="https://aws.amazon.com/amplify/">AWS Amplify</a>,
-          <a href="https://aws.amazon.com/s3/" title="AWS S3">S3</a> buckets, <abbr title="Domain Name System">DNS</abbr>, and remote state
-          management.
+          I recommend separating infrastructure into logical modules for
+          <a rel="noreferrer" href="https://aws.amazon.com/amplify/" target="_blank">AWS Amplify</a>,
+          <a rel="noreferrer" href="https://aws.amazon.com/s3/" target="_blank" title="AWS S3">S3</a>
+          buckets, <abbr title="Domain Name System">DNS</abbr>, and remote state management.
         </li>
       </ul>
 
       <div class="description">
         <p>
           The Terraform configuration consists of modular components handling different
-          <a href="https://aws.amazon.com/" title="Amazon Web Services">AWS</a> infrastructure aspects. The Amplify module includes
-          resources for the app, branch configuration, domain association, and custom headers. Additional modules manage S3 buckets, DNS
-          configuration, and remote state storage.
+          <a rel="noreferrer" href="https://aws.amazon.com/" target="_blank" title="Amazon Web Services">AWS</a>
+          infrastructure aspects. The Amplify module includes resources for the app, branch configuration, domain association, and custom
+          headers. Additional modules manage S3 buckets, DNS configuration, and remote state storage.
         </p>
 
         <p>
@@ -254,26 +282,32 @@ const description = unwrap`Setting up an Astro TypeScript static site generator 
         </p>
       </div>
 
-      <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+      <div class="section-nav">
+        <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+      </div>
     </section>
 
-    <section id="challenges">
-      <h2>Setup challenges</h2>
+    <section id="challenges" class="slide">
+      <h2 class="decorated-heading third">Setup challenges</h2>
 
       <ul class="key-points">
         <li>
           <strong>Environment Variable Management:</strong>
-          I created a <a href="https://github.com/rgant/rob.gant.ninja/blob/main/.auto.tfvars.example"><code>.auto.tfvars.example</code></a>
+          I created a
+          <a rel="noreferrer" href="https://github.com/rgant/rob.gant.ninja/blob/main/.auto.tfvars.example" target="_blank"><code
+          >.auto.tfvars.example</code></a>
           pattern for Terraform variables while excluding actual values from version control.
         </li>
         <li>
           <strong>Astro Configuration Compatibility:</strong>
-          Resolving <a href="https://github.com/rgant/rob.gant.ninja/blob/main/src/env.d.ts"><code>env.d.ts</code></a> requirements for
-          @vite-pwa/astro required research because Astro no longer adds this file in the starter template.
+          Resolving <a rel="noreferrer" href="https://github.com/rgant/rob.gant.ninja/blob/main/src/env.d.ts" target="_blank"><code
+          >env.d.ts</code></a>
+          requirements for @vite-pwa/astro required research because Astro no longer adds this file in the starter template.
         </li>
         <li>
           <strong>Documentation Structure:</strong>
-          I established a dedicated <a href="https://github.com/rgant/rob.gant.ninja/tree/main/docs">documentation directory</a>
+          I established a dedicated
+          <a rel="noreferrer" href="https://github.com/rgant/rob.gant.ninja/tree/main/docs" target="_blank">documentation directory</a>
           which can also be used for eventual GitHub Pages documentation website.
         </li>
       </ul>
@@ -288,8 +322,8 @@ const description = unwrap`Setting up an Astro TypeScript static site generator 
 
         <p>
           <abbr title="Progressive Web App">PWA</abbr> integration presented compatibility challenges as Astro moves away from
-          <code>env.d.ts</code> while @vite-pwa/astro still requires it. Resolving this required consulting documentation from
-          both projects to ensure long-term compatibility and support.
+          <code>env.d.ts</code> while @vite-pwa/astro still requires it. Resolving this required consulting documentation from both projects
+          to ensure long-term compatibility and support.
         </p>
 
         <p>
@@ -298,34 +332,38 @@ const description = unwrap`Setting up an Astro TypeScript static site generator 
         </p>
       </div>
 
-      <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+      <div class="section-nav">
+        <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+      </div>
     </section>
 
-    <section id="future">
-      <h2>Future improvements</h2>
+    <section id="future" class="slide">
+      <h2 class="decorated-heading fourth">Future improvements</h2>
 
       <ul class="key-points">
         <li>
           <strong>Development Environment Modernization:</strong>
-          I’m considering <a href="https://devenv.sh/">devenv.sh</a> for comprehensive development environment management, though potential
-          workflow changes require careful evaluation.
+          I’m considering <a rel="noreferrer" href="https://devenv.sh/" target="_blank">devenv.sh</a>
+          for comprehensive development environment management, though potential workflow changes require careful evaluation.
         </li>
         <li>
           <strong>Automated Formatting Integration:</strong>
-          Worth exploring <a href="https://github.com/lint-staged/lint-staged">lint-staged</a> to automatically format files before commit,
-          improving consistency without manual intervention.
+          Worth exploring <a rel="noreferrer" href="https://github.com/lint-staged/lint-staged" target="_blank">lint-staged</a>
+          to automatically format files before commit, improving consistency without manual intervention.
         </li>
         <li>
           <strong>Build Tool Replacement:</strong>
           I plan to replace @playform/compress with modern alternatives that support CSS background-image optimization and maintained
           <abbr title="HyperText Markup Language">HTML</abbr> minification. Worth evaluating
-          <a href="https://github.com/j9t/html-minifier-next">html-minifier-next</a> though changes appear limited to updated dependencies
-          rather than new features.
+          <a rel="noreferrer" href="https://github.com/j9t/html-minifier-next" target="_blank">html-minifier-next</a>
+          because of updated dependencies and indications of active maintenance and progress.
         </li>
         <li>
           <strong>Direct Vite Integration:</strong>
-          Evaluating a switch to direct <a href="https://github.com/parcel-bundler/lightningcss">lightningcss</a> integration through
-          <a href="https://vite.dev/">Vite</a> for better CSS processing and fewer dependency layers.
+          Evaluating a switch to direct
+          <a rel="noreferrer" href="https://github.com/parcel-bundler/lightningcss" target="_blank">lightningcss</a>
+          integration through <a rel="noreferrer" href="https://vite.dev/" target="_blank">Vite</a>
+          for better CSS processing and fewer dependency layers.
         </li>
         <li>
           <strong>Plugin Modernization:</strong>
@@ -343,8 +381,8 @@ const description = unwrap`Setting up an Astro TypeScript static site generator 
         <p>
           The current build optimization stack has maintenance challenges with outdated dependencies like csso and html-minifier-terser.
           Finding modern replacements that handle CSS background-image optimization and reliable HTML minification would eliminate these
-          technical debt concerns. html-minifier-next appears to primarily offer updated dependencies rather than feature improvements, so
-          far.
+          technical debt concerns. html-minifier-next is a likely candidate for HTML minification options, and I will consider adding
+          support to @playform/compress.
         </p>
 
         <p>
@@ -354,12 +392,14 @@ const description = unwrap`Setting up an Astro TypeScript static site generator 
         </p>
       </div>
 
-      <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+      <div class="section-nav">
+        <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+      </div>
     </section>
 
     <aside>
       <nav aria-labelledby="section-nav">
-        <h3 id="section-nav">Continue reading about my site</h3>
+        <h3 id="section-nav" class="decorated-heading primary">Continue reading about my site</h3>
         <MySiteNav />
       </nav>
     </aside>

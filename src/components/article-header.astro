@@ -2,34 +2,30 @@
 import MySiteNav from '~/components/my-site-nav.astro';
 import '~/styles/article-header.css';
 ---
-<header class="banner main-header">
-  <a href="/" title="Profile"><img src="/icons/icon-mask.png" alt="J Rob Gant" class="profile-icon"></a>
+<div class="site-nav">
+  <a href="/" class="title" title="Profile">
+    <span class="profile-icon"><img src="/icon.svg" alt="J Rob Gant"></span>
+    <strong class="heading"><span class="diminish">J</span> Rob <span class="diminish">Gant</span></strong>
+  </a>
 
-  <div class="heading">
-    <slot />
-  </div>
+  <nav aria-label="Global navigation" class="bttn-grp">
+    <!-- <details class="bttn">
+      <summary>Brainfry project</summary>
+      <BrainfryNav />
+    </details> -->
 
-  <nav aria-label="Global navigation" class="global-nav">
-    <a href="/" class="bttn" title="Profile">My Profile</a>
+    <details class="bttn">
+      <summary>My site</summary>
+      <MySiteNav />
+    </details>
 
-    <div class="dropdown-wrap">
-      <details class="dropdown">
-        <summary id="related-nav" class="bttn">Brainfry project</summary>
-
-        <nav aria-labelledby="related-nav" class="dropdown-content">
-          <MySiteNav />
-        </nav>
-      </details>
-    </div>
-
-    <div class="dropdown-wrap">
-      <details class="dropdown">
-        <summary id="related-nav" class="bttn">My site</summary>
-
-        <nav aria-labelledby="related-nav" class="dropdown-content">
-          <MySiteNav />
-        </nav>
-      </details>
-    </div>
+    <!-- <details class="bttn">
+      <summary>More Projects</summary>
+      <OtherNav />
+    </details> -->
   </nav>
-</header>
+</div>
+
+<div class="heading">
+  <slot />
+</div>

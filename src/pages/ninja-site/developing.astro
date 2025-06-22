@@ -4,6 +4,7 @@ import BaseHead from '~/components/base-head.astro';
 import MySiteNav from '~/components/my-site-nav.astro';
 import ScrollNavigation from '~/components/scroll-navigation/scroll-navigation.astro';
 import Structure from '~/layouts/structure.astro';
+import '~/styles/article-pages.css';
 import { unwrap } from '~/unwrap.util';
 
 const description = unwrap`Developing with Astro and native Custom Elements for interactive features,
@@ -13,11 +14,11 @@ const description = unwrap`Developing with Astro and native Custom Elements for 
   <BaseHead description={description} slot="head" title="Developing with Astro and Web Components" />
 
   <ArticleHeader currentPage="developing.html">
-    <h1 id="top">Developing the website</h1>
+    <h1 class="decorated-heading primary">Developing the website</h1>
     <p>Building interactive features with native web technologies</p>
   </ArticleHeader>
 
-  <article>
+  <article class="presentation">
     <aside>
       <nav aria-labelledby="article-nav">
         <h3 id="article-nav">On this page</h3>
@@ -34,29 +35,44 @@ const description = unwrap`Developing with Astro and native Custom Elements for 
       </nav>
     </aside>
 
-    <section id="components">
-      <h2>Custom Elements architecture</h2>
+    <section id="components" class="slide">
+      <h2 class="decorated-heading second">Custom Elements architecture</h2>
 
       <ul class="key-points">
         <li>
           <strong>Web Components:</strong>
-          I chose native <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements">Custom Elements</a>
-          over <a href="https://angular.dev/">Angular</a>/<a href="https://react.dev/">React</a>/<a href="https://vuejs.org/">Vue</a>
+          I chose native
+          <a rel="noreferrer" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements" target="_blank"
+          >Custom Elements</a>
+          over
+          <a rel="noreferrer" href="https://angular.dev/" target="_blank">Angular</a>/<a
+            rel="noreferrer"
+            href="https://react.dev/"
+            target="_blank"
+          >React</a>/<a rel="noreferrer" href="https://vuejs.org/" target="_blank">Vue</a>
           because a small amount of code could accomplish the interactive goals without framework overhead.
         </li>
         <li>
           <strong>Career Experience Component:</strong>
-          I implemented <a href="https://github.com/rgant/rob.gant.ninja/tree/main/src/components/career-experience"
-          >progressive enhancement</a> that provides static dates in <abbr title="HyperText Markup Language">HTML</abbr> with dynamic
-          updates via JavaScript.
+          I implemented
+          <a rel="noreferrer" href="https://github.com/rgant/rob.gant.ninja/tree/main/src/components/career-experience" target="_blank"
+          >progressive enhancement</a>
+          that provides static dates in <abbr title="HyperText Markup Language">HTML</abbr> with dynamic updates via JavaScript.
         </li>
         <li>
           <strong>Scroll Navigation Component:</strong>
-          Migrated from <a
+          Migrated from
+          <a
+            rel="noreferrer"
             href="https://github.com/rgant/rob.gant.ninja/blob/a2f09756cfe1b357689677cf20c234e1354d95fc/src/js/index-scroll.js"
-          >jQuery scroll events</a> to <a
+            target="_blank"
+          >jQuery scroll events</a> to
+          <a
+            rel="noreferrer"
             href="https://github.com/rgant/rob.gant.ninja/blob/main/src/components/scroll-navigation/scroll-navigation.component.ts"
-          >Intersection Observer</a> for better performance and modern <abbr title="Application Programming Interface">API</abbr> usage.
+            target="_blank"
+          >Intersection Observer</a>
+          for better performance and modern <abbr title="Application Programming Interface">API</abbr> usage.
         </li>
         <li>
           <strong>Intersection Observer Configuration:</strong>
@@ -85,11 +101,12 @@ const description = unwrap`Developing with Astro and native Custom Elements for 
         </p>
 
         <p>
-          The scroll navigation feature existed in the previous <a href="https://parceljs.org/">Parcel</a>-based website using
-          <a href="https://jquery.com/">jQuery</a> scroll events. While scroll events weren’t actually problematic for this simple
-          single-page site, migrating to Intersection Observer provided better performance characteristics and follows current practices.
-          Typical Intersection Observer implementations for this type of feature watch for heading elements, but mine
-          triggers on any part of the section content instead.
+          The scroll navigation feature existed in the previous
+          <a rel="noreferrer" href="https://parceljs.org/" target="_blank">Parcel</a>-based website using
+          <a rel="noreferrer" href="https://jquery.com/" target="_blank">jQuery</a>
+          scroll events. While scroll events weren’t actually problematic for this simple single-page site, migrating to Intersection
+          Observer provided better performance characteristics and follows current practices. Typical Intersection Observer implementations
+          for this type of feature watch for heading elements, but mine triggers on any part of the section content instead.
         </p>
 
         <p>
@@ -101,24 +118,30 @@ const description = unwrap`Developing with Astro and native Custom Elements for 
         </p>
       </div>
 
-      <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+      <div class="section-nav">
+        <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+      </div>
     </section>
 
-    <section id="pwa">
-      <h2>Progressive Web App integration</h2>
+    <section id="pwa" class="slide">
+      <h2 class="decorated-heading third">Progressive Web App integration</h2>
 
       <ul class="key-points">
         <li>
           <strong>Motivation:</strong>
-          <a href="https://html5boilerplate.com/">HTML5 Boilerplate</a> includes a default <code>site.webmanifest</code> file, and research
-          showed <abbr title="Progressive Web App">PWA</abbr> features are essentially free to implement with <a href="https://vite.dev/"
-          >Vite</a> and <a href="https://github.com/GoogleChrome/workbox">Workbox</a> integration.
+          <a rel="noreferrer" href="https://html5boilerplate.com/" target="_blank">HTML5 Boilerplate</a>
+          includes a default <code>site.webmanifest</code> file, and research showed <abbr title="Progressive Web App">PWA</abbr> features
+          are essentially free to implement with
+          <a rel="noreferrer" href="https://vite.dev/" target="_blank">Vite</a> and
+          <a rel="noreferrer" href="https://github.com/GoogleChrome/workbox" target="_blank">Workbox</a> integration.
         </li>
         <li>
           <strong>Implementation:</strong>
-          I used <a href="https://github.com/vite-pwa/astro">@vite-pwa/astro</a> with separate <a
-            href="https://github.com/rgant/rob.gant.ninja/blob/main/webmanifest.json"
-          ><code>webmanifest.json</code></a> to keep static configuration outside build files.
+          I used
+          <a rel="noreferrer" href="https://github.com/vite-pwa/astro" target="_blank">@vite-pwa/astro</a> with separate
+          <a rel="noreferrer" href="https://github.com/rgant/rob.gant.ninja/blob/main/webmanifest.json" target="_blank"><code
+          >webmanifest.json</code></a>
+          to keep static configuration outside build files.
         </li>
         <li>
           <strong>Performance Benefits:</strong>
@@ -127,20 +150,28 @@ const description = unwrap`Developing with Astro and native Custom Elements for 
         </li>
         <li>
           <strong>Configuration Challenges:</strong>
-          Required both <a href="https://vite-pwa-org.netlify.app/guide/">Vite PWA documentation</a> and
-          <a href="https://developer.chrome.com/docs/workbox/">official Workbox docs</a> along with example configurations to understand
-          option purposes.
+          Required both
+          <a rel="noreferrer" href="https://vite-pwa-org.netlify.app/guide/" target="_blank">Vite PWA documentation</a> and
+          <a rel="noreferrer" href="https://developer.chrome.com/docs/workbox/" target="_blank">official Workbox docs</a>
+          along with example configurations to understand option purposes.
         </li>
         <li>
           <strong>Integration Requirements:</strong>
-          Resolved <a href="https://www.typescriptlang.org/">TypeScript</a> recognition by adding references to
-          <a href="https://github.com/rgant/rob.gant.ninja/blob/main/src/env.d.ts"><code>env.d.ts</code></a> and configured script import in
-          an <a href="https://github.com/rgant/rob.gant.ninja/blob/feature/ninja-site/src/components/end-scripts.astro"
+          Resolved
+          <a rel="noreferrer" href="https://www.typescriptlang.org/" target="_blank">TypeScript</a>
+          recognition by adding references to
+          <a rel="noreferrer" href="https://github.com/rgant/rob.gant.ninja/blob/main/src/env.d.ts" target="_blank"><code
+          >env.d.ts</code></a>
+          and configured script import in an
+          <a
+            rel="noreferrer"
+            href="https://github.com/rgant/rob.gant.ninja/blob/feature/ninja-site/src/components/end-scripts.astro"
+            target="_blank"
           >EndScripts component</a>.
         </li>
       </ul>
 
-      <div class="description">
+      <div class="description" class="slide">
         <p>
           The decision to implement PWA features came from learning that many developers consider them essentially free additions when using
           modern build tools. Since HTML5 Boilerplate had already included a manifest file that went unused, researching PWA implementation
@@ -149,9 +180,10 @@ const description = unwrap`Developing with Astro and native Custom Elements for 
 
         <p>
           Workbox configuration required careful testing of build artifacts to ensure the precache list included necessary resources while
-          excluding unnecessary ones. The <a href="https://github.com/vite-pwa/astro/tree/main/examples">vite-pwa examples</a> demonstrate
-          practically every available option but lack clear explanations of individual option purposes, requiring me to check multiple
-          documentation sources to understand the configuration impact.
+          excluding unnecessary ones. The
+          <a rel="noreferrer" href="https://github.com/vite-pwa/astro/tree/main/examples" target="_blank">vite-pwa examples</a>
+          demonstrate practically every available option but lack clear explanations of individual option purposes, requiring me to check
+          multiple documentation sources to understand the configuration impact.
         </p>
 
         <p>
@@ -161,18 +193,21 @@ const description = unwrap`Developing with Astro and native Custom Elements for 
         </p>
       </div>
 
-      <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+      <div class="section-nav">
+        <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+      </div>
     </section>
 
-    <section id="security">
-      <h2>Content Security Policy implementation</h2>
+    <section id="security" class="slide">
+      <h2 class="decorated-heading fourth">Content Security Policy implementation</h2>
 
       <ul class="key-points">
         <li>
           <strong>Security Analysis Compliance:</strong>
           Implemented <abbr title="Content Security Policy">CSP</abbr> with <abbr title="Subresource Integrity">SRI</abbr> hashes based on
-          recommendations from <a href="https://developer.mozilla.org/en-US/observatory/analyze?host=rob.gant.ninja">Mozilla Observatory</a>
-          security analysis tools.
+          recommendations from
+          <a rel="noreferrer" href="https://developer.mozilla.org/en-US/observatory/analyze?host=rob.gant.ninja" target="_blank"
+          >Mozilla Observatory</a> security analysis tools.
         </li>
         <li>
           <strong>Static Site Strategy:</strong>
@@ -181,8 +216,9 @@ const description = unwrap`Developing with Astro and native Custom Elements for 
         </li>
         <li>
           <strong>Implementation Tool:</strong>
-          Used <a href="https://github.com/kindspells/astro-shield">@kindspells/astro-shield</a> for automatic SRI hash generation and
-          integration with build process.
+          Used
+          <a rel="noreferrer" href="https://github.com/kindspells/astro-shield" target="_blank">@kindspells/astro-shield</a>
+          for automatic SRI hash generation and integration with build process.
         </li>
         <li>
           <strong>Asset Inlining Decision:</strong>
@@ -205,11 +241,13 @@ const description = unwrap`Developing with Astro and native Custom Elements for 
 
         <p>
           SRI hash integration was the primary technical challenge, specifically how to inject dynamically generated hashes into
-          <abbr title="HyperText Transfer Protocol">HTTP</abbr> response headers managed by <a href="https://aws.amazon.com/amplify/"
-          >AWS Amplify</a>. The @kindspells/astro-shield tool handles hash computation effectively, but requires custom scripting to
-          export hashes in <abbr title="JavaScript Object Notation">JSON</abbr> format for
-          <a href="https://developer.hashicorp.com/terraform">Terraform</a> consumption, as detailed in the <a href="deploy.html"
-          >deployment</a> process.
+          <abbr title="HyperText Transfer Protocol">HTTP</abbr> response headers managed by
+          <a rel="noreferrer" href="https://aws.amazon.com/amplify/" target="_blank">AWS Amplify</a>. The @kindspells/astro-shield tool
+          handles hash computation effectively, but requires custom scripting to export hashes in
+          <abbr title="JavaScript Object Notation">JSON</abbr> format for
+          <a rel="noreferrer" href="https://developer.hashicorp.com/terraform" target="_blank">Terraform</a>
+          consumption, as detailed in the
+          <a href="deploy.html">deployment</a> process.
         </p>
 
         <p>
@@ -220,55 +258,66 @@ const description = unwrap`Developing with Astro and native Custom Elements for 
         </p>
 
         <p>
-          Future improvements will explore <a href="https://docs.astro.build/en/reference/experimental-flags/csp/"
-          >Astro’s experimental CSP features</a> currently in beta and evaluate whether the <code>'self'</code> directive can be removed
-          entirely while maintaining functionality. The current CSP configuration provides a solid foundation for expansion as the site
-          grows in complexity.
+          Future improvements will explore
+          <a rel="noreferrer" href="https://docs.astro.build/en/reference/experimental-flags/csp/" target="_blank"
+          >Astro’s experimental CSP features</a>
+          currently in beta and evaluate whether the <code>'self'</code> directive can be removed entirely while maintaining functionality.
+          The current CSP configuration provides a solid foundation for expansion as the site grows in complexity.
         </p>
       </div>
 
-      <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+      <div class="section-nav">
+        <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+      </div>
     </section>
 
-    <section id="environment">
-      <h2>Development environment</h2>
+    <section id="environment" class="slide">
+      <h2 class="decorated-heading fifth">Development environment</h2>
 
       <ul class="key-points">
         <li>
           <strong>Editor Choice:</strong>
-          Configured <a href="https://www.sublimetext.com/">Sublime Text</a> with linting and <abbr title="Language Server Protocol"
-          >LSP</abbr> packages for code quality enforcement during development.
+          Configured
+          <a rel="noreferrer" href="https://www.sublimetext.com/" target="_blank">Sublime Text</a>
+          with linting and <abbr title="Language Server Protocol">LSP</abbr> packages for code quality enforcement during development.
         </li>
         <li>
           <strong>Configuration Reference:</strong>
-          Sublime Text configuration available at <a
+          Sublime Text configuration available at
+          <a
+            rel="noreferrer"
             href="https://github.com/rgant/homedir/tree/main/Library/Application-Support/Sublime-Text-3/Packages/User"
+            target="_blank"
           >GitHub User Package repository</a> for interested developers.
         </li>
       </ul>
 
       <div class="description">
         <p>
-          While most developers use <a href="https://code.visualstudio.com/" title="Visual Studio Code">VSCode</a>, Sublime Text remains a
-          viable option with proper LSP and linting integration. The configuration provides real-time feedback for TypeScript,
-          <a href="https://eslint.org/">ESLint</a>, and <a href="https://stylelint.io/">Stylelint</a> rules, ensuring code quality standards
-          are maintained throughout the development process. Since this represents a minority editor choice, detailed configuration
-          explanation would benefit few readers compared to linking to the complete setup for those specifically interested in Sublime Text
-          workflows.
+          While most developers use
+          <a rel="noreferrer" href="https://code.visualstudio.com/" target="_blank" title="Visual Studio Code">VSCode</a>, Sublime Text
+          remains a viable option with proper LSP and linting integration. The configuration provides real-time feedback for TypeScript,
+          <a rel="noreferrer" href="https://eslint.org/" target="_blank">ESLint</a>, and
+          <a rel="noreferrer" href="https://stylelint.io/" target="_blank">Stylelint</a>
+          rules, ensuring code quality standards are maintained throughout the development process. Since this represents a minority editor
+          choice, detailed configuration explanation would benefit few readers compared to linking to the complete setup for those
+          specifically interested in Sublime Text workflows.
         </p>
       </div>
 
-      <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+      <div class="section-nav">
+        <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+      </div>
     </section>
 
-    <section id="experience">
-      <h2>Astro development experience</h2>
+    <section id="experience" class="slide">
+      <h2 class="decorated-heading second">Astro development experience</h2>
 
       <ul class="key-points">
         <li>
           <strong>TypeScript Integration:</strong>
-          <a href="https://astro.build/">Astro</a>’s native TypeScript support provides excellent developer experience without additional
-          configuration complexity.
+          <a rel="noreferrer" href="https://astro.build/" target="_blank">Astro</a>’s native TypeScript support provides excellent developer
+          experience without additional configuration complexity.
         </li>
         <li>
           <strong>Build Process Coordination:</strong>
@@ -305,11 +354,13 @@ const description = unwrap`Developing with Astro and native Custom Elements for 
         </p>
       </div>
 
-      <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+      <div class="section-nav">
+        <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+      </div>
     </section>
 
-    <section id="decisions">
-      <h2>Technical decision framework</h2>
+    <section id="decisions" class="slide">
+      <h2 class="decorated-heading third">Technical decision framework</h2>
 
       <ul class="key-points">
         <li>
@@ -353,12 +404,14 @@ const description = unwrap`Developing with Astro and native Custom Elements for 
         </p>
       </div>
 
-      <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+      <div class="section-nav">
+        <a href="#article-nav" class="top-link" title="Back to navigation">Top</a>
+      </div>
     </section>
 
     <aside>
       <nav aria-labelledby="section-nav">
-        <h3 id="section-nav">Continue reading about my site</h3>
+        <h3 id="section-nav" class="decorated-heading primary">Continue reading about my site</h3>
         <MySiteNav />
       </nav>
     </aside>

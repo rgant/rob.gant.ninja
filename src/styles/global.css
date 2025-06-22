@@ -17,13 +17,27 @@
 
   /* Colors */
   --black: oklch(0% 0 0deg);
+  --blue-dark: oklch(31.8% .176 265.86deg);
   --blue-light: oklch(86% .0662 253.44deg);
+  --blue-prussian: oklch(32.9% .0645 237.5deg); /* prussian blue */
+  --blue-sky: oklch(81.75% .10298 235.73deg); /* day sky blue */
   --cyan: oklch(90% .1576 186.2597deg); /* aqua */
   --gray-dark: oklch(39% .005 300deg);
   --gray-darker: oklch(8% 0 0deg);
   --gray-lavender: oklch(90% .061 309.7deg);
   --gray-light: oklch(94% 0 0deg);
+  --green-dark: oklch(29.4% .0906 128.66deg);
+  --green-ever: oklch(34.118% .05975 186.34deg); /* evergreen */
+  --green-leaf: oklch(65.8% .153 128.79deg);
+  --purple-dark: oklch(31.2% .0773 320.43deg);
+  --purple-darker: oklch(20% .0988 323.6262deg);
+  --purple: oklch(60.5% .118 324.2deg);
+  --red-burgundy: oklch(31.8% .12695 29.762deg); /* dark burgundy */
+  --red-dark: oklch(30.5% .123 31.511deg);
+  --red-salmon: oklch(73.819% .16112 32.481deg);
   --white: oklch(100% 0 0deg);
+  --yellow-dark: oklch(47.312% .09202 88.276deg);
+  --yellow: oklch(86.448% .15978 95.866deg);
 
   /* Content Styles */
   --surface-0: var(--gray-dark);
@@ -42,6 +56,7 @@
   --z-overlay: 8000;
   --z-dropdown: 7000;
   --z-header: 6000;
+  --z-behind: -1;
 }
 
 /* ==========================================================================
@@ -215,32 +230,66 @@ h3 {
 summary {
   cursor: pointer; /* These are clicky, so why isn't this the default? */
 
-  &:hover {
-    color: var(--link-color-interaction);
-  }
-}
+  /* stylelint-disable-next-line plugin/no-unsupported-browser-features -- stylistic change that can be skip in unsupported browsers */
+  &::marker {
+    color: var(--yellow);
 
-.link-list li {
-  margin-block-start: .5rem;
-}
-
-.main-header {
-  .heading {
-    font-family: var(--heading-font); /* All heading content should use heading font */
-    font-size: 1.5rem;
-
-    p {
-      margin-block: 0 1rem; /* Smaller space on the bottom of the banner. */
+    [open] & {
+      color: var(--green-leaf);
     }
   }
 
+  &:hover {
+    color: var(--link-color-interaction);
+
+    /* stylelint-disable-next-line plugin/no-unsupported-browser-features -- stylistic change that can be skip in unsupported browsers */
+    &::marker {
+      color: var(--link-color-interaction);
+    }
+  }
+}
+
+.diminish {
+  opacity: .7;
+}
+
+.bttn {
+  padding: .75rem 1rem;
+  border: 2px solid;
+  border-radius: 1.5rem;
+
+  /* Details button styles the summary when not opened instead */
+  :not([open])& {
+    padding: unset;
+    border: unset;
+
+    > summary {
+      padding: .75rem 1rem;
+      border: 2px solid;
+      border-radius: 1.5rem;
+    }
+  }
+}
+
+.heading {
+  font-family: var(--heading-font); /* All heading content should use heading font */
+  font-size: 1.5rem;
+
   h1 {
     margin-block: 0; /* With the line-height a top margin isn't necessary. */
+  }
+
+  p {
+    margin-block: 0 1rem; /* Smaller space on the bottom of the banner. */
   }
 }
 
 .in-page-nav {
   list-style-image: url('../assets/arrow-down.svg');
+}
+
+.link-list li {
+  margin-block-start: .5rem;
 }
 
 .top-link {
@@ -277,6 +326,17 @@ summary {
       margin-block-start: 0;
       padding-inline: .5rem;
     }
+  }
+}
+
+@media print, (resolution >= 1.25dppx), (resolution >= 120dpi) {
+  /* Style adjustments for high resolution devices */
+  dl,
+  ol,
+  p,
+  ul {
+    margin-block: 1rem;
+    font-size: 1.25rem;
   }
 }
 

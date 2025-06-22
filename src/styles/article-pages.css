@@ -1,0 +1,92 @@
+.decorated-heading {
+  position: relative;
+  padding-block-start: 2rem;
+
+  &::before {
+    content: '';
+
+    position: absolute;
+    z-index: var(--z-behind);
+    inset-block-start: .5rem;
+    inset-inline-start: 0; /* Align to the left */
+    transform: skewX(-40deg);
+
+    /* Steep parallelogram using custom properties */
+    inline-size: 80%;
+    max-inline-size: 26rem;
+    block-size: .75rem;
+
+    background-color: var(--parallelogram-color);
+  }
+}
+
+.primary {
+  --parallelogram-color: var(--yellow);
+}
+
+.second {
+  --parallelogram-color: var(--red-salmon);
+}
+
+.third {
+  --parallelogram-color: var(--blue-sky);
+}
+
+.fourth {
+  --parallelogram-color: var(--green-leaf);
+}
+
+.fifth {
+  --parallelogram-color: var(--purple);
+}
+
+.presentation {
+  h3 {
+    margin-block: 1rem .5rem;
+  }
+}
+
+.key-points {
+  li {
+    margin-block: 1rem;
+  }
+}
+
+@media only screen and (width >= 64em) {
+  .slide {
+    display: grid;
+    grid-template:
+      'header header' auto
+      'points dscrpt' auto
+      'footer footer' auto
+      / 7fr 5fr;
+    gap: 3rem 1.5rem;
+  }
+
+  .decorated-heading {
+    grid-area: header;
+    margin-block-end: 0;
+  }
+
+  .key-points {
+    grid-area: points;
+    margin: 0;
+
+    li {
+      margin-block-start: 0;
+    }
+  }
+
+  .description {
+    grid-area: dscrpt;
+
+    p {
+      margin-block-start: 0;
+    }
+  }
+
+  .section-nav {
+    grid-area: footer;
+    margin-block-end: 3rem;
+  }
+}
