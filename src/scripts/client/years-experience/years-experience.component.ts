@@ -1,4 +1,4 @@
-import type { CustomWebComponentInterface } from '~/web-component.interface';
+import type { CustomWebComponentInterface } from '~/scripts/client/web-component.interface';
 
 import { yearsOfExperience } from './years-experience.util';
 

@@ -5,7 +5,7 @@
  *
  * `client:load` and the like [don't work on astro components](https://github.com/withastro/astro/issues/11623).
  */
-import { yearsOfExperience } from './years-experience.util';
+import { yearsOfExperience } from '~/scripts/client/years-experience/years-experience.util';
 
 interface Props {
   careerStart: string;
@@ -18,4 +18,4 @@ const yearsExperience = yearsOfExperience(careerStart);
 <rob-years-of-experience>
   <time datetime={careerStart}>{yearsExperience}</time>
 </rob-years-of-experience>
-<script src="./years-experience.component"></script>
+<script src="~/scripts/client/years-experience/years-experience.component"></script>

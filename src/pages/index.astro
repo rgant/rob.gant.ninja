@@ -7,12 +7,12 @@ import effImage from '~/assets/eff-logo-name-black-72.jpg';
 import mozillaImg from '~/assets/mozilla.svg';
 import splcImage from '~/assets/splc.png';
 import BaseHead from '~/components/base-head.astro';
-import CareerExperience from '~/components/career-experience/career-experience.astro';
+import CareerExperience from '~/components/career-experience.astro';
 import ProfileSchema from '~/components/profile-schema.astro';
-import ScrollNavigation from '~/components/scroll-navigation/scroll-navigation.astro';
+import ScrollNavigation from '~/components/scroll-navigation.astro';
 import Structure from '~/layouts/structure.astro';
 import '~/styles/index.css';
-import { unwrap } from '~/unwrap.util';
+import { unwrap } from '~/scripts/server/unwrap.util';
 
 const careerStart = '2002';
 const years = new Date().getFullYear() - Number(careerStart);

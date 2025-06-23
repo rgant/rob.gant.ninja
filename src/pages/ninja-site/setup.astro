@@ -2,10 +2,10 @@
 import ArticleHeader from '~/components/article-header.astro';
 import BaseHead from '~/components/base-head.astro';
 import MySiteNav from '~/components/my-site-nav.astro';
-import ScrollNavigation from '~/components/scroll-navigation/scroll-navigation.astro';
+import ScrollNavigation from '~/components/scroll-navigation.astro';
 import Structure from '~/layouts/structure.astro';
 import '~/styles/article-pages.css';
-import { unwrap } from '~/unwrap.util';
+import { unwrap } from '~/scripts/server/unwrap.util';
 
 const description = unwrap`Setting up an Astro TypeScript static site generator project with strict
   linting, modular Terraform infrastructure, and organized development workflow.`;

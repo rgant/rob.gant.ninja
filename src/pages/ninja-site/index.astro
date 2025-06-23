@@ -2,10 +2,10 @@
 import ArticleHeader from '~/components/article-header.astro';
 import BaseHead from '~/components/base-head.astro';
 import MySiteNav from '~/components/my-site-nav.astro';
-import ScrollNavigation from '~/components/scroll-navigation/scroll-navigation.astro';
+import ScrollNavigation from '~/components/scroll-navigation.astro';
 import Structure from '~/layouts/structure.astro';
 import '~/styles/article-pages.css';
-import { unwrap } from '~/unwrap.util';
+import { unwrap } from '~/scripts/server/unwrap.util';
 
 const description = unwrap`Modern static site development workflow using Astro, TypeScript, custom
   elements, and AWS infrastructure. Covers setup, security, performance, and deployment challenges.`;
@@ -165,7 +165,8 @@ const description = unwrap`Modern static site development workflow using Astro, 
         <li>
           <strong>Web Components:</strong>
           Implemented native
-          <a rel="noreferrer" href="https://github.com/rgant/rob.gant.ninja/tree/main/src/components" target="_blank">Custom Elements</a>
+          <a rel="noreferrer" href="https://github.com/rgant/rob.gant.ninja/tree/main/src/scripts/client" target="_blank"
+          >Custom Elements</a>
           for interactive features like scroll tracking and dynamic content updates.
         </li>
         <li>

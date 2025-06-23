@@ -700,6 +700,10 @@ export default tseslint.config(
     },
   },
   {
+    files: [ 'src/scripts/server/**/*.ts' ],
+    rules: { 'import-x/no-nodejs-modules': 'off' },
+  },
+  {
     files: [ 'src/**/*.astro' ],
     languageOptions: {
       parser: astroParser,
@@ -712,6 +716,7 @@ export default tseslint.config(
       },
     },
     rules: {
+      'import-x/no-nodejs-modules': 'off',
       'max-lines': 'off', // HTML files can be long
     },
   },

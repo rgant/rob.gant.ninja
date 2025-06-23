@@ -1,4 +1,4 @@
-import type { CustomWebComponentInterface } from '~/web-component.interface';
+import type { CustomWebComponentInterface } from '~/scripts/client/web-component.interface';
 
 export class ScrollNav extends HTMLElement implements CustomWebComponentInterface {
   public static readonly tag: string = 'rob-scroll-nav';
