@@ -1,11 +1,11 @@
-import { resolve } from 'node:path'; // eslint-disable-line unicorn/import-style, import-x/no-nodejs-modules -- This is a node script
+import { resolve } from 'node:path';
 
 import sitemap from '@astrojs/sitemap';
 import { shield } from '@kindspells/astro-shield';
 import playformCompress from '@playform/compress';
 import astroPwa from '@vite-pwa/astro';
 import type { PwaOptions } from '@vite-pwa/astro';
-import { defineConfig } from 'astro/config';
+import { defineConfig, envField } from 'astro/config';
 
 import manifest from './webmanifest.json';
 
@@ -34,6 +34,13 @@ export default defineConfig({ // eslint-disable-line import-x/no-default-export 
   build: {
     // I'm building a typical directory structure for the website as is traditional.
     format: 'preserve',
+  },
+  env: {
+    schema: {
+      /* eslint-disable @typescript-eslint/naming-convention -- Externally specified configuration */
+      GITHUB_TOKEN: envField.string({ access: 'secret', context: 'server' }),
+      /* eslint-enable @typescript-eslint/naming-convention */
+    },
   },
   integrations: [
     astroPwa(pwsOpts),

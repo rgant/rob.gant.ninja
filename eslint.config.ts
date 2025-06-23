@@ -671,6 +671,7 @@ export default tseslint.config(
         'error',
         { name: 'err' },
       ],
+      'unicorn/import-style': 'off', // I always prefer named imports
       // Also applies to callbacks defined within the same file which make this rule silly IMPO
       'unicorn/no-array-callback-reference': 'off',
       'unicorn/no-keyword-prefix': 'off', // Not actually all that confusing IMPO
@@ -700,7 +701,7 @@ export default tseslint.config(
     },
   },
   {
-    files: [ 'src/scripts/server/**/*.ts' ],
+    files: [ 'astro.config.ts', 'src/scripts/server/**/*.ts' ],
     rules: { 'import-x/no-nodejs-modules': 'off' },
   },
   {
