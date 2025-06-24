@@ -30,6 +30,7 @@ export interface LineRange {
 }
 
 export interface ParsedGitHubUrl extends GitHubUrlParts {
+  // TODO: ROB 20250624 - Better type for language (https://github.com/withastro/astro/issues/14009#issuecomment-2998891394)
   language: string;
   lineRange: LineRange;
   originalUrl: string;
