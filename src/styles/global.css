@@ -476,14 +476,13 @@ summary {
 
   pre,
   blockquote {
+    break-inside: avoid;
     border: 1px solid var(--gray-dark);
-
-    page-break-inside: avoid;
   }
 
   tr,
   img {
-    page-break-inside: avoid;
+    break-inside: avoid;
   }
 
   p,
@@ -495,6 +494,6 @@ summary {
 
   h2,
   h3 {
-    page-break-after: avoid;
+    break-after: avoid;
   }
 }

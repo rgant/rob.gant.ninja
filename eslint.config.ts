@@ -11,30 +11,28 @@ import astroParser from 'astro-eslint-parser';
 import { createTypeScriptImportResolver } from 'eslint-import-resolver-typescript';
 import { configs as eslintAstroConfigs } from 'eslint-plugin-astro';
 import { importX } from 'eslint-plugin-import-x';
-import perfectionist from 'eslint-plugin-perfectionist';
+import { configs as perfectionistConfigs } from 'eslint-plugin-perfectionist';
 import { meta, rules } from 'eslint-plugin-prefer-arrow-functions';
 // @ts-expect-error -- waiting for this to be resolved https://github.com/eslint-community/eslint-plugin-promise/issues/488
 import pluginPromise from 'eslint-plugin-promise';
 import tsdoc from 'eslint-plugin-tsdoc';
 import eslintPluginUnicorn from 'eslint-plugin-unicorn';
+import { defineConfig } from 'eslint/config';
 import globals from 'globals';
-import tseslint, { configs as tseslintConfigs } from 'typescript-eslint';
+import { configs as tseslintConfigs } from 'typescript-eslint';
 
 const INDENT_SIZE = 2;
 
-if (meta == undefined) {
-  throw new Error('eslint-plugin-prefer-arrow-functions is weird');
-}
-
 // eslint-disable-next-line import-x/no-default-export -- Eslint configs use default exports
-export default tseslint.config(
+export default defineConfig(
   eslint.configs.all,
   stylistic.configs.all,
   tseslintConfigs.all,
   eslintAstroConfigs.all,
+  // @ts-expect-error -- Type mismatch between @typescript-eslint and @eslint/core regarding LanguageOptions
   importX.flatConfigs.recommended,
   importX.flatConfigs.typescript,
-  perfectionist.configs['recommended-natural'],
+  perfectionistConfigs['recommended-natural'],
   /* eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
      -- Package lacks TS definitions */
   pluginPromise.configs['flat/recommended'],
@@ -560,27 +558,26 @@ export default tseslint.config(
           groups: [
             [
               'builtin',
-              'builtin-type',
+              'type-builtin',
             ],
             [
               'external',
-              'external-type',
+              'type-external',
             ],
             [
               'internal',
-              'internal-type',
+              'type-internal',
             ],
             [
               'parent',
-              'parent-type',
+              'type-parent',
               'sibling',
-              'sibling-type',
+              'type-sibling',
             ],
             [
               'index',
-              'index-type',
+              'type-index',
             ],
-            'object',
             'unknown',
           ],
         },
@@ -608,13 +605,25 @@ export default tseslint.config(
       'perfectionist/sort-jsx-props': [
         'error',
         {
-          customGroups: {
-            astro: ':',
-            important1: '^(id|name|rel|src)$',
-            important2: '^href$',
+          customGroups: [
+            {
+              elementNamePattern: '^(id|name|rel|src)$',
+              groupName: 'important1',
+            },
+            {
+              elementNamePattern: '^href$',
+              groupName: 'important2',
+            },
+            {
+              groupName: 'shorthand',
+              modifiers: [ 'shorthand' ],
+            },
+          ],
+          fallbackSort: {
+            order: 'asc',
+            type: 'alphabetical',
           },
           groups: [
-            'astro',
             'important1',
             'important2',
             'unknown',
@@ -625,13 +634,34 @@ export default tseslint.config(
       'perfectionist/sort-objects': [
         'error',
         {
-          customGroups: {
-            id: '^id$',
-            path: '^path(Match)?$', // Angular Routes
-            children: '^children$', // Angular Routes
-            deps: '^deps$', // Angular providers
-          },
-          groups: [ 'id', 'path', 'unknown', 'children', 'deps' ],
+          customGroups: [
+            {
+              elementNamePattern: '^id$',
+              groupName: 'id',
+            },
+            {
+              // Angular Routes
+              elementNamePattern: '^path(Match)?$',
+              groupName: 'path',
+            },
+            {
+              // Angular Routes
+              elementNamePattern: '^children$',
+              groupName: 'children',
+            },
+            {
+              // Angular providers
+              elementNamePattern: '^deps$',
+              groupName: 'deps',
+            },
+          ],
+          groups: [
+            'id',
+            'path',
+            'unknown',
+            'children',
+            'deps',
+          ],
           partitionByComment: true,
         },
       ],

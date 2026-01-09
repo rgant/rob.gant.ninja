@@ -27,6 +27,7 @@ const config = {
     'stylelint-plugin-defensive-css',
     'stylelint-plugin-logical-css',
     'stylelint-selector-tag-no-without-class',
+    'stylelint-use-logical',
     'stylelint-use-nesting',
   ],
   reportNeedlessDisables: true,

@@ -325,19 +325,19 @@ Why eat hamburger when you can have steak?"
 
   @keyframes star-wipe-reveal {
     from {
-      mask-composite: intersect;
       mask-image: url('../assets/star.svg');
-      mask-position: center center;
       mask-repeat: no-repeat;
+      mask-position: center center;
       mask-size: 0% 0%; /* Start invisible */
+      mask-composite: intersect;
     }
 
     to {
-      mask-composite: intersect;
       mask-image: url('../assets/star.svg');
-      mask-position: center center;
       mask-repeat: no-repeat;
+      mask-position: center center;
       mask-size: 400% 400%; /* Expand to cover entire page */
+      mask-composite: intersect;
     }
   }
 
