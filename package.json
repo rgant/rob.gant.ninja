@@ -23,9 +23,10 @@
     "deploy": "terraform apply",
     "dev": "astro dev --open",
     "format": "dprint fmt .",
-    "lint": "npm run lint:code; npm run lint:styles",
+    "lint": "npm run lint:code; npm run lint:styles; npm run lint:types",
     "lint:code": "eslint ./src",
     "lint:styles": "stylelint './src/'",
+    "lint:types": "astro check",
     "preview": "astro preview",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
