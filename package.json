@@ -36,12 +36,12 @@
     }
   },
   "dependencies": {
-    "@astrojs/rss": "^4.0.14",
-    "@astrojs/sitemap": "^3.6.1",
+    "@astrojs/rss": "^4.0.15",
+    "@astrojs/sitemap": "^3.7.0",
     "@kindspells/astro-shield": "^1.7.1",
-    "@playform/compress": "^0.2.0",
+    "@playform/compress": "^0.2.1",
     "@vite-pwa/astro": "^1.2.0",
-    "astro": "^5.16.8"
+    "astro": "^5.17.1"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.6",
@@ -60,9 +60,8 @@
     "eslint-plugin-promise": "^7.2.1",
     "eslint-plugin-tsdoc": "^0.5.0",
     "eslint-plugin-unicorn": "^62.0.0",
-    "globals": "^17.0.0",
+    "globals": "^17.2.0",
     "jiti": "^2.6.1",
-    "postcss-html": "^1.8.0",
     "stylelint-config-clean-order": "^8.0.0",
     "stylelint-config-html": "^1.1.0",
     "stylelint-config-standard": "^39.0.1",
