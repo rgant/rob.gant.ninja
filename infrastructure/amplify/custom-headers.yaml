@@ -17,6 +17,8 @@ customHeaders:
           script-src 'self' ${script_sri};
           style-src 'self' ${style_sri};
           worker-src 'self';
+      - key: Cross-Origin-Opener-Policy
+        value: same-origin
       # Not using this header until it supports deny-all
       # https://github.com/w3c/webappsec-permissions-policy/issues/189#issuecomment-2420730558
       # https://github.com/w3c/webappsec-permissions-policy/blob/main/permissions-policy-explainer.md

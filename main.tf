@@ -1,5 +1,5 @@
 # tflint-ignore-file: terraform_standard_module_structure
-# Create the Firebase infrastructure for project
+# Create the AWS infrastructure for project
 # `./infrastructure` is a Terraform module to keep things tidy.
 # Attempting to have only `main.tf` file in the root for cleanliness.
 
