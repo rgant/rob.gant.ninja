@@ -22,6 +22,7 @@
     "predeploy": "npm run build",
     "deploy": "terraform apply",
     "dev": "astro dev --open",
+    "format": "dprint fmt .",
     "lint": "npm run lint:code; npm run lint:styles",
     "lint:code": "eslint ./src",
     "lint:styles": "stylelint './src/'",

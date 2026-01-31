@@ -1,6 +1,16 @@
 {
+  "excludes": [
+    "*-lock.json",
+    ".astro",
+    ".cache",
+    ".claude",
+    ".terraform",
+    "dist",
+    "node_modules",
+  ],
+
   "plugins": [
-    "https://plugins.dprint.dev/g-plane/malva-v0.15.1.wasm",
+    "https://plugins.dprint.dev/g-plane/malva-v0.15.2.wasm",
     "https://plugins.dprint.dev/g-plane/markup_fmt-v0.25.3.wasm",
     "https://plugins.dprint.dev/g-plane/pretty_yaml-v0.6.0.wasm",
     "https://plugins.dprint.dev/json-0.21.1.wasm",
@@ -16,13 +26,13 @@
 
   "json": {
     "commentLine.forceSpaceAfterSlashes": true,
-    "preferSingleLine": false
+    "preferSingleLine": false,
   },
   "markdown": {
     "emphasisKind": "underscores",
     "lineWidth": 80,
     "strongKind": "asterisks",
-    "textWrap": "always"
+    "textWrap": "always",
   },
   "typescript": {
     "arguments.preferHanging": "never",
@@ -85,6 +95,6 @@
     "typeLiteral.spaceSurroundingProperties": true,
     "typeParameters.preferHanging": "never",
     "useBraces": "always",
-    "whileStatement.spaceAfterWhileKeyword": true
-  }
+    "whileStatement.spaceAfterWhileKeyword": true,
+  },
 }
