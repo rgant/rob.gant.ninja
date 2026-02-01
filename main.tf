@@ -4,7 +4,7 @@
 # Attempting to have only `main.tf` file in the root for cleanliness.
 
 terraform {
-  required_version = ">= 1.12"
+  required_version = ">= 1.14"
 
   backend "s3" {
     bucket       = "tfstate-ninja-rob-gant"

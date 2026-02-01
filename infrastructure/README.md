@@ -16,21 +16,21 @@ network. This is to avoid causing 429 "Too Many Requests" responses from
 
 ## Requirements
 
-| Name                                                                     | Version    |
-| ------------------------------------------------------------------------ | ---------- |
-| <a name="requirement_terraform"></a> [terraform](#requirement_terraform) | >= 1.12    |
-| <a name="requirement_aws"></a> [aws](#requirement_aws)                   | >= 5.100.0 |
-| <a name="requirement_dns"></a> [dns](#requirement_dns)                   | >= 3.4.3   |
-| <a name="requirement_http"></a> [http](#requirement_http)                | >= 3.5.0   |
+| Name                                                                     | Version   |
+| ------------------------------------------------------------------------ | --------- |
+| <a name="requirement_terraform"></a> [terraform](#requirement_terraform) | >= 1.14   |
+| <a name="requirement_aws"></a> [aws](#requirement_aws)                   | >= 6.30.0 |
+| <a name="requirement_dns"></a> [dns](#requirement_dns)                   | >= 3.5.0  |
+| <a name="requirement_http"></a> [http](#requirement_http)                | >= 3.5.0  |
 
 ## Providers
 
-| Name                                                               | Version    |
-| ------------------------------------------------------------------ | ---------- |
-| <a name="provider_aws"></a> [aws](#provider_aws)                   | >= 5.100.0 |
-| <a name="provider_dns"></a> [dns](#provider_dns)                   | >= 3.4.3   |
-| <a name="provider_http"></a> [http](#provider_http)                | >= 3.5.0   |
-| <a name="provider_terraform"></a> [terraform](#provider_terraform) | n/a        |
+| Name                                                               | Version   |
+| ------------------------------------------------------------------ | --------- |
+| <a name="provider_aws"></a> [aws](#provider_aws)                   | >= 6.30.0 |
+| <a name="provider_dns"></a> [dns](#provider_dns)                   | >= 3.5.0  |
+| <a name="provider_http"></a> [http](#provider_http)                | >= 3.5.0  |
+| <a name="provider_terraform"></a> [terraform](#provider_terraform) | n/a       |
 
 ## Modules
 
