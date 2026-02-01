@@ -12,5 +12,5 @@ schemaData.mainEntity.description = description;
 
 const jsonLdString = JSON.stringify(schemaData);
 ---
-{ /* eslint-disable-next-line astro/no-set-html-directive -- jsonLdString is static with no user input involved. */ }
+{/* eslint-disable-next-line astro/no-set-html-directive -- jsonLdString is static with no user input involved. */}
 <script set:html={jsonLdString} type="application/ld+json" is:inline />

@@ -28,7 +28,8 @@ magick public/icon.svg -resize 320x320 -gravity center -extent 512x512+0+40 publ
 
 ## Future Ideas
 
-- Consider [automatically generating](https://kremalicious.com/favicon-generation-with-astro/)
+- Consider
+  [automatically generating](https://kremalicious.com/favicon-generation-with-astro/)
   with Astro
 
 ## Old way

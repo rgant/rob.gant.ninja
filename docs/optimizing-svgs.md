@@ -3,8 +3,8 @@
 These are the slightly customized Flaticons for the index page.
 
 > [!NOTE]
-> I've disabled inlining of assets (see `assetsInlineLimit` in `astro.config.ts`)
-> so this step is no longer necessary.
+> I've disabled inlining of assets (see `assetsInlineLimit` in
+> `astro.config.ts`) so this step is no longer necessary.
 
 ## Optimization
 
@@ -17,8 +17,8 @@ svgo --input raw-assets/svgs/*.svg --output src/assets/
 ```
 
 > [!WARNING]
-> `svgo` will copy every file matched on input to output even if not an SVG file.
-> So that is why I used `--input raw-assets/svgs/*.svg`.
+> `svgo` will copy every file matched on input to output even if not an SVG
+> file. So that is why I used `--input raw-assets/svgs/*.svg`.
 
 But it left in the `xml:space="preserve"` which I don't think is actually
 necessary, so I manually removed it.

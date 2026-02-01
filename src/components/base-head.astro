@@ -27,9 +27,8 @@ const { description, image = bigHeadRob, title } = Astro.props;
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
 <link rel="image_src" href={image.src}>
-{
-  // @vite-pwa/astro is not creating the web manifest in development mode.
-  pwaInfo && <link rel="manifest" href={pwaInfo.webManifest.href}>
+{// @vite-pwa/astro is not creating the web manifest in development mode.
+pwaInfo && <link rel="manifest" href={pwaInfo.webManifest.href}>
 }
 <link rel="sitemap" href="/sitemap-index.xml">
 <meta name="author" content="J Rob Gant">

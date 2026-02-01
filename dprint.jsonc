@@ -6,6 +6,7 @@
     ".claude",
     ".terraform",
     "dist",
+    "generated",
     "node_modules",
   ],
 
@@ -27,6 +28,11 @@
   "json": {
     "commentLine.forceSpaceAfterSlashes": true,
     "preferSingleLine": false,
+  },
+  "malva": {
+    "omitNumberLeadingZero": true,
+    "quotes": "preferSingle",
+    "trailingComma": true,
   },
   "markdown": {
     "emphasisKind": "underscores",

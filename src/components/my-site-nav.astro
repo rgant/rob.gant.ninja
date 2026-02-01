@@ -20,5 +20,6 @@ const ninjaSiteNavLinks: NavLink[] = [
   {ninjaSiteNavLinks.map((link: NavLink): JSX.Element =>
     link.href === currentPage
       ? <li aria-current="page">{link.text}</li>
-      : <li><a href={link.href}>{link.text}</a></li>)}
+      : <li><a href={link.href}>{link.text}</a></li>
+  )}
 </ul>

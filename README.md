@@ -19,8 +19,9 @@ brew tap hashicorp/tap
 brew install awscli hashicorp/tap/terraform s3cmd
 ```
 
-Configure AWS: `aws configure --profile personal`. Use profiles, don't setup default
-credentials. If you want to stop typing `--profile` then use `export AWS_PROFILE=personal`.
+Configure AWS: `aws configure --profile personal`. Use profiles, don't setup
+default credentials. If you want to stop typing `--profile` then use
+`export AWS_PROFILE=personal`.
 
 Configure S3cmd: `s3cmd --configure`
 

@@ -12,8 +12,9 @@ import type { CacheEntry, CacheMetadata } from './github-embed.types.js';
 const CACHE_DIR = '.cache/github-embed';
 const HASH_LENGTH = 12; // 12 chars should be sufficient
 
-const generateCacheKey = (url: string): string => createHash('sha256').update(url).digest('hex')
-  .slice(0, HASH_LENGTH);
+const generateCacheKey = (url: string): string =>
+  createHash('sha256').update(url).digest('hex')
+    .slice(0, HASH_LENGTH);
 
 /**
  * Type guard to check if `data` is of type CacheMetadata.

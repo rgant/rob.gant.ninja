@@ -15,5 +15,5 @@ const fetchResult = await fetchWithCache(parsedUrl);
 const code = extractLines(fetchResult.content, parsedUrl.lineRange);
 const { language } = parsedUrl;
 ---
-{ /* @ts-expect-error Astro sets lang to a type that it doesn't export. I'm not interested in recreating the type for this. */ }
+{/* @ts-expect-error Astro sets lang to a type that it doesn't export. I'm not interested in recreating the type for this. */}
 <Code code={code} lang={language} />
