@@ -273,8 +273,9 @@ const description = unwrap`Setting up an Astro TypeScript static site generator 
           (conflicts with modern <abbr title="Cascading Style Sheets">CSS</abbr>) and
           <a rel="noreferrer" href="https://github.com/terser/html-minifier-terser" target="_blank">html-minifier-terser</a>
           (unmaintained). Manual optimization documented in
-          <a rel="noreferrer" href="https://github.com/rgant/rob.gant.ninja/blob/main/docs/optimizing-svgs.md" target="_blank"><code
-            >optimizing-svgs.md</code></a>
+          <a rel="noreferrer" href="https://github.com/rgant/rob.gant.ninja/blob/main/docs/optimizing-svgs.md" target="_blank">
+            <code>optimizing-svgs.md</code>
+          </a>
           addresses limitations with CSS background-image compression.
         </p>
 
@@ -319,6 +320,7 @@ const description = unwrap`Setting up an Astro TypeScript static site generator 
 
       <figure class="code-figure">
         <figcaption>Terraform module organization</figcaption>
+        {/* eslint-disable-next-line @stylistic/indent */}
         <pre><code>infrastructure/
 ├── amplify/          # App, branch, domain, headers
 │   ├── main.tf
@@ -357,15 +359,17 @@ main.tf               # Single entry point</code></pre>
         <li>
           <strong>Environment Variable Management:</strong>
           I created a
-          <a rel="noreferrer" href="https://github.com/rgant/rob.gant.ninja/blob/main/.auto.tfvars.example" target="_blank"><code
-            >.auto.tfvars.example</code></a>
+          <a rel="noreferrer" href="https://github.com/rgant/rob.gant.ninja/blob/main/.auto.tfvars.example" target="_blank">
+            <code>.auto.tfvars.example</code>
+          </a>
           pattern for Terraform variables while excluding actual values from version control.
         </li>
         <li>
           <strong>Astro Configuration Compatibility:</strong>
-          Resolving <a rel="noreferrer" href="https://github.com/rgant/rob.gant.ninja/blob/main/src/env.d.ts" target="_blank"><code
-            >env.d.ts</code></a>
-          requirements for @vite-pwa/astro required research because Astro no longer adds this file in the starter template.
+          Resolving <a rel="noreferrer" href="https://github.com/rgant/rob.gant.ninja/blob/main/src/env.d.ts" target="_blank">
+            <code>env.d.ts</code>
+          </a>
+          requirements for <code>@vite-pwa/astro</code> required research because Astro no longer adds this file in the starter template.
         </li>
         <li>
           <strong>Documentation Structure:</strong>
