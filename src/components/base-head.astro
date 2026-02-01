@@ -37,5 +37,8 @@ const { description, image = bigHeadRob, title } = Astro.props;
 <meta name="description" content={description}>
 <meta name="generator" content={Astro.generator}>
 <meta name="theme-color" content="#3e454c">
+<meta property="og:image" content={new URL(image.src, Astro.site)}>
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
 
 <slot />

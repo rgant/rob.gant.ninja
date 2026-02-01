@@ -13,7 +13,7 @@ const description = unwrap`Developing with Astro and native Custom Elements for 
 <Structure>
   <BaseHead description={description} slot="head" title="Developing with Astro and Web Components" />
 
-  <ArticleHeader currentPage="developing.html">
+  <ArticleHeader>
     <h1 class="decorated-heading primary">Developing the website</h1>
     <p>Building interactive features with native web technologies</p>
   </ArticleHeader>
@@ -72,7 +72,7 @@ const description = unwrap`Developing with Astro and native Custom Elements for 
             href="https://github.com/rgant/rob.gant.ninja/blob/main/src/scripts/client/scroll-navigation.component.ts"
             target="_blank"
           >Intersection Observer</a>
-          for better performance and modern <abbr title="Application Programming Interface">API</abbr> usage.
+          for modern <abbr title="Application Programming Interface">API</abbr> patterns.
         </li>
         <li>
           <strong>Intersection Observer Configuration:</strong>
@@ -150,10 +150,13 @@ const description = unwrap`Developing with Astro and native Custom Elements for 
         </li>
         <li>
           <strong>Configuration Challenges:</strong>
-          Required both
-          <a rel="noreferrer" href="https://vite-pwa-org.netlify.app/guide/" target="_blank">Vite PWA documentation</a> and
-          <a rel="noreferrer" href="https://developer.chrome.com/docs/workbox/" target="_blank">official Workbox docs</a>
-          along with example configurations to understand option purposes.
+          Required careful testing of build artifacts to verify the
+          <a
+            rel="noreferrer"
+            href="https://github.com/rgant/rob.gant.ninja/blob/main/astro.config.ts#L21-L22"
+            target="_blank"
+          >precache list</a>
+          included necessary resources while excluding unnecessary ones.
         </li>
         <li>
           <strong>Integration Requirements:</strong>
@@ -171,7 +174,7 @@ const description = unwrap`Developing with Astro and native Custom Elements for 
         </li>
       </ul>
 
-      <div class="description" class="slide">
+      <div class="description">
         <p>
           The decision to implement PWA features came from learning that many developers consider them essentially free additions when using
           modern build tools. Since HTML5 Boilerplate had already included a manifest file that went unused, researching PWA implementation
@@ -179,11 +182,13 @@ const description = unwrap`Developing with Astro and native Custom Elements for 
         </p>
 
         <p>
-          Workbox configuration required careful testing of build artifacts to ensure the precache list included necessary resources while
-          excluding unnecessary ones. The
+          The
           <a rel="noreferrer" href="https://github.com/vite-pwa/astro/tree/main/examples" target="_blank">vite-pwa examples</a>
-          demonstrate practically every available option but lack clear explanations of individual option purposes, requiring me to check
-          multiple documentation sources to understand the configuration impact.
+          demonstrate practically every available option but lack clear explanations of individual option purposes. Understanding the
+          configuration impact required checking both
+          <a rel="noreferrer" href="https://vite-pwa-org.netlify.app/guide/" target="_blank">Vite PWA documentation</a> and
+          <a rel="noreferrer" href="https://developer.chrome.com/docs/workbox/" target="_blank">official Workbox docs</a>
+          alongside example configurations.
         </p>
 
         <p>
@@ -233,6 +238,7 @@ const description = unwrap`Developing with Astro and native Custom Elements for 
       </ul>
 
       <div class="description">
+        <!-- TODO: Link to this section from brainfry-app (Angular) when that section is written -->
         <p>
           Security analysis tools and Angular’s improved support motivated the CSP implementation. Rather than implementing relaxed rules
           that provide minimal security benefits, the strict approach with SRI hashes provides meaningful protection against code injection

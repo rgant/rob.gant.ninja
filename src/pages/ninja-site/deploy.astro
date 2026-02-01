@@ -13,7 +13,7 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
 <Structure>
   <BaseHead description={description} slot="head" title="Deploying Static Websites with Terraform and AWS Amplify" />
 
-  <ArticleHeader currentPage="deploy.html">
+  <ArticleHeader>
     <h1 class="decorated-heading primary">Deploying Static Websites with Terraform</h1>
     <p>Using <abbr title="Amazon Web Services">AWS</abbr> Amplify for static site generator hosting</p>
   </ArticleHeader>
@@ -43,7 +43,13 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
         <li>
           <strong>Directory Index Limitations:</strong>
           <a rel="noreferrer" href="https://aws.amazon.com/cloudfront/" target="_blank" title="AWS CloudFront">CloudFront’s</a> root object
-          configuration only applies to the root domain, not subdirectories.
+          configuration only applies to the root domain, not subdirectories. A
+          <a
+            rel="noreferrer"
+            href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/example_cloudfront_functions_url_rewrite_single_page_apps_section.html"
+            target="_blank"
+          >CloudFront Function</a>
+          workaround exists but requires ongoing maintenance.
         </li>
         <li>
           <strong>S3 Website Hosting:</strong>
@@ -74,16 +80,7 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
             href="https://github.com/rgant/rob.gant.ninja/blob/965c74fdd00c25d212505d80f6f9916f515eaef5/infrastructure/website.tf"
             target="_blank"
           >S3 bucket as a CloudFront origin</a>, which functioned correctly for a single-page site. When expanding to multiple pages
-          organized in directories, I required each directory to have its own <code>index.html</code> root object. I could have implemented
-          a CloudFront Function to
-          <a
-            rel="noreferrer"
-            href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/example_cloudfront_functions_url_rewrite_single_page_apps_section.html"
-            target="_blank"
-          >add <code>index.html</code> to the origin request <abbr title="Uniform Resource Identifier">URI</abbr></a>, but this approach
-          would require maintaining custom CloudFront Functions while
-          <a rel="noreferrer" href="https://aws.amazon.com/" target="_blank" title="Amazon Web Services">AWS</a>
-          continues expanding Amplify’s static hosting features.
+          organized in directories, I required each directory to have its own <code>index.html</code> root object.
         </p>
 
         <p>
@@ -129,7 +126,8 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
       <ul class="key-points">
         <li>
           <strong>State Management:</strong>
-          Auto-generated Amplify resources must be
+          Amplify automatically creates sub-resources like DNS verification records, only some of which are directly accessible through
+          Terraform. These must be
           <a
             rel="noreferrer"
             href="https://github.com/rgant/rob.gant.ninja/blob/8bd8208146607a8b47409129b409f46be5307b93/main.tf#L51-L70"
@@ -173,10 +171,8 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
         </p>
 
         <p>
-          One complexity with Amplify is that it automatically creates several sub-resources, only some of which are directly accessible
-          through Terraform. For example, Amplify automatically generates DNS records for domain verification, which must be imported into
-          the Terraform state to ensure consistent management. This maintains the infrastructure-as-code approach while working within
-          Amplify’s architectural constraints. Although Amplify uses
+          Importing auto-generated resources maintains the infrastructure-as-code approach while working within Amplify's architectural
+          constraints. Although Amplify uses
           <a
             rel="noreferrer"
             href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/website-hosting-amplify.html#:~:text=globally%20available%20content%20delivery%20network%20(CDN)%20powered%20by%20Amazon%20CloudFront"
@@ -473,6 +469,14 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
           <strong>Provider Monitoring:</strong>
           Track AWS provider updates to leverage improvements to Amplify support.
         </li>
+        <li>
+          <strong>Backup Strategy:</strong>
+          Establish cross-region S3 replication for critical deployment artifacts and Terraform state files.
+        </li>
+        <li>
+          <strong>Enhanced Observability:</strong>
+          Implement structured logging and custom CloudWatch dashboards for monitoring deployment pipelines and infrastructure health.
+        </li>
       </ul>
 
       <div class="description">
@@ -491,14 +495,7 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
         <p>
           Advanced alerting would build upon the current Amplify alerts configuration to include deployment duration monitoring and
           geographic traffic analysis. Recovery planning would focus on documentation rather than redundant infrastructure, including
-          procedures for domain recovery scenarios and complete infrastructure recreation from Git repositories and Terraform state backups.
-        </p>
-
-        <p>
-          Backup and disaster recovery planning would establish cross-region S3 replication for critical deployment artifacts and Terraform
-          state files. This includes documenting recovery procedures for domain transfers, SSL certificate replacement, and infrastructure
-          recreation from Terraform state backups. Enhanced observability would involve structured logging implementation and custom
-          CloudWatch dashboards for monitoring deployment pipelines and infrastructure health metrics.
+          procedures for domain transfers, SSL certificate replacement, and complete infrastructure recreation.
         </p>
 
         <p>

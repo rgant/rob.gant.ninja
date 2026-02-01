@@ -13,7 +13,7 @@ const description = unwrap`Setting up an Astro TypeScript static site generator 
 <Structure>
   <BaseHead description={description} slot="head" title="Setup an Astro TypeScript SSG Project" />
 
-  <ArticleHeader currentPage="setup.html">
+  <ArticleHeader>
     <h1 class="decorated-heading primary">Project setup and structure</h1>
     <p>Starting out with an organized development workflow</p>
   </ArticleHeader>
@@ -118,9 +118,8 @@ const description = unwrap`Setting up an Astro TypeScript static site generator 
 
         <p>
           Regular dependency updates should be routine rather than intimidating when combined with strict code quality enforcement and
-          automated testing that catch regressions early. Cross-platform compatibility awareness helps avoid deployment surprises,
-          particularly between Unix-like development environments and different production platforms. You must balance version range
-          stability with security updates, especially for development tools that change rapidly.
+          automated testing that catch regressions early. You must balance version range stability with security updates, especially for
+          development tools that change rapidly.
         </p>
 
         <p>
@@ -170,7 +169,7 @@ const description = unwrap`Setting up an Astro TypeScript static site generator 
         </p>
 
         <p>
-          Starting with Astro's blog template and a strict
+          Starting with Astro’s blog template and a strict
           <a rel="noreferrer" href="https://www.typescriptlang.org/" target="_blank">TypeScript</a>
           configuration, which included settings for build processes and development server setup, sped up development.
         </p>
@@ -373,7 +372,7 @@ const description = unwrap`Setting up an Astro TypeScript static site generator 
 
       <div class="description">
         <p>
-          Development environment management could benefit from more better tools like devenv.sh, though such changes require considering
+          Development environment management could benefit from better tools like devenv.sh, though such changes require considering
           workflow changes versus benefits. Similarly, automated formatting through lint-staged could reduce manual formatting effort while
           maintaining code consistency.
         </p>

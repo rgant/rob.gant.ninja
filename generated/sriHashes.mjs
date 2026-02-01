@@ -7,10 +7,10 @@ export const inlineStyleHashes = /** @type {string[]} */ ([])
 export const extScriptHashes = /** @type {string[]} */ ([
 	'sha256-3Ej65L40t2CoK9PwHnWOxuXkOuzU6RTpy7psKykz4ec=',
 	'sha256-3dRdfLkdQ3Ye7N4HXnBaOPrAyqXgj2V1T8fo1JNzUTU=',
+	'sha256-5MzgL8sT88AMgtRFfk6woGQLlRgvIOBQayKU6qrJoLI=',
 	'sha256-dZNXMImCEkfiJtz7gPJuwMU4nUD3s++Yno2MucPf/z8=',
 	'sha256-latTpihffieuJRZHH1WkX5hAkFe1n1u+0BI1NtV0SWs=',
 	'sha256-mYVHxvq9wSmNYL63/JJrnB9Sc335ay6H89PVTtc+OTw=',
-	'sha256-vlWwoElsMe9BmFgytxaW6i4yYwXfgb631c23cgipYAg=',
 ])
 
 export const extStyleHashes = /** @type {string[]} */ ([
@@ -101,7 +101,7 @@ export const perResourceSriHashes = {
 		'/_astro/end-scripts.astro_astro_type_script_index_0_lang.y3bdIN15.js': 'sha256-3dRdfLkdQ3Ye7N4HXnBaOPrAyqXgj2V1T8fo1JNzUTU=',
 		'/_astro/scroll-navigation.astro_astro_type_script_index_0_lang.DpQfyq-H.js': 'sha256-dZNXMImCEkfiJtz7gPJuwMU4nUD3s++Yno2MucPf/z8=',
 		'/_astro/workbox-window.prod.es5.BIl4cyR9.js': 'sha256-mYVHxvq9wSmNYL63/JJrnB9Sc335ay6H89PVTtc+OTw=',
-		'/sw.js': 'sha256-vlWwoElsMe9BmFgytxaW6i4yYwXfgb631c23cgipYAg=',
+		'/sw.js': 'sha256-5MzgL8sT88AMgtRFfk6woGQLlRgvIOBQayKU6qrJoLI=',
 		'/workbox-8c29f6e4.js': 'sha256-latTpihffieuJRZHH1WkX5hAkFe1n1u+0BI1NtV0SWs=',
 	}),
 	styles: /** @type {Record<string,string>} */ ({

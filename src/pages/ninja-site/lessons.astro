@@ -13,7 +13,7 @@ const description = unwrap`Key lessons learned building a modern static website:
 <Structure>
   <BaseHead description={description} slot="head" title="Lessons learned building a modern static website" />
 
-  <ArticleHeader currentPage="developing.html">
+  <ArticleHeader>
     <h1 class="decorated-heading primary">Lessons learned</h1>
     <p>What I discovered building this website</p>
   </ArticleHeader>
@@ -127,9 +127,9 @@ const description = unwrap`Key lessons learned building a modern static website:
       <ul class="key-points">
         <li>
           <strong>Framework Selection Process:</strong>
-          Learning to identify the correct tool for specific requirements rather than defaulting to popular choices. Astro and Custom
-          Elements were chosen together for static sites with minimal interactivity, works well enough without framework overhead designed
-          for complex application state management.
+          <abbr title="Single Page Application">SPA</abbr>s aren't ideal for public websites needing search engine indexing, and adding
+          <abbr title="Server-Side Rendering">SSR</abbr> is a heavy task. Astro and Custom Elements were chosen for static sites with
+          minimal interactivity, working well without framework overhead designed for complex state management.
         </li>
         <li>
           <strong>Documentation Priority:</strong>
@@ -158,14 +158,6 @@ const description = unwrap`Key lessons learned building a modern static website:
       </ul>
 
       <div class="description">
-        <p>
-          <abbr title="Single Page Application">SPA</abbr>s aren’t ideal for public websites meant to be indexed by search engines. Adding
-          <abbr title="Server-Side Rendering">SSR</abbr> to facilitate both performance and non-JavaScript web crawlers is generally a heavy
-          task. Next.js with React or
-          <a rel="noreferrer" href="https://angular.dev/" target="_blank">Angular</a>
-          are beasts that should be used in appropriately complex systems where they are required, not as default choices for simple sites.
-        </p>
-
         <p>
           Documentation purpose, reasoning, and decision making for all projects: solo ones because you cannot remember everything anymore,
           and team ones because team members will change and the scope will be so wide that no one developer can keep it all in their head.
