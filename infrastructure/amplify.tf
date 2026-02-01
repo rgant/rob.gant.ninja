@@ -97,9 +97,13 @@ resource "terraform_data" "deploy_from_s3" {
       for fn in fileset("${path.root}/dist", "**") :
       fn => filesha256("${path.root}/dist/${fn}")
     })
+    headers_hash = sha256(module.amplify_website.custom_headers)
   }
 
-  depends_on = [terraform_data.sync_to_website]
+  depends_on = [
+    terraform_data.sync_to_website,
+    terraform_data.amplify_custom_headers,
+  ]
 
   provisioner "local-exec" {
     command = <<EOF
@@ -113,8 +117,10 @@ EOF
   }
 }
 
-# Manually update the headers on change
-resource "terraform_data" "amplify_custom_headrs" {
+# Manually update the headers on change.
+# The replace() escapes single quotes for the shell - CSP keywords like 'self' would
+# otherwise break out of the shell's single-quote context.
+resource "terraform_data" "amplify_custom_headers" {
   triggers_replace = {
     headers_hash = sha256(module.amplify_website.custom_headers)
   }
@@ -124,7 +130,7 @@ resource "terraform_data" "amplify_custom_headrs" {
 aws --profile ${var.aws_profile} --region ${var.region} \
   amplify update-app \
   --app-id ${module.amplify_website.amplify_site.id} \
-  --custom-headers '${jsonencode(yamldecode(module.amplify_website.custom_headers))}'
+  --custom-headers '${replace(jsonencode(yamldecode(module.amplify_website.custom_headers)), "'", "'\\''")}'
 EOF
   }
 }

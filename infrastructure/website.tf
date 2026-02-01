@@ -26,7 +26,7 @@ s3cmd sync \
 s3cmd modify \
   --cf-invalidate \
   --add-header="Cache-Control:public,max-age=2592000,stale-while-revalidate=86400" \
-  s3://${module.website_bucket.s3_bucket.id}/index.html
+  s3://${module.website_bucket.s3_bucket.id}/**/*.html
 EOF
   }
 }
