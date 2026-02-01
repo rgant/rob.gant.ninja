@@ -59,10 +59,8 @@ const description = unwrap`Modern static site development workflow using Astro, 
         <li>
           <strong>Code Quality Tools:</strong>
           <a rel="noreferrer" href="https://eslint.org/" target="_blank">ESLint</a>,
-          <a rel="noreferrer" href="https://stylelint.io/" target="_blank">Stylelint</a>,
+          <a rel="noreferrer" href="https://stylelint.io/" target="_blank">Stylelint</a>, &amp;
           <a rel="noreferrer" href="https://dprint.dev/" target="_blank">dprint</a>
-          &amp;
-          <a rel="noreferrer" href="https://prettier.io/" target="_blank">Prettier</a>
           provide automated code quality enforcement for solo development where peer code review isn’t available.
         </li>
         <li>
@@ -72,6 +70,43 @@ const description = unwrap`Modern static site development workflow using Astro, 
           infrequent infrastructure work.
         </li>
       </ul>
+
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Tool</th>
+            <th>Purpose</th>
+            <th>Scope</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>ESLint</td>
+            <td>Code quality &amp; patterns</td>
+            <td>JS, TS, Astro</td>
+          </tr>
+          <tr>
+            <td>Stylelint</td>
+            <td>Style quality &amp; patterns</td>
+            <td>CSS</td>
+          </tr>
+          <tr>
+            <td>dprint</td>
+            <td>Code formatting</td>
+            <td>JS, TS, JSON, Markdown</td>
+          </tr>
+          <tr>
+            <td>terraform fmt</td>
+            <td>Code formatting</td>
+            <td>HCL (Terraform)</td>
+          </tr>
+          <tr>
+            <td>terraform validate</td>
+            <td>Configuration verification</td>
+            <td>HCL (Terraform)</td>
+          </tr>
+        </tbody>
+      </table>
 
       <div class="description">
         <p>

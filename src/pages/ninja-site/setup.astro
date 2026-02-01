@@ -1,4 +1,6 @@
 ---
+import { Code } from 'astro:components';
+
 import ArticleHeader from '~/components/article-header.astro';
 import BaseHead from '~/components/base-head.astro';
 import MySiteNav from '~/components/my-site-nav.astro';
@@ -161,6 +163,43 @@ const description = unwrap`Setting up an Astro TypeScript static site generator 
         </li>
       </ul>
 
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Capability</th>
+            <th>Parcel</th>
+            <th>Astro</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>SSG support</td>
+            <td>Custom plugins required</td>
+            <td>Built-in, first-class</td>
+          </tr>
+          <tr>
+            <td>TypeScript</td>
+            <td>Supported</td>
+            <td>Native integration</td>
+          </tr>
+          <tr>
+            <td>Component model</td>
+            <td>None (HTML only)</td>
+            <td>.astro components</td>
+          </tr>
+          <tr>
+            <td>Dev server</td>
+            <td>Basic HMR</td>
+            <td>Vite-powered HMR</td>
+          </tr>
+          <tr>
+            <td>Primary focus</td>
+            <td>Application bundling</td>
+            <td>Content-focused sites</td>
+          </tr>
+        </tbody>
+      </table>
+
       <div class="description">
         <p>
           The project began as a Parcel-based static site that required custom plugins to achieve static site generation capabilities. Astro
@@ -208,6 +247,18 @@ const description = unwrap`Setting up an Astro TypeScript static site generator 
           configurations.
         </li>
       </ul>
+
+      <figure class="code-figure">
+        <figcaption>Build and deploy scripts (package.json)</figcaption>
+        <Code
+          code={`"build": "astro build",
+"postbuild": "./scripts/set-csp-header.ts", // Export SRI hashes to JSON
+"predeploy": "npm run build",
+"deploy": "terraform apply"`}
+          lang="json"
+          theme="css-variables"
+        />
+      </figure>
 
       <div class="description">
         <p>
@@ -265,6 +316,19 @@ const description = unwrap`Setting up an Astro TypeScript static site generator 
           buckets, <abbr title="Domain Name System">DNS</abbr>, and remote state management.
         </li>
       </ul>
+
+      <figure class="code-figure">
+        <figcaption>Terraform module organization</figcaption>
+        <pre><code>infrastructure/
+├── amplify/          # App, branch, domain, headers
+│   ├── main.tf
+│   ├── dns.tf
+│   └── variables.tf
+├── remote-config/    # Terraform state backend
+├── s3-bucket/        # Reusable S3 module
+└── budget.tf         # Cost monitoring
+main.tf               # Single entry point</code></pre>
+      </figure>
 
       <div class="description">
         <p>

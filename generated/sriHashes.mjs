@@ -7,17 +7,17 @@ export const inlineStyleHashes = /** @type {string[]} */ ([])
 export const extScriptHashes = /** @type {string[]} */ ([
 	'sha256-3Ej65L40t2CoK9PwHnWOxuXkOuzU6RTpy7psKykz4ec=',
 	'sha256-3dRdfLkdQ3Ye7N4HXnBaOPrAyqXgj2V1T8fo1JNzUTU=',
-	'sha256-MV7TBOsU4zogKtsAlM0x0yKk3gbebdW0kZq1anzXuyg=',
+	'sha256-Fqc6N2ZWKb52857dcqxF/NeKHUXqT8g0pCU1s6+Byh4=',
 	'sha256-dZNXMImCEkfiJtz7gPJuwMU4nUD3s++Yno2MucPf/z8=',
 	'sha256-latTpihffieuJRZHH1WkX5hAkFe1n1u+0BI1NtV0SWs=',
 	'sha256-mYVHxvq9wSmNYL63/JJrnB9Sc335ay6H89PVTtc+OTw=',
 ])
 
 export const extStyleHashes = /** @type {string[]} */ ([
-	'sha256-2G96bInDOImeIbjJZLgrfHFIzT/i3pSluRi2drxZTVs=',
-	'sha256-GQJd3CvPOcepTD52BIyVzXkv8LLBeZjhd+aARkUIbBY=',
-	'sha256-f9tq9moPt35UjaqgCnyfwkbHmejZHlhyegndNBuPGGA=',
+	'sha256-Bh6jkv5NfQILEaV5QA7JkyQkiPIVEIk4XHKbHYk54EY=',
+	'sha256-Dx5uTco5pDx33neCN1AfTZiAKhfuJj+AB8rxlZkOjOM=',
 	'sha256-xNtfpjfhxrW+P/oGK9aKt+qglaKw1+Fef7FP/JdmJp0=',
+	'sha256-z3Vgpt6IkqPbKQSbvfsPxx2AwWoMn3Ew0huW1LRgBE8=',
 ])
 
 export const perPageSriHashes =
@@ -39,8 +39,8 @@ export const perPageSriHashes =
 				'sha256-dZNXMImCEkfiJtz7gPJuwMU4nUD3s++Yno2MucPf/z8=',
 			],
 			styles: [
-				'sha256-2G96bInDOImeIbjJZLgrfHFIzT/i3pSluRi2drxZTVs=',
-				'sha256-f9tq9moPt35UjaqgCnyfwkbHmejZHlhyegndNBuPGGA=',
+				'sha256-Dx5uTco5pDx33neCN1AfTZiAKhfuJj+AB8rxlZkOjOM=',
+				'sha256-z3Vgpt6IkqPbKQSbvfsPxx2AwWoMn3Ew0huW1LRgBE8=',
 			],
 		},
 		'ninja-site/deploy.html': {
@@ -49,8 +49,8 @@ export const perPageSriHashes =
 				'sha256-dZNXMImCEkfiJtz7gPJuwMU4nUD3s++Yno2MucPf/z8=',
 			],
 			styles: [
-				'sha256-GQJd3CvPOcepTD52BIyVzXkv8LLBeZjhd+aARkUIbBY=',
-				'sha256-f9tq9moPt35UjaqgCnyfwkbHmejZHlhyegndNBuPGGA=',
+				'sha256-Bh6jkv5NfQILEaV5QA7JkyQkiPIVEIk4XHKbHYk54EY=',
+				'sha256-z3Vgpt6IkqPbKQSbvfsPxx2AwWoMn3Ew0huW1LRgBE8=',
 			],
 		},
 		'ninja-site/developing.html': {
@@ -59,8 +59,8 @@ export const perPageSriHashes =
 				'sha256-dZNXMImCEkfiJtz7gPJuwMU4nUD3s++Yno2MucPf/z8=',
 			],
 			styles: [
-				'sha256-GQJd3CvPOcepTD52BIyVzXkv8LLBeZjhd+aARkUIbBY=',
-				'sha256-f9tq9moPt35UjaqgCnyfwkbHmejZHlhyegndNBuPGGA=',
+				'sha256-Bh6jkv5NfQILEaV5QA7JkyQkiPIVEIk4XHKbHYk54EY=',
+				'sha256-z3Vgpt6IkqPbKQSbvfsPxx2AwWoMn3Ew0huW1LRgBE8=',
 			],
 		},
 		'ninja-site/index.html': {
@@ -69,8 +69,8 @@ export const perPageSriHashes =
 				'sha256-dZNXMImCEkfiJtz7gPJuwMU4nUD3s++Yno2MucPf/z8=',
 			],
 			styles: [
-				'sha256-GQJd3CvPOcepTD52BIyVzXkv8LLBeZjhd+aARkUIbBY=',
-				'sha256-f9tq9moPt35UjaqgCnyfwkbHmejZHlhyegndNBuPGGA=',
+				'sha256-Bh6jkv5NfQILEaV5QA7JkyQkiPIVEIk4XHKbHYk54EY=',
+				'sha256-z3Vgpt6IkqPbKQSbvfsPxx2AwWoMn3Ew0huW1LRgBE8=',
 			],
 		},
 		'ninja-site/lessons.html': {
@@ -79,8 +79,8 @@ export const perPageSriHashes =
 				'sha256-dZNXMImCEkfiJtz7gPJuwMU4nUD3s++Yno2MucPf/z8=',
 			],
 			styles: [
-				'sha256-GQJd3CvPOcepTD52BIyVzXkv8LLBeZjhd+aARkUIbBY=',
-				'sha256-f9tq9moPt35UjaqgCnyfwkbHmejZHlhyegndNBuPGGA=',
+				'sha256-Bh6jkv5NfQILEaV5QA7JkyQkiPIVEIk4XHKbHYk54EY=',
+				'sha256-z3Vgpt6IkqPbKQSbvfsPxx2AwWoMn3Ew0huW1LRgBE8=',
 			],
 		},
 		'ninja-site/setup.html': {
@@ -89,8 +89,8 @@ export const perPageSriHashes =
 				'sha256-dZNXMImCEkfiJtz7gPJuwMU4nUD3s++Yno2MucPf/z8=',
 			],
 			styles: [
-				'sha256-GQJd3CvPOcepTD52BIyVzXkv8LLBeZjhd+aARkUIbBY=',
-				'sha256-f9tq9moPt35UjaqgCnyfwkbHmejZHlhyegndNBuPGGA=',
+				'sha256-Bh6jkv5NfQILEaV5QA7JkyQkiPIVEIk4XHKbHYk54EY=',
+				'sha256-z3Vgpt6IkqPbKQSbvfsPxx2AwWoMn3Ew0huW1LRgBE8=',
 			],
 		}}
 )
@@ -101,13 +101,13 @@ export const perResourceSriHashes = {
 		'/_astro/end-scripts.astro_astro_type_script_index_0_lang.y3bdIN15.js': 'sha256-3dRdfLkdQ3Ye7N4HXnBaOPrAyqXgj2V1T8fo1JNzUTU=',
 		'/_astro/scroll-navigation.astro_astro_type_script_index_0_lang.DpQfyq-H.js': 'sha256-dZNXMImCEkfiJtz7gPJuwMU4nUD3s++Yno2MucPf/z8=',
 		'/_astro/workbox-window.prod.es5.BIl4cyR9.js': 'sha256-mYVHxvq9wSmNYL63/JJrnB9Sc335ay6H89PVTtc+OTw=',
-		'/sw.js': 'sha256-MV7TBOsU4zogKtsAlM0x0yKk3gbebdW0kZq1anzXuyg=',
+		'/sw.js': 'sha256-Fqc6N2ZWKb52857dcqxF/NeKHUXqT8g0pCU1s6+Byh4=',
 		'/workbox-8c29f6e4.js': 'sha256-latTpihffieuJRZHH1WkX5hAkFe1n1u+0BI1NtV0SWs=',
 	}),
 	styles: /** @type {Record<string,string>} */ ({
 		'/_astro/404.Xeo1OP5o.css': 'sha256-xNtfpjfhxrW+P/oGK9aKt+qglaKw1+Fef7FP/JdmJp0=',
-		'/_astro/deploy.Bx2EXcgO.css': 'sha256-GQJd3CvPOcepTD52BIyVzXkv8LLBeZjhd+aARkUIbBY=',
-		'/_astro/index.BShF4ruu.css': 'sha256-2G96bInDOImeIbjJZLgrfHFIzT/i3pSluRi2drxZTVs=',
-		'/_astro/index.C0QCmOOs.css': 'sha256-f9tq9moPt35UjaqgCnyfwkbHmejZHlhyegndNBuPGGA=',
+		'/_astro/deploy.DuYft6xP.css': 'sha256-Bh6jkv5NfQILEaV5QA7JkyQkiPIVEIk4XHKbHYk54EY=',
+		'/_astro/index.Djs-S9ge.css': 'sha256-Dx5uTco5pDx33neCN1AfTZiAKhfuJj+AB8rxlZkOjOM=',
+		'/_astro/index.l0zq4nqP.css': 'sha256-z3Vgpt6IkqPbKQSbvfsPxx2AwWoMn3Ew0huW1LRgBE8=',
 	}),
 }

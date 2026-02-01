@@ -60,6 +60,10 @@ h3 {
     /* List experience in order, but don't display numbers. */
     list-style-type: disc;
   }
+
+  .tenure {
+    font-size: smaller;
+  }
 }
 
 #projects {

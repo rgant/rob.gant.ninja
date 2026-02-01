@@ -52,12 +52,74 @@
   }
 }
 
+.comparison-table {
+  border-collapse: collapse;
+  margin: 1.5rem auto;
+
+  th,
+  td {
+    padding: .5rem .75rem;
+    text-align: start;
+  }
+
+  th {
+    font-weight: 600;
+    background-color: var(--gray-darker);
+  }
+
+  td:first-child {
+    font-weight: 500;
+  }
+
+  tbody tr:nth-child(even) {
+    background-color: var(--gray-darkish);
+  }
+}
+
+.code-figure {
+  /* Syntax highlighting colors (for Code component with theme="css-variables") */
+  --astro-code-foreground: var(--text-primary);
+  --astro-code-background: var(--gray-darker);
+  --astro-code-token-string-expression: var(--green-leaf);
+  --astro-code-token-comment: var(--yellow);
+  --astro-code-token-keyword: var(--red-salmon);
+  --astro-code-token-constant: var(--blue-sky);
+  --astro-code-token-function: var(--purple);
+  --astro-code-token-parameter: var(--red-salmon);
+  --astro-code-token-punctuation: var(--text-secondary);
+
+  inline-size: fit-content;
+  margin: 1.5rem auto;
+  padding: 1rem;
+  border-radius: .25rem;
+
+  background-color: var(--gray-darker);
+
+  figcaption {
+    margin-block-end: .5rem;
+    font-size: .875rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+  }
+
+  pre {
+    overflow-inline: auto;
+    margin: 0;
+  }
+
+  code {
+    font-size: .875rem;
+    line-height: 1.5;
+  }
+}
+
 @media only screen and (width >= 64em) {
   .slide {
     display: grid;
     grid-template:
       'header header' auto
       'points dscrpt' auto
+      'figure figure' auto
       'footer footer' auto
       / 7fr 5fr;
     gap: 3rem 1.5rem;
@@ -70,7 +132,7 @@
 
   .key-points {
     grid-area: points;
-    margin: 0;
+    margin-block: 0;
 
     li {
       margin-block-start: 0;
@@ -83,6 +145,12 @@
     p {
       margin-block-start: 0;
     }
+  }
+
+  .code-figure,
+  .comparison-table {
+    grid-area: figure;
+    margin-block: 0;
   }
 
   .section-nav {

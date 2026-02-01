@@ -24,6 +24,7 @@
   --cyan: oklch(90% .1576 186.2597deg); /* aqua */
   --gray-dark: oklch(39% .005 300deg);
   --gray-darker: oklch(8% 0 0deg);
+  --gray-darkish: oklch(35% 0 0deg); /* for table zebra striping */
   --gray-lavender: oklch(90% .061 309.7deg);
   --gray-light: oklch(94% 0 0deg);
   --green-dark: oklch(29.4% .0906 128.66deg);

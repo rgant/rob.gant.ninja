@@ -1,4 +1,6 @@
 ---
+import { Code } from 'astro:components';
+
 import ArticleHeader from '~/components/article-header.astro';
 import BaseHead from '~/components/base-head.astro';
 import MySiteNav from '~/components/my-site-nav.astro';
@@ -86,6 +88,20 @@ const description = unwrap`Developing with Astro and native Custom Elements for 
           Custom Elements enable accessing navigation elements within component tags without requiring global IDs or unique classes.
         </li>
       </ul>
+
+      <figure class="code-figure">
+        <figcaption>Intersection Observer configuration</figcaption>
+        <Code
+          code={`const options: IntersectionObserverInit = {
+  // This makes the scroll area root a single line 20% down from the top of the viewport.
+  // Which makes it so only a single section enabled at once.
+  rootMargin: '-20% 0px -80%', // Unlike CSS these must be 0px
+  threshold: 0,
+};`}
+          lang="typescript"
+          theme="css-variables"
+        />
+      </figure>
 
       <div class="description">
         <p>
@@ -388,6 +404,38 @@ const description = unwrap`Developing with Astro and native Custom Elements for 
           Pursue both security and performance when possible, accepting trade-offs only when genuine conflicts exist between requirements.
         </li>
       </ul>
+
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Consideration</th>
+            <th>SPA Frameworks</th>
+            <th>Custom Elements</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Bundle size</td>
+            <td>30–100+ KB</td>
+            <td>~2 KB</td>
+          </tr>
+          <tr>
+            <td>Learning curve</td>
+            <td>Framework-specific patterns</td>
+            <td>Web standards</td>
+          </tr>
+          <tr>
+            <td>State management</td>
+            <td>Built-in or required library</td>
+            <td>Manual (simpler for small scope)</td>
+          </tr>
+          <tr>
+            <td>Best for</td>
+            <td>Complex interactive apps</td>
+            <td>Progressive enhancement</td>
+          </tr>
+        </tbody>
+      </table>
 
       <div class="description">
         <p>

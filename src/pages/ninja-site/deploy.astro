@@ -72,6 +72,43 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
         </li>
       </ul>
 
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>S3 + CloudFront</th>
+            <th>AWS Amplify</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Directory index files</td>
+            <td>Root only (or CloudFront Function)</td>
+            <td>Built-in support</td>
+          </tr>
+          <tr>
+            <td>SSL certificates</td>
+            <td>Manual ACM setup</td>
+            <td>Automatic provisioning</td>
+          </tr>
+          <tr>
+            <td>Custom headers</td>
+            <td>CloudFront Function required</td>
+            <td>YAML configuration</td>
+          </tr>
+          <tr>
+            <td>Bucket access</td>
+            <td>Public or OAI complexity</td>
+            <td>Private (managed internally)</td>
+          </tr>
+          <tr>
+            <td>Terraform support</td>
+            <td>Full</td>
+            <td>Partial (workarounds needed)</td>
+          </tr>
+        </tbody>
+      </table>
+
       <div class="description">
         <p>
           My initial website architecture used an
