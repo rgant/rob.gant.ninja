@@ -13,12 +13,16 @@ resource "terraform_data" "sync_to_website" {
     file_hashes = jsonencode({
       for fn in fileset("${path.root}/dist", "**") :
       fn => filesha256("${path.root}/dist/${fn}")
+      # macOS writes .DS_Store into dist after a build. `s3cmd sync` excludes it, so it must not
+      # trigger a deploy either.
+      if basename(fn) != ".DS_Store"
     })
   }
 
   provisioner "local-exec" {
     command = <<EOF
 s3cmd sync \
+  --exclude '.DS_Store' \
   --no-preserve \
   --delete-removed \
   --add-header="Cache-Control:public,max-age=31536000" \

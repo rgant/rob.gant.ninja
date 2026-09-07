@@ -96,6 +96,9 @@ resource "terraform_data" "deploy_from_s3" {
     file_hashes = jsonencode({
       for fn in fileset("${path.root}/dist", "**") :
       fn => filesha256("${path.root}/dist/${fn}")
+      # macOS writes .DS_Store into dist after a build. `s3cmd sync` excludes it, so it must not
+      # trigger a deploy either.
+      if basename(fn) != ".DS_Store"
     })
     headers_hash = sha256(module.amplify_website.custom_headers)
   }
