@@ -9,6 +9,8 @@ const config = {
     '@stylistic/stylelint-config',
     'stylelint-config-clean-order/error',
     'stylelint-config-html',
+    'stylelint-plugin-defensive-css/configs/recommended',
+    'stylelint-plugin-logical-css/configs/recommended',
   ],
   ignoreFiles: [
     '**/*.json',
@@ -23,8 +25,6 @@ const config = {
     'stylelint-declaration-strict-value',
     'stylelint-gamut',
     'stylelint-no-unsupported-browser-features',
-    'stylelint-plugin-defensive-css',
-    'stylelint-plugin-logical-css',
     'stylelint-selector-tag-no-without-class',
     'stylelint-use-nesting',
   ],
@@ -59,15 +59,16 @@ const config = {
       PRECISION,
       { insideFunctions: { '/^(oklch|oklab|lch|lab)$/': 6 } },
     ],
+    // This site styles bare HTML elements from one global stylesheet, so no class or ID scopes them.
+    // Loose mode rejects each of those selectors. The rule suits a project that scopes every rule
+    // with CSS Modules or a shadow root.
+    'defensive-css/require-pure-selectors': null,
     'plugin/declaration-block-no-ignored-properties': true,
     'plugin/no-unsupported-browser-features': [
       true,
       { severity: 'warning' },
     ],
     'plugin/selector-tag-no-without-class': [ 'div', 'span' ],
-    'plugin/use-defensive-css': true,
-    'plugin/use-logical-properties-and-values': true,
-    'plugin/use-logical-units': true,
     'scale-unlimited/declaration-strict-value': [
       [ '/color$/', 'z-index' ],
       {

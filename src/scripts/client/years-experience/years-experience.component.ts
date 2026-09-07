@@ -33,11 +33,13 @@ export class YearsOfExperience extends HTMLElement implements CustomWebComponent
   }
 
   private _update(): void {
-    if (this._timeEl) {
-      const startYear = this._timeEl.getAttribute('datetime');
-      if (startYear) {
-        this._timeEl.textContent = yearsOfExperience(startYear);
-      }
+    if (!this._timeEl) {
+      return;
+    }
+
+    const startYear = this._timeEl.getAttribute('datetime');
+    if (startYear) {
+      this._timeEl.textContent = yearsOfExperience(startYear);
     }
   }
 }

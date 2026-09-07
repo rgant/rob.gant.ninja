@@ -7,21 +7,28 @@
 
 .title {
   display: flex;
+  flex-wrap: nowrap;
   gap: 1.5rem;
   align-items: center;
+
   text-decoration: none;
 
   &:visited {
     color: var(--link-color); /* Don't change the visited title link */
   }
 
-  &:hover,
   &:active {
     text-decoration: underline;
   }
 
   strong {
     font-weight: 500;
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
 

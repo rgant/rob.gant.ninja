@@ -195,13 +195,13 @@ a {
     color: var(--link-color-visited);
   }
 
-  &:hover,
   &:active {
     color: var(--link-color-interaction);
   }
 
   &[target='_blank'] {
     display: inline-flex;
+    flex-wrap: nowrap;
     gap: .25rem;
     align-items: center;
 
@@ -209,6 +209,12 @@ a {
       /* stroke color should be the same as --text-secondary */
       content: url('../assets/external-link.svg');
       block-size: 1rem;
+    }
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      color: var(--link-color-interaction);
     }
   }
 }
@@ -240,12 +246,14 @@ summary {
     }
   }
 
-  &:hover {
-    color: var(--link-color-interaction);
-
-    /* stylelint-disable-next-line plugin/no-unsupported-browser-features -- stylistic change that can be skip in unsupported browsers */
-    &::marker {
+  @media (hover: hover) {
+    &:hover {
       color: var(--link-color-interaction);
+
+      /* stylelint-disable-next-line plugin/no-unsupported-browser-features -- stylistic change that can be skip in unsupported browsers */
+      &::marker {
+        color: var(--link-color-interaction);
+      }
     }
   }
 }
@@ -307,8 +315,10 @@ summary {
 @media only screen and (width >= 42em) {
   .banner {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
+
     padding-inline: 1rem;
 
     footer& {
@@ -320,7 +330,7 @@ summary {
     margin: 0;
     padding-inline-start: 0;
     white-space: nowrap;
-    list-style-type: none;
+    list-style-type: ''; /* Keeps list semantics for screen readers in Safari */
 
     li {
       display: inline-block;
@@ -389,7 +399,7 @@ summary {
  */
 
 .visually-hidden.focusable:active,
-.visually-hidden.focusable:focus {
+.visually-hidden.focusable:focus-visible {
   position: static;
 
   overflow: visible;

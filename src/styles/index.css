@@ -21,7 +21,7 @@ h3 {
 
     position: absolute;
     inset-block-end: 1.25rem; /* Place the dots at the bottom of the .subsection, especially
-                                 important when each section is full viewport height. */
+    important when each section is full viewport height. */
     inset-inline-start: 50%; /* Center the dots horizontally */
     transform: translateX(-50%);
 
@@ -105,27 +105,24 @@ h3 {
     /*
       Add an animated underline to the navigation items on hover.
       Keep the underline visible for the currently .selected item.
-      Not nesting these because of selector complexities. Might be a reason to use SCSS.
+      Scroll-spy toggles .selected without hover, so the transition stays outside the
+      hover query. Only the hover-triggered preview and reset stay inside it.
      */
 
-    li::after, /* default state of underline */
-    &:hover .selected::after /* Reset the selected option when hovering over nav. */ {
+    li::after {
+      /* default state of underline */
       content: '';
-
       transform: scaleX(0);
-
       display: block;
-
       border-block-end: solid 3px var(--gray-light);
 
-      transition: transform 200ms ease-in-out;
+      @media (prefers-reduced-motion: no-preference) {
+        transition: transform 200ms ease-in-out;
+      }
     }
 
-    li:hover::after, /* On hover underline. */
-    /* stylelint-disable-next-line no-descending-specificity -- Applying the same styles in multiple
-        selectors makes this impossible to order without duplicating rules. */
-    .selected::after, /* Underline selected option. */
-    &:hover .selected:hover::after /* Re-underline if hovering over selected. */ {
+    .selected::after {
+      /* Underline selected option. */
       transform: scaleX(1);
     }
 
@@ -147,22 +144,39 @@ h3 {
 
       &[href='#about'] {
         background-image: url('../assets/about.svg');
+        background-repeat: no-repeat; /* Set on the parent already, restated for defensive-css/require-background-repeat */
       }
 
       &[href='#resume'] {
         background-image: url('../assets/resume.svg');
+        background-repeat: no-repeat; /* Set on the parent already, restated for defensive-css/require-background-repeat */
       }
 
       &[href='#projects'] {
         background-image: url('../assets/projects.svg');
+        background-repeat: no-repeat; /* Set on the parent already, restated for defensive-css/require-background-repeat */
       }
 
       &[href='#tipsntricks'] {
         background-image: url('../assets/tipsntricks.svg');
+        background-repeat: no-repeat; /* Set on the parent already, restated for defensive-css/require-background-repeat */
       }
 
       &[href='#orgs'] {
         background-image: url('../assets/orgs.svg');
+        background-repeat: no-repeat; /* Set on the parent already, restated for defensive-css/require-background-repeat */
+      }
+    }
+
+    @media (hover: hover) {
+      &:hover .selected::after {
+        /* Reset the selected option when hovering over nav. */
+        transform: scaleX(0);
+      }
+
+      li:hover::after, /* On hover underline. */
+      &:hover .selected:hover::after /* Re-underline if hovering over selected. */ {
+        transform: scaleX(1);
       }
     }
   }
@@ -236,8 +250,8 @@ h3 {
       flex: 1 0 max-content;
     }
 
-    li::after, /* default state of sideline */
-    &:hover .selected::after /* Reset the selected option when hovering over nav. */ {
+    li::after {
+      /* default state of sideline */
       position: absolute;
       inset-block: 0;
       inset-inline-start: 0;
@@ -247,12 +261,21 @@ h3 {
       border-inline-start: solid 3px var(--text-secondary);
     }
 
-    li:hover::after, /* On hover underline. */
-    /* stylelint-disable-next-line no-descending-specificity -- Applying the same styles in multiple
-        selectors makes this impossible to order without duplicating rules. */
-    .selected::after, /* Sideline selected option. */
-    &:hover .selected:hover::after /* Re-sideline if hovering over selected. */ {
+    .selected::after {
+      /* Sideline selected option. */
       transform: scaleY(1);
+    }
+
+    @media (hover: hover) {
+      &:hover .selected::after {
+        /* Reset the selected option when hovering over nav. */
+        transform: scaleY(0);
+      }
+
+      li:hover::after, /* On hover underline. */
+      &:hover .selected:hover::after /* Re-sideline if hovering over selected. */ {
+        transform: scaleY(1);
+      }
     }
   }
 
@@ -263,15 +286,16 @@ h3 {
   /* Make each subsection one viewport tall with space for a background and the nav. */
   .subsection {
     box-sizing: border-box;
-    min-block-size: 100vb;
+    min-block-size: 100dvb;
     padding: 3.5rem 10% 2.125rem 50%;
 
     background-repeat: no-repeat;
-    background-attachment: fixed;
     background-position: left 1rem bottom 1rem;
 
     /*
-    Background size is relative to viewport because attachement is fixed.
+    Background size is relative to viewport when background-attachment is fixed, and relative to
+    .subsection otherwise. .subsection is close to one viewport tall and full width, so the size
+    looks about the same either way.
 
     This doesn't strech the SVG image because the image has it's own viewBox determining the size.
     So the background 'area' is 45%x67%, but the SVG scales itself to fit within. Which is why it
@@ -279,26 +303,36 @@ h3 {
     background area. Is my guess. https://github.com/rgant/rob.gant.ninja/issues/6
     */
     background-size: 45% 67%;
+
+    @media (prefers-reduced-motion: no-preference) {
+      /* stylelint-disable-next-line plugin/no-unsupported-browser-features -- stylistic change that can be skip in unsupported browsers */
+      background-attachment: fixed;
+    }
   }
 
   #about {
     background-image: url('../assets/about.svg');
+    background-repeat: no-repeat; /* Set on .subsection already, restated for defensive-css/require-background-repeat */
   }
 
   #resume {
     background-image: url('../assets/resume.svg');
+    background-repeat: no-repeat; /* Set on .subsection already, restated for defensive-css/require-background-repeat */
   }
 
   #projects {
     background-image: url('../assets/projects.svg');
+    background-repeat: no-repeat; /* Set on .subsection already, restated for defensive-css/require-background-repeat */
   }
 
   #tipsntricks {
     background-image: url('../assets/tipsntricks.svg');
+    background-repeat: no-repeat; /* Set on .subsection already, restated for defensive-css/require-background-repeat */
   }
 
   #orgs {
     background-image: url('../assets/orgs.svg');
+    background-repeat: no-repeat; /* Set on .subsection already, restated for defensive-css/require-background-repeat */
   }
 }
 

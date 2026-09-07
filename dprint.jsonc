@@ -11,12 +11,12 @@
   ],
 
   "plugins": [
-    "https://plugins.dprint.dev/g-plane/malva-v0.15.2.wasm",
-    "https://plugins.dprint.dev/g-plane/markup_fmt-v0.25.3.wasm",
-    "https://plugins.dprint.dev/g-plane/pretty_yaml-v0.6.0.wasm",
-    "https://plugins.dprint.dev/json-0.21.1.wasm",
-    "https://plugins.dprint.dev/markdown-0.20.0.wasm",
-    "https://plugins.dprint.dev/typescript-0.95.13.wasm",
+    "npm:dprint-plugin-malva@0.16.0",
+    "npm:dprint-plugin-markup@0.27.3",
+    "npm:dprint-plugin-yaml@0.6.0",
+    "npm:@dprint/json@0.23.0",
+    "npm:@dprint/markdown@0.23.3",
+    "npm:@dprint/typescript@0.96.1",
   ],
 
   // Common formatting
@@ -86,7 +86,7 @@
     "preferSingleLine": false,
     "quoteProps": "asNeeded",
     "quoteStyle": "preferSingle",
-    "semiColons": "always",
+    "semiColons": "prefer",
     "setAccessor.spaceBeforeParentheses": false,
     "singleBodyPosition": "nextLine",
     "spaceAround": false,

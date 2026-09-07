@@ -42,8 +42,8 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
       <ul class="key-points">
         <li>
           <strong>Directory Index Limitations:</strong>
-          <a rel="noreferrer" href="https://aws.amazon.com/cloudfront/" target="_blank" title="AWS CloudFront">CloudFront’s</a> root object
-          configuration only applies to the root domain, not subdirectories. A
+          <a rel="noreferrer" href="https://aws.amazon.com/cloudfront/" target="_blank" title="AWS CloudFront">CloudFront’s</a> root
+          object configuration only applies to the root domain, not subdirectories. A
           <a
             rel="noreferrer"
             href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/example_cloudfront_functions_url_rewrite_single_page_apps_section.html"
@@ -268,10 +268,10 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
 
       <div class="description">
         <p>
-          Working with AWS Amplify through Terraform presented several challenges, primarily stemming from Amplify’s rapid feature evolution
-          outpacing the Terraform provider’s capabilities. Domain provisioning failed repeatedly during initial setup and testing phases.
-          Multiple deletion and recreation cycles were required before successful domain association, suggesting race conditions or
-          incomplete state synchronization within Amplify’s domain verification process.
+          Working with AWS Amplify through Terraform presented several challenges, primarily stemming from Amplify’s rapid feature
+          evolution outpacing the Terraform provider’s capabilities. Domain provisioning failed repeatedly during initial setup and
+          testing phases. Multiple deletion and recreation cycles were required before successful domain association, suggesting race
+          conditions or incomplete state synchronization within Amplify’s domain verification process.
         </p>
 
         <p>
@@ -357,8 +357,8 @@ const description = unwrap`How to deploy static websites with Terraform and AWS 
         </p>
 
         <p>
-          SSL certificate management is handled through Amplify’s automated provisioning, which creates and renews certificates through AWS
-          Certificate Manager. While this automation reduces manual maintenance, the certificates are not tracked in Terraform state. I
+          SSL certificate management is handled through Amplify’s automated provisioning, which creates and renews certificates through
+          AWS Certificate Manager. While this automation reduces manual maintenance, the certificates are not tracked in Terraform state. I
           manage the DNS verification record by importing it into Terraform after Amplify creates it, but the actual certificates remain
           outside Terraform management.
         </p>

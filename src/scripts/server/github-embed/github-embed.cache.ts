@@ -57,6 +57,21 @@ const isProjectRoot = (): boolean => {
 };
 
 /**
+ * Reads a cache file. If the read fails, warns and returns undefined.
+ * @param path - Path of the file to read
+ * @param label - Name of the file for the warning message
+ * @param cacheKey - Cache key for the warning message
+ */
+const readCacheFile = (path: string, label: string, cacheKey: string): string | undefined => {
+  try {
+    return readFileSync(path, 'utf8');
+  } catch (err) {
+    console.warn(`Cannot read cache ${label} for ${cacheKey}:`, err);
+    return undefined;
+  }
+};
+
+/**
  * Reads the metadata and contents for a cached file if any based on cacheKey from rawUrl.
  * @param rawUrl - Value of `rawUrl` key from ParsedGitHubUrl object
  */
@@ -70,20 +85,30 @@ export const readCache = (rawUrl: string): CacheEntry | undefined => {
     return undefined;
   }
 
-  try {
-    const metadataJson = readFileSync(metadataPath, 'utf8');
-    const metadata: unknown = JSON.parse(metadataJson);
-    const content = readFileSync(contentPath, 'utf8');
-
-    if (isCacheMetadata(metadata)) {
-      return { content, metadata };
-    }
-
-    throw new TypeError('Malformed metadata JSON');
-  } catch (err) {
-    console.warn(`Failed to read cache for ${cacheKey}:`, err);
+  const metadataJson = readCacheFile(metadataPath, 'metadata', cacheKey);
+  if (metadataJson === undefined) {
     return undefined;
   }
+
+  let metadata: unknown;
+  try {
+    metadata = JSON.parse(metadataJson);
+  } catch (err) {
+    console.warn(`Cannot parse cache metadata for ${cacheKey}:`, err);
+    return undefined;
+  }
+
+  if (!isCacheMetadata(metadata)) {
+    console.warn(`Cache metadata has the wrong shape for ${cacheKey}`);
+    return undefined;
+  }
+
+  const content = readCacheFile(contentPath, 'content', cacheKey);
+  if (content === undefined) {
+    return undefined;
+  }
+
+  return { content, metadata };
 };
 
 /**
@@ -93,14 +118,14 @@ export const readCache = (rawUrl: string): CacheEntry | undefined => {
  * @param metadata - Caching metadata
  */
 export const writeCache = (rawUrl: string, content: string, metadata: CacheMetadata): void => {
+  if (!isProjectRoot()) {
+    return;
+  }
+
   const cacheKey = generateCacheKey(rawUrl);
   const cacheDir = join(CACHE_DIR, cacheKey);
   const metadataPath = join(cacheDir, 'metadata.json');
   const contentPath = join(cacheDir, 'content.txt');
-
-  if (!isProjectRoot()) {
-    return;
-  }
 
   try {
     // Ensure cache directory exists

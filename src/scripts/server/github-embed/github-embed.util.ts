@@ -15,13 +15,14 @@ export const extractLines = (content: string, lineRange: LineRange): string => {
 
   // Convert to 0-based indexing (URLs use 1-based)
   const startIndex = lineRange.start - 1;
-  const endIndex = typeof lineRange.end === 'number' ? lineRange.end - 1 : startIndex;
 
   // Validate line ranges
   if (startIndex < 0 || startIndex >= lines.length) {
     console.warn(`Invalid start line ${lineRange.start}, file has ${lines.length} lines`);
     return content;
   }
+
+  const endIndex = typeof lineRange.end === 'number' ? lineRange.end - 1 : startIndex;
 
   if (endIndex < startIndex || endIndex >= lines.length) {
     console.warn(`Invalid end line ${lineRange.end}, file has ${lines.length} lines`);

@@ -7,7 +7,7 @@
 /* eslint-disable max-lines -- Configs have a lot of lines */
 import eslint from '@eslint/js';
 import stylistic from '@stylistic/eslint-plugin';
-import astroParser from 'astro-eslint-parser';
+import { parseForESLint as astroParseForESLint } from 'astro-eslint-parser';
 import { createTypeScriptImportResolver } from 'eslint-import-resolver-typescript';
 import { configs as eslintAstroConfigs } from 'eslint-plugin-astro';
 import { importX } from 'eslint-plugin-import-x';
@@ -29,7 +29,6 @@ export default defineConfig(
   stylistic.configs.all,
   tseslintConfigs.all,
   eslintAstroConfigs.all,
-  // @ts-expect-error -- Type mismatch between @typescript-eslint and @eslint/core regarding LanguageOptions
   importX.flatConfigs.recommended,
   importX.flatConfigs.typescript,
   perfectionistConfigs['recommended-natural'],
@@ -701,10 +700,40 @@ export default defineConfig(
         'error',
         { name: 'err' },
       ],
+      // Flags brand/word substitutions in prose comments (e.g. application -> app); too noisy
+      'unicorn/comment-content': 'off',
+      // Its fixer fights `preferArrow/prefer-arrow-functions` at returnStyle `implicit`. One
+      // `eslint --fix` run piles tab indentation onto every arrow body the two rules both touch.
+      'unicorn/consistent-arrow-return-style': 'off',
+      // Conflicts with @typescript-eslint/member-ordering, which governs member order here
+      'unicorn/consistent-class-member-order': 'off',
+      // This rule seems like a legacy thing and may actually be worse. TypeScript can import JSON files directly so we don't need it.
+      'unicorn/consistent-json-file-read': 'off',
+      'unicorn/filename-case': [
+        'error',
+        {
+          cases: {
+            camelCase: true,
+            kebabCase: true,
+            pascalCase: true,
+          },
+        },
+      ],
       'unicorn/import-style': 'off', // I always prefer named imports
+      // I think some of these are silly. `e` is bad, but `err` and `exc` are decent. `user of users` is confusing, `usr of users` is safer.
+      'unicorn/name-replacements': 'off',
       // Also applies to callbacks defined within the same file which make this rule silly IMPO
       'unicorn/no-array-callback-reference': 'off',
+      // Keep the aligned `*` JSDoc style in doc comments
+      'unicorn/no-asterisk-prefix-in-documentation-comments': 'off',
       'unicorn/no-keyword-prefix': 'off', // Not actually all that confusing IMPO
+      // Conflicts with @stylistic/max-len (140): its only fix unwraps a comment onto one line, which
+      // for any multi-line prose comment overflows 140 — the two rules are mutually unsatisfiable.
+      'unicorn/no-manually-wrapped-comments': 'off',
+      // Names like `createMutation` (a useMutation result) read fine as non-functions
+      'unicorn/no-non-function-verb-prefix': 'off',
+      // Lazy-singleton init (e.g. telemetry) intentionally assigns a module-level var inside a function
+      'unicorn/no-top-level-assignment-in-function': 'off',
       'unicorn/no-unused-properties': 'off', // tsconfig already covers this
       'unicorn/no-useless-undefined': [
         'error',
@@ -712,13 +741,13 @@ export default defineConfig(
       ],
       'unicorn/prefer-export-from': [
         'error',
-        { ignoreUsedVariables: true },
+        { checkUsedVariables: false },
       ],
-      // This rule seems like a legacy thing and may actually be worse. TypeScript can import JSON files directly so we don't need it.
-      'unicorn/prefer-json-parse-buffer': 'off',
+      // TODO(rgant, 2026-06-30): enable once Temporal has broad browser support (currently limited per MDN).
+      'unicorn/prefer-temporal': 'off',
       'unicorn/prefer-top-level-await': 'off', // The “module” option in “tsconfig.json” has to be set to esnext or system for this
-      // I think some of these are silly. `e` is bad, but `err` and `exc` are decent. `user of users` is confusing, `usr of users` is safer.
-      'unicorn/prevent-abbreviations': 'off',
+      // The default `multiline` style expands every one-line doc comment and drops the `*` prefix
+      'unicorn/single-line-block-comment-style': [ 'error', 'single-line' ],
       'unicorn/string-content': 'off', // Doesn't actually work on HTML where this would be most useful.
       'vars-on-top': 'off',
     },
@@ -737,7 +766,7 @@ export default defineConfig(
   {
     files: [ 'src/**/*.astro' ],
     languageOptions: {
-      parser: astroParser,
+      parser: { parseForESLint: astroParseForESLint },
       parserOptions: {
         extraFileExtensions: [ '.astro' ],
         parser: '@typescript-eslint/parser',

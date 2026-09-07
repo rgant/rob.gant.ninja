@@ -71,7 +71,7 @@
     font-weight: 500;
   }
 
-  tbody tr:nth-child(even) {
+  tr:nth-child(even) {
     background-color: var(--gray-darkish);
   }
 }

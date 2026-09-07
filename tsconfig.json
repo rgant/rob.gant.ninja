@@ -1,13 +1,12 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
     "allowUnreachableCode": null,
     "allowUnusedLabels": null,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "noPropertyAccessFromIndexSignature": true,
     "paths": {
-      "~/*": ["src/*"]
+      "~/*": ["./src/*"]
     },
     "skipLibCheck": true,
     "sourceMap": true
