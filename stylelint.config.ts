@@ -1,15 +1,15 @@
-// @ts-check
+/* eslint-disable unicorn/no-null -- Stylelint's convention for disabling a rule is null */
+import type { Config } from 'stylelint';
 
 const PRECISION = 4;
 
-/** @type { import('stylelint').Config } */
-const config = {
+const config: Config = {
   extends: [
     'stylelint-config-standard',
     '@stylistic/stylelint-config',
     'stylelint-config-clean-order/error',
     'stylelint-config-html',
-    'stylelint-plugin-defensive-css/configs/recommended',
+    'stylelint-plugin-defensive-css/configs/strict',
     'stylelint-plugin-logical-css/configs/recommended',
   ],
   ignoreFiles: [
@@ -24,7 +24,7 @@ const config = {
     'stylelint-declaration-block-no-ignored-properties',
     'stylelint-declaration-strict-value',
     'stylelint-gamut',
-    'stylelint-no-unsupported-browser-features',
+    'stylelint-plugin-use-baseline',
     'stylelint-selector-tag-no-without-class',
     'stylelint-use-nesting',
   ],
@@ -51,6 +51,20 @@ const config = {
     'color-no-hex': true,
     'csstools/use-nesting': 'always',
     'declaration-no-important': true,
+    'defensive-css/no-fixed-sizes': true,
+    // Not using cascade layers.
+    'defensive-css/require-at-layer': null,
+    // Custom properties are defined in this project's global stylesheet, not injected by JS, so a
+    // fallback at each use adds noise.
+    'defensive-css/require-custom-property-fallback': null,
+    // This site styles bare HTML elements from one global stylesheet, so no class or ID scopes them.
+    // Loose mode rejects each of those selectors. The rule suits a project that scopes every rule
+    // with CSS Modules or a shadow root.
+    'defensive-css/require-pure-selectors': null,
+    // Code blocks hold content that is fixed at build time, so no scrollbar appears or disappears
+    // while a visitor reads. A stable gutter adds empty space to every block that never
+    // scrolls.
+    'defensive-css/require-scrollbar-gutter': null,
     'function-disallowed-list': [ 'rgba', 'hsla', 'rgb', 'hsl' ],
     'gamut/color-no-out-gamut-range': true,
     'max-nesting-depth': 3,
@@ -59,16 +73,33 @@ const config = {
       PRECISION,
       { insideFunctions: { '/^(oklch|oklab|lch|lab)$/': 6 } },
     ],
-    // This site styles bare HTML elements from one global stylesheet, so no class or ID scopes them.
-    // Loose mode rejects each of those selectors. The rule suits a project that scopes every rule
-    // with CSS Modules or a shadow root.
-    'defensive-css/require-pure-selectors': null,
     'plugin/declaration-block-no-ignored-properties': true,
-    'plugin/no-unsupported-browser-features': [
-      true,
-      { severity: 'warning' },
-    ],
     'plugin/selector-tag-no-without-class': [ 'div', 'span' ],
+    // Each entry below is a progressive enhancement. A browser without the feature still renders a
+    // usable page, so the site adopts it before it reaches baseline.
+    'plugin/use-baseline': [
+      true,
+      {
+        available: 'newly',
+        // A browser without view transitions navigates without the animation.
+        ignoreAtRules: [ 'view-transition' ],
+        ignoreProperties: {
+          // The parallax background falls back to a scrolling background.
+          'background-attachment': [ 'fixed' ],
+          // Print control only. A browser without it breaks the page as it did before.
+          'break-after': [ 'avoid' ],
+          orphans: [],
+          widows: [],
+          // The code block stops a scroll from reaching the page. Without it the page scrolls on.
+          'overscroll-behavior': [ 'contain' ],
+          // The textarea stays fixed size without it.
+          resize: [ 'block' ],
+        },
+        // A list marker and a selection highlight both fall back to the browser default.
+        ignoreSelectors: [ 'marker', 'selection' ],
+        severity: 'warning',
+      },
+    ],
     'scale-unlimited/declaration-strict-value': [
       [ '/color$/', 'z-index' ],
       {

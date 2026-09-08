@@ -781,7 +781,7 @@ export default defineConfig(
     },
   },
   {
-    files: [ 'stylelint.config.mjs' ],
+    files: [ 'stylelint.config.ts' ],
     rules: {
       '@typescript-eslint/naming-convention': 'off',
       'tsdoc/syntax': 'off',

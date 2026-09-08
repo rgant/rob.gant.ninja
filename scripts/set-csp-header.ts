@@ -13,7 +13,7 @@
  * {@link https://github.com/kindspells/astro-shield/issues/67}
  */
 import { writeFileSync } from 'node:fs'; // eslint-disable-line import-x/no-nodejs-modules -- This is a node script
-import { resolve } from 'node:path'; // eslint-disable-line unicorn/import-style, import-x/no-nodejs-modules -- This is a node script
+import { resolve } from 'node:path'; // eslint-disable-line import-x/no-nodejs-modules -- This is a node script
 
 import { perResourceSriHashes } from '../generated/sriHashes.mjs';
 

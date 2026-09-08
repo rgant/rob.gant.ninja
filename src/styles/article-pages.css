@@ -104,6 +104,7 @@
 
   pre {
     overflow-inline: auto;
+    overscroll-behavior: contain;
     margin: 0;
   }
 

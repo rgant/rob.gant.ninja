@@ -2,6 +2,7 @@ import { existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 
 import sitemap from '@astrojs/sitemap';
+import type { SitemapItem } from '@astrojs/sitemap';
 import { shield } from '@kindspells/astro-shield';
 import playformCompress from '@playform/compress';
 import astroPwa from '@vite-pwa/astro';
@@ -76,9 +77,9 @@ export default defineConfig({ // eslint-disable-line import-x/no-default-export 
       // Astro gives the sitemap a route path with no extension, but `build.format: 'preserve'`
       // writes `foo/index.astro` to `foo/index.html` and `foo.astro` to `foo.html`. Each page
       // declares the second form as its canonical URL, so the sitemap must name the same URL.
-      serialize(item) {
+      serialize: (item: SitemapItem): SitemapItem => {
         const url = new URL(item.url);
-        const route = url.pathname.replace(/^\/|\/$/gu, '');
+        const route = url.pathname.replaceAll(/^\/|\/$/gu, '');
 
         if (route === '') {
           return item;

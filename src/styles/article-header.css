@@ -40,7 +40,7 @@
   img {
     inline-size: 2rem;
     block-size: 2rem;
-    margin-block: -2px 2px; /* Center the image better inside the wrapper */
+    margin-block: -.125rem .125rem; /* Center the image better inside the wrapper */
   }
 }
 

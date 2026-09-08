@@ -12,11 +12,16 @@ npm run deploy
 
 ### Setup
 
-Install AWS CLI, S3cmd and Terraform:
+Install the command line tools that `Brewfile` names:
 
 ```sh
-brew tap hashicorp/tap
-brew install awscli hashicorp/tap/terraform s3cmd
+brew bundle
+```
+
+Install the Node version that `.nvmrc` names:
+
+```sh
+nvm install
 ```
 
 Configure AWS: `aws configure --profile personal`. Use profiles, don't setup

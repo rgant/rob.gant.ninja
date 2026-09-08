@@ -27,8 +27,8 @@ h3 {
 
     display: block;
 
-    inline-size: 14px;
-    block-size: 14px;
+    inline-size: .875rem;
+    block-size: .875rem;
     border-radius: 50%;
 
     background: var(--text-secondary);
@@ -82,7 +82,7 @@ h3 {
 
   img {
     inline-size: 100%;
-    max-inline-size: 410px;
+    max-inline-size: 25.625rem;
     block-size: auto;
   }
 }
@@ -134,13 +134,13 @@ h3 {
 
       display: inline-block;
 
-      padding-block-start: 37px;
+      padding-block-start: 2.3125rem;
 
       text-decoration: none;
 
       background-repeat: no-repeat;
       background-position: center top;
-      background-size: auto 32px;
+      background-size: auto 2rem;
 
       &[href='#about'] {
         background-image: url('../assets/about.svg');
@@ -305,7 +305,6 @@ h3 {
     background-size: 45% 67%;
 
     @media (prefers-reduced-motion: no-preference) {
-      /* stylelint-disable-next-line plugin/no-unsupported-browser-features -- stylistic change that can be skip in unsupported browsers */
       background-attachment: fixed;
     }
   }

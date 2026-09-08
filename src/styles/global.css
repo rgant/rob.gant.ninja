@@ -72,8 +72,6 @@ html {
   font-size: 1em;
   line-height: 1.4;
   color: var(--text-primary);
-
-  /* stylelint-disable-next-line plugin/no-unsupported-browser-features -- stylistic change that can be skip in unsupported browsers */
   text-decoration-thickness: 8%; /* Sets the thickness as a percentage of the font size */
   text-underline-offset: 8%; /* Places the underline a bit further below the text. */
 
@@ -87,7 +85,6 @@ html {
  * Customize the background color to match your design.
  */
 
-/* stylelint-disable-next-line plugin/no-unsupported-browser-features -- stylistic change that can be skip in unsupported browsers */
 ::selection {
   text-shadow: none;
   background: var(--text-selection-bg);
@@ -100,6 +97,7 @@ html {
 hr {
   display: block;
 
+  /* stylelint-disable-next-line defensive-css/no-fixed-sizes -- A rule is one device pixel. */
   block-size: 1px;
   margin: 1em 0;
   padding: 0;
@@ -137,9 +135,6 @@ fieldset {
  */
 
 textarea {
-  /* stylelint-disable-next-line
-     plugin/no-unsupported-browser-features
-     -- progressive enhancement; acceptable lack of iOS Safari support. */
   resize: block;
 }
 
@@ -237,7 +232,6 @@ h3 {
 summary {
   cursor: pointer; /* These are clicky, so why isn't this the default? */
 
-  /* stylelint-disable-next-line plugin/no-unsupported-browser-features -- stylistic change that can be skip in unsupported browsers */
   &::marker {
     color: var(--yellow);
 
@@ -250,7 +244,6 @@ summary {
     &:hover {
       color: var(--link-color-interaction);
 
-      /* stylelint-disable-next-line plugin/no-unsupported-browser-features -- stylistic change that can be skip in unsupported browsers */
       &::marker {
         color: var(--link-color-interaction);
       }
@@ -378,15 +371,16 @@ summary {
 
   overflow: hidden;
 
+  /* stylelint-disable defensive-css/no-fixed-sizes -- The standard visually-hidden clip needs 1px. */
   inline-size: 1px;
   block-size: 1px;
   margin: -1px;
+  /* stylelint-enable defensive-css/no-fixed-sizes */
   padding: 0;
   border: 0;
 
   white-space: nowrap;
 
-  /* stylelint-disable-next-line plugin/no-unsupported-browser-features -- not using the unsupported features */
   clip-path: inset(100% 100% 100% 100%);
 
   /* 1 */
@@ -410,7 +404,6 @@ summary {
 
   white-space: inherit;
 
-  /* stylelint-disable-next-line plugin/no-unsupported-browser-features -- not using the unsupported features */
   clip-path: none;
 }
 
@@ -447,7 +440,7 @@ summary {
 
 @media print {
   /* stylelint-disable
-      declaration-no-important, selector-max-universal, plugin/no-unsupported-browser-features
+      declaration-no-important, selector-max-universal
       -- HTML5 Boilerplate default
   */
   *,
