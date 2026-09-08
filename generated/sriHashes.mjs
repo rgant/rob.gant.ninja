@@ -5,19 +5,19 @@ export const inlineScriptHashes = /** @type {string[]} */ ([])
 export const inlineStyleHashes = /** @type {string[]} */ ([])
 
 export const extScriptHashes = /** @type {string[]} */ ([
-	'sha256-+O+CYIaCO1PMMkf1VY2IFZCZP66wfIKOJT8NoL3YaiA=',
-	'sha256-8s6r/W8y1DbGseeGdAbEcI2xiQasq8LyY34xXZoWhl4=',
 	'sha256-A+FlqQNlKKcWc/epeLYjr+rIoIx+bstv+JrQ1rJGIDI=',
-	'sha256-NgWAsHzhrw74awJcEaNRMwqr7L6rD2HsyBo177nrEBU=',
-	'sha256-Qygc2b1uEGmwy6vDMYHFqTQ8H1tojJ8xydSVlW1zYFU=',
-	'sha256-bvNLyEuVr3wA9NKeBXEv6FXP6o1/mJ86uyvoucuPnow=',
+	'sha256-Acpo86T9X3dVroF/7uJtsUWvo+lEaWLRvrM4+WsDavE=',
+	'sha256-HsRb3BAHCtPZTJsnzGcPfihQoO+9nW2S2gPFmQeq03E=',
+	'sha256-PfA3xn6ov7Yq76pCiXEqkZYhb1yFRt8RaWj5rSMiKvA=',
+	'sha256-tsY5NuUFxs3R34GyYDlT+BIaqZ2slddKyjiYB0dAhyk=',
+	'sha256-yx7baPQSJqWrCYrpVqLgzMyGslh4lGvB/XLCuz7iRNI=',
 ])
 
 export const extStyleHashes = /** @type {string[]} */ ([
-	'sha256-3oldAXvLhVGf9aQ+CZm9RrITTEI04uu2VIZGpQ+PKr8=',
-	'sha256-8i2FeVuQtUuycxBEZRTkNgcGqy5QwxbRoZ3OQrbfDco=',
-	'sha256-H/EQLfGl2k4Gg+8elvlBvwg9bS9iXMPSgwFh6zA4FeA=',
-	'sha256-ZdxYUP9XFrGZzX9r0G8LsftBxcN5CNW2t6Wt4uri2bY=',
+	'sha256-+kvNaPbXotbbYUdnfTN9BhcJ0hHqpWXRYnWnqXLCjkU=',
+	'sha256-DjNmaeJBjWUBI5p316L8MRgi9Z5o/tIxZOp4d3+3uj0=',
+	'sha256-UW9N0+v1hdAXX6rEMZfsk7bGvYUN09ymAFOITRsdc8Y=',
+	'sha256-aKAPEjWPsjDp+QEeiCBX+KDivqTsjqUm4xrYmuknyfg=',
 ])
 
 export const perPageSriHashes =
@@ -25,7 +25,7 @@ export const perPageSriHashes =
 		'404.html': {
 			scripts: [],
 			styles: [
-				'sha256-3oldAXvLhVGf9aQ+CZm9RrITTEI04uu2VIZGpQ+PKr8=',
+				'sha256-DjNmaeJBjWUBI5p316L8MRgi9Z5o/tIxZOp4d3+3uj0=',
 			],
 		},
 		'brainfry-app/index.html': {
@@ -34,80 +34,80 @@ export const perPageSriHashes =
 		},
 		'index.html': {
 			scripts: [
-				'sha256-+O+CYIaCO1PMMkf1VY2IFZCZP66wfIKOJT8NoL3YaiA=',
-				'sha256-8s6r/W8y1DbGseeGdAbEcI2xiQasq8LyY34xXZoWhl4=',
-				'sha256-bvNLyEuVr3wA9NKeBXEv6FXP6o1/mJ86uyvoucuPnow=',
+				'sha256-PfA3xn6ov7Yq76pCiXEqkZYhb1yFRt8RaWj5rSMiKvA=',
+				'sha256-tsY5NuUFxs3R34GyYDlT+BIaqZ2slddKyjiYB0dAhyk=',
+				'sha256-yx7baPQSJqWrCYrpVqLgzMyGslh4lGvB/XLCuz7iRNI=',
 			],
 			styles: [
-				'sha256-8i2FeVuQtUuycxBEZRTkNgcGqy5QwxbRoZ3OQrbfDco=',
-				'sha256-ZdxYUP9XFrGZzX9r0G8LsftBxcN5CNW2t6Wt4uri2bY=',
+				'sha256-+kvNaPbXotbbYUdnfTN9BhcJ0hHqpWXRYnWnqXLCjkU=',
+				'sha256-aKAPEjWPsjDp+QEeiCBX+KDivqTsjqUm4xrYmuknyfg=',
 			],
 		},
 		'ninja-site/deploy.html': {
 			scripts: [
-				'sha256-+O+CYIaCO1PMMkf1VY2IFZCZP66wfIKOJT8NoL3YaiA=',
-				'sha256-bvNLyEuVr3wA9NKeBXEv6FXP6o1/mJ86uyvoucuPnow=',
+				'sha256-tsY5NuUFxs3R34GyYDlT+BIaqZ2slddKyjiYB0dAhyk=',
+				'sha256-yx7baPQSJqWrCYrpVqLgzMyGslh4lGvB/XLCuz7iRNI=',
 			],
 			styles: [
-				'sha256-8i2FeVuQtUuycxBEZRTkNgcGqy5QwxbRoZ3OQrbfDco=',
-				'sha256-H/EQLfGl2k4Gg+8elvlBvwg9bS9iXMPSgwFh6zA4FeA=',
+				'sha256-+kvNaPbXotbbYUdnfTN9BhcJ0hHqpWXRYnWnqXLCjkU=',
+				'sha256-UW9N0+v1hdAXX6rEMZfsk7bGvYUN09ymAFOITRsdc8Y=',
 			],
 		},
 		'ninja-site/developing.html': {
 			scripts: [
-				'sha256-+O+CYIaCO1PMMkf1VY2IFZCZP66wfIKOJT8NoL3YaiA=',
-				'sha256-bvNLyEuVr3wA9NKeBXEv6FXP6o1/mJ86uyvoucuPnow=',
+				'sha256-tsY5NuUFxs3R34GyYDlT+BIaqZ2slddKyjiYB0dAhyk=',
+				'sha256-yx7baPQSJqWrCYrpVqLgzMyGslh4lGvB/XLCuz7iRNI=',
 			],
 			styles: [
-				'sha256-8i2FeVuQtUuycxBEZRTkNgcGqy5QwxbRoZ3OQrbfDco=',
-				'sha256-H/EQLfGl2k4Gg+8elvlBvwg9bS9iXMPSgwFh6zA4FeA=',
+				'sha256-+kvNaPbXotbbYUdnfTN9BhcJ0hHqpWXRYnWnqXLCjkU=',
+				'sha256-UW9N0+v1hdAXX6rEMZfsk7bGvYUN09ymAFOITRsdc8Y=',
 			],
 		},
 		'ninja-site/index.html': {
 			scripts: [
-				'sha256-+O+CYIaCO1PMMkf1VY2IFZCZP66wfIKOJT8NoL3YaiA=',
-				'sha256-bvNLyEuVr3wA9NKeBXEv6FXP6o1/mJ86uyvoucuPnow=',
+				'sha256-tsY5NuUFxs3R34GyYDlT+BIaqZ2slddKyjiYB0dAhyk=',
+				'sha256-yx7baPQSJqWrCYrpVqLgzMyGslh4lGvB/XLCuz7iRNI=',
 			],
 			styles: [
-				'sha256-8i2FeVuQtUuycxBEZRTkNgcGqy5QwxbRoZ3OQrbfDco=',
-				'sha256-H/EQLfGl2k4Gg+8elvlBvwg9bS9iXMPSgwFh6zA4FeA=',
+				'sha256-+kvNaPbXotbbYUdnfTN9BhcJ0hHqpWXRYnWnqXLCjkU=',
+				'sha256-UW9N0+v1hdAXX6rEMZfsk7bGvYUN09ymAFOITRsdc8Y=',
 			],
 		},
 		'ninja-site/lessons.html': {
 			scripts: [
-				'sha256-+O+CYIaCO1PMMkf1VY2IFZCZP66wfIKOJT8NoL3YaiA=',
-				'sha256-bvNLyEuVr3wA9NKeBXEv6FXP6o1/mJ86uyvoucuPnow=',
+				'sha256-tsY5NuUFxs3R34GyYDlT+BIaqZ2slddKyjiYB0dAhyk=',
+				'sha256-yx7baPQSJqWrCYrpVqLgzMyGslh4lGvB/XLCuz7iRNI=',
 			],
 			styles: [
-				'sha256-8i2FeVuQtUuycxBEZRTkNgcGqy5QwxbRoZ3OQrbfDco=',
-				'sha256-H/EQLfGl2k4Gg+8elvlBvwg9bS9iXMPSgwFh6zA4FeA=',
+				'sha256-+kvNaPbXotbbYUdnfTN9BhcJ0hHqpWXRYnWnqXLCjkU=',
+				'sha256-UW9N0+v1hdAXX6rEMZfsk7bGvYUN09ymAFOITRsdc8Y=',
 			],
 		},
 		'ninja-site/setup.html': {
 			scripts: [
-				'sha256-+O+CYIaCO1PMMkf1VY2IFZCZP66wfIKOJT8NoL3YaiA=',
-				'sha256-bvNLyEuVr3wA9NKeBXEv6FXP6o1/mJ86uyvoucuPnow=',
+				'sha256-tsY5NuUFxs3R34GyYDlT+BIaqZ2slddKyjiYB0dAhyk=',
+				'sha256-yx7baPQSJqWrCYrpVqLgzMyGslh4lGvB/XLCuz7iRNI=',
 			],
 			styles: [
-				'sha256-8i2FeVuQtUuycxBEZRTkNgcGqy5QwxbRoZ3OQrbfDco=',
-				'sha256-H/EQLfGl2k4Gg+8elvlBvwg9bS9iXMPSgwFh6zA4FeA=',
+				'sha256-+kvNaPbXotbbYUdnfTN9BhcJ0hHqpWXRYnWnqXLCjkU=',
+				'sha256-UW9N0+v1hdAXX6rEMZfsk7bGvYUN09ymAFOITRsdc8Y=',
 			],
 		}}
 )
 
 export const perResourceSriHashes = {
 	scripts: /** @type {Record<string,string>} */ ({
-		'/_astro/career-experience.astro_astro_type_script_index_0_lang.ChoXrc8Z.js': 'sha256-8s6r/W8y1DbGseeGdAbEcI2xiQasq8LyY34xXZoWhl4=',
-		'/_astro/end-scripts.astro_astro_type_script_index_0_lang.TmpIczM-.js': 'sha256-+O+CYIaCO1PMMkf1VY2IFZCZP66wfIKOJT8NoL3YaiA=',
-		'/_astro/scroll-navigation.astro_astro_type_script_index_0_lang.BkBlJY0c.js': 'sha256-bvNLyEuVr3wA9NKeBXEv6FXP6o1/mJ86uyvoucuPnow=',
-		'/_astro/workbox-window.prod.es5.BBnX5xw4.js': 'sha256-NgWAsHzhrw74awJcEaNRMwqr7L6rD2HsyBo177nrEBU=',
-		'/sw.js': 'sha256-Qygc2b1uEGmwy6vDMYHFqTQ8H1tojJ8xydSVlW1zYFU=',
+		'/_astro/career-experience.astro_astro_type_script_index_0_lang.D27wCT12.js': 'sha256-PfA3xn6ov7Yq76pCiXEqkZYhb1yFRt8RaWj5rSMiKvA=',
+		'/_astro/end-scripts.astro_astro_type_script_index_0_lang.u93oLczx.js': 'sha256-tsY5NuUFxs3R34GyYDlT+BIaqZ2slddKyjiYB0dAhyk=',
+		'/_astro/scroll-navigation.astro_astro_type_script_index_0_lang.BdnL1y_W.js': 'sha256-yx7baPQSJqWrCYrpVqLgzMyGslh4lGvB/XLCuz7iRNI=',
+		'/_astro/workbox-window.prod.es5.Bd17z0YL.js': 'sha256-Acpo86T9X3dVroF/7uJtsUWvo+lEaWLRvrM4+WsDavE=',
+		'/sw.js': 'sha256-HsRb3BAHCtPZTJsnzGcPfihQoO+9nW2S2gPFmQeq03E=',
 		'/workbox-9c191d2f.js': 'sha256-A+FlqQNlKKcWc/epeLYjr+rIoIx+bstv+JrQ1rJGIDI=',
 	}),
 	styles: /** @type {Record<string,string>} */ ({
-		'/_astro/404.Xeo1OP5o.css': 'sha256-3oldAXvLhVGf9aQ+CZm9RrITTEI04uu2VIZGpQ+PKr8=',
-		'/_astro/deploy.BIy97fK8.css': 'sha256-H/EQLfGl2k4Gg+8elvlBvwg9bS9iXMPSgwFh6zA4FeA=',
-		'/_astro/index.BVt79ux1.css': 'sha256-ZdxYUP9XFrGZzX9r0G8LsftBxcN5CNW2t6Wt4uri2bY=',
-		'/_astro/index.CED0jp10.css': 'sha256-8i2FeVuQtUuycxBEZRTkNgcGqy5QwxbRoZ3OQrbfDco=',
+		'/_astro/404.CmuWAq1t.css': 'sha256-DjNmaeJBjWUBI5p316L8MRgi9Z5o/tIxZOp4d3+3uj0=',
+		'/_astro/article-pages.9a4oQCOL.css': 'sha256-UW9N0+v1hdAXX6rEMZfsk7bGvYUN09ymAFOITRsdc8Y=',
+		'/_astro/index.O-HMv38Y.css': 'sha256-aKAPEjWPsjDp+QEeiCBX+KDivqTsjqUm4xrYmuknyfg=',
+		'/_astro/unwrap.CpdBJLJf.css': 'sha256-+kvNaPbXotbbYUdnfTN9BhcJ0hHqpWXRYnWnqXLCjkU=',
 	}),
 }

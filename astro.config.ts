@@ -1,3 +1,4 @@
+import { existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 
 import sitemap from '@astrojs/sitemap';
@@ -35,6 +36,10 @@ export default defineConfig({ // eslint-disable-line import-x/no-default-export 
     // I'm building a typical directory structure for the website as is traditional.
     format: 'preserve',
   },
+  // Astro 7 defaults this to 'jsx', which strips whitespace by JSX rules and fuses adjacent words
+  // in prose. 'true' keeps the HTML whitespace rules.
+  // https://docs.astro.build/en/reference/configuration-reference/#compresshtml
+  compressHTML: true,
   env: {
     schema: {
       /* eslint-disable @typescript-eslint/naming-convention -- Externally specified configuration */
@@ -67,7 +72,23 @@ export default defineConfig({ // eslint-disable-line import-x/no-default-export 
     }),
     // Use this file to update the CSP headers with the SRI hashes
     shield({ sri: { hashesModule: modulePath } }),
-    sitemap(),
+    sitemap({
+      // Astro gives the sitemap a route path with no extension, but `build.format: 'preserve'`
+      // writes `foo/index.astro` to `foo/index.html` and `foo.astro` to `foo.html`. Each page
+      // declares the second form as its canonical URL, so the sitemap must name the same URL.
+      serialize(item) {
+        const url = new URL(item.url);
+        const route = url.pathname.replace(/^\/|\/$/gu, '');
+
+        if (route === '') {
+          return item;
+        }
+
+        const isIndexPage = existsSync(resolve(import.meta.dirname, 'src', 'pages', route, 'index.astro'));
+
+        return { ...item, url: isIndexPage ? `${url.origin}/${route}/` : `${url.origin}/${route}.html` };
+      },
+    }),
   ],
   site: 'https://rob.gant.ninja',
   // trailingSlash: 'always', // Because I'm using build.format preserve and PWA and Amplify best to not use this.
